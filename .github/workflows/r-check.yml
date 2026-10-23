@@ -19,8 +19,16 @@ jobs:
         shell: bash
         run: |
           if [ ! -x /usr/bin/Rscript ]; then
-            sudo apt-get update
-            sudo apt-get install --yes --no-install-recommends r-base-core
+            # Avoid a slow runner mirror; keep Ubuntu's signed official packages.
+            . /etc/os-release
+            ubuntu_sources="$RUNNER_TEMP/r-ubuntu.list"
+            for suite in "$VERSION_CODENAME" "$VERSION_CODENAME-updates"; do
+              echo "deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://archive.ubuntu.com/ubuntu $suite main universe"
+            done > "$ubuntu_sources"
+            echo "deb [signed-by=/usr/share/keyrings/ubuntu-archive-keyring.gpg] https://security.ubuntu.com/ubuntu $VERSION_CODENAME-security main universe" >> "$ubuntu_sources"
+            apt_options=(-o "Dir::Etc::sourcelist=$ubuntu_sources" -o "Dir::Etc::sourceparts=-" -o Acquire::Retries=2 -o Acquire::https::Timeout=30)
+            sudo apt-get "${apt_options[@]}" update
+            sudo env DEBIAN_FRONTEND=noninteractive apt-get "${apt_options[@]}" install --yes --no-install-recommends r-base-core
           fi
           echo "/usr/bin" >> "$GITHUB_PATH"
           /usr/bin/Rscript -e 'print(R.version.string); stopifnot(getRversion() >= "4.1.0")'
