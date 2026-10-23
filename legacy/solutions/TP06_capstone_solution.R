@@ -1,5 +1,6 @@
+# ARCHIVE FACULTATIVE — ancien parcours à six TP, hors tronc commun de 18 h.
 # Corrigé TP06 autonome — aucun source() des fonctions de référence.
-# Depuis la racine : Rscript solutions/TP06_capstone_solution.R
+# Depuis la racine : Rscript legacy/solutions/TP06_capstone_solution.R
 # Question : quelle différence de durée moyenne (B-A) dans les tickets observés ?
 if (!file.exists("course.Rproj")) stop("Exécuter depuis la racine du projet.")
 raw <- read.csv("data/noria_dirty.csv", stringsAsFactors = FALSE, na.strings = "",

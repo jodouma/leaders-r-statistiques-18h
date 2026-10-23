@@ -1,4 +1,5 @@
-# Exécuter depuis la racine : source("labs/TP06_capstone.R")
+# ARCHIVE FACULTATIVE — ancien parcours à six TP, hors tronc commun de 18 h.
+# Exécuter depuis la racine : source("legacy/labs/TP06_capstone.R")
 source("scripts/00_check_setup.R", encoding = "UTF-8")
 for (file in sort(list.files("R", pattern = "[.]R$", full.names = TRUE))) {
   source(file, encoding = "UTF-8")

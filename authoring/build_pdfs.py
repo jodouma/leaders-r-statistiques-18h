@@ -3,7 +3,10 @@
 Requires reportlab. Student computers need R only; this tool is for maintainers.
 Usage: python build_pdfs.py input.json [other.json ...] --out pdf-folder
 """
-import argparse, json, math, re, textwrap
+import argparse, json, math, re, textwrap, os
+from io import BytesIO
+from functools import lru_cache
+from copy import deepcopy
 from pathlib import Path
 from xml.sax.saxutils import escape
 from reportlab.pdfgen import canvas
@@ -34,6 +37,31 @@ def fonts():
     return 'Helvetica','Helvetica-Bold','Courier'
 
 BODY,BOLD,MONO=fonts()
+
+@lru_cache(maxsize=256)
+def equation(latex, size):
+    """LaTeX-style math -> vector paths. No TeX installation is needed."""
+    os.environ.setdefault('MPLCONFIGDIR',str(Path(__file__).parent/'.mpl-cache'))
+    from matplotlib import rc_context
+    from matplotlib.mathtext import math_to_image
+    from matplotlib.font_manager import FontProperties
+    from svglib.svglib import svg2rlg
+    content=latex.strip().strip('$')
+    stream=BytesIO()
+    with rc_context({'mathtext.fontset':'stix','svg.fonttype':'path','font.size':size}):
+        math_to_image('$'+content+'$',stream,format='svg',dpi=144,color='#132F43',prop=FontProperties(size=size))
+    drawing=svg2rlg(BytesIO(stream.getvalue()))
+    if drawing is None: raise ValueError('Equation could not be rendered: '+latex)
+    return drawing
+
+def draw_equation(c,latex,x,y,w,size=23,max_height=90):
+    from reportlab.graphics import renderPDF
+    drawing=deepcopy(equation(latex,size))
+    scale=min(1,w/drawing.width,max_height/drawing.height)
+    drawing.scale(scale,scale)
+    width,height=drawing.width*scale,drawing.height*scale
+    renderPDF.draw(drawing,c,x+(w-width)/2,y-height)
+    return height
 def markup(s):
     s=escape(str(s))
     return re.sub(r'(https://[^\s]+)',lambda m:f'<link href="{m[1]}" color="#087D77">{m[1]}</link>',s)
@@ -46,6 +74,53 @@ def draw_par(c,s,x,y,w,size=11,color=INK,font=BODY):
 
 def block(c,b,x,y,w,slide=False):
     typ=b['type']; size=16 if slide else 10.5
+    if typ=='formula':
+        latex=b['latex']; cap=b.get('caption','')
+        drawing=equation(latex,30 if slide else 24)
+        scale=min(1,(w-30)/drawing.width,(110 if slide else 90)/drawing.height)
+        eh=drawing.height*scale
+        p=para(cap,13 if slide else 9.8,color=MUTED);_,ph=p.wrap(w-30,1000)
+        h=eh+(ph+9 if cap else 0)+28
+        c.setFillColor(colors.HexColor('#EBF2F1'));c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
+        draw_equation(c,latex,x+15,y-13,w-30,30 if slide else 24,110 if slide else 90)
+        if cap:p.drawOn(c,x+15,y-13-eh-9-ph)
+        return y-h-14
+    if typ=='mathsteps':
+        for i,item in enumerate(b['items'],1):
+            c.setFont(BOLD,10 if not slide else 14);c.setFillColor(TEAL)
+            c.drawString(x,y-10,str(i))
+            drawing=equation(item['latex'],23 if not slide else 29)
+            if not slide and drawing.width<=w*.64:
+                eqw=w*.64-22;tw=w*.36-12
+                p=para(item.get('explanation',''),9.8,color=MUTED);_,ph=p.wrap(tw,1000)
+                eh=draw_equation(c,item['latex'],x+20,y,eqw,23,65)
+                p.drawOn(c,x+w*.64+12,y-ph)
+                y-=max(eh,ph)+15
+            else:
+                eh=draw_equation(c,item['latex'],x+20,y,w-20,23 if not slide else 29,65)
+                y-=eh+7
+                y=draw_par(c,item.get('explanation',''),x+20,y,w-20,10 if not slide else 14,color=MUTED)-13
+        return y-3
+    if typ=='links':
+        for item in b['items']:
+            label=item['label']; target=item['target']
+            p=para(label,10.5 if not slide else 15,color=TEAL,font=BOLD);_,h=p.wrap(w-20,1000)
+            c.setFillColor(PALE);c.roundRect(x,y-h-15,w,h+15,5,fill=1,stroke=0)
+            p.drawOn(c,x+10,y-7-h)
+            c.linkURL(target,(x,y-h-15,x+w,y),relative=not target.startswith(('https://','http://')),thickness=0)
+            y-=h+24
+        return y-3
+    if typ=='figure':
+        from svglib.svglib import svg2rlg
+        from reportlab.graphics import renderPDF
+        drawing=svg2rlg(str(b['path']));limit=b.get('height',200)
+        scale=min(w/drawing.width,limit/drawing.height)
+        drawing.scale(scale,scale)
+        dw,dh=drawing.width*scale,drawing.height*scale
+        renderPDF.draw(drawing,c,x+(w-dw)/2,y-dh)
+        y-=dh+10
+        if b.get('caption'):y=draw_par(c,b['caption'],x,y,w,9.5,color=MUTED)-10
+        return y-8
     if typ=='text': return draw_par(c,b['text'],x,y,w,size)-13
     if typ=='bullets':
         for item in b['items']:
@@ -109,7 +184,7 @@ def block(c,b,x,y,w,slide=False):
 
 def build(doc,out):
     slide=doc.get('landscape',False); W,H=(960,540) if slide else A4; m=45 if not slide else 52
-    path=out/doc['filename'];path.parent.mkdir(parents=True,exist_ok=True)
+    path=(out.parent if doc.get('root_document') else out)/doc['filename'];path.parent.mkdir(parents=True,exist_ok=True)
     c=canvas.Canvas(str(path),pagesize=(W,H),pageCompression=1)
     c.setTitle(doc['title']);c.setAuthor('Youssef Douma · Leaders University');c.setSubject(doc.get('subtitle',''))
     n=len(doc['pages']); errors=[]
@@ -129,8 +204,11 @@ def build(doc,out):
         if y<54: errors.append((str(path),i,p['title'],round(y,1)))
         c.setStrokeColor(LINE);c.setLineWidth(.5);c.line(m,40,W-m,40)
         c.setFont(BODY,7.5 if not slide else 9);c.setFillColor(MUTED)
-        short=doc['title'][:66]
+        short=doc['title'][:28 if not slide else 45]
         c.drawString(m,26,short);c.drawRightString(W-m,26,f'{i:02} / {n:02}  ·  Y. Douma')
+        if doc.get('index_link'):
+            label='Index des supports';c.setFillColor(TEAL);c.drawCentredString(W/2,26,label)
+            c.linkURL(doc['index_link'],(W/2-48,19,W/2+48,36),relative=True,thickness=0)
         c.showPage()
     c.save()
     if errors: raise RuntimeError('Page overflow: '+repr(errors))

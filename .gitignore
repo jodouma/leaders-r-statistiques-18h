@@ -4,3 +4,12 @@ results/
 .Ruserdata
 .Rproj.user/
 .DS_Store
+__pycache__/
+*.py[cod]
+.mpl-cache/
+.mplconfig/
+.xdg-cache/
+.cache/
+.pytest_cache/
+.venv/
+venv/

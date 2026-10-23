@@ -1,79 +1,97 @@
 # Statistiques avec R — Leaders University
 
-**18 heures · 2 jours · 6 TP · un projet complet à défendre.**
+**18 heures · 2 jours · 4 TP · des équations au projet individuel.**
 
-Du premier vecteur à une recommandation reproductible : vous analysez un pilote fictif de Noria Services, puis transférez la démarche à de vraies mesures historiques. Le cours est en français, avec les noms et termes usuels de R en anglais.
+Une question, une équation, un petit calcul à la main, sa traduction en R, puis une interprétation. Le cours accueille des profils IT et non IT : vocabulaire des données, objets R, exemples résolus et consignes pour écrire, enregistrer et relancer son travail.
 
 ## Commencer
 
-1. Télécharger le dépôt : **Code → Download ZIP**, puis extraire le dossier.
+1. **Code → Download ZIP**, puis extraire le dossier ; Git et un compte GitHub sont facultatifs.
 2. Suivre le [guide Windows / macOS / Ubuntu](pdf/00_demarrer.pdf).
-3. Ouvrir `course.Rproj` dans RStudio, ou choisir le dossier dans R GUI.
-4. Dans la console R, lancer le contrôle :
+3. Ouvrir `course.Rproj` dans RStudio, puis le [premier essai guidé](pdf/00_premiers_pas.pdf).
+4. Garder le [sommaire PDF cliquable](COMMENCER_ICI.pdf) comme point de départ.
 
 ```r
+# Console R, depuis le dossier extrait : vérifier l'installation.
 source("scripts/00_check_setup.R", encoding = "UTF-8")
 ```
 
-**Aucun compte GitHub, Git, Hadoop ni paquet R externe requis.** RStudio est facultatif. Le travail principal fonctionne hors ligne après installation de R et téléchargement du dossier. Les scripts visent R ≥ 4.1 ; les environnements réellement vérifiés sont indiqués ci-dessous.
+**R de base suffit.** Aucun paquet externe requis ; RStudio est facultatif. Les fichiers et données fonctionnent hors ligne après installation et téléchargement. Le contrôle d’installation ne valide aucune réponse de TP.
 
-## Les PDF à lire
+## Lire, comprendre, pratiquer
 
-| Objectif | Support |
+| Besoin | PDF |
 |---|---|
-| Se préparer | [Installation et dépannage](pdf/00_demarrer.pdf) |
-| Comprendre le week-end | [Parcours, compétences et barème](pdf/01_parcours_18h.pdf) |
-| Apprendre les concepts | [Cours visuel — 24 pages](pdf/02_cours_visuel.pdf) |
-| Comprendre les données | [Dictionnaire, audit et références](pdf/03_donnees_et_sources.pdf) |
-| Suivre la projection | [Diapositives — 32 vues](pdf/04_projection.pdf) |
-| S’autoévaluer | [Diagnostic d’entrée](pdf/diagnostic_entree.pdf) · [Mémo R](pdf/memo_R.pdf) |
-| Vérifier après tentative | [Corrigés et preuves](pdf/80_corriges_et_preuves.pdf) |
-| Aller plus loin | [Extension solo](pdf/extension_solo.pdf) · [Transfert sur données réelles](pdf/05_transfert_donnees_reelles.pdf) |
+| Tout garder dans un seul fichier | [Dossier étudiant avec sommaire et liens internes](Dossier_etudiant_R_18h.pdf) |
+| Choisir son système | [Installation et dépannage](pdf/00_demarrer.pdf) |
+| Faire son premier fichier | [Écrire → enregistrer → exécuter → redémarrer](pdf/00_premiers_pas.pdf) |
+| Suivre les quatre séances | [Parcours et lectures](pdf/01_parcours_18h.pdf) |
+| Comprendre avant de coder | [Cours visuel : maths, statistiques et R](pdf/02_cours_visuel.pdf) |
+| Connaître chaque variable | [Données, règles et sources](pdf/03_donnees_et_sources.pdf) |
+| Observer un exemple complet | [Mini-exemples guidés](pdf/06_exemples_guides.pdf) |
+| Retrouver une commande | [Mémo R et notations](pdf/14_memo_R.pdf) |
+| Se situer | [Diagnostic sans note](pdf/diagnostic_entree.pdf) |
+| Suivre en classe | [Projection visuelle](pdf/04_projection.pdf) |
+| Vérifier après une tentative | [Corrigés et preuves](pdf/80_corriges_et_preuves.pdf) |
 
-## Six travaux pratiques
+Le cours commence par R, ses origines, son objectif statistique et un exemple actuel d’usage professionnel. Il distingue observation, variable, population et échantillon, puis montre vecteur, matrice, array, liste et data frame. Les calculs incluent proportions, moyenne, médiane, variance, écart-type, quartiles, différence de moyennes, erreur standard, test de Welch et intervalle de confiance.
 
-| TP | Mission | Durée | Fichier de départ |
+## Quatre TP obligatoires
+
+| TP | Mission | Durée | Fichier à compléter |
 |---|---|---:|---|
-| [01](pdf/TP01_vectors.pdf) | Vecteurs, NA, indexation | 70 min | [TP01_vectors.R](labs/TP01_vectors.R) |
-| [02](pdf/TP02_cleaning.pdf) | Import, audit, nettoyage, exploration | 90 min | [TP02_cleaning.R](labs/TP02_cleaning.R) |
-| [03](pdf/TP03_matrices.pdf) | Matrices, `apply()`, fonctions | 75 min | [TP03_matrices.R](labs/TP03_matrices.R) |
-| [04](pdf/TP04_inference.pdf) | Welch, objets statistiques, modèle ajusté | 100 min | [TP04_inference.R](labs/TP04_inference.R) |
-| [05](pdf/TP05_mapreduce.pdf) | Map, shuffle, reduce et moyenne pondérée | 80 min | [TP05_mapreduce.R](labs/TP05_mapreduce.R) |
-| [06](pdf/TP06_capstone.pdf) | Analyse individuelle et recommandation | 120 min | [TP06_capstone.R](labs/TP06_capstone.R) |
+| [01](pdf/10_TP01_demarrer.pdf) | Vecteurs, valeurs manquantes et dénominateurs | 90 min | [TP01_demarrer.R](labs/TP01_demarrer.R) |
+| [02](pdf/11_TP02_preparer.pdf) | Importer, auditer, nettoyer, décrire | 120 min | [TP02_preparer.R](labs/TP02_preparer.R) |
+| [03](pdf/12_TP03_comparer.pdf) | Comparer B − A avec l’incertitude | 120 min | [TP03_comparer.R](labs/TP03_comparer.R) |
+| [04](pdf/13_TP04_projet.pdf) | Repartir du brut et défendre une décision | 150 min | [TP04_projet.R](labs/TP04_projet.R) |
 
-Les quatre séances durent **4 h 30 chacune, hors pauses**. Les TP représentent **8 h 55** ; les autres activités comprennent apports courts, diagnostic, prédictions, vérifications et défenses. Chaque TP contient un noyau individuel, des indices gradués et un défi. Les extensions sont facultatives, hors des 18 h.
+Les quatre séances durent **4 h 30 chacune, hors pauses**. Les TP occupent **8 heures**, dont **6 h 05 de travail individuel prévu**. Les autres temps servent aux petits calculs, apports courts, prédictions, vérifications et défenses. Ce sont des durées pédagogiques à confirmer par un pilote en classe.
+
+Après avoir complété et enregistré le TP01, dans une session R redémarrée :
+
+```r
+source("labs/TP01_demarrer.R", encoding = "UTF-8")
+source("checks/TP01.R", encoding = "UTF-8")
+```
+
+Adapter le numéro pour les autres TP. Un fichier non complété doit échouer avec un message utile. Les contrôles examinent vos objets et exports ; l’enseignant évalue les justifications et l’oral. Les [solutions commentées](solutions/) viennent après une tentative. Le CSV de reprise du TP03 aide à continuer ; il ne valide pas le nettoyage du TP02.
 
 ```mermaid
 flowchart LR
-  A[Question] --> B[CSV brut]
-  B --> C[Audit et règles]
-  C --> D[Exploration]
-  D --> E[Estimation et incertitude]
-  E --> F[Modèle et critique]
-  F --> G[Décision défendue]
+  Q[Question] --> E[Équation]
+  E --> M[Petit calcul à la main]
+  M --> R[Code R]
+  R --> V[Résultat vérifié]
+  V --> D[Décision et limites]
 ```
 
-## Reproduire la référence
+## Après le cœur
 
-Depuis la racine du projet, dans R :
+Les [extensions](pdf/20_extensions.pdf) introduisent régression, bootstrap, matrices approfondies et MapReduce par clé ; elles sont **facultatives, hors des 18 heures**, sans points indispensables au barème. Le [transfert sur airquality](pdf/05_transfert_donnees_reelles.pdf) utilise des données historiques livrées avec R.
+
+Les fichiers de première édition sont conservés dans `legacy/`. Pour reproduire l’analyse complète de référence, y compris le modèle secondaire et l’agrégation locale :
 
 ```r
 source("scripts/01_run_all.R", encoding = "UTF-8")
-source("tests/run_tests.R", encoding = "UTF-8")
 ```
 
-Les CSV, figures PDF, audit et versions sont écrits dans `results/`. Les données brutes sont conservées. Les [solutions commentées](solutions/) servent après une tentative. Un [exemple réel](examples/airquality_transfer.R) et une [figure des intervalles](examples/noria_visual_summary.R) sont aussi exécutables.
+Cette démonstration charge les fonctions de référence et ne valide aucun TP étudiant. **Aucun déploiement RHadoop réel n’est implémenté.** Le report de cette partie du plan officiel doit être validé avec le coordinateur.
 
-Le scénario est **synthétique** : 241 lignes reçues, 240 tickets uniques, 236 délais valides. Welch estime **B − A**. Le modèle secondaire `workflow + complexity + team` est fixé par le protocole pédagogique ; les deux analyses sont rapportées sans choisir selon leur p-valeur. La note finale récompense les preuves, la compréhension et les limites, pas la découverte d’un résultat secret.
+## Données et validation
 
-## Périmètre et validation
+Noria est un scénario **synthétique** : 241 lignes reçues, 240 tickets uniques et 236 délais valides. Le contraste principal est **B − A**. Le gain utile de 5 minutes est un critère fictif du protocole pédagogique. On ne choisit pas une analyse selon sa p-valeur. Le modèle ajusté reste une extension.
 
-- Le noyau couvre langage R, vecteurs, matrices, `apply()`, fonctions, objets statistiques et `attributes()`, analyse et restitution.
-- Hadoop, HDFS et RHadoop sont expliqués. **Le TP MapReduce est une simulation locale séquentielle, sans exécution RHadoop.** Cette adaptation de la partie pratique du plan officiel doit être validée par le coordinateur.
-- Tests, pipeline, six corrigés et exemples exécutés localement sous **R 4.6.1 / macOS ARM64**. Le [workflow de CI](.github/workflows/r-check.yml) vérifie R sur Ubuntu, Windows et macOS ; son état courant est visible dans [Actions](https://github.com/jodouma/leaders-r-statistiques-18h/actions).
-- Aucune donnée d’étudiant, d’entreprise ou du document administratif source n’est publiée. Les mesures réelles du bonus sont le jeu `datasets::airquality` distribué avec R ; leur provenance est détaillée dans le PDF.
-- Le guide formateur et les documents administratifs restent dans le dossier local du formateur.
+Les vérifications techniques sont exécutables depuis la racine :
 
-Les supports de lecture sont en PDF. Les fichiers JSON de `authoring/` sont les sources de construction. Pour les mainteneurs : `python -m pip install -r authoring/requirements.txt`, puis `python authoring/build_pdfs.py authoring/content.json --out pdf`. Les étudiants n’ont pas besoin de Python.
+```r
+source("tests/run_tests.R", encoding = "UTF-8")
+source("tests/learner_checks.R", encoding = "UTF-8")
+```
+
+Le second test utilise des dossiers et environnements séparés : les quatre solutions passent, les quatre starters non complétés échouent, les fichiers manquants et doublons contradictoires sont rejetés. Le [workflow](.github/workflows/r-check.yml) exécute R sur Ubuntu, Windows et macOS ; consulter son résultat dans [Actions](https://github.com/jodouma/leaders-r-statistiques-18h/actions). La validation automatisée ne remplace pas un essai avec de vrais débutants ni une installation interactive sur chaque OS.
+
+Les sources primaires sur R et les conventions statistiques figurent dans les PDF. Aucune donnée d’étudiant, d’entreprise ou du document administratif source n’est publiée. Le guide formateur reste dans le dossier local du formateur.
+
+Les supports de lecture sont en PDF. `authoring/content.json` contient les sources de construction. Pour les mainteneurs : installer `authoring/requirements.txt`, puis exécuter `python authoring/build_pdfs.py authoring/content.json --out pdf` depuis la racine. Les étudiants n’ont pas besoin de Python.
 
 Préparation : **Youssef Douma** · Leaders University · octobre 2026.

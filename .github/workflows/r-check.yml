@@ -1,4 +1,4 @@
-name: R base — tests et pipeline
+name: R base — TP et références
 on:
   push:
   pull_request:
@@ -18,9 +18,16 @@ jobs:
         with:
           r-version: release
           use-public-rspm: false
-      - name: Contrats et invariants
+      - name: Contrats de la référence
         run: Rscript tests/run_tests.R
-      - name: Pipeline complet
+      - name: Parcours des quatre TP et contrôles apprenants
+        run: Rscript tests/learner_checks.R
+      - name: Référence complète facultative
         run: Rscript scripts/01_run_all.R
-      - name: Mission autonome
-        run: Rscript solutions/TP06_capstone_solution.R
+      - name: Mini-exemples facultatifs
+        run: |
+          Rscript examples/mini_regression.R
+          Rscript examples/mini_bootstrap.R
+          Rscript examples/mini_mapreduce.R
+      - name: Ancien TP06 facultatif conservé en archive
+        run: Rscript legacy/solutions/TP06_capstone_solution.R

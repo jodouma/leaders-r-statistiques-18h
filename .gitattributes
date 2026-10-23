@@ -1,0 +1,13 @@
+# Conserver des sources textuelles avec fins de ligne reproductibles.
+*.R text eol=lf
+*.Rproj text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.csv text eol=lf
+*.py text eol=lf
+# Livrables générés : pas de fusion ni de diff textuel des dessins vectoriels.
+*.pdf binary
+*.svg binary
+*.png binary
