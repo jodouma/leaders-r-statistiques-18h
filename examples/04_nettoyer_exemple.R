@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # EXEMPLE RESOLU : petit carnet d'entrainement, distinct du carnet a traiter.
 mini <- read.csv("data/orders_mini.csv", stringsAsFactors = FALSE)

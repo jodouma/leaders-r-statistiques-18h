@@ -1,48 +1,45 @@
 # La Pause Noria — apprendre R, une mission après l’autre
 
-**Leaders University · Master · 18 heures d’accompagnement · 8 missions · maths simples.**
-
-Vous aidez un petit café à comprendre ses ventes. Un panier devient un tableau, puis des graphiques et enfin un rapport que R peut refaire. Les calculs restent simples : additionner, multiplier, faire une moyenne et calculer un pourcentage. Le défi est d’apprendre à utiliser R.
+Vous aidez un petit café à comprendre ses ventes. Un panier devient un tableau, deux graphiques, puis un rapport que R peut refaire. Addition, multiplication, moyenne et pourcentage suffisent pour commencer.
 
 ## Commencer
 
-1. Choisir **Code → Download ZIP**, puis **extraire le ZIP**. Git et un compte GitHub ne sont pas nécessaires.
-2. Ouvrir **`pdf/01_aventure_noria.pdf`** depuis le dossier extrait. Ce guide contient l’installation Windows/macOS/Ubuntu, les exemples, les missions et les récapitulatifs, dans l’ordre.
-3. Installer R, puis RStudio si votre ordinateur le permet. Ouvrir **`course.Rproj`** et suivre le niveau 0 du guide.
+1. Choisir **Code → Download ZIP**, puis **extraire le ZIP**. Aucun compte GitHub ni Git n’est nécessaire.
+2. Ouvrir **`pdf/01_aventure_noria.pdf`** dans le dossier extrait et le lire dans l’ordre. Il explique l’installation et les gestes à faire dans R.
+3. Choisir une seule route : **Windows natif**, **Windows avec WSL2**, **Ubuntu** ou **Mac**. Le guide donne les étapes propres à chacune, puis le premier script commun.
+4. Ouvrir **`course.Rproj`** avec RStudio, ou choisir le dossier extrait comme dossier de travail dans R. Suivre le niveau 0 du guide avant la première mission.
 
-**Lire le guide de la première à la dernière page suffit : aucun bouton PDF n’est nécessaire.** GitHub peut désactiver les liens à l’intérieur de son aperçu PDF. Pour le lire confortablement, télécharger le fichier avec **Download raw file**, puis l’ouvrir avec un lecteur PDF. Le sommaire donne aussi les numéros de page.
+**[Télécharger le guide principal — 01_aventure_noria.pdf](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)**
 
-**[Télécharger 01_aventure_noria.pdf](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)**
+L’aperçu GitHub peut désactiver les liens du PDF. Télécharger avec **Download raw file**, puis ouvrir le fichier dans un lecteur PDF. **Les pages se suivent : aucun bouton PDF n’est nécessaire.**
 
-## Votre progression
+## Huit missions, à votre rythme
 
-| Mission | Votre nouveau pouvoir dans R | Points possibles |
-|---|---|---:|
-| 1 · Le panier | Créer des variables et calculer | 2 |
-| 2 · Quatre jours | Manipuler un vecteur, `sum()` et `mean()` | 2 |
-| 3 · Le carnet | Importer et lire un tableau | 3 |
-| 4 · Les erreurs de saisie | Repérer un doublon et une valeur absente | 2 |
-| 5 · Le bilan | Ajouter des colonnes et regrouper les ventes | 3 |
-| 6 · Les graphiques | Dessiner, nommer et enregistrer des barres | 3 |
-| 7 · La décision | Calculer une part et partager un résultat | 3 |
-| 8 · Le prochain fichier | Réutiliser son travail avec une fonction | 2 |
+| Mission | Ce que vous apprenez dans R |
+|---|---|
+| 1 · Le panier | Créer des variables et calculer |
+| 2 · Quatre jours | Utiliser un vecteur, `sum()` et `mean()` |
+| 3 · Le carnet | Importer et lire un tableau |
+| 4 · Les erreurs de saisie | Traiter un doublon et une valeur absente |
+| 5 · Le bilan | Ajouter des colonnes et regrouper les ventes |
+| 6 · Les graphiques | Dessiner, nommer et enregistrer des barres |
+| 7 · La décision | Calculer une part et partager un résultat |
+| 8 · Le prochain fichier | Réutiliser son travail avec une fonction |
 
-Vous avancez **à votre rythme**. Le coach aide quand vous bloquez. Les points récompensent les missions réussies et expliquées ; la vitesse ne rapporte pas de points. Un contrôle automatique aide à vérifier les résultats, mais le coach relit aussi les graphiques, le code et l’explication. Les 18 heures constituent une fenêtre d’accompagnement, sans promesse de terminer tous au même moment.
+Pour chaque mission : lire la situation, essayer, enregistrer, puis vérifier. Les contrôles affichent **OK** ou **À reprendre** et indiquent ce qu’il reste à corriger. Vous pouvez recommencer et sauvegarder votre prochaine étape en commentaire.
 
-## Les cinq PDF, dans l’ordre
+## Les cinq PDF
 
-| Fichier | À quoi il sert |
+| Fichier | Utilisation |
 |---|---|
 | [01_aventure_noria.pdf](pdf/01_aventure_noria.pdf) | Le parcours complet ; commencer ici |
-| [02_aides.pdf](pdf/02_aides.pdf) | Un petit indice à la fois, si besoin |
-| [03_corriges.pdf](pdf/03_corriges.pdf) | Comprendre après une vraie tentative |
-| [04_memo_R.pdf](pdf/04_memo_R.pdf) | Retrouver rapidement une commande |
-| [05_sources.pdf](pdf/05_sources.pdf) | Sources, données synthétiques et crédits |
+| [02_aides.pdf](pdf/02_aides.pdf) | Un petit indice à la fois |
+| [03_corriges.pdf](pdf/03_corriges.pdf) | Comprendre après une tentative |
+| [04_memo_R.pdf](pdf/04_memo_R.pdf) | Retrouver une commande |
+| [05_sources.pdf](pdf/05_sources.pdf) | Sources, données et crédits |
 
-**R de base ≥ 4.1 suffit. Aucun paquet à installer pour les missions.** Une fois R et le dossier téléchargés, le parcours fonctionne hors ligne. Les données sont inventées pour apprendre ; les marges ne déduisent que le coût des produits, sans loyer, salaires ni taxes.
+**R de base ≥ 4.1 suffit. Aucun paquet à installer pour les missions.** Une fois R et le dossier téléchargés, les missions fonctionnent hors ligne. Les données sont inventées ; la marge déduit le coût des produits, sans loyer, salaires ni taxes.
 
-Les fichiers à compléter sont dans `missions/`. Les exemples sont dans `examples/` et les corrigés dans `solutions/`. Gardez vos scripts et les fichiers produits dans `outputs/` comme preuves de progression. Le guide indique exactement quand ouvrir chacun d’eux.
+Compléter les scripts dans `missions/`. Les exemples sont dans `examples/`, les réponses expliquées dans `solutions/`, et vos fichiers produits dans `outputs/`. Le guide indique quand les ouvrir.
 
-Pour les mainteneurs : les sources des PDF sont dans `authoring/`. Les tests sont dans `tests/` ; leur exécution sur Windows, macOS et Ubuntu est visible dans [Actions](https://github.com/jodouma/leaders-r-statistiques-18h/actions).
-
-Préparation : **Youssef Douma · Leaders University · octobre 2026**.
+Youssef Douma · Leaders University · octobre 2026

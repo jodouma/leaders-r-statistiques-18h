@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # Corrige 4 - Nettoyer sans inventer
 commandes <- read.csv("data/orders_raw.csv", stringsAsFactors = FALSE)

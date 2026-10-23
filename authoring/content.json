@@ -23,30 +23,6 @@
           ]
         },
         {
-          "kicker": "BIENVENUE · UNE AVENTURE EN 8 MISSIONS",
-          "title": "Le café ouvre. À vous de jouer.",
-          "blocks": [
-            {
-              "type": "text",
-              "text": "La Pause Noria est un petit café fictif. Sa gérante veut comprendre ses ventes, éviter les erreurs de saisie et choisir une action simple. Vous devenez la personne qui transforme ses petits tableaux en réponses utiles avec R."
-            },
-            {
-              "type": "callout",
-              "label": "Votre vrai objectif",
-              "text": "Savoir ouvrir un script, comprendre ses commandes, les adapter, vérifier les résultats et retrouver votre travail après avoir fermé R. Les calculs restent simples : addition, soustraction, multiplication, division, moyenne et pourcentage."
-            },
-            {
-              "type": "text",
-              "text": "Le jeu progresse du ticket de caisse à une petite analyse réutilisable. À chaque mission : une situation, un exemple fait ensemble, votre essai et une preuve enregistrée. Vous pouvez demander un indice, corriger et recommencer."
-            },
-            {
-              "type": "callout",
-              "label": "18 heures accompagnées",
-              "text": "Les 18 heures sont une fenêtre de travail avec l’enseignant. Chacun avance individuellement. Finir toutes les missions n’est pas imposé pour demain et aucun rythme identique n’est garanti. Votre dernier travail compris et vérifié est votre point d’arrivée."
-            }
-          ]
-        },
-        {
           "title": "Pourquoi apprendre R avec ce café ?",
           "kicker": "INTRO · UN OUTIL, UNE HISTOIRE",
           "blocks": [
@@ -97,8 +73,12 @@
         },
         {
           "kicker": "LE MONDE DE NORIA",
-          "title": "Des chiffres qui racontent quelque chose",
+          "title": "La Pause Noria : votre terrain de jeu",
           "blocks": [
+            {
+              "type": "text",
+              "text": "La Pause Noria est un café fictif. Sa gérante veut comprendre ses ventes, repérer les erreurs de saisie et choisir une action simple. Votre rôle : faire grandir le même carnet, du premier calcul à un outil réutilisable."
+            },
             {
               "type": "table",
               "headers": [
@@ -129,6 +109,12 @@
               "text": "TND signifie dinar tunisien. Une quantité compte des unités vendues. Le chiffre d’affaires est l’argent des ventes. Le coût étudié ici est celui des ingrédients. La marge du cours est le chiffre d’affaires moins ce coût."
             },
             {
+              "type": "figure",
+              "path": "authoring/assets/v5/panier.svg",
+              "height": 185,
+              "caption": "Dans votre tête · Un prix pour chaque unité, puis une addition : le panier vaut 19 TND."
+            },
+            {
               "type": "callout",
               "label": "Marge ne veut pas dire bénéfice",
               "text": "Nous ne retirons ni loyer, ni salaires, ni électricité, ni autres charges. Une marge de 12 TND dans ce cours ne signifie donc pas un bénéfice de 12 TND pour une entreprise réelle. Les taxes ne sont pas déduites non plus."
@@ -140,303 +126,453 @@
           ]
         },
         {
+          "title": "Une seule histoire, huit missions",
           "kicker": "VOTRE CARTE DE PROGRESSION",
-          "title": "Huit portes, une seule histoire",
           "blocks": [
+            {
+              "type": "text",
+              "text": "Lire, essayer, enregistrer, vérifier, puis expliquer le résultat avec vos mots. Les pages se suivent : aucun bouton PDF n’est nécessaire. Faites une pause où vous le souhaitez et reprenez depuis votre script sauvegardé."
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/parcours.svg",
+              "height": 145,
+              "caption": "Dans votre tête · La même caisse grandit, une mission après l’autre."
+            },
             {
               "type": "table",
               "headers": [
                 "Mission",
-                "Vous débloquez",
-                "Points",
+                "Vous allez savoir…",
                 "Page"
               ],
               "rows": [
                 [
-                  "0 · Le poste",
+                  "0 · Ouvrir R",
                   "Installer, écrire, sauver",
-                  "0",
-                  "6"
+                  "5"
                 ],
                 [
-                  "1 · Le premier panier",
-                  "Nommer et calculer avec R",
-                  "2",
-                  "11"
+                  "1 · Le panier",
+                  "Créer des variables et calculer",
+                  "12"
                 ],
                 [
                   "2 · Quatre jours",
-                  "Un vecteur, un total, une moyenne",
-                  "2",
-                  "15"
+                  "Organiser un vecteur, total et moyenne",
+                  "16"
                 ],
                 [
-                  "3 · La caisse numérique",
+                  "3 · Le carnet",
                   "Importer et lire un tableau",
-                  "3",
                   "19"
                 ],
                 [
-                  "4 · Le fichier fiable",
-                  "Doublon et valeur manquante",
-                  "2",
-                  "24"
+                  "4 · Les erreurs",
+                  "Isoler un doublon et une absence",
+                  "23"
                 ],
                 [
-                  "5 · Le tableau de bord",
-                  "Ventes, coûts, marges par produit",
-                  "3",
-                  "28"
+                  "5 · Le bilan",
+                  "Créer des colonnes et regrouper",
+                  "26"
                 ],
                 [
-                  "6 · Le graphique utile",
-                  "Comparer avec des barres",
-                  "3",
-                  "33"
+                  "6 · Les graphiques",
+                  "Dessiner et enregistrer des barres",
+                  "31"
                 ],
                 [
-                  "7 · Une décision expliquée",
-                  "Pourcentage et exports",
-                  "3",
-                  "37"
+                  "7 · La décision",
+                  "Calculer une part et partager",
+                  "35"
                 ],
                 [
-                  "8 · Le prochain marché",
-                  "Une fonction réutilisable",
-                  "2",
-                  "41"
+                  "8 · Le prochain fichier",
+                  "Écrire une fonction réutilisable",
+                  "39"
                 ]
               ],
               "widths": [
-                130,
-                240,
-                50,
-                85
+                120,
+                330,
+                55
               ]
-            },
-            {
-              "type": "text",
-              "text": "20 points possibles, cumulés sur vos preuves. Le niveau 0 n’est pas noté. Suivre les numéros de page : aucun clic n’est nécessaire. Les signets du lecteur PDF sont facultatifs."
-            },
-            {
-              "type": "callout",
-              "label": "Un parcours, votre rythme",
-              "text": "Les résultats, vos fichiers et votre explication comptent ; votre vitesse ne compte pas. Vous pouvez faire une pause, sauvegarder votre dernière preuve et reprendre ici. Les vérifications automatiques aident ; le coach attribue la note."
             }
           ]
         },
         {
-          "kicker": "NIVEAU 0 · PRÉPARER LE POSTE",
-          "title": "R calcule. RStudio vous aide à écrire.",
+          "id": "setup_choice",
+          "chapter": 0,
+          "kicker": "DÉPART · INSTALLER ET OUVRIR LE COURS",
+          "title": "Choisir votre porte d’entrée",
           "blocks": [
             {
               "type": "text",
-              "text": "R est le logiciel qui exécute les calculs. RStudio est un éditeur facultatif : il facilite l’écriture et l’organisation des fichiers. Un script est un fichier texte portant l’extension .R ; il conserve vos instructions. R sert au calcul statistique et aux graphiques. Il permet de conserver une méthode dans du texte pour la vérifier et la refaire."
+              "text": "R réalise les calculs. Un éditeur conserve vos instructions dans un fichier .R appelé script. RStudio réunit cet éditeur et une Console R. R de base 4.1 ou plus récent suffit ici : aucun paquet supplémentaire à installer."
             },
             {
-              "type": "bullets",
-              "items": [
-                "Installer R depuis le site officiel CRAN : https://cran.r-project.org/ . Choisir votre système puis son installateur. Sur un poste administré, demander de l’aide si l’installation est bloquée.",
-                "Facultatif : installer RStudio Desktop depuis https://docs.posit.co/ide/user/download.html . R doit être installé aussi.",
-                "Extraire le dossier du cours hors du ZIP. Garder ensemble data, missions, examples, solutions, checks et outputs. Ouvrir le fichier course.Rproj avec RStudio.",
-                "Sans RStudio : suivre la route « Sans RStudio : partir du bon dossier », deux pages plus loin. Garder un éditeur de texte pour enregistrer les scripts .R."
+              "type": "table",
+              "headers": [
+                "Votre ordinateur",
+                "Votre route dans ce guide"
+              ],
+              "rows": [
+                [
+                  "Windows · premier cours de R",
+                  "Windows : R puis RStudio. La route la plus simple pour commencer. Page 6."
+                ],
+                [
+                  "Windows · vous voulez Linux",
+                  "WSL2 + Ubuntu : une option complète, si le Terminal vous est déjà familier. Page 7."
+                ],
+                [
+                  "Ubuntu déjà installé",
+                  "Ubuntu : installer R et travailler depuis le Terminal. Page 8."
+                ],
+                [
+                  "Mac Intel ou puce Apple",
+                  "macOS : choisir le bon R, puis RStudio si compatible. Page 9."
+                ]
               ]
             },
             {
               "type": "callout",
-              "label": "Premier signal",
-              "text": "Dans la console R, saisir 2 + 2 puis Entrée. Le résultat est 4. Un calcul dans la console marche, mais ne crée pas encore un fichier de travail."
+              "label": "Une seule route suffit",
+              "text": "Choisir votre environnement et lire sa page. RStudio Windows utilise R Windows. La route WSL utilise R Linux dans Ubuntu : ses logiciels et ses chemins sont distincts. Ne pas mélanger les deux installations."
+            },
+            {
+              "type": "text",
+              "text": "Pour Windows et Mac, ouvrir le dépôt ci-dessous dans votre navigateur. Choisir Code → Download ZIP. Extraire tout le ZIP ; sous Windows, clic droit → Extraire tout. Dans le dossier extrait, vous devez voir course.Rproj, data, missions et 00_verifier_installation.R. Garder ces fichiers ensemble. Git et un compte GitHub ne sont pas nécessaires."
+            },
+            {
+              "type": "text",
+              "text": "https://github.com/jodouma/leaders-r-statistiques-18h"
+            },
+            {
+              "type": "callout",
+              "label": "Console ou Terminal ?",
+              "text": "Dans la Console R, le signe > précède les calculs : ne pas recopier ce signe. PowerShell et le Terminal Ubuntu servent à installer ou ouvrir les logiciels. Chaque bloc indique où saisir ses commandes. Quand R est prêt, passer à votre premier script après les pages d’installation."
             }
           ],
-          "chapter": 0,
           "page_role": "opening"
         },
         {
-          "title": "Installer sur votre ordinateur",
-          "kicker": "NIVEAU 0 · UNE SEULE COLONNE VOUS CONCERNE",
+          "id": "setup_windows",
+          "chapter": 0,
+          "kicker": "DÉPART · INSTALLER ET OUVRIR LE COURS",
+          "title": "Windows : R, puis RStudio",
           "blocks": [
             {
-              "type": "table",
-              "headers": [
-                "Système",
-                "Installer R, puis ouvrir RStudio si compatible"
-              ],
-              "rows": [
-                [
-                  "Windows",
-                  "Sur CRAN : Download R for Windows → base → télécharger le fichier .exe. Lancer l’installateur avec les réglages proposés. Installer ensuite RStudio Desktop depuis sa page officielle."
-                ],
-                [
-                  "macOS",
-                  "Menu Apple → À propos de ce Mac : repérer puce Apple ou processeur Intel. Sur CRAN : Download R for macOS → choisir le .pkg compatible, puis l’ouvrir. Installer ensuite le .dmg RStudio compatible."
-                ],
-                [
-                  "Ubuntu",
-                  "Ouvrir le Terminal avec Ctrl+Alt+T, puis utiliser les deux lignes ci-dessous. Le mot de passe administrateur peut être demandé. RStudio est facultatif : prendre le .deb compatible sur sa page officielle."
-                ]
-              ]
+              "type": "text",
+              "text": "1 · Installer R. Ouvrir l’adresse CRAN ci-dessous. Cliquer sur Download R for Windows, puis base et Download R… for Windows. Ouvrir le fichier .exe téléchargé et suivre les réglages proposés."
+            },
+            {
+              "type": "text",
+              "text": "https://cran.r-project.org/"
+            },
+            {
+              "type": "text",
+              "text": "2 · Installer RStudio Desktop, édition gratuite Open Source, depuis la page Posit ci-dessous. Choisir le .exe Windows compatible avec votre version de Windows et l’ouvrir. Installer R avant RStudio. La page actuelle propose Windows 11 ; si votre système n’est pas compatible, utiliser R seul, ci-dessous."
+            },
+            {
+              "type": "text",
+              "text": "https://docs.posit.co/ide/user/download.html"
+            },
+            {
+              "type": "text",
+              "text": "3 · Ouvrir le cours. Extraire le ZIP comme indiqué à la page « Choisir votre porte d’entrée ». Dans RStudio : File → Open Project → choisir course.Rproj dans le dossier extrait. La Console affiche la version de R. Cette route utilise R Windows, même si Ubuntu/WSL est aussi installé."
             },
             {
               "type": "callout",
-              "label": "Terminal Ubuntu uniquement · ce n’est pas du R",
-              "text": "Exécuter les deux lignes suivantes dans le Terminal, pas dans la Console R. La première actualise la liste des logiciels ; la seconde installe R."
+              "label": "Si vous utilisez R seul",
+              "text": "Lancer R depuis le menu Démarrer. Copier l’adresse complète du dossier extrait depuis la barre d’adresse de l’Explorateur. Dans la Console R, remplacer CHEMIN_DU_DOSSIER ci-dessous par cette adresse, garder les guillemets et remplacer chaque \\ par /. Exemple de forme : C:/Users/VOTRE_NOM/Documents/noria ; VOTRE_NOM est à remplacer."
+            },
+            {
+              "type": "code",
+              "language": "r",
+              "text": "setwd(\"CHEMIN_DU_DOSSIER\")",
+              "runtime": "path_template"
+            },
+            {
+              "type": "text",
+              "text": "4 · Vérifier, dans la Console R de RStudio ou de R seul :"
+            },
+            {
+              "type": "code",
+              "language": "r",
+              "text": "getwd()\nfile.exists(\"data/orders_raw.csv\")\nsource(\"00_verifier_installation.R\")"
+            },
+            {
+              "type": "text",
+              "text": "getwd() doit afficher le dossier contenant course.Rproj. La deuxième ligne doit répondre TRUE ; la dernière doit afficher OK. Si FALSE, rouvrir le projet ou corriger setwd(). Vous pouvez ensuite passer à votre premier script. Avec R seul : File → New script ouvre un éditeur. La page du premier script indique quoi écrire, où enregistrer le .R et comment le relancer."
+            }
+          ]
+        },
+        {
+          "id": "setup_wsl",
+          "chapter": 0,
+          "kicker": "DÉPART · INSTALLER ET OUVRIR LE COURS",
+          "title": "Windows : la route Ubuntu / WSL2",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Option pour utiliser Linux sous Windows 11 ou Windows 10 version 2004+ (build 19041+). Pour débuter avec R sans Linux, choisir la route Windows. Ici, tout R s’exécute dans Ubuntu ; RStudio Windows ne pilote pas ce R Linux."
+            },
+            {
+              "type": "text",
+              "text": "1 · Menu Démarrer → chercher PowerShell → clic droit → Exécuter en tant qu’administrateur. Saisir dans PowerShell :"
+            },
+            {
+              "type": "code",
+              "language": "powershell",
+              "text": "wsl --install -d Ubuntu"
+            },
+            {
+              "type": "text",
+              "text": "Redémarrer si demandé. Ouvrir Ubuntu depuis Démarrer ; attendre la fin de l’installation. Créer le nom et le mot de passe Linux demandés. Le mot de passe reste invisible pendant la saisie : c’est normal. Cette installation crée WSL2 par défaut."
+            },
+            {
+              "type": "text",
+              "text": "2 · Dans la fenêtre Ubuntu, saisir une ligne à la fois. sudo demande le mot de passe Linux. git copie le cours public dans ~/cours/noria (~ désigne votre dossier personnel Linux)."
             },
             {
               "type": "code",
               "language": "shell",
-              "text": "sudo apt-get update\nsudo apt-get install r-base"
+              "text": "sudo apt-get update\nsudo apt-get install r-base git nano\nmkdir -p ~/cours\ncd ~/cours\ngit clone https://github.com/jodouma/leaders-r-statistiques-18h.git noria\ncd noria\nR"
             },
             {
               "type": "text",
-              "text": "Adresses officielles à saisir si les liens ne répondent pas : CRAN, cran.r-project.org ; RStudio, docs.posit.co/ide/user/download.html. Choisir une version stable compatible avec votre système. Si l’ordinateur est administré, demander au coach de vérifier l’installation avec le service informatique."
+              "text": "3 · Le signe > apparaît : vous êtes dans R. Saisir ces trois lignes :"
             },
             {
-              "type": "callout",
-              "label": "Avant la page suivante",
-              "text": "R est installé. Le ZIP du cours est extrait. Ouvrir course.Rproj avec RStudio, ou suivre la route R seul de la page suivante. Aucun paquet R supplémentaire n’est nécessaire."
+              "type": "code",
+              "language": "r",
+              "text": "getwd()\nfile.exists(\"data/orders_raw.csv\")\nsource(\"00_verifier_installation.R\")"
+            },
+            {
+              "type": "text",
+              "text": "Le dossier affiché finit par /cours/noria, puis vous lisez TRUE et OK. Pour modifier un script : quitter R avec q(save = \"no\"), puis saisir nano missions/01_panier.R dans Ubuntu. Écrire, sauver avec Ctrl+O puis Entrée, quitter avec Ctrl+X. Relancer R, puis source(\"missions/01_panier.R\"). q(save = \"no\") quitte sans sauver les objets en mémoire ; vos fichiers .R enregistrés restent sur disque."
             }
-          ],
-          "chapter": 0
+          ]
         },
         {
-          "title": "Sans RStudio : partir du bon dossier",
-          "kicker": "NIVEAU 0 · ROUTE FACULTATIVE",
+          "id": "setup_ubuntu",
+          "chapter": 0,
+          "kicker": "DÉPART · INSTALLER ET OUVRIR LE COURS",
+          "title": "Ubuntu : installer et ouvrir R",
           "blocks": [
             {
               "type": "text",
-              "text": "Si vous utilisez RStudio avec course.Rproj, passer à la page suivante. Cette route sert à travailler avec R seul. Le dossier de travail doit être le dossier extrait qui contient data et missions."
-            },
-            {
-              "type": "table",
-              "headers": [
-                "Système",
-                "Ouvrir R"
-              ],
-              "rows": [
-                [
-                  "Windows",
-                  "Lancer R depuis le menu Démarrer. Vous arrivez dans sa Console."
-                ],
-                [
-                  "macOS",
-                  "Ouvrir R.app dans Applications. Vous arrivez dans sa Console."
-                ],
-                [
-                  "Ubuntu",
-                  "Ouvrir le Terminal ; entrer dans le dossier du cours, puis lancer R comme ci-dessous."
-                ]
-              ]
+              "text": "Cette route concerne un ordinateur déjà sous Ubuntu. Les versions LTS récentes (22.04 ou plus récent) fournissent un R adapté au cours. RStudio est facultatif : le Terminal et un petit éditeur suffisent."
             },
             {
               "type": "text",
-              "text": "Ubuntu : dans Fichiers, ouvrir le dossier extrait, faire Ctrl+L et copier son adresse. Dans le Terminal, taper cd, un espace, puis cette adresse entre guillemets. Remplacer le chemin fictif ci-dessous ; taper ensuite R. Le signe > indique que vous êtes maintenant dans R."
+              "text": "1 · Ouvrir le Terminal avec Ctrl+Alt+T. Les lignes suivantes installent R, Git et l’éditeur nano. Saisir une ligne à la fois ; sudo demande votre mot de passe, sans afficher les caractères."
             },
             {
               "type": "code",
               "language": "shell",
-              "text": "cd \"/chemin/du/dossier/extrait\"\nR"
+              "text": "sudo apt-get update\nsudo apt-get install r-base git nano"
             },
             {
               "type": "text",
-              "text": "Windows ou macOS : copier le chemin complet du dossier extrait depuis l’Explorateur ou le Finder. Dans la Console R, setwd(\"CHEMIN_DU_DOSSIER\") choisit ce dossier. Remplacer CHEMIN_DU_DOSSIER par votre chemin réel, garder les guillemets et utiliser des /, même sous Windows. Exemple de chemin Windows : C:/Users/vous/Downloads/r-statistiques-18h-main."
+              "text": "2 · Télécharger le cours dans votre dossier personnel (~) :"
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "text": "mkdir -p ~/cours\ncd ~/cours\ngit clone https://github.com/jodouma/leaders-r-statistiques-18h.git noria\ncd noria\nR"
+            },
+            {
+              "type": "text",
+              "text": "Si vous avez déjà extrait le ZIP : dans Fichiers, ouvrir son dossier, appuyer sur Ctrl+L et copier l’adresse. À la place de l’étape 2, saisir les lignes ci-dessous en remplaçant le chemin fictif par cette adresse :"
+            },
+            {
+              "type": "code",
+              "language": "shell",
+              "text": "cd \"/CHEMIN/DU/DOSSIER/EXTRAIT\"\nR"
+            },
+            {
+              "type": "text",
+              "text": "3 · Le signe > indique la Console R. Vérifier ici :"
+            },
+            {
+              "type": "code",
+              "language": "r",
+              "text": "getwd()\nfile.exists(\"data/orders_raw.csv\")\nsource(\"00_verifier_installation.R\")"
+            },
+            {
+              "type": "text",
+              "text": "Le dossier doit contenir course.Rproj ; vous devez lire TRUE puis OK. Pour écrire : dans R, q(save = \"no\") revient au Terminal sans effacer vos .R enregistrés. Taper nano missions/01_panier.R ; modifier, Ctrl+O puis Entrée pour sauver, Ctrl+X pour quitter. Relancer R et source(\"missions/01_panier.R\")."
+            }
+          ]
+        },
+        {
+          "id": "setup_mac",
+          "chapter": 0,
+          "kicker": "DÉPART · INSTALLER ET OUVRIR LE COURS",
+          "title": "Mac : Intel ou puce Apple",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "1 · Identifier votre Mac : menu Apple → À propos de ce Mac. Repérer la version de macOS, puis Puce Apple (M1, M2, etc.) ou Processeur Intel."
+            },
+            {
+              "type": "text",
+              "text": "2 · Installer R depuis CRAN, à l’adresse ci-dessous : choisir Download R for macOS. Pour une puce Apple, prendre le .pkg arm64 compatible ; pour Intel, prendre le .pkg x86_64 compatible. Ouvrir ce fichier .pkg et suivre l’installation. Lire les versions de macOS prises en charge avant de télécharger."
+            },
+            {
+              "type": "text",
+              "text": "https://cran.r-project.org/"
+            },
+            {
+              "type": "text",
+              "text": "3 · Installer RStudio Desktop gratuit depuis la page Posit ci-dessous. Choisir le .dmg compatible, l’ouvrir, puis glisser RStudio dans Applications. Le téléchargement actuel est Universal (Intel et puce Apple), pour macOS 15+. Si votre système n’est pas compatible, suivre la route R seul ci-dessous."
+            },
+            {
+              "type": "text",
+              "text": "https://docs.posit.co/ide/user/download.html"
+            },
+            {
+              "type": "text",
+              "text": "4 · Extraire le ZIP du cours (double-clic dans Finder). Dans RStudio : File → Open Project → choisir course.Rproj dans ce dossier. RStudio utilise alors R installé sur ce Mac."
             },
             {
               "type": "callout",
-              "label": "Vérifier à la page suivante",
-              "text": "Après l’ouverture de R au bon endroit, getwd() doit afficher le dossier du cours et file.exists(\"data/orders_raw.csv\") doit répondre TRUE. Les prochaines commandes vont dans la Console R, pas dans le Terminal. Sans RStudio, enregistrer vos .R dans un éditeur de texte simple, puis les lancer avec source()."
+              "label": "Si vous utilisez R seul",
+              "text": "Ouvrir R.app depuis Applications. Dans Finder, clic droit sur le dossier extrait ; maintenir Option et choisir Copier comme nom de chemin. Dans la Console R, remplacer CHEMIN_DU_DOSSIER par ce chemin, entre guillemets. Pour modifier un script existant : TextEdit → Fichier → Ouvrir → choisir son fichier .R ; conserver le texte brut et sauver avec Cmd+S. La page du premier script indique quoi écrire, où enregistrer et comment relancer avec source()."
+            },
+            {
+              "type": "code",
+              "language": "r",
+              "text": "setwd(\"CHEMIN_DU_DOSSIER\")",
+              "runtime": "path_template"
+            },
+            {
+              "type": "text",
+              "text": "5 · Dans la Console R de RStudio ou de R seul, vérifier :"
+            },
+            {
+              "type": "code",
+              "language": "r",
+              "text": "getwd()\nfile.exists(\"data/orders_raw.csv\")\nsource(\"00_verifier_installation.R\")"
+            },
+            {
+              "type": "text",
+              "text": "getwd() affiche le dossier contenant course.Rproj ; file.exists() répond TRUE ; la dernière ligne affiche OK. Si FALSE, rouvrir le projet ou corriger setwd(). Passer ensuite à votre premier script. Aucun Homebrew ni compilateur n’est nécessaire pour les missions."
             }
-          ],
-          "chapter": 0
+          ]
         },
         {
-          "kicker": "NIVEAU 0 · LIRE L’ÉCRAN",
-          "title": "Trois endroits, trois rôles",
+          "title": "Écrire et enregistrer votre premier script",
+          "kicker": "DÉPART · VOTRE PREMIER FICHIER",
           "blocks": [
+            {
+              "type": "text",
+              "text": "Créer examples/00_depart.R dans le dossier du cours. Choisir votre éditeur ci-dessous ; écrire les deux lignes du bloc sombre, puis enregistrer le fichier avec son extension .R.",
+              "_origin": "Écrire et enregistrer votre premier script"
+            },
             {
               "type": "table",
               "headers": [
-                "Zone",
-                "À quoi elle sert",
-                "Votre geste"
+                "Votre outil",
+                "Créer, écrire, sauvegarder"
               ],
               "rows": [
                 [
-                  "Éditeur / Source",
-                  "Écrire un script conservé",
-                  "Enregistrer avec Ctrl+S ou Cmd+S"
+                  "RStudio",
+                  "File → New File → R Script ; Ctrl+S ou Cmd+S ; choisir examples/00_depart.R."
                 ],
                 [
-                  "Console",
-                  "Exécuter et lire les réponses",
-                  "Ne pas y recopier le signe >"
+                  "R Windows seul",
+                  "File → New script ; File → Save as ; choisir examples/00_depart.R."
                 ],
                 [
-                  "Files / Fichiers",
-                  "Retrouver les fichiers du dossier",
-                  "Vérifier leur nom et leur emplacement"
+                  "R Mac seul",
+                  "Dans TextEdit : nouveau document, Format → Convertir au format Texte ; enregistrer examples/00_depart.R sans ajouter .txt."
+                ],
+                [
+                  "Ubuntu / WSL",
+                  "Quitter R avec q(save = \"no\"). Dans le Terminal : nano examples/00_depart.R. Ctrl+O, Entrée, puis Ctrl+X ; relancer R."
                 ]
-              ]
+              ],
+              "_origin": "Écrire et enregistrer votre premier script"
+            },
+            {
+              "type": "code",
+              "text": "# Mon premier script Noria\nprint(2 + 2)",
+              "language": "r",
+              "create_file": "examples/00_depart.R",
+              "_origin": "Écrire et enregistrer votre premier script"
             },
             {
               "type": "text",
-              "text": "Dans l’éditeur RStudio, Ctrl+Entrée (Windows/Linux) ou Cmd+Entrée (Mac) exécute la ligne du curseur ou la sélection. Source exécute tout le script, du haut vers le bas. Avec R seul, source() exécute un fichier enregistré. Après avoir créé le fichier à la page suivante, source(\"examples/00_depart.R\") le relancera."
+              "text": "# commence un commentaire, ignoré par R. print() affiche une réponse, même lorsqu’un script entier est lancé. Dans la Console R, lancer le fichier enregistré :",
+              "_origin": "Écrire et enregistrer votre premier script"
             },
             {
-              "type": "callout",
-              "label": "Lire avant de continuer",
-              "text": "Le signe > indique que R attend une nouvelle commande. Un + au début de la ligne indique souvent une parenthèse ou un guillemet non fermé. Appuyer sur Échap, corriger l’instruction dans le script puis la relancer."
-            },
-            {
-              "type": "text",
-              "text": "Les blocs sombres de ce guide sont des commandes à écrire dans le script. Les tableaux de résultats sont à lire, pas à saisir. Un message rouge mérite une lecture : cherchez le premier mot et la ligne concernée."
+              "type": "code",
+              "text": "source(\"examples/00_depart.R\")",
+              "language": "r",
+              "_origin": "Écrire et enregistrer votre premier script"
             }
           ],
           "chapter": 0
         },
         {
-          "kicker": "NIVEAU 0 · PREMIÈRE SAUVEGARDE",
-          "title": "Votre première preuve existe sur disque",
+          "title": "Écrire et enregistrer votre premier script",
+          "kicker": "DÉPART · VOTRE PREMIER FICHIER",
           "blocks": [
             {
+              "type": "callout",
+              "label": "Une première réussite durable",
+              "text": "Vous lisez 4. Fermer puis rouvrir votre fichier : les deux lignes sont toujours là. Relancer le fichier depuis la Console avec source(). Les objets temporaires peuvent disparaître ; le script enregistré permet de les recréer.",
+              "_origin": "Écrire et enregistrer votre premier script"
+            },
+            {
+              "type": "section",
+              "text": "Reconnaître la Console et retrouver les fichiers",
+              "_origin": "Lire l’écran et retrouver le cours"
+            },
+            {
               "type": "text",
-              "text": "Dans RStudio : File → New File → R Script. Écrire les deux lignes ci-dessous. Enregistrer dans examples sous le nom 00_depart.R. Le nom doit finir par .R, sans ajouter .txt."
+              "text": "La Console R attend une commande après >. Un + indique souvent une parenthèse ou un guillemet à fermer : Échap dans RStudio, Ctrl+C dans le Terminal, annule la saisie en cours. Dans RStudio, Ctrl+Entrée ou Cmd+Entrée exécute la ligne ou la sélection ; Source exécute tout le fichier.",
+              "_origin": "Reconnaître la Console et retrouver les fichiers"
             },
             {
               "type": "code",
-              "text": "# Mon premier script Noria\nprint(2 + 2)"
+              "text": "print(getwd())\nprint(file.exists(\"data/orders_raw.csv\"))\nsource(\"00_verifier_installation.R\")",
+              "language": "r",
+              "_origin": "Reconnaître la Console et retrouver les fichiers"
             },
             {
               "type": "text",
-              "text": "Le signe # commence un commentaire : R ignore le reste de cette ligne. print() demande d’afficher un résultat, même quand tout un fichier est exécuté avec Source. Exécuter print(2 + 2) : vous devez lire 4. Enregistrer, fermer le script, le rouvrir et recommencer."
-            },
-            {
-              "type": "code",
-              "text": "print(getwd())\nprint(file.exists(\"data/orders_raw.csv\"))"
-            },
-            {
-              "type": "text",
-              "text": "getwd() affiche le dossier où R cherche les fichiers. file.exists() demande si le fichier indiqué existe ; TRUE signifie vrai, FALSE signifie faux. Le chemin entre guillemets part du dossier du cours. Les / séparent les sous-dossiers."
+              "text": "getwd() affiche le dossier où R cherche. file.exists() répond TRUE si le chemin existe, FALSE sinon. Les / séparent les sous-dossiers. Ne pas recopier > ni les résultats dans le script : seuls les blocs de commandes vont dans le fichier.",
+              "_origin": "Reconnaître la Console et retrouver les fichiers"
             },
             {
               "type": "callout",
-              "label": "Checkpoint 0 · sans note",
-              "text": "Vous obtenez 4 et TRUE, et retrouvez 00_depart.R. Si vous obtenez FALSE, ouvrir course.Rproj ou choisir le bon dossier. Puis exécuter source(\"00_verifier_installation.R\") dans la console pour vérifier le poste. Le mot anglais file signifie fichier."
+              "label": "Avant la mission 1",
+              "text": "Vous obtenez 4 et TRUE ; la préparation affiche OK. Si FALSE, rouvrir course.Rproj dans RStudio ou revenir au dossier indiqué par votre route d’installation. Garder data, missions et examples ensemble dans le même dossier.",
+              "_origin": "Reconnaître la Console et retrouver les fichiers"
             }
           ],
           "chapter": 0
         },
         {
-          "kicker": "MISSION 1 · 1/4 · COMPRENDRE",
           "title": "Le tout premier ticket",
+          "kicker": "MISSION 1 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Calculer le chiffre d’affaires et la marge d’un panier de 2 cafés, 1 thé et 1 sandwich."
+              "type": "text",
+              "text": "Objectif · Calculer le chiffre d’affaires et la marge d’un panier de 2 cafés, 1 thé et 1 sandwich.",
+              "_origin": "Le tout premier ticket"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? Avant d’analyser beaucoup de lignes, nous voulons comprendre ce que signifie chaque nombre. Nous faisons une fois le calcul à la main pour reconnaître ensuite une réponse plausible de R."
+              "text": "Pourquoi ? Avant d’analyser beaucoup de lignes, nous voulons comprendre ce que signifie chaque nombre. Nous faisons une fois le calcul à la main pour reconnaître ensuite une réponse plausible de R.",
+              "_origin": "Le tout premier ticket"
             },
             {
               "type": "table",
@@ -461,28 +597,45 @@
                   "19 − 7",
                   "12 TND"
                 ]
-              ]
+              ],
+              "_origin": "Le tout premier ticket"
             },
             {
               "type": "callout",
               "label": "Votre prédiction",
-              "text": "Si nous vendons un café de plus, les ventes augmentent de 3 TND et la marge de 2 TND. Gardez cette prédiction : elle servira à tester votre script."
+              "text": "Si nous vendons un café de plus, les ventes augmentent de 3 TND et la marge de 2 TND. Gardez cette prédiction : elle servira à tester votre script.",
+              "_origin": "Le tout premier ticket"
+            },
+            {
+              "type": "section",
+              "text": "Donner un nom à un résultat",
+              "_origin": "Donner un nom à un résultat"
+            },
+            {
+              "type": "text",
+              "text": "Dans R, * multiplie et / divise. + additionne et - soustrait. <- donne une valeur à un nom : on parle d’objet. Dans la Console, écrire son nom affiche sa valeur ; dans un script lancé avec source(), utiliser print(nom). Un nom sans espace est plus facile à réutiliser.",
+              "_origin": "Donner un nom à un résultat"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/objets.svg",
+              "height": 175,
+              "caption": "Dans votre tête · Un nom à gauche conserve une valeur à droite.",
+              "_origin": "Donner un nom à un résultat"
             }
           ],
           "chapter": 1,
           "page_role": "opening"
         },
         {
-          "kicker": "MISSION 1 · 2/4 · APPRENDRE LES GESTES",
           "title": "Donner un nom à un résultat",
+          "kicker": "MISSION 1 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Dans R, * multiplie et / divise. + additionne et - soustrait. <- donne une valeur à un nom : on parle d’objet. Écrire ensuite le nom affiche sa valeur. Un nom sans espace est plus facile à réutiliser."
-            },
-            {
               "type": "code",
-              "text": "chiffre_affaires <- 2 * 3 + 5 + 8\ncout_total <- 2 * 1 + 2 + 3\nmarge <- chiffre_affaires - cout_total\nprint(chiffre_affaires)\nprint(cout_total)\nprint(marge)"
+              "text": "chiffre_affaires <- 2 * 3 + 5 + 8\ncout_total <- 2 * 1 + 2 + 3\nmarge <- chiffre_affaires - cout_total\nprint(chiffre_affaires)\nprint(cout_total)\nprint(marge)",
+              "_origin": "Donner un nom à un résultat",
+              "language": "r"
             },
             {
               "type": "table",
@@ -507,48 +660,60 @@
                   "12",
                   "TND"
                 ]
-              ]
+              ],
+              "_origin": "Donner un nom à un résultat"
             },
             {
               "type": "callout",
               "label": "Une erreur, une réparation",
-              "text": "object not found signifie objet introuvable. R distingue marge de Marge. Corriger le nom, puis exécuter les lignes qui créent les objets avant celles qui les utilisent."
+              "text": "object not found signifie objet introuvable. R distingue marge de Marge. Corriger le nom, puis exécuter les lignes qui créent les objets avant celles qui les utilisent.",
+              "_origin": "Donner un nom à un résultat"
+            },
+            {
+              "type": "section",
+              "text": "À vous : le premier panier",
+              "_origin": "À vous : le premier panier"
+            },
+            {
+              "type": "text",
+              "text": "Ouvrir missions/01_panier.R. Le fichier conserve les consignes et votre réponse. Enregistrer avec le même nom. Les premières quantités du panier sont 2 cafés, 1 thé et 1 sandwich.",
+              "_origin": "À vous : le premier panier"
+            },
+            {
+              "type": "text",
+              "text": "Créer les objets prix_cafe, quantite_cafe, prix_the, quantite_the, prix_sandwich et quantite_sandwich. Leurs valeurs sont 3, 2, 5, 1, 8 et 1. Créer ensuite total_panier, cout_panier et marge_panier.",
+              "_origin": "À vous : le premier panier"
             }
           ],
           "chapter": 1
         },
         {
-          "kicker": "MISSION 1 · 3/4 · À VOUS",
           "title": "À vous : le premier panier",
+          "kicker": "MISSION 1 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Ouvrir missions/01_panier.R. Le fichier conserve les consignes et votre réponse. Enregistrer avec le même nom. Les premières quantités du panier sont 2 cafés, 1 thé et 1 sandwich."
-            },
-            {
-              "type": "text",
-              "text": "Créer les objets prix_cafe, quantite_cafe, prix_the, quantite_the, prix_sandwich et quantite_sandwich. Leurs valeurs sont 3, 2, 5, 1, 8 et 1. Créer ensuite total_panier, cout_panier et marge_panier."
-            },
-            {
               "type": "code",
-              "text": "total_panier <- prix_cafe * quantite_cafe +\n  prix_the * quantite_the +\n  prix_sandwich * quantite_sandwich\ncout_panier <- quantite_cafe * 1 +\n  quantite_the * 2 + quantite_sandwich * 3\nmarge_panier <- total_panier - cout_panier\nprint(total_panier)\nprint(cout_panier)\nprint(marge_panier)"
+              "text": "total_panier <- prix_cafe * quantite_cafe +\n  prix_the * quantite_the +\n  prix_sandwich * quantite_sandwich\ncout_panier <- quantite_cafe * 1 +\n  quantite_the * 2 + quantite_sandwich * 3\nmarge_panier <- total_panier - cout_panier\nprint(total_panier)\nprint(cout_panier)\nprint(marge_panier)",
+              "_origin": "À vous : le premier panier",
+              "language": "r",
+              "learner_action": "mission1_inputs"
             },
             {
               "type": "callout",
               "label": "Votre essai analogue",
-              "text": "Sans toucher aux objets de la preuve, calculer dans un autre objet le panier avec 3 cafés. Prédire le résultat avant de lancer. Vous devez obtenir 22 TND de ventes et 14 TND de marge."
+              "text": "Sans toucher aux objets de la preuve, calculer dans un autre objet le panier avec 3 cafés. Prédire le résultat avant de lancer. Vous devez obtenir 22 TND de ventes et 14 TND de marge.",
+              "_origin": "À vous : le premier panier"
             },
             {
               "type": "text",
-              "text": "Exécuter tout le script. Les valeurs de preuve restent celles du panier initial : 19, 7 et 12 TND."
-            }
-          ],
-          "chapter": 1
-        },
-        {
-          "kicker": "MISSION 1 · 4/4 · VALIDER",
-          "title": "Première porte ouverte : calculer",
-          "blocks": [
+              "text": "Exécuter tout le script. Les valeurs de preuve restent celles du panier initial : 19, 7 et 12 TND.",
+              "_origin": "À vous : le premier panier"
+            },
+            {
+              "type": "section",
+              "text": "Première porte ouverte : calculer",
+              "_origin": "Première porte ouverte : calculer"
+            },
             {
               "type": "table",
               "headers": [
@@ -568,41 +733,56 @@
                   "marge_panier",
                   "12 TND"
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "En résumé · vous savez maintenant",
-              "text": "Créer un objet avec <-, effectuer un calcul, afficher un résultat et vérifier son unité. Vous savez qu’un café supplémentaire apporte 3 TND de ventes et 2 TND de marge."
-            },
-            {
-              "type": "text",
-              "text": "Preuve : missions/01_panier.R enregistré et ses résultats affichés dans la console. Il n’y a pas de fichier de sortie à fabriquer pour cette mission. Pour vérifier, source() exécute un autre fichier R : Le dossier checks contient les contrôles : exécuter la commande indiquée et garder leurs fichiers fermés pendant l’exercice."
-            },
-            {
-              "type": "code",
-              "text": "source(\"checks/01_panier.R\")"
-            },
-            {
-              "type": "callout",
-              "label": "2 points possibles · cumul 2/20",
-              "text": "1 point : objets et calculs corrects dans un script relançable. 1 point : résultats montrés et explication des ventes, du coût et de la marge. La vérification automatique aide ; l’enseignant vérifie aussi votre explication."
+              ],
+              "_origin": "Première porte ouverte : calculer"
             }
           ],
           "chapter": 1
         },
         {
-          "kicker": "MISSION 2 · 1/4 · COMPRENDRE",
-          "title": "Quatre jours dans la même boîte",
+          "title": "Première porte ouverte : calculer",
+          "kicker": "MISSION 1 · LA PAUSE NORIA",
           "blocks": [
             {
+              "type": "figure",
+              "path": "authoring/assets/v5/cout_marge.svg",
+              "height": 185,
+              "caption": "Dans votre tête · Le ticket de 19 TND contient 7 TND de coût et 12 TND de marge.",
+              "_origin": "Première porte ouverte : calculer"
+            },
+            {
               "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Ranger quatre chiffres d’affaires journaliers dans un seul objet, puis calculer leur total et leur moyenne."
+              "label": "En résumé · vous savez maintenant",
+              "text": "Créer un objet avec <-, effectuer un calcul, afficher un résultat et vérifier son unité. Vous savez qu’un café supplémentaire apporte 3 TND de ventes et 2 TND de marge.",
+              "_origin": "Première porte ouverte : calculer"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? Copier une addition de plus en plus longue devient fragile. Un vecteur rassemble plusieurs valeurs de même nature. Ici, une valeur correspond à un jour."
+              "text": "Preuve : missions/01_panier.R enregistré et ses résultats affichés dans la console. Il n’y a pas de fichier de sortie à fabriquer pour cette mission. Pour vérifier, source() exécute un autre fichier R : Le dossier checks contient les contrôles : exécuter la commande indiquée et garder leurs fichiers fermés pendant l’exercice.",
+              "_origin": "Première porte ouverte : calculer"
+            },
+            {
+              "type": "code",
+              "text": "source(\"checks/01_panier.R\")",
+              "_origin": "Première porte ouverte : calculer",
+              "language": "r"
+            }
+          ],
+          "chapter": 1
+        },
+        {
+          "title": "Quatre jours dans la même boîte",
+          "kicker": "MISSION 2 · LA PAUSE NORIA",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Objectif · Ranger quatre chiffres d’affaires journaliers dans un seul objet, puis calculer leur total et leur moyenne.",
+              "_origin": "Quatre jours dans la même boîte"
+            },
+            {
+              "type": "text",
+              "text": "Pourquoi ? Copier une addition de plus en plus longue devient fragile. Un vecteur rassemble plusieurs valeurs de même nature. Ici, une valeur correspond à un jour.",
+              "_origin": "Quatre jours dans la même boîte"
             },
             {
               "type": "table",
@@ -627,33 +807,51 @@
                   "Jeudi",
                   "21 TND"
                 ]
-              ]
+              ],
+              "_origin": "Quatre jours dans la même boîte"
             },
             {
               "type": "text",
-              "text": "À la main : 19 + 27 + 33 + 21 = 100 TND. La moyenne est le total divisé par le nombre de jours : 100 / 4 = 25 TND par jour. Cela ne signifie pas que chaque jour a vendu 25 TND."
+              "text": "À la main : 19 + 27 + 33 + 21 = 100 TND. La moyenne est le total divisé par le nombre de jours : 100 / 4 = 25 TND par jour. Cela ne signifie pas que chaque jour a vendu 25 TND.",
+              "_origin": "Quatre jours dans la même boîte"
             },
             {
               "type": "figure",
-              "path": "authoring/assets/v4/moyenne_jours.svg",
-              "height": 160,
-              "caption": "Les barres sont les jours observés. La ligne pointillée marque 25 TND : le total partagé en quatre parts égales."
+              "path": "authoring/assets/v5/moyenne.svg",
+              "height": 185,
+              "caption": "Dans votre tête · Imaginer quatre parts égales de 25 TND, même si les jours sont différents.",
+              "_origin": "Quatre jours dans la même boîte"
+            },
+            {
+              "type": "section",
+              "text": "Un vecteur, quatre valeurs",
+              "_origin": "Un vecteur, quatre valeurs"
+            },
+            {
+              "type": "text",
+              "text": "c() combine plusieurs valeurs en un vecteur ; les virgules séparent les valeurs. Une fonction est une commande qui reçoit une information entre parenthèses et renvoie un résultat. sum() fait le total, length() compte les éléments et mean() calcule leur moyenne.",
+              "_origin": "Un vecteur, quatre valeurs"
             }
           ],
           "chapter": 2,
           "page_role": "opening"
         },
         {
-          "kicker": "MISSION 2 · 2/4 · APPRENDRE LES GESTES",
           "title": "Un vecteur, quatre valeurs",
+          "kicker": "MISSION 2 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "c() combine plusieurs valeurs en un vecteur ; les virgules séparent les valeurs. Une fonction est une commande qui reçoit une information entre parenthèses et renvoie un résultat. sum() fait le total, length() compte les éléments et mean() calcule leur moyenne."
+              "type": "figure",
+              "path": "authoring/assets/v5/vecteur.svg",
+              "height": 185,
+              "caption": "Dans votre tête · Une case par jour. Son numéro permet de retrouver une valeur.",
+              "_origin": "Un vecteur, quatre valeurs"
             },
             {
               "type": "code",
-              "text": "ventes_jours <- c(19, 27, 33, 21)\nprint(sum(ventes_jours))\nprint(length(ventes_jours))\nprint(mean(ventes_jours))\nprint(ventes_jours[2])"
+              "text": "ventes_journalieres <- c(19, 27, 33, 21)\nprint(sum(ventes_journalieres))\nprint(length(ventes_journalieres))\nprint(mean(ventes_journalieres))\nprint(ventes_journalieres[2])",
+              "_origin": "Un vecteur, quatre valeurs",
+              "language": "r"
             },
             {
               "type": "table",
@@ -663,38 +861,41 @@
               ],
               "rows": [
                 [
-                  "sum(ventes_jours)",
+                  "sum(ventes_journalieres)",
                   "100 TND sur les quatre jours"
                 ],
                 [
-                  "length(ventes_jours)",
+                  "length(ventes_journalieres)",
                   "4 jours"
                 ],
                 [
-                  "mean(ventes_jours)",
+                  "mean(ventes_journalieres)",
                   "25 TND par jour"
                 ],
                 [
-                  "ventes_jours[2]",
+                  "ventes_journalieres[2]",
                   "27 TND : deuxième valeur"
                 ]
-              ]
+              ],
+              "_origin": "Un vecteur, quatre valeurs"
             },
             {
               "type": "callout",
               "label": "Virgule ou point ?",
-              "text": "R attend un point pour les décimales : 3.5. Dans c(19, 27), la virgule sépare deux nombres. Dans R, la première position porte le numéro 1."
+              "text": "R attend un point pour les décimales : 3.5. Dans c(19, 27), la virgule sépare deux nombres. Dans R, la première position porte le numéro 1.",
+              "_origin": "Un vecteur, quatre valeurs"
             }
           ],
           "chapter": 2
         },
         {
-          "kicker": "MISSION 2 · 3/4 · À VOUS",
           "title": "Un vendredi prometteur",
+          "kicker": "MISSION 2 · LA PAUSE NORIA",
           "blocks": [
             {
               "type": "text",
-              "text": "Ouvrir missions/02_semaine.R. Créer ventes_journalieres avec les quatre jours 19, 27, 33 et 21 TND. Garder ce vecteur pour la preuve. Malgré le mot semaine du fichier, seules quatre journées sont observées."
+              "text": "Ouvrir missions/02_semaine.R. Créer ventes_journalieres avec les quatre jours 19, 27, 33 et 21 TND. Garder ce vecteur pour la preuve. Malgré le mot semaine du fichier, seules quatre journées sont observées.",
+              "_origin": "Un vendredi prometteur"
             },
             {
               "type": "bullets",
@@ -703,20 +904,20 @@
                 "Compter les jours avec length(). Vérifier la moyenne par une division.",
                 "Dans un nouvel objet ventes_avec_vendredi, ajouter un cinquième jour de 30 TND. Prévoir le nouveau total, puis contrôler avec R.",
                 "Enregistrer et relancer le script depuis son début. Les objets de preuve total_semaine et moyenne_jour restent calculés sur les quatre jours."
-              ]
+              ],
+              "_origin": "Un vendredi prometteur"
             },
             {
               "type": "callout",
               "label": "Virgules et guillemets",
-              "text": "Une valeur entre guillemets comme \"30\" est du texte. Ici écrire 30 sans guillemets. Garder les parenthèses de c() et séparer les valeurs par des virgules."
-            }
-          ],
-          "chapter": 2
-        },
-        {
-          "kicker": "MISSION 2 · 4/4 · VALIDER",
-          "title": "La série est sous contrôle",
-          "blocks": [
+              "text": "Une valeur entre guillemets comme \"30\" est du texte. Ici écrire 30 sans guillemets. Garder les parenthèses de c() et séparer les valeurs par des virgules.",
+              "_origin": "Un vendredi prometteur"
+            },
+            {
+              "type": "section",
+              "text": "La série est sous contrôle",
+              "_origin": "La série est sous contrôle"
+            },
             {
               "type": "table",
               "headers": [
@@ -736,41 +937,42 @@
                   "moyenne_jour",
                   "25 TND par jour"
                 ]
-              ]
+              ],
+              "_origin": "La série est sous contrôle"
             },
             {
               "type": "text",
-              "text": "Contrôle de votre essai à cinq jours : 130 TND au total, 5 jours, moyenne 26 TND par jour. Cet essai aide à comprendre ; la preuve demandée reste le vecteur de quatre jours."
+              "text": "Contrôle de votre essai à cinq jours : 130 TND au total, 5 jours, moyenne 26 TND par jour. Cet essai aide à comprendre ; la preuve demandée reste le vecteur de quatre jours.",
+              "_origin": "La série est sous contrôle"
             },
             {
               "type": "callout",
               "label": "En résumé · vous savez maintenant",
-              "text": "Créer un vecteur, compter ses éléments, en extraire un et calculer total et moyenne. Vous savez vérifier la moyenne avec une division simple."
+              "text": "Créer un vecteur, compter ses éléments, en extraire un et calculer total et moyenne. Vous savez vérifier la moyenne avec une division simple.",
+              "_origin": "La série est sous contrôle"
             },
             {
               "type": "code",
-              "text": "source(\"checks/02_semaine.R\")"
-            },
-            {
-              "type": "callout",
-              "label": "2 points possibles · cumul 4/20",
-              "text": "1 point : vecteur et calculs exacts sur quatre jours. 1 point : script relançable, résultats dans la console et explication de la différence entre total de période et moyenne journalière."
+              "text": "source(\"checks/02_semaine.R\")",
+              "_origin": "La série est sous contrôle",
+              "language": "r"
             }
           ],
           "chapter": 2
         },
         {
-          "kicker": "MISSION 3 · 1/5 · COMPRENDRE",
           "title": "La caisse devient un tableau",
+          "kicker": "MISSION 3 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Importer le fichier de caisse et lire ses lignes et ses colonnes sans les modifier."
+              "type": "text",
+              "text": "Objectif · Importer le fichier de caisse et lire ses lignes et ses colonnes sans les modifier.",
+              "_origin": "La caisse devient un tableau"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? Des valeurs isolées ne disent pas quel produit a été vendu ni à quelle date. Un tableau conserve ces informations ensemble. En R, ce type de tableau se nomme data frame."
+              "text": "Pourquoi ? Des valeurs isolées ne disent pas quel produit a été vendu ni à quelle date. Un tableau conserve ces informations ensemble. En R, ce type de tableau se nomme data frame.",
+              "_origin": "La caisse devient un tableau"
             },
             {
               "type": "table",
@@ -795,25 +997,25 @@
                   "Sandwich",
                   "1"
                 ]
-              ]
+              ],
+              "_origin": "La caisse devient un tableau"
             },
             {
               "type": "text",
-              "text": "À la main : la deuxième ligne décrit 1 thé. La colonne quantite contient 2, 1, 1 dans cet extrait. Une ligne décrit ici une vente d’un produit ; elle ne décrit pas forcément un client ni une journée entière. Pour simplifier, chaque ligne est une commande d’un seul type de produit ; plusieurs unités sont possibles. Le nombre de lignes n’est pas le nombre de clients."
+              "text": "À la main : la deuxième ligne décrit 1 thé. La colonne quantite contient 2, 1, 1 dans cet extrait. Une ligne décrit ici une vente d’un produit ; elle ne décrit pas forcément un client ni une journée entière. Pour simplifier, chaque ligne est une commande d’un seul type de produit ; plusieurs unités sont possibles. Le nombre de lignes n’est pas le nombre de clients.",
+              "_origin": "La caisse devient un tableau"
             },
             {
               "type": "callout",
               "label": "Le brut a des surprises",
-              "text": "Le fichier brut contient 14 lignes. Certaines demandent une vérification : les compter ne prouve pas encore que les 14 ventes sont utilisables. Nous traiterons ces surprises en mission 4."
-            }
-          ],
-          "chapter": 3,
-          "page_role": "opening"
-        },
-        {
-          "kicker": "MISSION 3 · 2/5 · LE DICTIONNAIRE",
-          "title": "Les mots du fichier",
-          "blocks": [
+              "text": "Le fichier brut contient 14 lignes. Certaines demandent une vérification : les compter ne prouve pas encore que les 14 ventes sont utilisables. Nous traiterons ces surprises en mission 4.",
+              "_origin": "La caisse devient un tableau"
+            },
+            {
+              "type": "section",
+              "text": "Les mots du fichier",
+              "_origin": "Les mots du fichier"
+            },
             {
               "type": "table",
               "headers": [
@@ -852,31 +1054,57 @@
                   "Coût des ingrédients d’une unité",
                   "1 TND / unité"
                 ]
-              ]
+              ],
+              "_origin": "Les mots du fichier"
+            }
+          ],
+          "chapter": 3,
+          "page_role": "opening"
+        },
+        {
+          "title": "Les mots du fichier",
+          "kicker": "MISSION 3 · LA PAUSE NORIA",
+          "blocks": [
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/tableau_csv.svg",
+              "height": 210,
+              "caption": "Dans votre tête · Lire une cellule, puis toute sa ligne ou toute sa colonne.",
+              "_origin": "Les mots du fichier"
             },
             {
               "type": "text",
-              "text": "Les noms évitent accents et espaces pour être faciles à saisir. Cafe correspond à café, The à thé. Une date écrite 2026-10-05 se lit année-mois-jour : 5 octobre 2026."
+              "text": "Les noms évitent accents et espaces pour être faciles à saisir. Cafe correspond à café, The à thé. Une date écrite 2026-10-05 se lit année-mois-jour : 5 octobre 2026.",
+              "_origin": "Les mots du fichier"
             },
             {
               "type": "callout",
               "label": "Lire l’unité évite une erreur",
-              "text": "prix_unitaire est le prix d’une seule unité. Pour 2 cafés, le chiffre d’affaires de la ligne sera 2 × 3 = 6 TND. Additionner seulement les prix unitaires donnerait une réponse à une autre question."
+              "text": "prix_unitaire est le prix d’une seule unité. Pour 2 cafés, le chiffre d’affaires de la ligne sera 2 × 3 = 6 TND. Additionner seulement les prix unitaires donnerait une réponse à une autre question.",
+              "_origin": "Les mots du fichier"
+            },
+            {
+              "type": "section",
+              "text": "Importer, puis regarder",
+              "_origin": "Importer, puis regarder"
+            },
+            {
+              "type": "text",
+              "text": "Un CSV est un fichier texte qui range un tableau : une ligne d’en-têtes puis les données. read.csv() lit ce fichier ; le chemin va entre guillemets. <- garde le tableau dans commandes. head() affiche le début ; nrow() compte les lignes et names() donne les noms des colonnes.",
+              "_origin": "Importer, puis regarder"
             }
           ],
           "chapter": 3
         },
         {
-          "kicker": "MISSION 3 · 3/5 · APPRENDRE LES GESTES",
           "title": "Importer, puis regarder",
+          "kicker": "MISSION 3 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Un CSV est un fichier texte qui range un tableau : une ligne d’en-têtes puis les données. read.csv() lit ce fichier ; le chemin va entre guillemets. <- garde le tableau dans commandes. head() affiche le début ; nrow() compte les lignes et names() donne les noms des colonnes."
-            },
-            {
               "type": "code",
-              "text": "commandes <- read.csv(\"data/orders_raw.csv\")\nprint(head(commandes))\nprint(nrow(commandes))\nprint(names(commandes))"
+              "text": "commandes <- read.csv(\"data/orders_raw.csv\")\nprint(head(commandes))\nprint(nrow(commandes))\nprint(names(commandes))",
+              "_origin": "Importer, puis regarder",
+              "language": "r"
             },
             {
               "type": "table",
@@ -897,47 +1125,59 @@
                   "head(commandes)",
                   "Les premières ventes, avec leurs en-têtes"
                 ]
-              ]
+              ],
+              "_origin": "Importer, puis regarder"
             },
             {
               "type": "callout",
               "label": "cannot open file",
-              "text": "R ne trouve pas le fichier. Vérifier getwd(), le nom orders_raw.csv, puis le sous-dossier data. Ne pas remplacer le chemin par celui de l’ordinateur de l’enseignant."
+              "text": "R ne trouve pas le fichier. Vérifier getwd(), le nom orders_raw.csv, puis le sous-dossier data. Utiliser le chemin du dossier extrait sur votre propre ordinateur.",
+              "_origin": "Importer, puis regarder"
+            },
+            {
+              "type": "section",
+              "text": "Retrouver une vente précise",
+              "_origin": "Retrouver une vente précise"
+            },
+            {
+              "type": "text",
+              "text": "Le signe $ choisit une colonne : commandes$quantite désigne toutes les quantités. Les crochets [ligne, colonne] choisissent une case. Laisser la colonne vide choisit la ligne entière.",
+              "_origin": "Retrouver une vente précise"
+            },
+            {
+              "type": "code",
+              "text": "premiere_commande <- commandes[1, ]\nprint(commandes[2, \"produit\"])\nprint(commandes$quantite)",
+              "_origin": "Retrouver une vente précise",
+              "language": "r"
             }
           ],
           "chapter": 3
         },
         {
-          "kicker": "MISSION 3 · 4/5 · À VOUS",
           "title": "Retrouver une vente précise",
+          "kicker": "MISSION 3 · LA PAUSE NORIA",
           "blocks": [
             {
               "type": "text",
-              "text": "Le signe $ choisit une colonne : commandes$quantite désigne toutes les quantités. Les crochets [ligne, colonne] choisissent une case. Laisser la colonne vide choisit la ligne entière."
+              "text": "unique() conserve chaque valeur distincte une seule fois. Sur la colonne produit, cette fonction permet de voir les produits disponibles sans répétition.",
+              "_origin": "Retrouver une vente précise"
             },
             {
               "type": "code",
-              "text": "premiere_commande <- commandes[1, ]\nprint(commandes[2, \"produit\"])\nprint(commandes$quantite)"
+              "text": "produits <- unique(commandes$produit)\nprint(produits)",
+              "_origin": "Retrouver une vente précise",
+              "language": "r"
             },
             {
               "type": "text",
-              "text": "unique() conserve chaque valeur distincte une seule fois. Sur la colonne produit, cette fonction permet de voir les produits disponibles sans répétition."
+              "text": "Dans missions/03_importer.R, importer le brut, créer premiere_commande et produits, puis afficher les résultats. Pour un essai analogue, retrouver aussi le produit et la quantité de la troisième ligne. Expliquer pourquoi un prix unitaire ne suffit pas pour calculer les ventes.",
+              "_origin": "Retrouver une vente précise"
             },
             {
-              "type": "code",
-              "text": "produits <- unique(commandes$produit)\nprint(produits)"
+              "type": "section",
+              "text": "Vous savez lire la caisse",
+              "_origin": "Vous savez lire la caisse"
             },
-            {
-              "type": "text",
-              "text": "Dans missions/03_importer.R, importer le brut, créer premiere_commande et produits, puis afficher les résultats. Pour un essai analogue, retrouver aussi le produit et la quantité de la troisième ligne. Expliquer pourquoi un prix unitaire ne suffit pas pour calculer les ventes."
-            }
-          ],
-          "chapter": 3
-        },
-        {
-          "kicker": "MISSION 3 · 5/5 · VALIDER",
-          "title": "Vous savez lire la caisse",
-          "blocks": [
             {
               "type": "table",
               "headers": [
@@ -961,37 +1201,37 @@
                   "Votre essai sur la troisième ligne",
                   "Sandwich ; 1 unité ; prix unitaire 8 TND"
                 ]
-              ]
+              ],
+              "_origin": "Vous savez lire la caisse"
             },
             {
               "type": "callout",
               "label": "En résumé · vous savez maintenant",
-              "text": "Importer un CSV, repérer lignes et colonnes, lire avec $ et [ ], et trouver des valeurs distinctes avec unique(). Vous savez donner le sens et l’unité d’une valeur."
+              "text": "Importer un CSV, repérer lignes et colonnes, lire avec $ et [ ], et trouver des valeurs distinctes avec unique(). Vous savez donner le sens et l’unité d’une valeur.",
+              "_origin": "Vous savez lire la caisse"
             },
             {
               "type": "code",
-              "text": "source(\"checks/03_importer.R\")"
-            },
-            {
-              "type": "callout",
-              "label": "3 points possibles · cumul 7/20",
-              "text": "1 point : import et 14 lignes. 1 point : première commande et produits distincts corrects. 1 point : fichier relançable, résultats console et explication d’une ligne, d’une colonne et du prix unitaire."
+              "text": "source(\"checks/03_importer.R\")",
+              "_origin": "Vous savez lire la caisse",
+              "language": "r"
             }
           ],
           "chapter": 3
         },
         {
-          "kicker": "MISSION 4 · 1/4 · COMPRENDRE",
           "title": "Deux surprises dans la caisse",
+          "kicker": "MISSION 4 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Retirer une copie exacte et mettre de côté une vente dont la quantité manque."
+              "type": "text",
+              "text": "Objectif · Retirer une copie exacte et mettre de côté une vente dont la quantité manque.",
+              "_origin": "Deux surprises dans la caisse"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? Compter deux fois la même vente gonfle les ventes. Inventer une quantité transforme une inconnue en fausse certitude. Nous allons garder une trace de ce que nous changeons."
+              "text": "Pourquoi ? Compter deux fois la même vente gonfle les ventes. Inventer une quantité transforme une inconnue en fausse certitude. Nous allons garder une trace de ce que nous changeons.",
+              "_origin": "Deux surprises dans la caisse"
             },
             {
               "type": "table",
@@ -1011,36 +1251,56 @@
                   "Mettre B à part pour demander la quantité",
                   "Aucune ligne B pour les calculs"
                 ]
-              ]
+              ],
+              "_origin": "Deux surprises dans la caisse"
             },
             {
               "type": "callout",
               "label": "Ce qui manque reste inconnu",
-              "text": "Dans R, NA signifie valeur manquante. NA n’est ni zéro ni le texte \"NA\" à inventer. Ici, nous excluons provisoirement la ligne des calculs et conservons un fichier des lignes à vérifier."
+              "text": "Dans R, NA signifie valeur manquante. NA n’est ni zéro ni le texte \"NA\" à inventer. Ici, nous excluons provisoirement la ligne des calculs et conservons un fichier des lignes à vérifier.",
+              "_origin": "Deux surprises dans la caisse"
+            },
+            {
+              "type": "section",
+              "text": "Une règle visible pour chaque ligne",
+              "_origin": "Une règle visible pour chaque ligne"
+            },
+            {
+              "type": "text",
+              "text": "Sur un tableau entier, unique() garde seulement une copie de chaque ligne entièrement identique. is.na() pose la question « est-ce manquant ? » et renvoie TRUE ou FALSE pour chaque valeur. ! inverse ces réponses.",
+              "_origin": "Une règle visible pour chaque ligne"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/nettoyage.svg",
+              "height": 190,
+              "caption": "Dans votre tête · On conserve 12 lignes et une ligne à compléter. Une absence n’est pas zéro.",
+              "_origin": "Une règle visible pour chaque ligne"
             }
           ],
           "chapter": 4,
           "page_role": "opening"
         },
         {
-          "kicker": "MISSION 4 · 2/4 · APPRENDRE LES GESTES",
           "title": "Une règle visible pour chaque ligne",
+          "kicker": "MISSION 4 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Sur un tableau entier, unique() garde seulement une copie de chaque ligne entièrement identique. is.na() pose la question « est-ce manquant ? » et renvoie TRUE ou FALSE pour chaque valeur. ! inverse ces réponses."
-            },
-            {
               "type": "code",
-              "text": "sans_doublon <- unique(commandes)\nprint(is.na(sans_doublon$quantite))\nprint(!is.na(sans_doublon$quantite))"
+              "text": "sans_doublon <- unique(commandes)\nprint(is.na(sans_doublon$quantite))\nprint(!is.na(sans_doublon$quantite))",
+              "_origin": "Une règle visible pour chaque ligne",
+              "language": "r"
             },
             {
               "type": "text",
-              "text": "Dans [règle, ], R garde les lignes pour lesquelles la règle est TRUE. Avant la virgule : les lignes. Après la virgule vide : toutes les colonnes. Combinons maintenant ces gestes connus."
+              "text": "Dans [règle, ], R garde les lignes pour lesquelles la règle est TRUE. Avant la virgule : les lignes. Après la virgule vide : toutes les colonnes. Combinons maintenant ces gestes connus.",
+              "_origin": "Une règle visible pour chaque ligne"
             },
             {
               "type": "code",
-              "text": "a_completer <- sans_doublon[\n  is.na(sans_doublon$quantite), ]\npropres <- sans_doublon[\n  !is.na(sans_doublon$quantite), ]"
+              "text": "a_completer <- sans_doublon[\n  is.na(sans_doublon$quantite), ]\npropres <- sans_doublon[\n  !is.na(sans_doublon$quantite), ]",
+              "_origin": "Une règle visible pour chaque ligne",
+              "language": "r"
             },
             {
               "type": "table",
@@ -1061,23 +1321,32 @@
                   "Lignes conservées pour calculer",
                   "12"
                 ]
-              ]
+              ],
+              "_origin": "Une règle visible pour chaque ligne"
+            },
+            {
+              "type": "section",
+              "text": "Conserver une caisse fiable",
+              "_origin": "Conserver une caisse fiable"
+            },
+            {
+              "type": "text",
+              "text": "write.csv() écrit un tableau dans un fichier CSV. Son premier argument est le tableau, le second est le chemin de sortie. row.names = FALSE évite d’ajouter une colonne de numéros de lignes. FALSE veut dire faux.",
+              "_origin": "Conserver une caisse fiable"
+            },
+            {
+              "type": "code",
+              "text": "write.csv(propres,\n  \"outputs/04_commandes_propres.csv\",\n  row.names = FALSE)\nwrite.csv(a_completer,\n  \"outputs/04_commandes_a_completer.csv\",\n  row.names = FALSE)",
+              "_origin": "Conserver une caisse fiable",
+              "language": "r"
             }
           ],
           "chapter": 4
         },
         {
-          "kicker": "MISSION 4 · 3/4 · À VOUS",
           "title": "Conserver une caisse fiable",
+          "kicker": "MISSION 4 · LA PAUSE NORIA",
           "blocks": [
-            {
-              "type": "text",
-              "text": "write.csv() écrit un tableau dans un fichier CSV. Son premier argument est le tableau, le second est le chemin de sortie. row.names = FALSE évite d’ajouter une colonne de numéros de lignes. FALSE veut dire faux."
-            },
-            {
-              "type": "code",
-              "text": "write.csv(propres,\n  \"outputs/04_commandes_propres.csv\",\n  row.names = FALSE)\nwrite.csv(a_completer,\n  \"outputs/04_commandes_a_completer.csv\",\n  row.names = FALSE)"
-            },
             {
               "type": "bullets",
               "items": [
@@ -1085,20 +1354,20 @@
                 "Afficher les trois nombres 13, 1 et 12. Identifier la vente à vérifier : O013.",
                 "Enregistrer les deux CSV dans outputs. Ouvrir le fichier à vérifier et s’assurer que la quantité n’a pas été remplacée par zéro.",
                 "Écrire un commentaire : 14 lignes brutes = 1 copie retirée + 1 ligne mise à part + 12 lignes conservées."
-              ]
+              ],
+              "_origin": "Conserver une caisse fiable"
             },
             {
               "type": "callout",
               "label": "Si commandes manque",
-              "text": "Le script doit commencer par l’import read.csv(). Après un redémarrage, les objets de la session précédente peuvent avoir disparu : votre fichier doit pouvoir les recréer."
-            }
-          ],
-          "chapter": 4
-        },
-        {
-          "kicker": "MISSION 4 · 4/4 · VALIDER",
-          "title": "Une preuve de nettoyage",
-          "blocks": [
+              "text": "Le script doit commencer par l’import read.csv(). Après un redémarrage, les objets de la session précédente peuvent avoir disparu : votre fichier doit pouvoir les recréer.",
+              "_origin": "Conserver une caisse fiable"
+            },
+            {
+              "type": "section",
+              "text": "Une preuve de nettoyage",
+              "_origin": "Une preuve de nettoyage"
+            },
             {
               "type": "table",
               "headers": [
@@ -1114,41 +1383,41 @@
                   "04_commandes_a_completer.csv",
                   "O013, quantité manquante conservée"
                 ]
-              ]
+              ],
+              "_origin": "Une preuve de nettoyage"
             },
             {
               "type": "callout",
               "label": "En résumé · vous savez maintenant",
-              "text": "Appliquer une règle simple de nettoyage, repérer NA, filtrer des lignes et exporter un tableau. Vous savez expliquer ce qui a été retiré et pourquoi."
+              "text": "Appliquer une règle simple de nettoyage, repérer NA, filtrer des lignes et exporter un tableau. Vous savez expliquer ce qui a été retiré et pourquoi.",
+              "_origin": "Une preuve de nettoyage"
             },
             {
               "type": "text",
-              "text": "Nous retirons ici seulement une copie exacte. Deux ventes différentes portant des produits et des prix identiques peuvent être toutes deux réelles. Une règle de nettoyage dépend toujours de la signification des données."
+              "text": "Nous retirons ici seulement une copie exacte. Deux ventes différentes portant des produits et des prix identiques peuvent être toutes deux réelles. Une règle de nettoyage dépend toujours de la signification des données.",
+              "_origin": "Une preuve de nettoyage"
             },
             {
               "type": "text",
-              "text": "Enregistrer missions/04_nettoyer.R et vérifier depuis la console : source(\"checks/04_nettoyer.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs."
-            },
-            {
-              "type": "callout",
-              "label": "2 points possibles · cumul 9/20",
-              "text": "1 point : les règles produisent les bons nombres de lignes et les deux fichiers. 1 point : vous expliquez la copie, la mise à part et la différence entre une quantité inconnue et zéro."
+              "text": "Enregistrer missions/04_nettoyer.R et vérifier depuis la console : source(\"checks/04_nettoyer.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs.",
+              "_origin": "Une preuve de nettoyage"
             }
           ],
           "chapter": 4
         },
         {
-          "kicker": "MISSION 5 · 1/5 · CONSTRUIRE LE BILAN",
           "title": "Chaque ligne gagne trois colonnes",
+          "kicker": "MISSION 5 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Calculer ventes, coût et marge pour chaque vente, puis réunir les résultats par produit."
+              "type": "text",
+              "text": "Objectif · Calculer ventes, coût et marge pour chaque vente, puis réunir les résultats par produit.",
+              "_origin": "Chaque ligne gagne trois colonnes"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? La gérante veut comparer les produits sur la période entière. Nous passons du prix d’une unité à l’argent correspondant aux quantités réellement vendues."
+              "text": "Pourquoi ? La gérante veut comparer les produits sur la période entière. Nous passons du prix d’une unité à l’argent correspondant aux quantités réellement vendues.",
+              "_origin": "Chaque ligne gagne trois colonnes"
             },
             {
               "type": "table",
@@ -1173,27 +1442,45 @@
                   "6 − 2",
                   "4 TND"
                 ]
-              ]
+              ],
+              "_origin": "Chaque ligne gagne trois colonnes"
             },
             {
               "type": "text",
-              "text": "R applique une multiplication colonne par colonne, ligne par ligne : une quantité est multipliée par son propre prix unitaire. Les nouvelles colonnes auront autant de valeurs que le tableau a de lignes."
+              "text": "R applique une multiplication colonne par colonne, ligne par ligne : une quantité est multipliée par son propre prix unitaire. Les nouvelles colonnes auront autant de valeurs que le tableau a de lignes.",
+              "_origin": "Chaque ligne gagne trois colonnes"
+            },
+            {
+              "type": "section",
+              "text": "Calculer sans recopier douze fois",
+              "_origin": "Calculer sans recopier douze fois"
+            },
+            {
+              "type": "text",
+              "text": "Le début fourni dans missions/05_analyser.R prépare chemin_propres et importe le tableau. Son if signifie « si » : si votre export existe, il est choisi ; sinon le fichier de référence est annoncé. Vous pouvez utiliser cette préparation pour commencer directement les calculs. propres$nouveau_nom <- ... crée une colonne.",
+              "_origin": "Calculer sans recopier douze fois"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/calcul_lignes.svg",
+              "height": 200,
+              "caption": "Dans votre tête · La même règle se répète sur chaque ligne du tableau.",
+              "_origin": "Calculer sans recopier douze fois"
             }
           ],
           "chapter": 5,
           "page_role": "opening"
         },
         {
-          "kicker": "MISSION 5 · 2/5 · CONSTRUIRE LE BILAN",
           "title": "Calculer sans recopier douze fois",
+          "kicker": "MISSION 5 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Le début fourni dans missions/05_analyser.R prépare chemin_propres et importe le tableau. Son if signifie « si » : si votre export existe, il est choisi ; sinon le fichier de référence est annoncé. Vous pouvez utiliser cette préparation pour commencer directement les calculs. propres$nouveau_nom <- ... crée une colonne."
-            },
-            {
               "type": "code",
-              "text": "propres <- read.csv(chemin_propres)\npropres$chiffre_affaires <-\n  propres$quantite * propres$prix_unitaire\npropres$cout_total <-\n  propres$quantite * propres$cout_unitaire\npropres$marge <-\n  propres$chiffre_affaires - propres$cout_total\nprint(sum(propres$chiffre_affaires))\nprint(sum(propres$cout_total))\nprint(sum(propres$marge))"
+              "text": "propres <- read.csv(chemin_propres)\npropres$chiffre_affaires <-\n  propres$quantite * propres$prix_unitaire\npropres$cout_total <-\n  propres$quantite * propres$cout_unitaire\npropres$marge <-\n  propres$chiffre_affaires - propres$cout_total\nprint(sum(propres$chiffre_affaires))\nprint(sum(propres$cout_total))\nprint(sum(propres$marge))",
+              "_origin": "Calculer sans recopier douze fois",
+              "language": "r",
+              "learner_action": "mission5_input_prelude"
             },
             {
               "type": "table",
@@ -1214,27 +1501,44 @@
                   "Marge totale",
                   "63 TND"
                 ]
-              ]
+              ],
+              "_origin": "Calculer sans recopier douze fois"
             },
             {
               "type": "callout",
               "label": "Une aide pour reprendre ici",
-              "text": "Le début fourni des missions 5, 6 et 7 peut choisir le fichier de référence si vous n’avez pas encore votre export de mission 4. Il permet de travailler sur ces missions séparément. Le message indique le fichier utilisé ; cette aide ne valide pas la mission 4."
+              "text": "Le début fourni des missions 5, 6 et 7 peut choisir le fichier de référence si vous n’avez pas encore votre export de mission 4. Il permet de travailler sur ces missions séparément. Le message indique le fichier utilisé ; cette aide ne valide pas la mission 4.",
+              "_origin": "Calculer sans recopier douze fois"
+            },
+            {
+              "type": "section",
+              "text": "Réunir les ventes par produit",
+              "_origin": "Réunir les ventes par produit"
+            },
+            {
+              "type": "text",
+              "text": "aggregate() réunit les lignes par groupe. Dans chiffre_affaires ~ produit, ~ se lit « selon » : total des ventes selon le produit. data désigne le tableau ; FUN = sum choisit le total. Ces mots sont des noms d’arguments.",
+              "_origin": "Réunir les ventes par produit"
             }
           ],
           "chapter": 5
         },
         {
-          "kicker": "MISSION 5 · 3/5 · CONSTRUIRE LE BILAN",
           "title": "Réunir les ventes par produit",
+          "kicker": "MISSION 5 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "aggregate() réunit les lignes par groupe. Dans chiffre_affaires ~ produit, ~ se lit « selon » : total des ventes selon le produit. data désigne le tableau ; FUN = sum choisit le total. Ces mots sont des noms d’arguments."
+              "type": "figure",
+              "path": "authoring/assets/v5/regrouper.svg",
+              "height": 215,
+              "caption": "Dans votre tête · Réunir les lignes du même produit, puis additionner leurs valeurs.",
+              "_origin": "Réunir les ventes par produit"
             },
             {
               "type": "code",
-              "text": "print(aggregate(chiffre_affaires ~ produit,\n  data = propres, FUN = sum))"
+              "text": "print(aggregate(chiffre_affaires ~ produit,\n  data = propres, FUN = sum))",
+              "_origin": "Réunir les ventes par produit",
+              "language": "r"
             },
             {
               "type": "table",
@@ -1255,48 +1559,74 @@
                   "The",
                   "30 TND"
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Votre essai analogue",
-              "text": "Dans missions/05_analyser.R, adapter cette ligne pour totaliser la marge selon le produit. Vérifier 20 TND pour Cafe, 25 pour Sandwich et 18 pour The. La page suivante rassemble les trois mesures dans un seul tableau."
+              ],
+              "_origin": "Réunir les ventes par produit"
             }
           ],
           "chapter": 5
         },
         {
-          "kicker": "MISSION 5 · 4/5 · CONSTRUIRE LE BILAN",
-          "title": "Trois mesures, un seul résumé",
+          "title": "Réunir les ventes par produit",
+          "kicker": "MISSION 5 · LA PAUSE NORIA",
           "blocks": [
             {
+              "type": "callout",
+              "label": "Votre essai analogue",
+              "text": "Dans missions/05_analyser.R, adapter cette ligne pour totaliser la marge selon le produit. Vérifier 20 TND pour Cafe, 25 pour Sandwich et 18 pour The. La page suivante rassemble les trois mesures dans un seul tableau.",
+              "_origin": "Réunir les ventes par produit"
+            },
+            {
+              "type": "section",
+              "text": "Trois mesures, un seul résumé",
+              "_origin": "Trois mesures, un seul résumé"
+            },
+            {
               "type": "text",
-              "text": "cbind() place plusieurs colonnes côte à côte. Dans aggregate(), il permet de demander le même total pour chiffre_affaires, cout_total et marge. Le résultat sera nommé bilan_produits."
+              "text": "cbind() place plusieurs colonnes côte à côte. Dans aggregate(), il permet de demander le même total pour chiffre_affaires, cout_total et marge. Le résultat sera nommé bilan_produits.",
+              "_origin": "Trois mesures, un seul résumé"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/composition.svg",
+              "height": 185,
+              "caption": "Dans votre tête · 100 TND de ventes = 37 TND de coût + 63 TND de marge sur ingrédients.",
+              "_origin": "Trois mesures, un seul résumé"
             },
             {
               "type": "code",
-              "text": "bilan_produits <- aggregate(\n  cbind(chiffre_affaires, cout_total, marge) ~\n    produit, data = propres, FUN = sum)\nprint(bilan_produits)\ntotal_ca <- sum(propres$chiffre_affaires)\ntotal_marge <- sum(propres$marge)"
+              "text": "bilan_produits <- aggregate(\n  cbind(chiffre_affaires, cout_total, marge) ~\n    produit, data = propres, FUN = sum)\nprint(bilan_produits)\ntotal_ca <- sum(propres$chiffre_affaires)\ntotal_marge <- sum(propres$marge)",
+              "_origin": "Trois mesures, un seul résumé",
+              "language": "r"
             },
             {
               "type": "text",
-              "text": "Pour un résumé par jour, reprendre la même recette et remplacer produit par date ; nommer le résultat bilan_jours. Aucun nouveau calcul n’est nécessaire : seul le groupe change."
-            },
+              "text": "Pour un résumé par jour, reprendre la même recette et remplacer produit par date ; nommer le résultat bilan_jours. Aucun nouveau calcul n’est nécessaire : seul le groupe change.",
+              "_origin": "Trois mesures, un seul résumé"
+            }
+          ],
+          "chapter": 5
+        },
+        {
+          "title": "Trois mesures, un seul résumé",
+          "kicker": "MISSION 5 · LA PAUSE NORIA",
+          "blocks": [
             {
               "type": "code",
-              "text": "write.csv(bilan_produits,\n  \"outputs/05_bilan_produits.csv\",\n  row.names = FALSE)"
+              "text": "write.csv(bilan_produits,\n  \"outputs/05_bilan_produits.csv\",\n  row.names = FALSE)",
+              "_origin": "Trois mesures, un seul résumé",
+              "language": "r"
             },
             {
               "type": "callout",
               "label": "Votre contrôle",
-              "text": "Afficher total_ca = 100 TND et total_marge = 63 TND. Ouvrir le CSV enregistré. Vous devez y retrouver trois produits et les trois mesures, avec des en-têtes. Le bilan par jour doit retrouver 19, 27, 33 et 21 TND de ventes, dans l’ordre des dates."
-            }
-          ],
-          "chapter": 5
-        },
-        {
-          "kicker": "MISSION 5 · 5/5 · CONSTRUIRE LE BILAN",
-          "title": "Le tableau de bord est prêt",
-          "blocks": [
+              "text": "Afficher total_ca = 100 TND et total_marge = 63 TND. Ouvrir le CSV enregistré. Vous devez y retrouver trois produits et les trois mesures, avec des en-têtes. Le bilan par jour doit retrouver 19, 27, 33 et 21 TND de ventes, dans l’ordre des dates.",
+              "_origin": "Trois mesures, un seul résumé"
+            },
+            {
+              "type": "section",
+              "text": "Le tableau de bord est prêt",
+              "_origin": "Le tableau de bord est prêt"
+            },
             {
               "type": "table",
               "headers": [
@@ -1325,47 +1655,48 @@
                   "100",
                   "63"
                 ]
-              ]
+              ],
+              "_origin": "Le tableau de bord est prêt"
             },
             {
               "type": "callout",
               "label": "En résumé · vous savez maintenant",
-              "text": "Créer une colonne à partir de deux autres, totaliser une colonne et calculer des totaux par groupe avec aggregate(). Vous savez vérifier qu’un résumé retrouve le total général."
+              "text": "Créer une colonne à partir de deux autres, totaliser une colonne et calculer des totaux par groupe avec aggregate(). Vous savez vérifier qu’un résumé retrouve le total général.",
+              "_origin": "Le tableau de bord est prêt"
             },
             {
               "type": "text",
-              "text": "La marge la plus élevée sur cette période est celle du sandwich : 25 TND. Cela ne mesure ni la satisfaction client, ni le temps de préparation, ni la rentabilité complète du café."
+              "text": "La marge la plus élevée sur cette période est celle du sandwich : 25 TND. Cela ne mesure ni la satisfaction client, ni le temps de préparation, ni la rentabilité complète du café.",
+              "_origin": "Le tableau de bord est prêt"
             },
             {
               "type": "text",
-              "text": "Enregistrer missions/05_analyser.R et vérifier depuis la console : source(\"checks/05_analyser.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs."
-            },
-            {
-              "type": "callout",
-              "label": "3 points possibles · cumul 12/20",
-              "text": "1 point : colonnes et totaux exacts. 1 point : résumés par produit corrects et preuve enregistrée. 1 point : unités, contrôle des totaux et explication de la marge."
+              "text": "Enregistrer missions/05_analyser.R et vérifier depuis la console : source(\"checks/05_analyser.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs.",
+              "_origin": "Le tableau de bord est prêt"
             }
           ],
           "chapter": 5
         },
         {
-          "kicker": "MISSION 6 · 1/4 · COMPRENDRE",
           "title": "Un regard suffit pour comparer",
+          "kicker": "MISSION 6 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Dessiner un diagramme en barres des ventes par produit, puis un diagramme des marges."
-            },
-            {
               "type": "text",
-              "text": "Pourquoi ? Un tableau donne les nombres précis. Un graphique permet de comparer rapidement leurs tailles. Une barre correspondra à un produit ; sa hauteur représentera une somme en TND."
+              "text": "Objectif · Dessiner un diagramme en barres des ventes par produit, puis un diagramme des marges.",
+              "_origin": "Un regard suffit pour comparer"
             },
             {
               "type": "figure",
-              "path": "authoring/assets/v4/chiffre_affaires_produits.svg",
-              "height": 200,
-              "caption": "Un exemple de graphique final : les valeurs et les unités comptent. Votre choix de couleurs peut être différent."
+              "path": "authoring/assets/v5/unites.svg",
+              "height": 185,
+              "caption": "Dans votre tête · 30 TND de ventes et 10 cafés répondent à deux questions différentes.",
+              "_origin": "Un regard suffit pour comparer"
+            },
+            {
+              "type": "text",
+              "text": "Pourquoi ? Un tableau donne les nombres précis. Un graphique permet de comparer rapidement leurs tailles. Une barre correspondra à un produit ; sa hauteur représentera une somme en TND.",
+              "_origin": "Un regard suffit pour comparer"
             },
             {
               "type": "table",
@@ -1386,56 +1717,90 @@
                   "The",
                   "30 TND de ventes"
                 ]
-              ]
+              ],
+              "_origin": "Un regard suffit pour comparer"
             },
             {
               "type": "text",
-              "text": "Dessinez trois rectangles sur papier : deux de même hauteur et celui du sandwich plus haut. Placez zéro à la base. Ce brouillon vous permettra de reconnaître un graphique incohérent."
+              "text": "Dessinez trois rectangles sur papier : deux de même hauteur et celui du sandwich plus haut. Placez zéro à la base. Ce brouillon vous permettra de reconnaître un graphique incohérent.",
+              "_origin": "Un regard suffit pour comparer"
             },
             {
               "type": "callout",
               "label": "La question reste visible",
-              "text": "Titre : chiffre d’affaires par produit. Axe vertical : ventes en TND. Noms sous les barres : les produits. Sans ces repères, une belle image peut rester incompréhensible."
+              "text": "Titre : chiffre d’affaires par produit. Axe vertical : ventes en TND. Noms sous les barres : les produits. Sans ces repères, une belle image peut rester incompréhensible.",
+              "_origin": "Un regard suffit pour comparer"
+            },
+            {
+              "type": "section",
+              "text": "R dessine vos barres",
+              "_origin": "R dessine vos barres"
+            },
+            {
+              "type": "text",
+              "text": "barplot() dessine des barres. height reçoit leurs hauteurs ; names.arg reçoit leurs noms. main indique le titre et ylab le nom de l’axe vertical. Les textes vont entre guillemets.",
+              "_origin": "R dessine vos barres"
             }
           ],
           "chapter": 6,
           "page_role": "opening"
         },
         {
-          "kicker": "MISSION 6 · 2/4 · APPRENDRE LES GESTES",
           "title": "R dessine vos barres",
+          "kicker": "MISSION 6 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "barplot() dessine des barres. height reçoit leurs hauteurs ; names.arg reçoit leurs noms. main indique le titre et ylab le nom de l’axe vertical. Les textes vont entre guillemets."
-            },
-            {
               "type": "code",
-              "text": "barplot(\n  height = bilan_produits$chiffre_affaires,\n  names.arg = bilan_produits$produit,\n  main = \"Ventes par produit\",\n  ylab = \"Chiffre d affaires (TND)\",\n  col = \"steelblue\")"
+              "text": "barplot(\n  height = bilan_produits$chiffre_affaires,\n  names.arg = bilan_produits$produit,\n  main = \"Ventes par produit\",\n  ylab = \"Chiffre d affaires (TND)\",\n  col = \"steelblue\")",
+              "_origin": "R dessine vos barres",
+              "language": "r"
             },
             {
               "type": "text",
-              "text": "col choisit la couleur ; steelblue est le nom anglais d’un bleu. La fenêtre Plots de RStudio, ou la fenêtre graphique de R, affiche le résultat."
+              "text": "col choisit la couleur ; steelblue est le nom anglais d’un bleu. Dans RStudio, le résultat apparaît dans Plots. Dans le Terminal, une fenêtre peut ne pas s’ouvrir : utiliser alors png() → barplot() → dev.off() comme expliqué juste après, puis ouvrir le fichier enregistré.",
+              "_origin": "R dessine vos barres"
             },
             {
               "type": "callout",
               "label": "Lecture attendue",
-              "text": "Deux barres de 30 TND encadrent une barre de 40 TND si les produits sont rangés Cafe, Sandwich, The. L’ordre peut changer : toujours lire les noms, jamais seulement la position."
+              "text": "Deux barres de 30 TND encadrent une barre de 40 TND si les produits sont rangés Cafe, Sandwich, The. L’ordre peut changer : toujours lire les noms, jamais seulement la position.",
+              "_origin": "R dessine vos barres"
+            },
+            {
+              "type": "section",
+              "text": "Une image qui reste après la séance",
+              "_origin": "Une image qui reste après la séance"
+            },
+            {
+              "type": "text",
+              "text": "png() ouvre un fichier image : les graphiques suivants y sont écrits. dev.off() ferme ce fichier et termine son enregistrement. Il faut exécuter toute la séquence, y compris sa dernière ligne.",
+              "_origin": "Une image qui reste après la séance"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/png_cycle.svg",
+              "height": 185,
+              "caption": "Dans votre tête · Ouvrir le fichier, dessiner, fermer pour enregistrer.",
+              "_origin": "Une image qui reste après la séance"
             }
           ],
           "chapter": 6
         },
         {
-          "kicker": "MISSION 6 · 3/4 · À VOUS",
           "title": "Une image qui reste après la séance",
+          "kicker": "MISSION 6 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "png() ouvre un fichier image : les graphiques suivants y sont écrits. dev.off() ferme ce fichier et termine son enregistrement. Il faut exécuter toute la séquence, y compris sa dernière ligne."
+              "type": "code",
+              "text": "png(\"outputs/06_ca_produits.png\",\n  width = 900, height = 600)\nbarplot(bilan_produits$chiffre_affaires,\n  names.arg = bilan_produits$produit,\n  main = \"Ventes par produit\",\n  ylab = \"Ventes (TND)\", col = \"steelblue\")\ndev.off()",
+              "_origin": "Une image qui reste après la séance",
+              "language": "r"
             },
             {
-              "type": "code",
-              "text": "png(\"outputs/06_ca_produits.png\",\n  width = 900, height = 600)\nbarplot(bilan_produits$chiffre_affaires,\n  names.arg = bilan_produits$produit,\n  main = \"Ventes par produit\",\n  ylab = \"Ventes (TND)\", col = \"steelblue\")\ndev.off()"
+              "type": "callout",
+              "label": "Retrouver le PNG dans Ubuntu / WSL",
+              "text": "Après dev.off(), le fichier est dans outputs/. Sous WSL : quitter R avec q(save = \"no\"), puis saisir explorer.exe outputs dans le Terminal Ubuntu pour ouvrir ce dossier dans Windows. Sous Ubuntu, ouvrir outputs/ dans le gestionnaire de fichiers. Relancer R avant la suite.",
+              "_origin": "Une image qui reste après la séance"
             },
             {
               "type": "bullets",
@@ -1444,20 +1809,20 @@
                 "Créer et enregistrer le graphique des ventes. Adapter ensuite ce modèle au tableau bilan_produits.",
                 "Nommer le deuxième fichier outputs/06_marge_produits.png. Adapter aussi le titre et le nom de l’axe.",
                 "Ouvrir les deux images depuis outputs et comparer leurs barres aux tableaux."
-              ]
+              ],
+              "_origin": "Une image qui reste après la séance"
             },
             {
               "type": "callout",
               "label": "Image absente ou vide ?",
-              "text": "Vérifier le nom du dossier outputs puis relancer png(), barplot() et dev.off() dans cet ordre. Un fichier ouvert par png() n’est pas terminé tant que dev.off() n’a pas été exécuté."
-            }
-          ],
-          "chapter": 6
-        },
-        {
-          "kicker": "MISSION 6 · 4/4 · VALIDER",
-          "title": "Deux graphiques, deux questions",
-          "blocks": [
+              "text": "Vérifier le nom du dossier outputs puis relancer png(), barplot() et dev.off() dans cet ordre. Un fichier ouvert par png() n’est pas terminé tant que dev.off() n’a pas été exécuté.",
+              "_origin": "Une image qui reste après la séance"
+            },
+            {
+              "type": "section",
+              "text": "Deux graphiques, deux questions",
+              "_origin": "Deux graphiques, deux questions"
+            },
             {
               "type": "table",
               "headers": [
@@ -1473,41 +1838,55 @@
                   "Marges",
                   "Cafe 20, Sandwich 25, The 18 TND"
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "En résumé · vous savez maintenant",
-              "text": "Transformer un résumé en diagramme en barres, nommer ce que les barres mesurent et enregistrer une image. Vous savez comparer la figure au tableau qui l’a produite."
-            },
-            {
-              "type": "text",
-              "text": "Dire « le sandwich est le plus haut » ne suffit pas. Dire « le sandwich a le chiffre d’affaires le plus élevé sur ces quatre jours : 40 TND » précise la mesure et la période."
-            },
-            {
-              "type": "text",
-              "text": "Enregistrer missions/06_visualiser.R et vérifier depuis la console : source(\"checks/06_visualiser.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs."
-            },
-            {
-              "type": "callout",
-              "label": "3 points possibles · cumul 15/20",
-              "text": "1 point : ventes correctement représentées. 1 point : marges et deux images lisibles enregistrées. 1 point : titres, unités et explication exacte de ce qu’une barre montre."
+              ],
+              "_origin": "Deux graphiques, deux questions"
             }
           ],
           "chapter": 6
         },
         {
-          "kicker": "MISSION 7 · 1/4 · COMPRENDRE",
-          "title": "La gérante demande votre avis",
+          "title": "Deux graphiques, deux questions",
+          "kicker": "MISSION 6 · LA PAUSE NORIA",
           "blocks": [
             {
+              "type": "figure",
+              "path": "authoring/assets/v5/produits.svg",
+              "height": 210,
+              "caption": "Dans votre tête · Mêmes produits, deux mesures monétaires : ventes et marge.",
+              "_origin": "Deux graphiques, deux questions"
+            },
+            {
               "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Calculer la part des ventes du sandwich, choisir une action prudente et écrire une courte note."
+              "label": "En résumé · vous savez maintenant",
+              "text": "Transformer un résumé en diagramme en barres, nommer ce que les barres mesurent et enregistrer une image. Vous savez comparer la figure au tableau qui l’a produite.",
+              "_origin": "Deux graphiques, deux questions"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? Les chiffres deviennent utiles quand ils répondent à une question. La gérante veut savoir quel produit mettre en avant pour son prochain petit test commercial."
+              "text": "Dire « le sandwich est le plus haut » ne suffit pas. Dire « le sandwich a le chiffre d’affaires le plus élevé sur ces quatre jours : 40 TND » précise la mesure et la période.",
+              "_origin": "Deux graphiques, deux questions"
+            },
+            {
+              "type": "text",
+              "text": "Enregistrer missions/06_visualiser.R et vérifier depuis la console : source(\"checks/06_visualiser.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs.",
+              "_origin": "Deux graphiques, deux questions"
+            }
+          ],
+          "chapter": 6
+        },
+        {
+          "title": "La gérante demande votre avis",
+          "kicker": "MISSION 7 · LA PAUSE NORIA",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Objectif · Calculer la part des ventes du sandwich, choisir une action prudente et écrire une courte note.",
+              "_origin": "La gérante demande votre avis"
+            },
+            {
+              "type": "text",
+              "text": "Pourquoi ? Les chiffres deviennent utiles quand ils répondent à une question. La gérante veut savoir quel produit mettre en avant pour son prochain petit test commercial.",
+              "_origin": "La gérante demande votre avis"
             },
             {
               "type": "table",
@@ -1527,28 +1906,45 @@
                   "40 − 15 = 25 TND",
                   "La plus élevée des trois produits"
                 ]
-              ]
+              ],
+              "_origin": "La gérante demande votre avis"
             },
             {
               "type": "callout",
               "label": "Une part n’est pas un prix",
-              "text": "Un pourcentage rapporte une partie au total : partie / total × 100. Son unité est %. Ici, 40 % parle du chiffre d’affaires ; cela ne veut pas dire 40 % des clients ni des unités vendues."
+              "text": "Un pourcentage rapporte une partie au total : partie / total × 100. Son unité est %. Ici, 40 % parle du chiffre d’affaires ; cela ne veut pas dire 40 % des clients ni des unités vendues.",
+              "_origin": "La gérante demande votre avis"
+            },
+            {
+              "type": "section",
+              "text": "Sélectionner, puis calculer la part",
+              "_origin": "Sélectionner, puis calculer la part"
+            },
+            {
+              "type": "text",
+              "text": "== pose une question d’égalité. bilan_produits$produit == \"Sandwich\" donne TRUE pour la ligne sandwich. Des crochets autour de cette règle gardent seulement la valeur correspondante.",
+              "_origin": "Sélectionner, puis calculer la part"
             }
           ],
           "chapter": 7,
           "page_role": "opening"
         },
         {
-          "kicker": "MISSION 7 · 2/4 · APPRENDRE LES GESTES",
           "title": "Sélectionner, puis calculer la part",
+          "kicker": "MISSION 7 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "== pose une question d’égalité. bilan_produits$produit == \"Sandwich\" donne TRUE pour la ligne sandwich. Des crochets autour de cette règle gardent seulement la valeur correspondante."
+              "type": "figure",
+              "path": "authoring/assets/v5/pourcentage.svg",
+              "height": 200,
+              "caption": "Dans votre tête · Sur 100 cases, 40 représentent les ventes du sandwich.",
+              "_origin": "Sélectionner, puis calculer la part"
             },
             {
               "type": "code",
-              "text": "ventes_sandwich <-\n  bilan_produits$chiffre_affaires[\n    bilan_produits$produit == \"Sandwich\"]\nventes_total <- sum(bilan_produits$chiffre_affaires)\npart_sandwich <- ventes_sandwich /\n  ventes_total * 100\nprint(part_sandwich)"
+              "text": "ventes_sandwich <-\n  bilan_produits$chiffre_affaires[\n    bilan_produits$produit == \"Sandwich\"]\nventes_total <- sum(bilan_produits$chiffre_affaires)\npart_sandwich <- ventes_sandwich /\n  ventes_total * 100\nprint(part_sandwich)",
+              "_origin": "Sélectionner, puis calculer la part",
+              "language": "r"
             },
             {
               "type": "table",
@@ -1569,31 +1965,42 @@
                   "part_sandwich",
                   "40 %"
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Deux signes différents",
-              "text": "<- donne une valeur à un objet. == vérifie une égalité. Pour chercher Sandwich, respecter sa majuscule et les guillemets ; Sandwich sans guillemets serait un nom d’objet."
+              ],
+              "_origin": "Sélectionner, puis calculer la part"
             }
           ],
           "chapter": 7
         },
         {
-          "kicker": "MISSION 7 · 3/4 · À VOUS",
-          "title": "Laisser une décision que l’on peut relire",
+          "title": "Sélectionner, puis calculer la part",
+          "kicker": "MISSION 7 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Dans missions/07_decider.R, créer produit_prioritaire <- \"Sandwich\" : c’est le produit retenu après lecture du bilan. Calculer part_sandwich puis enregistrer outputs/07_bilan_produits.csv avec write.csv(). La préparation fournie recrée le bilan et prévoit le fichier de référence pour commencer cette mission séparément. L’exercice demande de retenir Sandwich ; votre idée d’action peut varier si vous la justifiez."
+              "type": "callout",
+              "label": "Deux signes différents",
+              "text": "<- donne une valeur à un objet. == vérifie une égalité. Pour chercher Sandwich, respecter sa majuscule et les guillemets ; Sandwich sans guillemets serait un nom d’objet.",
+              "_origin": "Sélectionner, puis calculer la part"
+            },
+            {
+              "type": "section",
+              "text": "Laisser une décision que l’on peut relire",
+              "_origin": "Laisser une décision que l’on peut relire"
             },
             {
               "type": "text",
-              "text": "writeLines() écrit du texte dans un fichier. c() peut aussi réunir plusieurs lignes de texte. Chaque texte va entre guillemets ; la virgule sépare les lignes. Le résultat sera un fichier .txt lisible sans R."
+              "text": "Dans missions/07_decider.R, créer produit_prioritaire <- \"Sandwich\" : c’est le produit retenu après lecture du bilan. Calculer part_sandwich puis enregistrer outputs/07_bilan_produits.csv avec write.csv(). La préparation fournie recrée le bilan et prévoit le fichier de référence pour commencer cette mission séparément. L’exercice demande de retenir Sandwich ; votre idée d’action peut varier si vous la justifiez.",
+              "_origin": "Laisser une décision que l’on peut relire"
+            },
+            {
+              "type": "text",
+              "text": "writeLines() écrit du texte dans un fichier. c() peut aussi réunir plusieurs lignes de texte. Chaque texte va entre guillemets ; la virgule sépare les lignes. Le résultat sera un fichier .txt lisible sans R.",
+              "_origin": "Laisser une décision que l’on peut relire"
             },
             {
               "type": "code",
-              "text": "note <- c(\n  \"Sur quatre jours, le sandwich vend 40 TND.\",\n  \"Cela represente 40 % des ventes.\",\n  \"Je propose un petit test de mise en avant.\",\n  \"Le chiffre d affaires n est pas la marge.\",\n  \"La periode est courte : verifier ensuite.\"\n)\nwriteLines(note, \"outputs/07_decision.txt\")"
+              "text": "note <- c(\n  \"Sur quatre jours, le sandwich vend 40 TND.\",\n  \"Cela represente 40 % des ventes.\",\n  \"Je propose un petit test de mise en avant.\",\n  \"Le chiffre d affaires n est pas la marge.\",\n  \"La periode est courte : verifier ensuite.\"\n)\nwriteLines(note, \"outputs/07_decision.txt\")",
+              "_origin": "Laisser une décision que l’on peut relire",
+              "language": "r"
             },
             {
               "type": "bullets",
@@ -1602,20 +2009,27 @@
                 "Exporter le bilan demandé avec write.csv(..., row.names = FALSE).",
                 "Rédiger votre note : résultat chiffré, action proposée et limite des données. Vous pouvez proposer une autre action si vous l’expliquez.",
                 "Ouvrir le CSV et la note dans outputs pour vérifier ce qui a vraiment été enregistré. La note doit aussi rappeler que chiffre d’affaires et marge sont deux mesures différentes."
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Une décision proportionnée",
-              "text": "Ces quatre jours permettent de proposer un test. Ils ne prouvent pas qu’une promotion augmentera les ventes, ni que le résultat sera le même le mois prochain."
+              ],
+              "_origin": "Laisser une décision que l’on peut relire"
             }
           ],
           "chapter": 7
         },
         {
-          "kicker": "MISSION 7 · 4/4 · VALIDER",
-          "title": "Votre avis s’appuie sur des preuves",
+          "title": "Laisser une décision que l’on peut relire",
+          "kicker": "MISSION 7 · LA PAUSE NORIA",
           "blocks": [
+            {
+              "type": "callout",
+              "label": "Une décision proportionnée",
+              "text": "Ces quatre jours permettent de proposer un test. Ils ne prouvent pas qu’une promotion augmentera les ventes, ni que le résultat sera le même le mois prochain.",
+              "_origin": "Laisser une décision que l’on peut relire"
+            },
+            {
+              "type": "section",
+              "text": "Votre avis s’appuie sur des preuves",
+              "_origin": "Votre avis s’appuie sur des preuves"
+            },
             {
               "type": "table",
               "headers": [
@@ -1639,41 +2053,41 @@
                   "Comment vérifier ensuite ?",
                   "Comparer les ventes des prochains jours"
                 ]
-              ]
+              ],
+              "_origin": "Votre avis s’appuie sur des preuves"
             },
             {
               "type": "callout",
               "label": "En résumé · vous savez maintenant",
-              "text": "Sélectionner une valeur par son nom, calculer un pourcentage, exporter un tableau et écrire une décision courte. Vous savez distinguer un constat et une proposition à tester."
+              "text": "Sélectionner une valeur par son nom, calculer un pourcentage, exporter un tableau et écrire une décision courte. Vous savez distinguer un constat et une proposition à tester.",
+              "_origin": "Votre avis s’appuie sur des preuves"
             },
             {
               "type": "text",
-              "text": "Vous disposez maintenant d’un chemin complet : fichier brut, nettoyage, calculs, graphique, décision. La dernière mission transforme ce chemin en outil pour un nouveau fichier."
+              "text": "Vous disposez maintenant d’un chemin complet : fichier brut, nettoyage, calculs, graphique, décision. La dernière mission transforme ce chemin en outil pour un nouveau fichier.",
+              "_origin": "Votre avis s’appuie sur des preuves"
             },
             {
               "type": "text",
-              "text": "Enregistrer missions/07_decider.R et vérifier depuis la console : source(\"checks/07_decider.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs."
-            },
-            {
-              "type": "callout",
-              "label": "3 points possibles · cumul 18/20",
-              "text": "1 point : part de 40 % calculée et expliquée. 1 point : bilan et note exportés. 1 point : proposition reliée aux nombres et limite clairement formulée."
+              "text": "Enregistrer missions/07_decider.R et vérifier depuis la console : source(\"checks/07_decider.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs.",
+              "_origin": "Votre avis s’appuie sur des preuves"
             }
           ],
           "chapter": 7
         },
         {
-          "kicker": "MISSION 8 · 1/5 · COMPRENDRE",
           "title": "Le prochain marché arrive",
+          "kicker": "MISSION 8 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "callout",
-              "label": "Ce que nous faisons",
-              "text": "Enfermer une petite suite de commandes dans une fonction, puis la réutiliser sur un autre fichier."
+              "type": "text",
+              "text": "Objectif · Enfermer une petite suite de commandes dans une fonction, puis la réutiliser sur un autre fichier.",
+              "_origin": "Le prochain marché arrive"
             },
             {
               "type": "text",
-              "text": "Pourquoi ? La gérante revient avec une nouvelle caisse. Recopier toutes les commandes augmente le risque d’oublier une étape. Une fonction permet de donner un nom à une recette de calcul et de lui fournir un autre ingrédient."
+              "text": "Pourquoi ? La gérante revient avec une nouvelle caisse. Recopier toutes les commandes augmente le risque d’oublier une étape. Une fonction permet de donner un nom à une recette de calcul et de lui fournir un autre ingrédient.",
+              "_origin": "Le prochain marché arrive"
             },
             {
               "type": "table",
@@ -1690,28 +2104,30 @@
                   "8 TND vendus − 3 TND d’ingrédients",
                   "5 TND de marge"
                 ]
-              ]
+              ],
+              "_origin": "Le prochain marché arrive"
             },
             {
               "type": "callout",
               "label": "Le défi est R, pas une nouvelle formule",
-              "text": "Nous gardons les mêmes calculs. Ce qui change est la façon de les organiser : une entrée, des instructions et une réponse."
-            }
-          ],
-          "chapter": 8,
-          "page_role": "opening"
-        },
-        {
-          "kicker": "MISSION 8 · 2/5 · APPRENDRE LES GESTES",
-          "title": "Votre toute première fonction",
-          "blocks": [
+              "text": "Nous gardons les mêmes calculs. Ce qui change est la façon de les organiser : une entrée, des instructions et une réponse.",
+              "_origin": "Le prochain marché arrive"
+            },
+            {
+              "type": "section",
+              "text": "Votre toute première fonction",
+              "_origin": "Votre toute première fonction"
+            },
             {
               "type": "text",
-              "text": "function() crée une fonction. Les noms entre parenthèses sont ses entrées, appelées arguments. Les accolades { } entourent ses instructions. return() indique ce qu’elle renvoie. <- donne un nom à cette recette."
+              "text": "function() crée une fonction. Les noms entre parenthèses sont ses entrées, appelées arguments. Les accolades { } entourent ses instructions. return() indique ce qu’elle renvoie. <- donne un nom à cette recette.",
+              "_origin": "Votre toute première fonction"
             },
             {
               "type": "code",
-              "text": "calculer_marge <- function(vente, cout) {\n  resultat <- vente - cout\n  return(resultat)\n}\nprint(calculer_marge(3, 1))\nprint(calculer_marge(8, 3))"
+              "text": "calculer_marge <- function(vente, cout) {\n  resultat <- vente - cout\n  return(resultat)\n}\nprint(calculer_marge(3, 1))\nprint(calculer_marge(8, 3))",
+              "_origin": "Votre toute première fonction",
+              "language": "r"
             },
             {
               "type": "table",
@@ -1728,67 +2144,110 @@
                   "calculer_marge(8, 3)",
                   "5 TND"
                 ]
-              ]
-            },
+              ],
+              "_origin": "Votre toute première fonction"
+            }
+          ],
+          "chapter": 8,
+          "page_role": "opening"
+        },
+        {
+          "title": "Votre toute première fonction",
+          "kicker": "MISSION 8 · LA PAUSE NORIA",
+          "blocks": [
             {
               "type": "callout",
               "label": "Définir puis appeler",
-              "text": "Exécuter seulement la définition ne montre pas de réponse : elle prépare la fonction. Pour l’utiliser, écrire son nom avec des valeurs entre parenthèses. Toujours définir la fonction avant son premier appel."
+              "text": "Exécuter seulement la définition ne montre pas de réponse : elle prépare la fonction. Pour l’utiliser, écrire son nom avec des valeurs entre parenthèses. Toujours définir la fonction avant son premier appel.",
+              "_origin": "Votre toute première fonction"
+            },
+            {
+              "type": "section",
+              "text": "Recevoir un fichier, rendre un bilan",
+              "_origin": "Recevoir un fichier, rendre un bilan"
+            },
+            {
+              "type": "text",
+              "text": "La fonction reçoit un chemin CSV. data.frame() construit un petit tableau : chaque nom suivi de = crée une colonne. Ici, chaque colonne contient une seule valeur ; la réponse n’a donc qu’une ligne. return() renvoie ce tableau.",
+              "_origin": "Recevoir un fichier, rendre un bilan"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/fonction.svg",
+              "height": 215,
+              "caption": "Dans votre tête · Un chemin entre, les mêmes étapes se suivent, un bilan sort.",
+              "_origin": "Recevoir un fichier, rendre un bilan"
+            },
+            {
+              "type": "code",
+              "text": "resumer_commandes <- function(chemin) {\n  x <- read.csv(chemin)\n  x <- unique(x)\n  x <- x[!is.na(x$quantite), ]\n  ventes <- sum(x$quantite * x$prix_unitaire)\n  couts <- sum(x$quantite * x$cout_unitaire)\n  return(data.frame(chiffre_affaires = ventes,\n    cout_total = couts, marge = ventes - couts,\n    quantite = sum(x$quantite),\n    n_commandes = nrow(x)))\n}",
+              "_origin": "Recevoir un fichier, rendre un bilan",
+              "language": "r"
             }
           ],
           "chapter": 8
         },
         {
-          "kicker": "MISSION 8 · 3/5 · UNE RECETTE PLUS UTILE",
           "title": "Recevoir un fichier, rendre un bilan",
+          "kicker": "MISSION 8 · LA PAUSE NORIA",
           "blocks": [
             {
               "type": "text",
-              "text": "La fonction reçoit un chemin CSV. data.frame() construit un petit tableau : chaque nom suivi de = crée une colonne. Ici, chaque colonne contient une seule valeur ; la réponse n’a donc qu’une ligne. return() renvoie ce tableau."
+              "text": "x est un nom local de tableau, choisi pour raccourcir les lignes. chemin reçoit le chemin fourni à l’appel. La recette résume ; la conservation séparée des lignes à compléter reste celle de la mission 4.",
+              "_origin": "Recevoir un fichier, rendre un bilan"
             },
             {
-              "type": "code",
-              "text": "resumer_commandes <- function(chemin) {\n  x <- read.csv(chemin)\n  x <- unique(x)\n  x <- x[!is.na(x$quantite), ]\n  ventes <- sum(x$quantite * x$prix_unitaire)\n  couts <- sum(x$quantite * x$cout_unitaire)\n  return(data.frame(chiffre_affaires = ventes,\n    cout_total = couts, marge = ventes - couts,\n    quantite = sum(x$quantite),\n    n_commandes = nrow(x)))\n}"
+              "type": "section",
+              "text": "La même recette, une autre caisse",
+              "_origin": "La même recette, une autre caisse"
             },
             {
               "type": "text",
-              "text": "x est un nom local de tableau, choisi pour raccourcir les lignes. chemin reçoit le chemin fourni à l’appel. La recette résume ; la conservation séparée des lignes à compléter reste celle de la mission 4."
+              "text": "Dans missions/08_automatiser.R, définir resumer_commandes() puis l’appeler deux fois. Les deux affectations ci-dessous enregistrent ses réponses dans deux objets différents.",
+              "_origin": "La même recette, une autre caisse"
+            },
+            {
+              "type": "figure",
+              "path": "authoring/assets/v5/deux_fichiers.svg",
+              "height": 205,
+              "caption": "Dans votre tête · La recette reste la même ; les fichiers couvrent des durées différentes.",
+              "_origin": "La même recette, une autre caisse"
+            },
+            {
+              "type": "code",
+              "text": "resultat_semaine_1 <- resumer_commandes(\n  \"data/orders_raw.csv\")\nresultat_semaine_2 <- resumer_commandes(\n  \"data/orders_week2_raw.csv\")\nprint(resultat_semaine_1)\nprint(resultat_semaine_2)",
+              "_origin": "La même recette, une autre caisse",
+              "language": "r"
+            },
+            {
+              "type": "text",
+              "text": "Premier carnet : quatre jours. Deuxième carnet : deux jours. Les noms semaine_1 et semaine_2 désignent ces carnets ; ils ne signifient pas deux semaines complètes. Les totaux de périodes différentes ne mesurent pas une hausse ou une baisse de performance.",
+              "_origin": "La même recette, une autre caisse"
             }
           ],
           "chapter": 8
         },
         {
-          "kicker": "MISSION 8 · 4/5 · À VOUS",
           "title": "La même recette, une autre caisse",
+          "kicker": "MISSION 8 · LA PAUSE NORIA",
           "blocks": [
             {
-              "type": "text",
-              "text": "Dans missions/08_automatiser.R, définir resumer_commandes() puis l’appeler deux fois. Les deux affectations ci-dessous enregistrent ses réponses dans deux objets différents."
-            },
-            {
               "type": "code",
-              "text": "resultat_semaine_1 <- resumer_commandes(\n  \"data/orders_raw.csv\")\nresultat_semaine_2 <- resumer_commandes(\n  \"data/orders_week2_raw.csv\")\nprint(resultat_semaine_1)\nprint(resultat_semaine_2)"
-            },
-            {
-              "type": "text",
-              "text": "Premier carnet : quatre jours. Deuxième carnet : deux jours. Les noms semaine_1 et semaine_2 désignent ces carnets ; ils ne signifient pas deux semaines complètes. Les totaux de périodes différentes ne mesurent pas une hausse ou une baisse de performance."
-            },
-            {
-              "type": "code",
-              "text": "write.csv(resultat_semaine_2,\n  \"outputs/08_resume_semaine_2.csv\",\n  row.names = FALSE)"
+              "text": "write.csv(resultat_semaine_2,\n  \"outputs/08_resume_semaine_2.csv\",\n  row.names = FALSE)",
+              "_origin": "La même recette, une autre caisse",
+              "language": "r"
             },
             {
               "type": "callout",
               "label": "Votre essai analogue",
-              "text": "Le deuxième fichier contient 8 lignes brutes, dont une copie exacte et une quantité manquante. Votre fonction doit retrouver 6 commandes utilisables et 9 unités, puis 48 − 18 = 30 TND de marge."
-            }
-          ],
-          "chapter": 8
-        },
-        {
-          "kicker": "MISSION 8 · 5/5 · VALIDER",
-          "title": "Votre outil sait recommencer",
-          "blocks": [
+              "text": "Le deuxième fichier contient 8 lignes brutes, dont une copie exacte et une quantité manquante. Votre fonction doit retrouver 6 commandes utilisables et 9 unités, puis 48 − 18 = 30 TND de marge.",
+              "_origin": "La même recette, une autre caisse"
+            },
+            {
+              "type": "section",
+              "text": "Votre outil sait recommencer",
+              "_origin": "Votre outil sait recommencer"
+            },
             {
               "type": "table",
               "headers": [
@@ -1816,153 +2275,135 @@
                   "Marge",
                   "30 TND"
                 ]
-              ]
+              ],
+              "_origin": "Votre outil sait recommencer"
             },
             {
               "type": "callout",
               "label": "En résumé · vous savez maintenant",
-              "text": "Définir une fonction simple, lui fournir des arguments, lire sa réponse et la réutiliser. Vous savez que la fonction doit être redéfinie en relançant le script après un redémarrage de R."
+              "text": "Définir une fonction simple, lui fournir des arguments, lire sa réponse et la réutiliser. Vous savez que la fonction doit être redéfinie en relançant le script après un redémarrage de R.",
+              "_origin": "Votre outil sait recommencer"
             },
             {
               "type": "text",
-              "text": "Vous n’avez pas appris une formule plus difficile. Vous avez appris à organiser une méthode que vous comprenez pour ne pas la réécrire à chaque nouveau fichier."
+              "text": "Vous n’avez pas appris une formule plus difficile. Vous avez appris à organiser une méthode que vous comprenez pour ne pas la réécrire à chaque nouveau fichier.",
+              "_origin": "Votre outil sait recommencer"
             },
             {
               "type": "text",
-              "text": "Enregistrer missions/08_automatiser.R et vérifier depuis la console : source(\"checks/08_automatiser.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs."
-            },
-            {
-              "type": "callout",
-              "label": "2 points possibles · cumul 20/20",
-              "text": "1 point : fonction correcte réutilisée sur les deux fichiers. 1 point : résultats enregistrés et explication de l’entrée, du traitement et de la réponse."
+              "text": "Enregistrer missions/08_automatiser.R et vérifier depuis la console : source(\"checks/08_automatiser.R\"). Le contrôle relance votre script ; les fichiers demandés doivent aussi être lisibles dans outputs.",
+              "_origin": "Votre outil sait recommencer"
             }
           ],
           "chapter": 8
         },
         {
-          "kicker": "LE FIL COMPLET · DU FICHIER À L’ACTION",
-          "title": "Ce que votre aventure a construit",
+          "title": "Le café est devenu un outil",
+          "kicker": "FIN · GARDER LA MÉTHODE",
           "blocks": [
             {
-              "type": "diagram",
-              "nodes": [
-                "Lire la caisse",
-                "Vérifier les lignes",
-                "Calculer et comparer",
-                "Expliquer une action"
-              ]
+              "type": "figure",
+              "path": "authoring/assets/v5/parcours.svg",
+              "height": 145,
+              "caption": "Dans votre tête · La même caisse grandit, une mission après l’autre.",
+              "_origin": "Le café est devenu un outil"
             },
             {
               "type": "table",
               "headers": [
-                "Compétence",
-                "Vous pouvez la montrer en…"
+                "Vous savez…",
+                "Vous pouvez le montrer en…"
               ],
               "rows": [
                 [
                   "Écrire du R",
-                  "Relançant un script enregistré après fermeture"
+                  "Relançant un script sauvegardé après fermeture."
                 ],
                 [
                   "Organiser les valeurs",
-                  "Créant un vecteur puis lisant un tableau"
+                  "Créant un vecteur, puis lisant lignes et colonnes."
                 ],
                 [
                   "Contrôler les données",
-                  "Expliquant copie exacte et quantité absente"
+                  "Expliquant copie exacte, quantité absente et mise à part."
                 ],
                 [
-                  "Analyser simplement",
-                  "Retrouvant 100 TND de ventes et 63 TND de marge"
+                  "Calculer et regrouper",
+                  "Retrouvant 100 TND de ventes, 37 de coût et 63 de marge."
                 ],
                 [
-                  "Communiquer",
-                  "Montrant un graphique et une note chiffrée"
+                  "Communiquer clairement",
+                  "Présentant deux graphiques et une décision prudente."
                 ],
                 [
-                  "Réutiliser",
-                  "Appliquant une fonction à la nouvelle caisse"
+                  "Réutiliser votre travail",
+                  "Appliquant votre fonction au nouveau fichier."
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "La bonne habitude",
-              "text": "Prédire un petit résultat → exécuter → comparer → expliquer → enregistrer. Une sortie surprenante est le début d’une question, pas une raison de cacher le résultat."
+              ],
+              "_origin": "Le café est devenu un outil"
             }
           ]
         },
         {
-          "kicker": "VOTRE POINT D’ARRIVÉE",
-          "title": "Une preuve vaut mieux qu’une course",
+          "title": "Le café est devenu un outil",
+          "kicker": "FIN · GARDER LA MÉTHODE",
           "blocks": [
-            {
-              "type": "text",
-              "text": "L’enseignant attribue les points à partir du travail effectivement démontré. Chaque mission ajoute ses points aux précédents : 2, 4, 7, 9, 12, 15, 18, puis 20. Le niveau 0 prépare le poste et reste sans note."
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Je retrouve mon dossier, mes scripts et leurs sorties.",
-                "Je peux relancer mon dernier script depuis le début.",
-                "Je sais lire au moins une commande sans la réciter.",
-                "Je peux montrer une valeur attendue et dire son unité.",
-                "Je peux expliquer une erreur rencontrée et sa correction.",
-                "Je distingue ce que mes données montrent et ce que je propose."
-              ]
-            },
             {
               "type": "callout",
-              "label": "Vous pouvez vous arrêter proprement",
-              "text": "Enregistrer votre fichier, noter la dernière mission vérifiée et la prochaine étape en commentaire, puis montrer vos preuves à l’enseignant. Terminer moins de missions avec compréhension décrit mieux votre niveau que copier toutes les réponses."
-            }
-          ]
-        },
-        {
-          "kicker": "REPRENDRE DEMAIN · VOTRE AUTONOMIE",
-          "title": "La prochaine ligne est à vous",
-          "blocks": [
+              "label": "Une méthode à garder",
+              "text": "Prédire un petit résultat → exécuter → comparer → expliquer → enregistrer. Une sortie surprenante donne une question à résoudre. Revenir à quelques lignes et un calcul à la main aide à comprendre.",
+              "_origin": "Le café est devenu un outil"
+            },
             {
-              "type": "text",
-              "text": "Avant de quitter : enregistrer, fermer R, rouvrir le projet et relancer le dernier script depuis le début. Retrouver le même résultat est un test concret de votre autonomie."
+              "type": "section",
+              "text": "Savoir reprendre, même après une erreur",
+              "_origin": "Votre prochaine ligne de R"
             },
             {
               "type": "table",
               "headers": [
-                "Si vous êtes bloqué…",
-                "Votre premier geste"
+                "Si…",
+                "Essayer d’abord…"
               ],
               "rows": [
                 [
                   "Un fichier est introuvable",
-                  "Vérifier le dossier et le chemin"
+                  "Vérifier getwd(), le dossier et le chemin."
                 ],
                 [
                   "Un objet est introuvable",
-                  "Relancer sa création, vérifier son nom"
+                  "Relancer sa création et vérifier son nom."
                 ],
                 [
                   "R attend avec +",
-                  "Échap, puis fermer guillemets ou parenthèses"
+                  "Échap dans RStudio, Ctrl+C dans le Terminal ; vérifier parenthèses et guillemets."
                 ],
                 [
                   "Le résultat paraît faux",
-                  "Revenir au mini-calcul à la main"
+                  "Revenir au mini-calcul à la main et à ses unités."
                 ],
                 [
                   "L’image ne se crée pas",
-                  "Relancer png → graphique → dev.off"
+                  "Relancer png() → graphique → dev.off()."
                 ]
-              ]
+              ],
+              "_origin": "Savoir reprendre, même après une erreur"
             },
             {
               "type": "text",
-              "text": "Aides facultatives du dossier : 02_aides.pdf contient des indices gradués ; 04_memo_R.pdf rappelle les commandes. Après votre essai, 03_corriges.pdf aide à comparer votre démarche. Ce guide contient le chemin principal complet."
+              "text": "Avant de quitter : enregistrer, fermer R, rouvrir le dossier et relancer votre dernier script depuis le début. Retrouver le même résultat montre que votre méthode est bien conservée dans le fichier.",
+              "_origin": "Savoir reprendre, même après une erreur"
             },
             {
               "type": "callout",
-              "label": "Dernier geste utile",
-              "text": "Compléter en commentaire : « Je sais maintenant… » et « Mon prochain essai sera… ». Votre travail sauvegardé est le point de départ de la prochaine séance."
+              "label": "Votre trace de progression",
+              "text": "Ajouter deux commentaires à votre script : « Je sais maintenant… » et « Mon prochain essai sera… ». Conserver les fichiers de outputs/. Ils racontent le chemin parcouru, de la première caisse au prochain fichier.",
+              "_origin": "Savoir reprendre, même après une erreur"
+            },
+            {
+              "type": "text",
+              "text": "Si besoin, 02_aides.pdf propose un indice à la fois et 04_memo_R.pdf rappelle les gestes. Après une tentative, 03_corriges.pdf permet de comparer votre démarche. Le parcours principal se trouve entièrement dans ce guide.",
+              "_origin": "Savoir reprendre, même après une erreur"
             }
           ]
         }
@@ -1974,234 +2415,291 @@
       "subtitle": "La Pause Noria · apprendre R à son rythme",
       "pages": [
         {
-          "kicker": "INDICES · MISSION 1",
           "title": "Le panier",
+          "kicker": "INDICES · UN PETIT PAS À LA FOIS",
           "blocks": [
             {
               "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Le panier"
             },
             {
               "type": "callout",
               "label": "Indice 1 · la question",
-              "text": "Commencer par les quantités, puis distinguer ventes et ingrédients."
+              "text": "Commencer par les quantités, puis distinguer ventes et ingrédients.",
+              "_origin": "Le panier"
             },
             {
               "type": "callout",
               "label": "Indice 2 · le geste",
-              "text": "Créer les six objets d’entrée du panier initial, puis total_panier, cout_panier et marge_panier. Pour le panier initial : 2 cafés, 1 thé, 1 sandwich."
+              "text": "Créer les six objets d’entrée du panier initial, puis total_panier, cout_panier et marge_panier. Pour le panier initial : 2 cafés, 1 thé, 1 sandwich.",
+              "_origin": "Le panier"
             },
             {
               "type": "callout",
               "label": "Indice 3 · le contrôle",
-              "text": "Le panier initial donne 19 − 7 = 12 TND. Le café supplémentaire est un essai dans un autre objet : 22 − 8 = 14 TND."
+              "text": "Le panier initial donne 19 − 7 = 12 TND. Le café supplémentaire est un essai dans un autre objet : 22 − 8 = 14 TND.",
+              "_origin": "Le panier"
             },
             {
               "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Le panier"
+            },
+            {
+              "type": "section",
+              "text": "Les quatre jours",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "text",
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "callout",
+              "label": "Indice 1 · la question",
+              "text": "La preuve de mission utilise les quatre jours 19, 27, 33 et 21. Le vendredi est un essai facultatif dans un autre objet.",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "callout",
+              "label": "Indice 2 · le geste",
+              "text": "Créer ventes_journalieres avec c(), puis total_semaine avec sum() et moyenne_jour avec mean().",
+              "_origin": "Les quatre jours"
             }
           ]
         },
         {
-          "kicker": "INDICES · MISSION 2",
           "title": "Les quatre jours",
+          "kicker": "INDICES · UN PETIT PAS À LA FOIS",
           "blocks": [
             {
+              "type": "callout",
+              "label": "Indice 3 · le contrôle",
+              "text": "100 TND / 4 jours = 25 TND par jour. L’essai à cinq jours donne 130 / 5 = 26 TND par jour.",
+              "_origin": "Les quatre jours"
+            },
+            {
               "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "section",
+              "text": "Lire le tableau",
+              "_origin": "Lire le tableau"
+            },
+            {
+              "type": "text",
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Lire le tableau"
             },
             {
               "type": "callout",
               "label": "Indice 1 · la question",
-              "text": "La preuve de mission utilise les quatre jours 19, 27, 33 et 21. Le vendredi est un essai facultatif dans un autre objet."
+              "text": "Importer avant d’extraire. Une ligne et une colonne ne se choisissent pas de la même façon.",
+              "_origin": "Lire le tableau"
             },
             {
               "type": "callout",
               "label": "Indice 2 · le geste",
-              "text": "Créer ventes_journalieres avec c(), puis total_semaine avec sum() et moyenne_jour avec mean()."
+              "text": "premiere_commande <- commandes[1, ] garde la première ligne. commandes$produit choisit toute la colonne produit.",
+              "_origin": "Lire le tableau"
             },
             {
               "type": "callout",
               "label": "Indice 3 · le contrôle",
-              "text": "100 TND / 4 jours = 25 TND par jour. L’essai à cinq jours donne 130 / 5 = 26 TND par jour."
+              "text": "produits <- unique(commandes$produit) donne les trois produits distincts. Le mini-essai de la troisième ligne se fait avec commandes[3, \"produit\"].",
+              "_origin": "Lire le tableau"
             },
             {
               "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Lire le tableau"
+            },
+            {
+              "type": "section",
+              "text": "Nettoyer",
+              "_origin": "Nettoyer"
+            },
+            {
+              "type": "text",
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Nettoyer"
             }
           ]
         },
         {
-          "kicker": "INDICES · MISSION 3",
-          "title": "Lire le tableau",
-          "blocks": [
-            {
-              "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
-            },
-            {
-              "type": "callout",
-              "label": "Indice 1 · la question",
-              "text": "Importer avant d’extraire. Une ligne et une colonne ne se choisissent pas de la même façon."
-            },
-            {
-              "type": "callout",
-              "label": "Indice 2 · le geste",
-              "text": "premiere_commande <- commandes[1, ] garde la première ligne. commandes$produit choisit toute la colonne produit."
-            },
-            {
-              "type": "callout",
-              "label": "Indice 3 · le contrôle",
-              "text": "produits <- unique(commandes$produit) donne les trois produits distincts. Le mini-essai de la troisième ligne se fait avec commandes[3, \"produit\"]."
-            },
-            {
-              "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
-            }
-          ]
-        },
-        {
-          "kicker": "INDICES · MISSION 4",
           "title": "Nettoyer",
+          "kicker": "INDICES · UN PETIT PAS À LA FOIS",
           "blocks": [
-            {
-              "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
-            },
             {
               "type": "callout",
               "label": "Indice 1 · la question",
-              "text": "Faire une étape par objet : brut, sans copie, à vérifier, propres."
+              "text": "Faire une étape par objet : brut, sans copie, à vérifier, propres.",
+              "_origin": "Nettoyer"
             },
             {
               "type": "callout",
               "label": "Indice 2 · le geste",
-              "text": "unique(commandes) enlève les copies exactes ; is.na(...$quantite) repère le manque."
+              "text": "unique(commandes) enlève les copies exactes ; is.na(...$quantite) repère le manque.",
+              "_origin": "Nettoyer"
             },
             {
               "type": "callout",
               "label": "Indice 3 · le contrôle",
-              "text": "Garder les lignes non manquantes avec !is.na(...). Les comptes doivent être 14 → 13 → 12, avec une ligne mise à part."
+              "text": "Garder les lignes non manquantes avec !is.na(...). Les comptes doivent être 14 → 13 → 12, avec une ligne mise à part.",
+              "_origin": "Nettoyer"
             },
             {
               "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Nettoyer"
+            },
+            {
+              "type": "section",
+              "text": "Créer le bilan",
+              "_origin": "Créer le bilan"
+            },
+            {
+              "type": "text",
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Créer le bilan"
+            },
+            {
+              "type": "callout",
+              "label": "Indice 1 · la question",
+              "text": "Une quantité multipliée par son propre prix donne les ventes de la ligne.",
+              "_origin": "Créer le bilan"
+            },
+            {
+              "type": "callout",
+              "label": "Indice 2 · le geste",
+              "text": "Créer propres$chiffre_affaires puis propres$cout_total. La marge soustrait ces deux colonnes.",
+              "_origin": "Créer le bilan"
+            },
+            {
+              "type": "callout",
+              "label": "Indice 3 · le contrôle",
+              "text": "Dans aggregate(), remplacer chiffre_affaires par marge pour obtenir le deuxième résumé. Les totaux de marge doivent retrouver 63 TND.",
+              "_origin": "Créer le bilan"
             }
           ]
         },
         {
-          "kicker": "INDICES · MISSION 5",
           "title": "Créer le bilan",
+          "kicker": "INDICES · UN PETIT PAS À LA FOIS",
           "blocks": [
             {
               "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Créer le bilan"
+            },
+            {
+              "type": "section",
+              "text": "Dessiner",
+              "_origin": "Dessiner"
+            },
+            {
+              "type": "text",
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Dessiner"
             },
             {
               "type": "callout",
               "label": "Indice 1 · la question",
-              "text": "Une quantité multipliée par son propre prix donne les ventes de la ligne."
+              "text": "Le graphique reçoit des hauteurs et des noms qui viennent du même tableau.",
+              "_origin": "Dessiner"
             },
             {
               "type": "callout",
               "label": "Indice 2 · le geste",
-              "text": "Créer propres$chiffre_affaires puis propres$cout_total. La marge soustrait ces deux colonnes."
+              "text": "height = bilan_produits$chiffre_affaires et names.arg = bilan_produits$produit.",
+              "_origin": "Dessiner"
             },
             {
               "type": "callout",
               "label": "Indice 3 · le contrôle",
-              "text": "Dans aggregate(), remplacer chiffre_affaires par marge pour obtenir le deuxième résumé. Les totaux de marge doivent retrouver 63 TND."
+              "text": "Pour enregistrer : png(), puis barplot(), puis dev.off(). Pour les marges, changer aussi le titre et l’unité affichée.",
+              "_origin": "Dessiner"
             },
             {
               "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
-            }
-          ]
-        },
-        {
-          "kicker": "INDICES · MISSION 6",
-          "title": "Dessiner",
-          "blocks": [
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Dessiner"
+            },
+            {
+              "type": "section",
+              "text": "Décider",
+              "_origin": "Décider"
+            },
             {
               "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Décider"
             },
             {
               "type": "callout",
               "label": "Indice 1 · la question",
-              "text": "Le graphique reçoit des hauteurs et des noms qui viennent du même tableau."
-            },
-            {
-              "type": "callout",
-              "label": "Indice 2 · le geste",
-              "text": "height = bilan_produits$chiffre_affaires et names.arg = bilan_produits$produit."
-            },
-            {
-              "type": "callout",
-              "label": "Indice 3 · le contrôle",
-              "text": "Pour enregistrer : png(), puis barplot(), puis dev.off(). Pour les marges, changer aussi le titre et l’unité affichée."
-            },
-            {
-              "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
+              "text": "Partie / total × 100. Commencer par repérer la partie sandwich.",
+              "_origin": "Décider"
             }
           ]
         },
         {
-          "kicker": "INDICES · MISSION 7",
           "title": "Décider",
+          "kicker": "INDICES · UN PETIT PAS À LA FOIS",
           "blocks": [
-            {
-              "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
-            },
-            {
-              "type": "callout",
-              "label": "Indice 1 · la question",
-              "text": "Partie / total × 100. Commencer par repérer la partie sandwich."
-            },
             {
               "type": "callout",
               "label": "Indice 2 · le geste",
-              "text": "Utiliser produit == \"Sandwich\" dans les crochets pour sélectionner sa valeur."
+              "text": "Utiliser produit == \"Sandwich\" dans les crochets pour sélectionner sa valeur.",
+              "_origin": "Décider"
             },
             {
               "type": "callout",
               "label": "Indice 3 · le contrôle",
-              "text": "40 / 100 × 100 = 40 %. Votre note doit contenir un constat, une action à tester et une limite."
+              "text": "40 / 100 × 100 = 40 %. Votre note doit contenir un constat, une action à tester et une limite.",
+              "_origin": "Décider"
             },
             {
               "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
-            }
-          ]
-        },
-        {
-          "kicker": "INDICES · MISSION 8",
-          "title": "Réutiliser",
-          "blocks": [
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Décider"
+            },
+            {
+              "type": "section",
+              "text": "Réutiliser",
+              "_origin": "Réutiliser"
+            },
             {
               "type": "text",
-              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas."
+              "text": "Choisir un seul indice, revenir à votre script et essayer. Lire l’indice suivant seulement si le premier ne suffit pas.",
+              "_origin": "Réutiliser"
             },
             {
               "type": "callout",
               "label": "Indice 1 · la question",
-              "text": "Définir la fonction puis l’appeler : ce sont deux actions différentes."
+              "text": "Définir la fonction puis l’appeler : ce sont deux actions différentes.",
+              "_origin": "Réutiliser"
             },
             {
               "type": "callout",
               "label": "Indice 2 · le geste",
-              "text": "Les arguments vont dans function(...), les instructions dans { }, la réponse dans return()."
+              "text": "Les arguments vont dans function(...), les instructions dans { }, la réponse dans return().",
+              "_origin": "Réutiliser"
             },
             {
               "type": "callout",
               "label": "Indice 3 · le contrôle",
-              "text": "Tester d’abord la recette sur la première caisse connue. Changer ensuite uniquement le chemin du CSV et vérifier 48 − 18 = 30 TND."
+              "text": "Tester d’abord la recette sur la première caisse connue. Changer ensuite uniquement le chemin du CSV et vérifier 48 − 18 = 30 TND.",
+              "_origin": "Réutiliser"
             },
             {
               "type": "text",
-              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication."
+              "text": "Quand le résultat apparaît, expliquez pourquoi il est plausible. Enregistrer le script et la preuve. Une aide utilisée ne remplace pas votre explication.",
+              "_origin": "Réutiliser"
             }
           ]
         }
@@ -2213,114 +2711,152 @@
       "subtitle": "La Pause Noria · apprendre R à son rythme",
       "pages": [
         {
-          "kicker": "CORRIGÉ · MISSION 1",
           "title": "Le premier panier",
+          "kicker": "CORRIGÉS · COMPRENDRE APRÈS ESSAI",
           "blocks": [
             {
               "type": "text",
-              "text": "Dans missions/01_panier.R, créer d’abord les six objets d’entrée, puis calculer à partir de ces noms. Une ligne commençant par # est un commentaire."
+              "text": "Dans missions/01_panier.R, créer d’abord les six objets d’entrée, puis calculer à partir de ces noms. Une ligne commençant par # est un commentaire.",
+              "_origin": "Le premier panier"
             },
             {
               "type": "code",
-              "text": "prix_cafe <- 3\nquantite_cafe <- 2\nprix_the <- 5\nquantite_the <- 1\nprix_sandwich <- 8\nquantite_sandwich <- 1\ntotal_panier <- prix_cafe * quantite_cafe +\n  prix_the * quantite_the +\n  prix_sandwich * quantite_sandwich\ncout_panier <- quantite_cafe * 1 +\n  quantite_the * 2 + quantite_sandwich * 3\nmarge_panier <- total_panier - cout_panier"
+              "text": "prix_cafe <- 3\nquantite_cafe <- 2\nprix_the <- 5\nquantite_the <- 1\nprix_sandwich <- 8\nquantite_sandwich <- 1\ntotal_panier <- prix_cafe * quantite_cafe +\n  prix_the * quantite_the +\n  prix_sandwich * quantite_sandwich\ncout_panier <- quantite_cafe * 1 +\n  quantite_the * 2 + quantite_sandwich * 3\nmarge_panier <- total_panier - cout_panier",
+              "_origin": "Le premier panier",
+              "language": "r"
             },
             {
               "type": "callout",
               "label": "Résultat et unité",
-              "text": "19 TND de ventes, 7 TND de coût, 12 TND de marge. Afficher les objets en écrivant leurs noms dans le script."
+              "text": "19 TND de ventes, 7 TND de coût, 12 TND de marge. Afficher les résultats avec print(total_panier), print(cout_panier) et print(marge_panier).",
+              "_origin": "Le premier panier"
             },
             {
               "type": "text",
-              "text": "Pour l’essai avec un café supplémentaire : 22 TND de ventes, 8 TND de coût et 14 TND de marge. La preuve de mission reste le panier initial. Garder cet essai dans un autre objet pour préserver les entrées demandées."
+              "text": "Pour l’essai avec un café supplémentaire : 22 TND de ventes, 8 TND de coût et 14 TND de marge. La preuve de mission reste le panier initial. Garder cet essai dans un autre objet pour préserver les entrées demandées.",
+              "_origin": "Le premier panier"
+            },
+            {
+              "type": "section",
+              "text": "Les quatre jours",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "code",
+              "text": "ventes_journalieres <- c(19, 27, 33, 21)\ntotal_semaine <- sum(ventes_journalieres)\nmoyenne_jour <- mean(ventes_journalieres)\nprint(length(ventes_journalieres))\nprint(total_semaine)\nprint(moyenne_jour)",
+              "_origin": "Les quatre jours",
+              "language": "r"
             }
           ]
         },
         {
-          "kicker": "CORRIGÉ · MISSION 2",
           "title": "Les quatre jours",
+          "kicker": "CORRIGÉS · COMPRENDRE APRÈS ESSAI",
           "blocks": [
             {
+              "type": "callout",
+              "label": "Résultat et unité",
+              "text": "4 jours ; 100 TND au total ; 25 TND par jour. Malgré le nom semaine, le carnet couvre seulement quatre jours.",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "text",
+              "text": "La moyenne est 100 / 4. Elle exprime un montant par jour ; le total exprime le montant de toute la période. L’essai à cinq jours donne 130 TND et 26 TND par jour, dans un autre objet.",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "text",
+              "text": "Preuve : missions/02_semaine.R enregistré et résultats dans la console. Aucun export n’est nécessaire. Relancer puis exécuter source(\"checks/02_semaine.R\").",
+              "_origin": "Les quatre jours"
+            },
+            {
+              "type": "section",
+              "text": "Lire une vente",
+              "_origin": "Lire une vente"
+            },
+            {
               "type": "code",
-              "text": "ventes_journalieres <- c(19, 27, 33, 21)\ntotal_semaine <- sum(ventes_journalieres)\nmoyenne_jour <- mean(ventes_journalieres)\nprint(length(ventes_journalieres))\nprint(total_semaine)\nprint(moyenne_jour)"
+              "text": "commandes <- read.csv(\"data/orders_raw.csv\")\nprint(nrow(commandes))\npremiere_commande <- commandes[1, ]\nproduits <- unique(commandes$produit)\nprint(premiere_commande)\nprint(produits)",
+              "_origin": "Lire une vente",
+              "language": "r"
             },
             {
               "type": "callout",
               "label": "Résultat et unité",
-              "text": "4 jours ; 100 TND au total ; 25 TND par jour. Malgré le nom semaine, le carnet couvre seulement quatre jours."
+              "text": "14 lignes brutes. Première commande : O001, Cafe, quantité 2, prix unitaire 3 TND, coût unitaire 1 TND. Trois produits distincts : Cafe, The et Sandwich.",
+              "_origin": "Lire une vente"
             },
             {
               "type": "text",
-              "text": "La moyenne est 100 / 4. Elle exprime un montant par jour ; le total exprime le montant de toute la période. L’essai à cinq jours donne 130 TND et 26 TND par jour, dans un autre objet."
+              "text": "$ choisit une colonne. [1, ] choisit toute la première ligne. unique() garde chaque valeur différente une fois. Une ligne décrit une commande d’un produit ; elle peut contenir plusieurs unités.",
+              "_origin": "Lire une vente"
             },
             {
               "type": "text",
-              "text": "Preuve : missions/02_semaine.R enregistré et résultats dans la console. Aucun export n’est nécessaire. Relancer puis exécuter source(\"checks/02_semaine.R\")."
+              "text": "Essai analogue : commandes[3, \"produit\"] renvoie Sandwich, et commandes[3, \"quantite\"] renvoie 1. Ne pas modifier le fichier brut.",
+              "_origin": "Lire une vente"
+            },
+            {
+              "type": "section",
+              "text": "Le fichier propre",
+              "_origin": "Le fichier propre"
+            },
+            {
+              "type": "text",
+              "text": "Comparer après votre essai. Les solutions complètes du dossier reprennent aussi les imports et les exports nécessaires pour relancer chaque mission.",
+              "_origin": "Le fichier propre"
             }
           ]
         },
         {
-          "kicker": "CORRIGÉ · MISSION 3",
-          "title": "Lire une vente",
-          "blocks": [
-            {
-              "type": "code",
-              "text": "commandes <- read.csv(\"data/orders_raw.csv\")\nprint(nrow(commandes))\npremiere_commande <- commandes[1, ]\nproduits <- unique(commandes$produit)\nprint(premiere_commande)\nprint(produits)"
-            },
-            {
-              "type": "callout",
-              "label": "Résultat et unité",
-              "text": "14 lignes brutes. Première commande : O001, Cafe, quantité 2, prix unitaire 3 TND, coût unitaire 1 TND. Trois produits distincts : Cafe, The et Sandwich."
-            },
-            {
-              "type": "text",
-              "text": "$ choisit une colonne. [1, ] choisit toute la première ligne. unique() garde chaque valeur différente une fois. Une ligne décrit une commande d’un produit ; elle peut contenir plusieurs unités."
-            },
-            {
-              "type": "text",
-              "text": "Essai analogue : commandes[3, \"produit\"] renvoie Sandwich, et commandes[3, \"quantite\"] renvoie 1. Ne pas modifier le fichier brut."
-            }
-          ]
-        },
-        {
-          "kicker": "CORRIGÉ · MISSION 4",
           "title": "Le fichier propre",
+          "kicker": "CORRIGÉS · COMPRENDRE APRÈS ESSAI",
           "blocks": [
             {
-              "type": "text",
-              "text": "Comparer après votre essai. Les solutions complètes du dossier reprennent aussi les imports et les exports nécessaires pour relancer chaque mission."
-            },
-            {
               "type": "code",
-              "text": "commandes <- read.csv(\"data/orders_raw.csv\")\nsans_doublon <- unique(commandes)\na_completer <- sans_doublon[\n  is.na(sans_doublon$quantite), ]\npropres <- sans_doublon[\n  !is.na(sans_doublon$quantite), ]\nprint(nrow(propres))"
+              "text": "commandes <- read.csv(\"data/orders_raw.csv\")\nsans_doublon <- unique(commandes)\na_completer <- sans_doublon[\n  is.na(sans_doublon$quantite), ]\npropres <- sans_doublon[\n  !is.na(sans_doublon$quantite), ]\nprint(nrow(propres))",
+              "_origin": "Le fichier propre",
+              "language": "r"
             },
             {
               "type": "callout",
               "label": "Résultat et unité",
-              "text": "13 lignes après retrait de la copie ; O013 mise à part ; 12 lignes conservées."
+              "text": "13 lignes après retrait de la copie ; O013 mise à part ; 12 lignes conservées.",
+              "_origin": "Le fichier propre"
             },
             {
               "type": "text",
-              "text": "unique() compare les lignes entières. is.na() repère la quantité inconnue ; ! garde le cas contraire. La quantité absente demeure NA dans le fichier à vérifier."
+              "text": "unique() compare les lignes entières. is.na() repère la quantité inconnue ; ! garde le cas contraire. La quantité absente demeure NA dans le fichier à vérifier.",
+              "_origin": "Le fichier propre"
             },
             {
               "type": "callout",
               "label": "Votre contrôle",
-              "text": "Relancer votre propre script depuis son début. Montrer ce que vous avez changé, où le résultat est enregistré et pourquoi la réponse a du sens."
+              "text": "Relancer votre propre script depuis son début. Montrer ce que vous avez changé, où le résultat est enregistré et pourquoi la réponse a du sens.",
+              "_origin": "Le fichier propre"
+            },
+            {
+              "type": "section",
+              "text": "La marge par produit",
+              "_origin": "La marge par produit"
+            },
+            {
+              "type": "text",
+              "text": "Créer les colonnes chiffre_affaires, cout_total et marge comme dans le guide. Chaque calcul combine des valeurs de la même ligne. La préparation fournie importe votre export de mission 4 s’il existe, sinon la référence annoncée ; cette aide permet de commencer ici.",
+              "_origin": "La marge par produit"
+            },
+            {
+              "type": "code",
+              "text": "bilan_produits <- aggregate(\n  cbind(chiffre_affaires, cout_total, marge) ~\n    produit, data = propres, FUN = sum)\nbilan_jours <- aggregate(\n  cbind(chiffre_affaires, cout_total, marge) ~\n    date, data = propres, FUN = sum)\ntotal_ca <- sum(propres$chiffre_affaires)\ntotal_marge <- sum(propres$marge)",
+              "_origin": "La marge par produit",
+              "language": "r"
             }
           ]
         },
         {
-          "kicker": "CORRIGÉ · MISSION 5",
           "title": "La marge par produit",
+          "kicker": "CORRIGÉS · COMPRENDRE APRÈS ESSAI",
           "blocks": [
-            {
-              "type": "text",
-              "text": "Créer les colonnes chiffre_affaires, cout_total et marge comme dans le guide. Chaque calcul combine des valeurs de la même ligne. La préparation fournie importe votre export de mission 4 s’il existe, sinon la référence annoncée ; cette aide permet de commencer ici."
-            },
-            {
-              "type": "code",
-              "text": "bilan_produits <- aggregate(\n  cbind(chiffre_affaires, cout_total, marge) ~\n    produit, data = propres, FUN = sum)\nbilan_jours <- aggregate(\n  cbind(chiffre_affaires, cout_total, marge) ~\n    date, data = propres, FUN = sum)\ntotal_ca <- sum(propres$chiffre_affaires)\ntotal_marge <- sum(propres$marge)"
-            },
             {
               "type": "table",
               "headers": [
@@ -2348,81 +2884,107 @@
                   "12",
                   "18"
                 ]
-              ]
+              ],
+              "_origin": "La marge par produit"
             },
             {
               "type": "text",
-              "text": "cbind() réunit les trois mesures ; ~ choisit leur groupe ; sum les additionne. Exporter bilan_produits dans outputs/05_bilan_produits.csv avec row.names = FALSE. Contrôle : 100 − 37 = 63 TND."
+              "text": "cbind() réunit les trois mesures ; ~ choisit leur groupe ; sum les additionne. Exporter bilan_produits dans outputs/05_bilan_produits.csv avec row.names = FALSE. Contrôle : 100 − 37 = 63 TND.",
+              "_origin": "La marge par produit"
+            },
+            {
+              "type": "section",
+              "text": "Les barres de marge",
+              "_origin": "Les barres de marge"
+            },
+            {
+              "type": "text",
+              "text": "Comparer après votre essai. Les solutions complètes du dossier reprennent aussi les imports et les exports nécessaires pour relancer chaque mission.",
+              "_origin": "Les barres de marge"
+            },
+            {
+              "type": "code",
+              "text": "png(\"outputs/06_marge_produits.png\",\n  width = 900, height = 600)\nbarplot(bilan_produits$marge,\n  names.arg = bilan_produits$produit,\n  main = \"Marge par produit\",\n  ylab = \"Marge (TND)\", col = \"steelblue\")\ndev.off()",
+              "_origin": "Les barres de marge",
+              "language": "r"
+            },
+            {
+              "type": "callout",
+              "label": "Résultat et unité",
+              "text": "Trois barres de 20, 25 et 18 TND ; le sandwich est le plus haut.",
+              "_origin": "Les barres de marge"
+            },
+            {
+              "type": "text",
+              "text": "png() commence l’enregistrement ; dev.off() le termine. Les noms et les hauteurs viennent du même tableau pour éviter de mélanger les produits.",
+              "_origin": "Les barres de marge"
             }
           ]
         },
         {
-          "kicker": "CORRIGÉ · MISSION 6",
           "title": "Les barres de marge",
+          "kicker": "CORRIGÉS · COMPRENDRE APRÈS ESSAI",
           "blocks": [
             {
+              "type": "callout",
+              "label": "Votre contrôle",
+              "text": "Relancer votre propre script depuis son début. Montrer ce que vous avez changé, où le résultat est enregistré et pourquoi la réponse a du sens.",
+              "_origin": "Les barres de marge"
+            },
+            {
+              "type": "section",
+              "text": "La note de décision",
+              "_origin": "La note de décision"
+            },
+            {
               "type": "text",
-              "text": "Comparer après votre essai. Les solutions complètes du dossier reprennent aussi les imports et les exports nécessaires pour relancer chaque mission."
+              "text": "Comparer après votre essai. Les solutions complètes du dossier reprennent aussi les imports et les exports nécessaires pour relancer chaque mission.",
+              "_origin": "La note de décision"
             },
             {
               "type": "code",
-              "text": "png(\"outputs/06_marge_produits.png\",\n  width = 900, height = 600)\nbarplot(bilan_produits$marge,\n  names.arg = bilan_produits$produit,\n  main = \"Marge par produit\",\n  ylab = \"Marge (TND)\", col = \"steelblue\")\ndev.off()"
+              "text": "ventes_sandwich <-\n  bilan_produits$chiffre_affaires[\n    bilan_produits$produit == \"Sandwich\"]\npart_sandwich <- ventes_sandwich /\n  sum(bilan_produits$chiffre_affaires) * 100\nprint(part_sandwich)\nproduit_prioritaire <- \"Sandwich\"\nnote <- c(\n  \"Sandwich : 40 TND, soit 40 % des ventes.\",\n  \"Sa marge sur ingredients est 25 TND.\",\n  \"Je propose un petit test de mise en avant.\",\n  \"Quatre jours : verifier de nouvelles journees.\"\n)\nwriteLines(note, \"outputs/07_decision.txt\")\nwrite.csv(bilan_produits,\n  \"outputs/07_bilan_produits.csv\",\n  row.names = FALSE)",
+              "_origin": "La note de décision",
+              "language": "r"
             },
             {
               "type": "callout",
               "label": "Résultat et unité",
-              "text": "Trois barres de 20, 25 et 18 TND ; le sandwich est le plus haut."
+              "text": "40 % du chiffre d’affaires vient du sandwich.",
+              "_origin": "La note de décision"
             },
             {
               "type": "text",
-              "text": "png() commence l’enregistrement ; dev.off() le termine. Les noms et les hauteurs viennent du même tableau pour éviter de mélanger les produits."
-            },
-            {
-              "type": "callout",
-              "label": "Votre contrôle",
-              "text": "Relancer votre propre script depuis son début. Montrer ce que vous avez changé, où le résultat est enregistré et pourquoi la réponse a du sens."
+              "text": "La marge de 25 TND diffère des ventes de 40 TND : elle retire 15 TND d’ingrédients. La note relie les nombres à une action limitée et rappelle la courte période. Loyer, salaires et autres charges restent hors du calcul de marge.",
+              "_origin": "La note de décision"
             }
           ]
         },
         {
-          "kicker": "CORRIGÉ · MISSION 7",
           "title": "La note de décision",
+          "kicker": "CORRIGÉS · COMPRENDRE APRÈS ESSAI",
           "blocks": [
-            {
-              "type": "text",
-              "text": "Comparer après votre essai. Les solutions complètes du dossier reprennent aussi les imports et les exports nécessaires pour relancer chaque mission."
-            },
-            {
-              "type": "code",
-              "text": "ventes_sandwich <-\n  bilan_produits$chiffre_affaires[\n    bilan_produits$produit == \"Sandwich\"]\npart_sandwich <- ventes_sandwich /\n  sum(bilan_produits$chiffre_affaires) * 100\nprint(part_sandwich)\nproduit_prioritaire <- \"Sandwich\"\nnote <- c(\n  \"Sandwich : 40 TND, soit 40 % des ventes.\",\n  \"Sa marge sur ingredients est 25 TND.\",\n  \"Je propose un petit test de mise en avant.\",\n  \"Quatre jours : verifier de nouvelles journees.\"\n)\nwriteLines(note, \"outputs/07_decision.txt\")\nwrite.csv(bilan_produits,\n  \"outputs/07_bilan_produits.csv\",\n  row.names = FALSE)"
-            },
-            {
-              "type": "callout",
-              "label": "Résultat et unité",
-              "text": "40 % du chiffre d’affaires vient du sandwich."
-            },
-            {
-              "type": "text",
-              "text": "La marge de 25 TND diffère des ventes de 40 TND : elle retire 15 TND d’ingrédients. La note relie les nombres à une action limitée et rappelle la courte période. Loyer, salaires et autres charges restent hors du calcul de marge."
-            },
             {
               "type": "callout",
               "label": "Votre contrôle",
-              "text": "Relancer votre propre script depuis son début. Montrer ce que vous avez changé, où le résultat est enregistré et pourquoi la réponse a du sens."
-            }
-          ]
-        },
-        {
-          "kicker": "CORRIGÉ · MISSION 8",
-          "title": "La recette réutilisable",
-          "blocks": [
+              "text": "Relancer votre propre script depuis son début. Montrer ce que vous avez changé, où le résultat est enregistré et pourquoi la réponse a du sens.",
+              "_origin": "La note de décision"
+            },
+            {
+              "type": "section",
+              "text": "La recette réutilisable",
+              "_origin": "La recette réutilisable"
+            },
             {
               "type": "text",
-              "text": "Définir resumer_commandes(chemin) avec les étapes import → unique → filtre des quantités connues → calculs. Renvoyer un data.frame d’une ligne avec chiffre_affaires, cout_total, marge, quantite et n_commandes."
+              "text": "Définir resumer_commandes(chemin) avec les étapes import → unique → filtre des quantités connues → calculs. Renvoyer un data.frame d’une ligne avec chiffre_affaires, cout_total, marge, quantite et n_commandes.",
+              "_origin": "La recette réutilisable"
             },
             {
               "type": "code",
-              "text": "resultat_semaine_1 <- resumer_commandes(\n  \"data/orders_raw.csv\")\nresultat_semaine_2 <- resumer_commandes(\n  \"data/orders_week2_raw.csv\")\nwrite.csv(resultat_semaine_2,\n  \"outputs/08_resume_semaine_2.csv\",\n  row.names = FALSE)"
+              "text": "resultat_semaine_1 <- resumer_commandes(\n  \"data/orders_raw.csv\")\nresultat_semaine_2 <- resumer_commandes(\n  \"data/orders_week2_raw.csv\")\nwrite.csv(resultat_semaine_2,\n  \"outputs/08_resume_semaine_2.csv\",\n  row.names = FALSE)",
+              "_origin": "La recette réutilisable",
+              "language": "r"
             },
             {
               "type": "table",
@@ -2445,16 +3007,19 @@
                   "18",
                   "30"
                 ]
-              ]
+              ],
+              "_origin": "La recette réutilisable"
             },
             {
               "type": "text",
-              "text": "Premier carnet : 21 unités, 12 commandes utilisables. Deuxième : 9 unités, 6 commandes utilisables. Le chemin change ; les règles de traitement restent les mêmes. Les périodes ont des durées différentes : ces totaux ne suffisent pas à comparer une performance."
+              "text": "Premier carnet : 21 unités, 12 commandes utilisables. Deuxième : 9 unités, 6 commandes utilisables. Le chemin change ; les règles de traitement restent les mêmes. Les périodes ont des durées différentes : ces totaux ne suffisent pas à comparer une performance.",
+              "_origin": "La recette réutilisable"
             },
             {
               "type": "callout",
               "label": "Votre contrôle",
-              "text": "Relancer la définition avant les appels. source(\"checks/08_automatiser.R\") vérifie votre fonction sur les deux fichiers et sur un essai supplémentaire : une fonction doit calculer, pas renvoyer toujours des nombres écrits à l’avance."
+              "text": "Relancer la définition avant les appels. source(\"checks/08_automatiser.R\") vérifie votre fonction sur les deux fichiers et sur un essai supplémentaire : une fonction doit calculer, pas renvoyer toujours des nombres écrits à l’avance.",
+              "_origin": "La recette réutilisable"
             }
           ]
         }
@@ -2466,11 +3031,12 @@
       "pages": [
         {
           "title": "Les gestes qui servent partout",
-          "kicker": "MÉMO · LIRE UNE LIGNE DE R",
+          "kicker": "MÉMO · RETROUVER UN GESTE",
           "blocks": [
             {
               "type": "text",
-              "text": "Ce mémo est facultatif. Le guide principal explique les commandes avant les missions. Ici, retrouvez seulement le geste oublié."
+              "text": "Ce mémo est facultatif. Le guide principal explique les commandes avant les missions. Ici, retrouvez seulement le geste oublié.",
+              "_origin": "Les gestes qui servent partout"
             },
             {
               "type": "table",
@@ -2499,7 +3065,18 @@
                   "Plusieurs nombres",
                   "ventes <- c(19, 27, 33, 21)",
                   "c() rassemble les quatre valeurs dans un vecteur."
-                ],
+                ]
+              ],
+              "_origin": "Les gestes qui servent partout"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Geste",
+                "Exemple",
+                "Sens"
+              ],
+              "rows": [
                 [
                   "Lire la première",
                   "ventes[1]",
@@ -2515,22 +3092,26 @@
                   "mean(ventes)",
                   "Partager le total entre quatre jours : obtenir 25."
                 ]
-              ]
+              ],
+              "_origin": "Les gestes qui servent partout"
             },
             {
               "type": "callout",
               "label": "À essayer séparément",
-              "text": "Tapez sum(ventes), puis mean(ventes), sur deux lignes différentes. Ne copiez pas le signe > de la Console. R utilise le point pour les décimales : 2.5."
+              "text": "Tapez sum(ventes), puis mean(ventes), sur deux lignes différentes. Ne copiez pas le signe > de la Console. R utilise le point pour les décimales : 2.5.",
+              "_origin": "Les gestes qui servent partout"
             }
           ]
         },
         {
           "title": "Du fichier au tableau",
-          "kicker": "MÉMO · COLONNES, LIGNES, ABSENCES",
+          "kicker": "MÉMO · RETROUVER UN GESTE",
           "blocks": [
             {
               "type": "code",
-              "text": "commandes <- read.csv(\"data/orders_raw.csv\",\n                      stringsAsFactors = FALSE)\nhead(commandes)\nnrow(commandes)\ncommandes$quantite\ncommandes[1, ]"
+              "text": "commandes <- read.csv(\"data/orders_raw.csv\",\n                      stringsAsFactors = FALSE)\nhead(commandes)\nnrow(commandes)\ncommandes$quantite\ncommandes[1, ]",
+              "_origin": "Du fichier au tableau",
+              "language": "r"
             },
             {
               "type": "table",
@@ -2554,7 +3135,17 @@
                 [
                   "tableau[ligne, colonne]",
                   "Choisir des lignes et des colonnes. Après la virgule vide : garder toutes les colonnes."
-                ],
+                ]
+              ],
+              "_origin": "Du fichier au tableau"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Écriture",
+                "Traduction"
+              ],
+              "rows": [
                 [
                   "is.na(x)",
                   "Dire TRUE si la valeur est absente, FALSE sinon."
@@ -2567,22 +3158,31 @@
                   "unique(tableau)",
                   "Garder une seule copie des lignes exactement identiques."
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Un vide n’est pas zéro",
-              "text": "NA signifie « valeur absente ». Nous mettons la commande incomplète à part et attendons sa quantité avant de l’ajouter aux totaux."
+              ],
+              "_origin": "Du fichier au tableau"
             }
           ]
         },
         {
-          "title": "Calculer, regrouper, partager",
-          "kicker": "MÉMO · LE TABLEAU DEVIENT UN BILAN",
+          "title": "Du fichier au tableau",
+          "kicker": "MÉMO · RETROUVER UN GESTE",
           "blocks": [
             {
+              "type": "callout",
+              "label": "Un vide n’est pas zéro",
+              "text": "NA signifie « valeur absente ». Nous mettons la commande incomplète à part et attendons sa quantité avant de l’ajouter aux totaux.",
+              "_origin": "Du fichier au tableau"
+            },
+            {
+              "type": "section",
+              "text": "Calculer, regrouper, partager",
+              "_origin": "Calculer, regrouper, partager"
+            },
+            {
               "type": "code",
-              "text": "propres$chiffre_affaires <-\n  propres$quantite * propres$prix_unitaire\nbilan <- aggregate(chiffre_affaires ~ produit,\n                   data = propres, FUN = sum)\ndir.create(\"outputs\", showWarnings = FALSE)\nwrite.csv(bilan, \"outputs/mon_bilan.csv\",\n          row.names = FALSE)"
+              "text": "propres$chiffre_affaires <-\n  propres$quantite * propres$prix_unitaire\nbilan <- aggregate(chiffre_affaires ~ produit,\n                   data = propres, FUN = sum)\ndir.create(\"outputs\", showWarnings = FALSE)\nwrite.csv(bilan, \"outputs/mon_bilan.csv\",\n          row.names = FALSE)",
+              "_origin": "Calculer, regrouper, partager",
+              "language": "r"
             },
             {
               "type": "table",
@@ -2606,7 +3206,17 @@
                 [
                   "dir.create()",
                   "Créer le dossier où enregistrer les résultats."
-                ],
+                ]
+              ],
+              "_origin": "Calculer, regrouper, partager"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Geste",
+                "Sens"
+              ],
+              "rows": [
                 [
                   "row.names = FALSE",
                   "Éviter d’ajouter une colonne de numéros de ligne à l’export."
@@ -2615,13 +3225,14 @@
                   "png() → barplot() → dev.off()",
                   "Ouvrir un fichier image, dessiner, puis fermer le fichier pour l’enregistrer."
                 ]
-              ]
+              ],
+              "_origin": "Calculer, regrouper, partager"
             }
           ]
         },
         {
           "title": "Quand R n’est pas d’accord",
-          "kicker": "MÉMO · DÉBLOQUER SANS TOUT RECOMMENCER",
+          "kicker": "MÉMO · RETROUVER UN GESTE",
           "blocks": [
             {
               "type": "table",
@@ -2640,12 +3251,22 @@
                 ],
                 [
                   "unexpected symbol / incomplete expression",
-                  "Relire guillemets, virgules et parenthèses. Une Console + attend la fin ; Échap annule la saisie en cours."
+                  "Relire guillemets, virgules et parenthèses. Une Console + attend la fin ; Échap dans RStudio, Ctrl+C dans le Terminal, annule la saisie en cours."
                 ],
                 [
                   "Le total donne NA",
                   "Une valeur manque. Comprendre et isoler cette ligne avant le total, au lieu d’inventer une quantité."
-                ],
+                ]
+              ],
+              "_origin": "Quand R n’est pas d’accord"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Message ou symptôme",
+                "Premier essai"
+              ],
+              "rows": [
                 [
                   "L’image est vide ou manque",
                   "Exécuter les trois étapes : png(), dessin, dev.off(). Lire la première erreur."
@@ -2654,12 +3275,14 @@
                   "Le contrôle échoue",
                   "Enregistrer le script, le relancer, puis lire le premier message du contrôle. Le vert ne remplace pas votre explication."
                 ]
-              ]
+              ],
+              "_origin": "Quand R n’est pas d’accord"
             },
             {
               "type": "callout",
               "label": "Demander une aide utile",
-              "text": "Montrer au coach : le fichier, la ligne, la première erreur, ce que vous attendiez et ce que vous avez essayé. Après la pause, reprendre le script enregistré ; ne pas compter sur les objets restés en mémoire."
+              "text": "Pour demander de l’aide, préparer le fichier, la ligne, la première erreur, le résultat attendu et votre dernier essai. Après la pause, reprendre le script enregistré ; ne pas compter sur les objets restés en mémoire.",
+              "_origin": "Quand R n’est pas d’accord"
             }
           ]
         }
@@ -2707,6 +3330,10 @@
                 [
                   "Exemples Pfizer et Swiss Re",
                   "https://r-consortium.org/about/governance"
+                ],
+                [
+                  "Installer WSL2",
+                  "https://learn.microsoft.com/en-us/windows/wsl/install"
                 ]
               ]
             },
@@ -2760,31 +3387,17 @@
             },
             {
               "type": "text",
-              "text": "Les marques identifient l’établissement et les outils. Leur présence ne constitue pas un partenariat commercial. La palette, les cercles, les cartes et les polices reprennent le style du dossier hackathon fourni par l’enseignant."
+              "text": "Les marques identifient l’établissement et les outils. Leur présence ne constitue pas un partenariat commercial. La palette, les cercles, les cartes et les polices reprennent le style du dossier hackathon de référence de Leaders University."
             },
             {
               "type": "callout",
               "label": "Une illustration, des graphiques réels",
               "text": "L’image de couverture est décorative et générée par IA. Les tableaux et barres pédagogiques sont calculés à partir des données du café ; ils ne sont pas générés par IA."
-            }
-          ]
-        },
-        {
-          "title": "Fabrication de la couverture",
-          "kicker": "CRÉDITS · TRAÇABILITÉ DE L’ILLUSTRATION",
-          "blocks": [
-            {
-              "type": "text",
-              "text": "Couverture conservée de l’édition précédente. Outil : image_gen. Fichier : authoring/assets/v3/course-cover-students.png. Les titres et logos ont été composés séparément. Prompt original :"
-            },
-            {
-              "type": "text",
-              "text": "Use case: illustration-story. Asset type: premium landscape cover illustration for a French-language university Master statistics course PDF. Primary request: diverse Master students in a modern Tunisian university studying separately at their own laptops, with one approachable coach in the background. Elegant flat editorial blue vector-like illustration, crisp sophisticated shapes, expressive but refined students and plausible hands. Composition: wide 3:2 landscape. Scene occupies right two-thirds, with left third and upper-left negative space in dark navy reserved for independently typeset title. Subtle giant circular framing and sparse data dots. Simplified unlabeled bar/scatter marks only on laptop screens. Modern bright campus windows with understated Tunisian Mediterranean ambience. Palette: dark navy #07152F, indigo #2B3180, electric blue #4E73FF, orange #FF9A3C, off-white. Print-ready high resolution with clean edges and polished visual rhythm. No text, no letters, no logos, no numbers, no watermark. Decorative illustration only; not a technical diagram. Avoid generic clipart, gradients with banding, clutter, overly cute cartoon proportions, or color outside the palette."
             },
             {
               "type": "callout",
-              "label": "Sources techniques",
-              "text": "Les sources des PDF sont dans authoring/content.json. Pour les reconstruire : python authoring/build_pdfs.py authoring/content.json --out pdf. Les apprenants n’ont pas besoin de Python."
+              "label": "Couverture et fabrication",
+              "text": "Illustration originale créée avec image_gen. Les titres et logos ont été composés séparément. Les schémas du café sont des figures vectorielles calculées depuis les CSV, pas des images générées."
             }
           ]
         }

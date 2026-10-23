@@ -1,7 +1,7 @@
 source("checks/check_tools.R")
 controle_direct <- !interactive() && sys.nframe() == 0L
-controle <- run_check("08_automatiser", 2, function(s, check) {
-  check("les deux carnets traites et le second resume exporte", 1,
+controle <- run_check("08_automatiser", function(s, check) {
+  check("les deux carnets traites et le second resume exporte",
         table_same(s("resultat_semaine_1"),expected_summary()) &&
         table_same(s("resultat_semaine_2"),expected_summary(TRUE)) &&
         table_same(read_output("outputs/08_resume_semaine_2.csv"),expected_summary(TRUE)))
@@ -15,7 +15,7 @@ controle <- run_check("08_automatiser", 2, function(s, check) {
   calcul <- tryCatch(if (is.function(f)) f("data/nouveau_controle.csv") else NULL,
                      error=function(e) NULL)
   attendu <- data.frame(chiffre_affaires=22,cout_total=8,marge=14,quantite=6,n_commandes=2)
-  check("fonction reutilisable : nouveau fichier, doublon et quantite absente", 1,
+  check("fonction reutilisable : nouveau fichier, doublon et quantite absente",
         table_same(calcul,attendu))
 }, use_cli_args = controle_direct)
 

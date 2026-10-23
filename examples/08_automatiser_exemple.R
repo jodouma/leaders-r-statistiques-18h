@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # EXEMPLE RESOLU : nommer un calcul simple avant de nommer toute l'analyse.
 calculer_recette <- function(quantite, prix) {

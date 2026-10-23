@@ -1,6 +1,6 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
-# Mission 7 - Choisir et partager (3 points)
+# Mission 7 - Choisir et partager
 # Lire votre fichier de mission 4 s'il existe.
 # Sinon, le fichier de reference permet de commencer cette mission seule.
 # Ce secours NE valide PAS votre mission 4 : lancez son controle separement.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "title": "La Pause Noria - R en 18 heures",
+  "title": "La Pause Noria - apprendre R, une mission apres l autre",
   "r_minimum": "4.1",
   "dependencies": "R base uniquement",
   "currency": "TND",
@@ -113,7 +113,6 @@
   },
   "setup": {
     "script": "00_verifier_installation.R",
-    "points": 0,
     "command": "Rscript 00_verifier_installation.R",
     "source": "source(\"00_verifier_installation.R\")"
   },
@@ -122,7 +121,6 @@
       "number": 1,
       "stem": "01_panier",
       "title": "Calculer un panier",
-      "points": 2,
       "starter": "missions/01_panier.R",
       "solution": "solutions/01_panier_solution.R",
       "example": "examples/01_panier_exemple.R",
@@ -150,7 +148,6 @@
       "number": 2,
       "stem": "02_semaine",
       "title": "Lire quatre jours",
-      "points": 2,
       "starter": "missions/02_semaine.R",
       "solution": "solutions/02_semaine_solution.R",
       "example": "examples/02_semaine_exemple.R",
@@ -172,7 +169,6 @@
       "number": 3,
       "stem": "03_importer",
       "title": "Ouvrir le carnet de commandes",
-      "points": 3,
       "starter": "missions/03_importer.R",
       "solution": "solutions/03_importer_solution.R",
       "example": "examples/03_importer_exemple.R",
@@ -194,7 +190,6 @@
       "number": 4,
       "stem": "04_nettoyer",
       "title": "Nettoyer sans inventer",
-      "points": 2,
       "starter": "missions/04_nettoyer.R",
       "solution": "solutions/04_nettoyer_solution.R",
       "example": "examples/04_nettoyer_exemple.R",
@@ -220,7 +215,6 @@
       "number": 5,
       "stem": "05_analyser",
       "title": "Construire les bilans",
-      "points": 3,
       "starter": "missions/05_analyser.R",
       "solution": "solutions/05_analyser_solution.R",
       "example": "examples/05_analyser_exemple.R",
@@ -246,7 +240,6 @@
       "number": 6,
       "stem": "06_visualiser",
       "title": "Dessiner deux comparaisons",
-      "points": 3,
       "starter": "missions/06_visualiser.R",
       "solution": "solutions/06_visualiser_solution.R",
       "example": "examples/06_visualiser_exemple.R",
@@ -269,7 +262,6 @@
       "number": 7,
       "stem": "07_decider",
       "title": "Choisir et partager",
-      "points": 3,
       "starter": "missions/07_decider.R",
       "solution": "solutions/07_decider_solution.R",
       "example": "examples/07_decider_exemple.R",
@@ -294,7 +286,6 @@
       "number": 8,
       "stem": "08_automatiser",
       "title": "Recommencer avec une fonction",
-      "points": 2,
       "starter": "missions/08_automatiser.R",
       "solution": "solutions/08_automatiser_solution.R",
       "example": "examples/08_automatiser_exemple.R",
@@ -315,17 +306,16 @@
       "source_check": "source(\"checks/08_automatiser.R\")"
     }
   ],
-  "grading": {
-    "total": 20,
-    "isolated": true,
-    "default_target": "missions/<stem>.R",
-    "solution_autoload": false,
-    "check_custom_script": "Rscript checks/<stem>.R path/to/script.R",
-    "note": "Les controles utilisent un dossier temporaire neuf et un environnement sans objets de Console. Pour les missions 5 a 7, seul le CSV propre de mission 4 est recopie comme input legitime quand il existe; aucun resultat de la mission evaluee ne l est. Sans cet input, le secours annonce du starter ou du corrige reste disponible. Un input corrompu n est jamais remplace silencieusement. Calculs equivalents acceptes; graphiques et decision relus humainement."
-  },
   "tests": {
     "script": "tests/run_tests.R",
     "command": "Rscript tests/run_tests.R",
     "dependencies": "distribution standard R uniquement"
+  },
+  "checks": {
+    "isolated": true,
+    "default_target": "missions/<stem>.R",
+    "solution_autoload": false,
+    "check_custom_script": "Rscript checks/<stem>.R path/to/script.R",
+    "description": "Chaque controle retourne un etat OK ou A reprendre, avec les verifications detaillees. Il utilise un dossier temporaire neuf et un environnement sans objets de Console. Pour les missions 5 a 7, seul le CSV propre de mission 4 est recopie lorsqu il existe; aucun ancien resultat de la mission en cours ne l est. Sans cet input, le secours annonce reste disponible. Un input corrompu n est jamais remplace silencieusement. Les calculs equivalents sont acceptes."
   }
 }

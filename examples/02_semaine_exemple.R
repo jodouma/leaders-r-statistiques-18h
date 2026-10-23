@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # EXEMPLE RESOLU : les trois lignes du mini-carnet donnent 6, 5 et 8 TND.
 recettes_mini <- c(6, 5, 8)

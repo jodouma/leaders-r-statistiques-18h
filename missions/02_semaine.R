@@ -1,6 +1,6 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
-# Mission 2 - Lire quatre jours (2 points)
+# Mission 2 - Lire quatre jours
 # Chiffres d'affaires de quatre jours : 19, 27, 33, 21 TND.
 # Creer le vector avec c(), calculer sum() et mean(), puis afficher.
 ventes_journalieres <- NULL

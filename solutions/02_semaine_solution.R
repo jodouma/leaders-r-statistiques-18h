@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # Corrige 2 - Lire quatre jours
 ventes_journalieres <- c(19, 27, 33, 21)

@@ -1,6 +1,6 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
-# Mission 4 - Nettoyer sans inventer (2 points)
+# Mission 4 - Nettoyer sans inventer
 commandes <- read.csv("data/orders_raw.csv", stringsAsFactors = FALSE)
 # 1. Retirer seulement les lignes exactement identiques avec unique().
 sans_doublon <- NULL

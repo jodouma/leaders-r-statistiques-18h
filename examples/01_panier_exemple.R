@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # EXEMPLE RESOLU : une seule ligne du mini-carnet, 2 cafes.
 # <- affecte une valeur; * multiplie; - calcule une difference.

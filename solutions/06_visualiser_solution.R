@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # Corrige 6 - Dessiner deux comparaisons
 # Lire votre fichier de mission 4 s'il existe.

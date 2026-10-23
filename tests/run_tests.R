@@ -191,7 +191,10 @@ main <- function() {
     "avant_dossier <- getwd()",
     "png(tempfile(fileext='.png')); avant_appareil <- dev.cur()",
     "source('checks/01_panier.R')",
-    "stopifnot(exists('controle'),!controle$ok,controle$score==0)",
+    "stopifnot(exists('controle'),!controle$ok)",
+    "stopifnot(identical(names(controle),c('ok','results','error')))",
+    "stopifnot(length(controle$results)==2,is.null(controle$error))",
+    "stopifnot(all(vapply(controle$results,function(x) identical(names(x),c('label','pass')),logical(1))))",
     "stopifnot(getwd()==avant_dossier,dev.cur()==avant_appareil)",
     "dev.off()", "cat('SESSION_PRESERVEE\\n')"))
   expect_run("source preserve session, dossier et ancien appareil",console,"console.R")
@@ -204,14 +207,44 @@ main <- function() {
     "total_panier <- oubli_console;cout_panier <- 7;marge_panier <- 12"))
   write_script(no_inherit,"console.R",c(
     "oubli_console <- 19", "source('checks/01_panier.R')",
-    "stopifnot(!controle$ok,controle$score==0)"))
-  expect_run("les objets precedents de Console ne donnent pas de points",no_inherit,"console.R")
+    "stopifnot(!controle$ok)"))
+  expect_run("les objets precedents de Console ne valident pas le script",no_inherit,"console.R")
 
   stale <- make_copy("sans-anciens-exports")
   write_script(stale,"console.R",c(
     "source('solutions/06_visualiser_solution.R')",
-    "source('checks/06_visualiser.R')", "stopifnot(!controle$ok,controle$score<3)"))
-  expect_run("les anciens graphiques ne donnent pas de points au starter",stale,"console.R")
+    "source('checks/06_visualiser.R')", "stopifnot(!controle$ok)"))
+  expect_run("les anciens graphiques ne valident pas le starter",stale,"console.R")
+
+  # Retour detaille : une reussite partielle reste a reprendre, sans masquer les acquis.
+  partial <- make_copy("retour-detaille")
+  source_lines <- readLines(file.path(partial,"solutions/01_panier_solution.R"),warn=FALSE)
+  write_script(partial,"missions/01_panier.R",c(source_lines,"marge_panier <- 0"))
+  write_script(partial,"console.R",c(
+    "source('checks/01_panier.R')",
+    "stopifnot(!controle$ok,is.null(controle$error))",
+    "stopifnot(identical(vapply(controle$results,function(x)x$pass,logical(1)),c(TRUE,FALSE)))"))
+  expect_run("retour detaille distingue acquis et correction restante",partial,"console.R")
+
+  # Une erreur de script rend la main et ferme seulement les nouveaux appareils.
+  broken <- make_copy("erreur-preserve-session")
+  write_script(broken,"missions/01_panier.R",c("png(tempfile(fileext='.png'))","stop('essai interrompu')"))
+  write_script(broken,"console.R",c(
+    "avant_dossier <- getwd()",
+    "png(tempfile(fileext='.png')); avant_appareils <- dev.list()",
+    "source('checks/01_panier.R')",
+    "stopifnot(!controle$ok,grepl('essai interrompu',controle$error),length(controle$results)==0)",
+    "stopifnot(getwd()==avant_dossier,identical(dev.list(),avant_appareils))",
+    "dev.off()"))
+  expect_run("erreur preserve dossier session et appareils precedents",broken,"console.R")
+
+  absent <- make_copy("script-introuvable")
+  write_script(absent,"console.R",c(
+    "source('checks/check_tools.R')",
+    "avant_dossier <- getwd()",
+    "r <- run_check('chemin_absent',function(s,check)stop('ne doit pas etre appele'))",
+    "stopifnot(!r$ok,length(r$results)==0,is.character(r$error),getwd()==avant_dossier)"))
+  expect_run("script absent retourne une explication sans interrompre la session",absent,"console.R")
 
   failed <- vapply(results,function(x)!x$ok,logical(1))
   cat(sum(!failed), "/",length(results)," verifications reussies.\n",sep="")

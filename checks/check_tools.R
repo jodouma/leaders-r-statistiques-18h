@@ -48,16 +48,16 @@ expected_summary <- function(second = FALSE) {
   else data.frame(chiffre_affaires=100, cout_total=37, marge=63,
                   quantite=21, n_commandes=12)
 }
-run_check <- function(stem, total_points, assess, use_cli_args = FALSE) {
+run_check <- function(stem, verify, use_cli_args = FALSE) {
   if (!file.exists("data/orders_raw.csv")) {
     cat("Placez le terminal a la racine du dossier du cours, puis recommencez.\n")
-    return(invisible(list(score=0, maximum=total_points, ok=FALSE)))
+    return(invisible(list(ok=FALSE, results=list(), error="Fichier ou dossier introuvable")))
   }
   args <- if (isTRUE(use_cli_args)) commandArgs(trailingOnly = TRUE) else character()
   target <- if (length(args)) args[1] else file.path("missions", paste0(stem, ".R"))
   if (!file.exists(target)) {
     cat("Script introuvable :", target, "\n")
-    return(invisible(list(score=0, maximum=total_points, ok=FALSE)))
+    return(invisible(list(ok=FALSE, results=list(), error="Fichier ou dossier introuvable")))
   }
   target <- normalizePath(target, mustWork = TRUE)
   origin <- getwd()
@@ -73,36 +73,34 @@ run_check <- function(stem, total_points, assess, use_cli_args = FALSE) {
   file.copy("data", sandbox, recursive = TRUE)
   dir.create(file.path(sandbox, "outputs"))
   # Le fichier de mission 4 est un vrai input des missions 5 a 7.
-  # Copier uniquement cet input existant, jamais les reponses de la mission evaluee.
+  # Copier uniquement cet input existant, jamais les reponses de la mission en cours.
   upstream <- file.path(origin, "outputs", "04_commandes_propres.csv")
   if (stem %in% c("05_analyser", "06_visualiser", "07_decider") && file.exists(upstream)) {
     file.copy(upstream, file.path(sandbox, "outputs", "04_commandes_propres.csv"))
   }
   setwd(sandbox)
-  # Aucun ancien resultat de cette mission, objet de console ou corrige ne donne de points.
+  # Les anciens resultats et objets de Console ne sont pas reutilises.
   student <- new.env(parent = parent.env(globalenv()))
   error <- tryCatch({sys.source(target, envir = student); NULL},
                     error = function(e) conditionMessage(e))
   if (!is.null(error)) {
     cat("A reprendre : le script ne termine pas :", error, "\n")
-    cat("Score : 0 /", total_points, "\n")
-    return(invisible(list(score=0, maximum=total_points, ok=FALSE)))
+    return(invisible(list(ok=FALSE, results=list(), error=error)))
   }
   results <- list()
-  check <- function(label, points, ok) {
+  check <- function(label, ok) {
     pass <- tryCatch(isTRUE(ok), error = function(e) FALSE)
-    results[[length(results) + 1L]] <<- list(label=label, points=points, pass=pass)
-    cat(if (pass) "OK :" else "A reprendre :", label,
-        "(", if (pass) points else 0, "/", points, ")\n")
+    results[[length(results) + 1L]] <<- list(label=label, pass=pass)
+    cat(if (pass) "OK :" else "A reprendre :", label, "\n")
   }
   # Objet absent = NULL, pour donner une explication au lieu d'une erreur obscure.
   get_student <- function(name) {
     if (exists(name, envir=student, inherits=FALSE)) get(name, envir=student) else NULL
   }
-  assess(get_student, check)
-  score <- sum(vapply(results, function(x) if (x$pass) x$points else 0, numeric(1)))
-  cat("Score :", score, "/", total_points, "\n")
+  verify(get_student, check)
+  ok <- length(results) > 0L && all(vapply(results, function(x) x$pass, logical(1)))
+  cat(if (ok) "Controle : OK\n" else "Controle : a reprendre\n")
   if (stem == "06_visualiser") cat("Relire aussi titres, labels et axe TND dans les deux images.\n")
   if (stem == "07_decider") cat("Relire aussi le sens et la prudence du texte de decision.\n")
-  invisible(list(score=score, maximum=total_points, ok=score == total_points))
+  invisible(list(ok=ok, results=results, error=NULL))
 }

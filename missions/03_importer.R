@@ -1,6 +1,6 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
-# Mission 3 - Ouvrir le carnet de commandes (3 points)
+# Mission 3 - Ouvrir le carnet de commandes
 # read.csv() lit une table; stringsAsFactors = FALSE conserve le texte.
 # 1. Lire data/orders_raw.csv dans commandes.
 commandes <- NULL

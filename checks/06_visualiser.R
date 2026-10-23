@@ -1,11 +1,11 @@
 source("checks/check_tools.R")
 controle_direct <- !interactive() && sys.nframe() == 0L
-controle <- run_check("06_visualiser", 3, function(s, check) {
-  check("donnees du bilan par produit exactes", 1,
+controle <- run_check("06_visualiser", function(s, check) {
+  check("donnees du bilan par produit exactes",
         table_same(s("bilan_produits"),expected_products(),"produit"))
-  check("image PNG du chiffre d'affaires creee par ce script", 1,
+  check("image PNG du chiffre d'affaires creee par ce script",
         valid_png("outputs/06_ca_produits.png"))
-  check("image PNG de la marge creee par ce script", 1,
+  check("image PNG de la marge creee par ce script",
         valid_png("outputs/06_marge_produits.png"))
 }, use_cli_args = controle_direct)
 

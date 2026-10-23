@@ -1,4 +1,4 @@
-# Verification non notee. Ouvrir ce dossier comme projet ou dossier de travail.
+# Verification de depart. Ouvrir ce dossier comme projet ou dossier de travail.
 cat("R detecte :", as.character(getRversion()), "\n")
 if (getRversion() < "4.1") stop("R 4.1 ou plus recent est necessaire.")
 if (!file.exists("data/orders_mini.csv")) {
@@ -30,4 +30,4 @@ tryCatch({
 }, error = function(e) stop("Impossible de produire un PNG : ", conditionMessage(e)))
 unlink(fichier_test)
 cat("OK : lecture CSV, dossier outputs et image PNG. Aucun package a installer.\n")
-cat("Verification non notee : commencez missions/01_panier.R.\n")
+cat("Preparation reussie : ouvrez missions/01_panier.R.\n")

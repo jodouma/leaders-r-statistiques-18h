@@ -1,0 +1,204 @@
+{
+  "figures": [
+    {
+      "id": "parcours",
+      "path": "authoring/assets/v5/parcours.svg",
+      "source": "assets/parcours.svg",
+      "page_title": "Huit portes, une seule histoire",
+      "width_pt": 505,
+      "height_pt": 165,
+      "kind": "mental_model",
+      "alt": "Du dossier ouvert à la fonction : neuf étapes dans un seul café."
+    },
+    {
+      "id": "panier",
+      "path": "authoring/assets/v5/panier.svg",
+      "source": "assets/panier.svg",
+      "page_title": "Le tout premier ticket",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "Deux cafés à 3 TND, un thé à 5 TND et un sandwich à 8 TND donnent 19 TND."
+    },
+    {
+      "id": "cout_marge",
+      "path": "authoring/assets/v5/cout_marge.svg",
+      "source": "assets/cout_marge.svg",
+      "page_title": "Première porte ouverte : calculer",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "Le coût du panier est 2 × 1 + 1 × 2 + 1 × 3 = 7 TND ; sa marge est 19 − 7 = 12 TND."
+    },
+    {
+      "id": "vecteur",
+      "path": "authoring/assets/v5/vecteur.svg",
+      "source": "assets/vecteur.svg",
+      "page_title": "Un vecteur, quatre valeurs",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "ventes_journalieres contient 19, 27, 33 et 21 TND aux positions 1 à 4."
+    },
+    {
+      "id": "moyenne",
+      "path": "authoring/assets/v5/moyenne.svg",
+      "source": "assets/moyenne.svg",
+      "page_title": "Quatre jours dans la même boîte",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "La moyenne 100 ÷ 4 = 25 TND est un partage égal ; les quatre jours observés restent 19, 27, 33 et 21 TND."
+    },
+    {
+      "id": "tableau_csv",
+      "path": "authoring/assets/v5/tableau_csv.svg",
+      "source": "assets/tableau_csv.svg",
+      "page_title": "Les mots du fichier",
+      "width_pt": 505,
+      "height_pt": 210,
+      "kind": "mental_model",
+      "alt": "Une ligne décrit une vente, une colonne une information ; la cellule orange est la quantité 1 du thé."
+    },
+    {
+      "id": "nettoyage",
+      "path": "authoring/assets/v5/nettoyage.svg",
+      "source": "assets/nettoyage.svg",
+      "page_title": "Une règle visible pour chaque ligne",
+      "width_pt": 505,
+      "height_pt": 190,
+      "kind": "mental_model",
+      "alt": "14 lignes deviennent 13 lignes uniques, puis 12 lignes complètes et 1 ligne isolée pour quantité manquante."
+    },
+    {
+      "id": "calcul_lignes",
+      "path": "authoring/assets/v5/calcul_lignes.svg",
+      "source": "assets/calcul_lignes.svg",
+      "page_title": "Calculer sans recopier douze fois",
+      "width_pt": 505,
+      "height_pt": 200,
+      "kind": "mental_model",
+      "alt": "Chaque ligne calcule quantité × prix unitaire ; les trois premières donnent 6, 5 et 8 TND de chiffre d’affaires."
+    },
+    {
+      "id": "regrouper",
+      "path": "authoring/assets/v5/regrouper.svg",
+      "source": "assets/regrouper.svg",
+      "page_title": "Réunir les ventes par produit",
+      "width_pt": 505,
+      "height_pt": 215,
+      "kind": "mental_model",
+      "alt": "Les chiffres d’affaires regroupés valent 6 + 9 + 12 + 3 = 30 TND pour le café, 8 + 8 + 16 + 8 = 40 pour le sandwich et 5 + 10 + 5 + 10 = 30 pour le thé."
+    },
+    {
+      "id": "composition",
+      "path": "authoring/assets/v5/composition.svg",
+      "source": "assets/composition.svg",
+      "page_title": "Trois mesures, un seul résumé",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "Le chiffre d’affaires de 100 TND se décompose en 37 TND de coût et 63 TND de marge."
+    },
+    {
+      "id": "unites",
+      "path": "authoring/assets/v5/unites.svg",
+      "source": "assets/unites.svg",
+      "page_title": "Un regard suffit pour comparer",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "Le café représente 30 TND de chiffre d’affaires pour 10 unités vendues ; une somme d’argent et une quantité ont des unités différentes."
+    },
+    {
+      "id": "produits",
+      "path": "authoring/assets/v5/produits.svg",
+      "source": "assets/produits.svg",
+      "page_title": "Deux graphiques, deux questions",
+      "width_pt": 505,
+      "height_pt": 210,
+      "kind": "data_chart",
+      "alt": "Le chiffre d’affaires vaut 30, 40 et 30 TND ; la marge vaut 20, 25 et 18 TND pour Café, Sandwich, Thé."
+    },
+    {
+      "id": "pourcentage",
+      "path": "authoring/assets/v5/pourcentage.svg",
+      "source": "assets/pourcentage.svg",
+      "page_title": "Sélectionner, puis calculer la part",
+      "width_pt": 505,
+      "height_pt": 210,
+      "kind": "mental_model",
+      "alt": "40 cases orange sur 100 représentent la part du sandwich : 40 TND sur 100 TND, soit 40 %."
+    },
+    {
+      "id": "png_cycle",
+      "path": "authoring/assets/v5/png_cycle.svg",
+      "source": "assets/png_cycle.svg",
+      "page_title": "Une image qui reste après la séance",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "Pour enregistrer un PNG : ouvrir avec png(), dessiner avec barplot(), puis terminer avec dev.off()."
+    },
+    {
+      "id": "fonction",
+      "path": "authoring/assets/v5/fonction.svg",
+      "source": "assets/fonction.svg",
+      "page_title": "Recevoir un fichier, rendre un bilan",
+      "width_pt": 505,
+      "height_pt": 215,
+      "kind": "mental_model",
+      "alt": "La fonction reçoit un chemin CSV, importe, nettoie et calcule, puis renvoie un bilan d’une ligne."
+    },
+    {
+      "id": "deux_fichiers",
+      "path": "authoring/assets/v5/deux_fichiers.svg",
+      "source": "assets/deux_fichiers.svg",
+      "page_title": "La même recette, une autre caisse",
+      "width_pt": 505,
+      "height_pt": 205,
+      "kind": "mental_model",
+      "alt": "Le premier fichier couvre 4 jours et 100 TND ; le second couvre 2 jours et 48 TND. Les totaux ne comparent pas des périodes de même durée."
+    },
+    {
+      "id": "objets",
+      "path": "authoring/assets/v5/objets.svg",
+      "source": "assets/objets.svg",
+      "page_title": "Donner un nom à un résultat",
+      "width_pt": 505,
+      "height_pt": 185,
+      "kind": "mental_model",
+      "alt": "total_panier reçoit la valeur 19 et cout_panier reçoit la valeur 7 ; un nom permet de retrouver et réutiliser un résultat."
+    }
+  ],
+  "facts": {
+    "raw_rows": 14,
+    "clean_rows": 12,
+    "days": {
+      "2026-10-05": 19,
+      "2026-10-06": 27,
+      "2026-10-07": 33,
+      "2026-10-08": 21
+    },
+    "products": {
+      "Cafe": [
+        30,
+        10,
+        10
+      ],
+      "The": [
+        30,
+        12,
+        6
+      ],
+      "Sandwich": [
+        40,
+        15,
+        5
+      ]
+    },
+    "total": 100,
+    "cost": 37,
+    "margin": 63
+  }
+}

@@ -25,17 +25,6 @@
       "license": "© 2016 The R Foundation; CC BY-SA 4.0 or GPL-2"
     },
     {
-      "file": "assets/posit-logo-fullcolor.svg",
-      "source": "https://posit-dev.github.io/brand-yml/inspiration/brand-guidelines/posit/posit-logo-fullcolor.svg",
-      "page": "https://posit-dev.github.io/brand-yml/inspiration/brand-guidelines/posit/",
-      "use": "Identify optional RStudio publisher only; no sponsorship statement"
-    },
-    {
-      "file": "assets/posit-logo-reverse.svg",
-      "source": "https://posit-dev.github.io/brand-yml/inspiration/brand-guidelines/posit/posit-logo-reverse.svg",
-      "use": "Same optional tool identification on dark background"
-    },
-    {
       "file": "assets/rstudio-logo.png",
       "source": "https://posit.co/sites/default/files/styles/small_hq/public/image/2026-04/logo_rstudio-closeCTA_1.png?itok=NpHX9C9b",
       "page": "https://posit.co/products/open-source/rstudio/",
@@ -75,9 +64,9 @@
     "derivation": "Static instances generated with fontTools from official Google Fonts variable fonts. Inter opsz=14, weights 400/600/700; Plus Jakarta weights 700/800."
   },
   "image_generation": {
-    "prompt": "Use case: illustration-story. Asset type: premium landscape cover illustration for a French-language university Master statistics course PDF. Primary request: diverse Master students in a modern Tunisian university studying separately at their own laptops, with one approachable coach in the background. Elegant flat editorial blue vector-like illustration, crisp sophisticated shapes, expressive but refined students and plausible hands. Composition: wide 3:2 landscape. Scene occupies right two-thirds, with left third and upper-left negative space in dark navy reserved for independently typeset title. Subtle giant circular framing and sparse data dots. Simplified unlabeled bar/scatter marks only on laptop screens. Modern bright campus windows with understated Tunisian Mediterranean ambience. Palette: dark navy #07152F, indigo #2B3180, electric blue #4E73FF, orange #FF9A3C, off-white. Print-ready high resolution with clean edges and polished visual rhythm. No text, no letters, no logos, no numbers, no watermark. Decorative illustration only; not a technical diagram. Avoid generic clipart, gradients with banding, clutter, overly cute cartoon proportions, or color outside the palette.",
     "mode": "built-in image_gen",
-    "saved": "authoring/assets/v3/course-cover-students.png"
+    "saved": "authoring/assets/v3/course-cover-students.png",
+    "description": "Original decorative illustration; titles and logos composed separately."
   },
   "factual_sources": [
     {

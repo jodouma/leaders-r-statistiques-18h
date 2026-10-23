@@ -1,4 +1,4 @@
-# Executer depuis la racine du dossier r-statistiques-18h.
+# Executer depuis la racine du dossier du cours.
 # R base uniquement. Monnaie : TND.
 # EXEMPLE RESOLU : calculer et regrouper les trois lignes du mini-carnet.
 mini <- read.csv("data/orders_mini.csv", stringsAsFactors = FALSE)

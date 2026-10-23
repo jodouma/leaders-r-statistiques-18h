@@ -89,6 +89,24 @@ def draw_footer(c,doc,i,n,W,H,m):
         c.setFont(BOLD,8);c.setFillColor(NAVY);c.drawCentredString(W/2,26,'Revenir au parcours')
         c.linkURL(doc['index_link'],(W/2-55,19,W/2+55,36),relative=True,thickness=0)
 
+def svg_drawing(source):
+    """Load SVG paths while preserving their specified winding fill rule.
+
+    svglib stores the SVG rule as _fillRule, but recent ReportLab renderers
+    explicitly pass Path.fillMode (whose default is even-odd). Synchronizing
+    these prevents intersecting glyph contours, notably bold 4 and t, from
+    acquiring holes. Only paint semantics change; geometry stays identical.
+    """
+    from svglib.svglib import svg2rlg
+    from reportlab.graphics.shapes import Path as VectorPath
+    drawing=svg2rlg(source)
+    def preserve_fill(shape):
+        if isinstance(shape,VectorPath):
+            shape.fillMode=getattr(shape,'_fillRule',1) # SVG defaults to nonzero.
+        for child in getattr(shape,'contents',[]):preserve_fill(child)
+    if drawing is not None:preserve_fill(drawing)
+    return drawing
+
 @lru_cache(maxsize=256)
 def equation(latex, size):
     """LaTeX-style math -> vector paths. No TeX installation is needed."""
@@ -96,12 +114,11 @@ def equation(latex, size):
     from matplotlib import rc_context
     from matplotlib.mathtext import math_to_image
     from matplotlib.font_manager import FontProperties
-    from svglib.svglib import svg2rlg
     content=latex.strip().strip('$')
     stream=BytesIO()
     with rc_context({'mathtext.fontset':'stix','svg.fonttype':'path','font.size':size}):
         math_to_image('$'+content+'$',stream,format='svg',dpi=144,color='#2B3180',prop=FontProperties(size=size))
-    drawing=svg2rlg(BytesIO(stream.getvalue()))
+    drawing=svg_drawing(BytesIO(stream.getvalue()))
     if drawing is None: raise ValueError('Equation could not be rendered: '+latex)
     return drawing
 
@@ -125,6 +142,10 @@ def draw_par(c,s,x,y,w,size=11,color=INK,font=BODY):
 
 def block(c,b,x,y,w,slide=False):
     typ=b['type']; size=16 if slide else 10.5
+    if typ=='section':
+        y-=3
+        c.setFillColor(ORANGE);c.roundRect(x,y-16,3,16,1.5,fill=1,stroke=0)
+        return draw_par(c,b['text'],x+12,y,w-12,12.5,color=NAVY,font=BOLD)-13
     if typ=='formula':
         latex=b['latex']; cap=b.get('caption','')
         drawing=equation(latex,30 if slide else 24)
@@ -173,13 +194,16 @@ def block(c,b,x,y,w,slide=False):
         for j,(item,parts) in enumerate(zip(items,paragraphs)):
             xx=x+j*(cw+gap);title,th,body,bh=parts
             c.setFillColor(PALE);c.setStrokeColor(LINE);c.roundRect(xx,y-height,cw,height,9,fill=1,stroke=1)
-            c.drawImage(str(asset(item['image'])),xx+16,y-59,width=cw-32,height=40,preserveAspectRatio=True,anchor='c',mask='auto')
+            logo=asset(item['image'])
+            if logo.name=='rstudio-logo.png':
+                # This official asset has a white wordmark intended for dark surfaces.
+                c.setFillColor(DARK);c.roundRect(xx+12,y-63,cw-24,48,5,fill=1,stroke=0)
+            c.drawImage(str(logo),xx+16,y-59,width=cw-32,height=40,preserveAspectRatio=True,anchor='c',mask='auto')
             title.drawOn(c,xx+12,y-75-th);body.drawOn(c,xx+12,y-82-th-bh)
         return y-height-18
     if typ=='figure':
-        from svglib.svglib import svg2rlg
         from reportlab.graphics import renderPDF
-        drawing=svg2rlg(str(b['path']));limit=b.get('height',200)
+        drawing=svg_drawing(str(asset(b['path'])));limit=b.get('height',200)
         scale=min(w/drawing.width,limit/drawing.height)
         drawing.scale(scale,scale)
         dw,dh=drawing.width*scale,drawing.height*scale
@@ -249,7 +273,7 @@ def build(doc,out):
     path=(out.parent if doc.get('root_document') else out)/doc['filename'];path.parent.mkdir(parents=True,exist_ok=True)
     c=canvas.Canvas(str(path),pagesize=(W,H),pageCompression=1)
     c.setTitle(doc['title']);c.setAuthor('Youssef Douma · Leaders University');c.setSubject(doc.get('subtitle',''))
-    n=len(doc['pages']); errors=[]
+    n=len(doc['pages']); errors=[]; layout=[]
     if n>2:c.showOutline()
     for i,p in enumerate(doc['pages'],1):
         c.bookmarkPage(f'p{i}');c.addOutlineEntry(p['title'],f'p{i}',level=0)
@@ -259,11 +283,12 @@ def build(doc,out):
             y=draw_page_header(c,doc,p,i,n,W,H,m)
             for b in p['blocks']:y=block(c,b,m,y,W-2*m,slide)
             if y<54:errors.append((str(path),i,p['title'],round(y,1)))
+            layout.append({'page':i,'title':p['title'],'body_bottom':round(y,1)})
             draw_footer(c,doc,i,n,W,H,m)
         c.showPage()
     c.save()
     if errors: raise RuntimeError('Page overflow: '+repr(errors))
-    return {'file':str(path),'pages':n,'bytes':path.stat().st_size}
+    return {'file':str(path),'pages':n,'bytes':path.stat().st_size,'layout':layout}
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('sources',nargs='+');a.add_argument('--out',required=True);args=a.parse_args()
