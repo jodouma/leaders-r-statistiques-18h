@@ -1,0 +1,150 @@
+"""Build concise designed course PDFs from JSON, with strict overflow checks.
+
+Requires reportlab. Student computers need R only; this tool is for maintainers.
+Usage: python build_pdfs.py input.json [other.json ...] --out pdf-folder
+"""
+import argparse, json, math, re, textwrap
+from pathlib import Path
+from xml.sax.saxutils import escape
+from reportlab.pdfgen import canvas
+from reportlab.lib import colors
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.platypus import Paragraph, Table, TableStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.pagesizes import A4
+
+NAVY=colors.HexColor('#132F43'); TEAL=colors.HexColor('#087D77')
+ORANGE=colors.HexColor('#D4603D'); INK=colors.HexColor('#193448')
+MUTED=colors.HexColor('#5B707B'); PAPER=colors.HexColor('#F7F6F1')
+PALE=colors.HexColor('#E4EFEB'); LINE=colors.HexColor('#CEDAD7')
+
+def fonts():
+    root=Path('/System/Library/Fonts/Supplemental')
+    # Reproducible on another OS by setting COURSE_FONT_DIR to a folder
+    # containing the listed Arial/Courier New fonts, or using PDF base fonts.
+    import os
+    root=Path(os.environ.get('COURSE_FONT_DIR',str(root)))
+    spec={'Body':'Arial.ttf','Bold':'Arial Bold.ttf','Mono':'Courier New.ttf'}
+    ok=all((root/f).exists() for f in spec.values())
+    if ok:
+        for name,f in spec.items(): pdfmetrics.registerFont(TTFont(name,str(root/f)))
+        pdfmetrics.registerFontFamily('Body',normal='Body',bold='Bold',italic='Body',boldItalic='Bold')
+        return 'Body','Bold','Mono'
+    return 'Helvetica','Helvetica-Bold','Courier'
+
+BODY,BOLD,MONO=fonts()
+def markup(s):
+    s=escape(str(s))
+    return re.sub(r'(https://[^\s]+)',lambda m:f'<link href="{m[1]}" color="#087D77">{m[1]}</link>',s)
+
+def para(s,size=11,leading=None,color=INK,font=BODY):
+    return Paragraph(markup(s),ParagraphStyle('p',fontName=font,fontSize=size,leading=leading or size*1.36,textColor=color,spaceAfter=0,splitLongWords=True))
+
+def draw_par(c,s,x,y,w,size=11,color=INK,font=BODY):
+    p=para(s,size,color=color,font=font); _,h=p.wrap(w,2000); p.drawOn(c,x,y-h); return y-h
+
+def block(c,b,x,y,w,slide=False):
+    typ=b['type']; size=16 if slide else 10.5
+    if typ=='text': return draw_par(c,b['text'],x,y,w,size)-13
+    if typ=='bullets':
+        for item in b['items']:
+            c.setFillColor(TEAL); c.circle(x+3,y-7 if not slide else y-10,2.2,fill=1,stroke=0)
+            y=draw_par(c,item,x+15,y,w-15,size)-7
+        return y-4
+    if typ=='code':
+        fs=16 if slide else 9.3; lead=fs*(1.25 if slide else 1.36)
+        maxchars=int((w-28)/(fs*.60))
+        lines=[]
+        for line in b['text'].splitlines():
+            if len(line)>maxchars:
+                # Never silently alter runnable code; wrapped display gets a marker.
+                parts=textwrap.wrap(line,maxchars-2,replace_whitespace=False,drop_whitespace=False) or ['']
+                lines.extend([parts[0]]+['  '+v for v in parts[1:]])
+            else: lines.append(line)
+        h=len(lines)*lead+24
+        c.setFillColor(NAVY);c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
+        for i,line in enumerate(lines):
+            c.setFont(MONO,fs);c.setFillColor(colors.HexColor('#9FCDC4') if line.lstrip().startswith('#') else colors.HexColor('#FFFFFF'))
+            c.drawString(x+14,y-17-i*lead,line)
+        return y-h-14
+    if typ=='callout':
+        label=b.get('label','À RETENIR'); body=b.get('text','')
+        p=para(body,size if not slide else 15);_,ph=p.wrap(w-30,2000)
+        h=ph+43
+        c.setFillColor(PALE);c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
+        c.setFillColor(TEAL);c.rect(x,y-h,4,h,fill=1,stroke=0)
+        draw_par(c,label.upper(),x+15,y-12,w-30,9 if not slide else 11,color=TEAL,font=BOLD)
+        p.drawOn(c,x+15,y-31-ph)
+        return y-h-16
+    if typ=='table':
+        rows=[b['headers']]+b['rows']; n=len(rows[0]); fs=13 if slide else 9.5
+        widths=b.get('widths',[w/n]*n)
+        if n==3 and rows[0][1]=='Durée': widths=[w*.2,w*.12,w*.68]
+        cells=[[para(v,fs,fs*1.35,colors.white if i==0 else INK,BOLD if i==0 else BODY) for v in row] for i,row in enumerate(rows)]
+        t=Table(cells,colWidths=widths,hAlign='LEFT')
+        t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),TEAL),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('LINEBELOW',(0,0),(-1,0),.5,TEAL)]))
+        _,h=t.wrap(w,2000);t.drawOn(c,x,y-h);return y-h-18
+    if typ=='diagram':
+        nodes=b.get('nodes',[]); n=len(nodes); cols=min(4 if not slide else 5,n); rows=math.ceil(n/cols); gap=18
+        bw=(w-gap*(cols-1))/cols; bh=66 if not slide else 82
+        for i,label in enumerate(nodes):
+            row,col=divmod(i,cols); xx=x+col*(bw+gap); yy=y-row*(bh+20)
+            c.setFillColor(TEAL if i%2==0 else NAVY);c.roundRect(xx,yy-bh,bw,bh,8,fill=1,stroke=0)
+            p=para(label,10 if not slide else 14,color=colors.white,font=BOLD);_,h=p.wrap(bw-20,bh-12);p.drawOn(c,xx+10,yy-bh/2-h/2)
+            if col<cols-1 and i<n-1:
+                c.setStrokeColor(ORANGE);c.setLineWidth(1.8); ay=yy-bh/2
+                c.line(xx+bw+3,ay,xx+bw+gap-3,ay)
+                c.line(xx+bw+gap-7,ay+3,xx+bw+gap-3,ay);c.line(xx+bw+gap-7,ay-3,xx+bw+gap-3,ay)
+            elif i<n-1:
+                # Explicit sequence number makes wrapped flow order unambiguous.
+                pass
+            c.setFont(BOLD,8 if not slide else 10);c.setFillColor(colors.HexColor('#C3E7DB'));c.drawRightString(xx+bw-7,yy-12,str(i+1))
+        return y-rows*(bh+20)-2
+    if typ=='image':
+        p=Path(b['path']); h=b.get('height',210)
+        c.drawImage(str(p),x,y-h,width=w,height=h,preserveAspectRatio=True,anchor='c',mask='auto')
+        return y-h-18
+    raise ValueError(f'Unknown block type {typ}')
+
+def build(doc,out):
+    slide=doc.get('landscape',False); W,H=(960,540) if slide else A4; m=45 if not slide else 52
+    path=out/doc['filename'];path.parent.mkdir(parents=True,exist_ok=True)
+    c=canvas.Canvas(str(path),pagesize=(W,H),pageCompression=1)
+    c.setTitle(doc['title']);c.setAuthor('Youssef Douma · Leaders University');c.setSubject(doc.get('subtitle',''))
+    n=len(doc['pages']); errors=[]
+    for i,p in enumerate(doc['pages'],1):
+        c.setFillColor(PAPER);c.rect(0,0,W,H,fill=1,stroke=0)
+        c.setFillColor(TEAL);c.rect(0,H-8,W,8,fill=1,stroke=0)
+        c.setFont(BOLD,9 if not slide else 11);c.setFillColor(TEAL)
+        c.drawString(m,H-36,'LEADERS UNIVERSITY  /  ATELIER STATISTIQUE AVEC R')
+        c.setFont(BODY,8 if not slide else 10);c.setFillColor(MUTED)
+        c.drawRightString(W-m,H-36,'MASTER · 18 H')
+        y=H-67
+        y=draw_par(c,p.get('kicker',''),m,y,W-2*m,9 if not slide else 11,color=ORANGE,font=BOLD)-12
+        y=draw_par(c,p['title'],m,y,W-2*m,26 if not slide else 34,color=NAVY,font=BOLD)-24
+        c.bookmarkPage(f'p{i}');c.addOutlineEntry(p['title'],f'p{i}',level=0)
+        for b in p['blocks']:
+            y=block(c,b,m,y,W-2*m,slide)
+        if y<54: errors.append((str(path),i,p['title'],round(y,1)))
+        c.setStrokeColor(LINE);c.setLineWidth(.5);c.line(m,40,W-m,40)
+        c.setFont(BODY,7.5 if not slide else 9);c.setFillColor(MUTED)
+        short=doc['title'][:66]
+        c.drawString(m,26,short);c.drawRightString(W-m,26,f'{i:02} / {n:02}  ·  Y. Douma')
+        c.showPage()
+    c.save()
+    if errors: raise RuntimeError('Page overflow: '+repr(errors))
+    return {'file':str(path),'pages':n,'bytes':path.stat().st_size}
+
+def main():
+    a=argparse.ArgumentParser();a.add_argument('sources',nargs='+');a.add_argument('--out',required=True);args=a.parse_args()
+    out=Path(args.out);out.mkdir(parents=True,exist_ok=True);receipt=[]
+    failures=[]
+    for source in args.sources:
+        for d in json.loads(Path(source).read_text())['documents']:
+            try: receipt.append(build(d,out))
+            except RuntimeError as e: failures.append(str(e))
+    print(json.dumps(receipt,ensure_ascii=False,indent=2))
+    if failures: raise RuntimeError('\n'.join(failures))
+
+if __name__=='__main__':main()

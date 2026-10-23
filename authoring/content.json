@@ -1,0 +1,3828 @@
+{
+  "documents": [
+    {
+      "filename": "00_demarrer.pdf",
+      "title": "Votre première analyse commence ici",
+      "subtitle": "Installation · Windows / macOS / Ubuntu · 30 min de préparation",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Choisir son chemin",
+          "kicker": "AVANT LE SAMEDI",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Installer R",
+                "Ouvrir le projet",
+                "Vérifier",
+                "Calculer"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "R est le moteur de calcul. RStudio est un éditeur facultatif. Git et un compte GitHub ne sont pas nécessaires : le téléchargement ZIP suffit. Le cours utilise seulement les bibliothèques livrées avec R."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Préparer un ordinateur avec clavier, 1 Go libre pour les outils et les supports, et une connexion pour les téléchargements initiaux.",
+                "Choisir la version stable de R sur CRAN. Les scripts visent R ≥ 4.1 ; la validation locale utilise R 4.6.1 sur macOS ARM64.",
+                "Télécharger le dépôt : Code → Download ZIP. Extraire réellement l’archive, par exemple dans Documents/r-statistiques-18h. Ne pas travailler dans le ZIP.",
+                "Ouvrir course.Rproj dans RStudio ; sinon ouvrir R et choisir le dossier extrait comme dossier de travail."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Premier succès",
+              "text": "Dans la console R : 2 + 2 doit afficher 4. Puis source(\"scripts/00_check_setup.R\", encoding = \"UTF-8\"). Une erreur est une information à lire, pas un verdict sur votre niveau."
+            }
+          ]
+        },
+        {
+          "title": "Windows : R d’abord",
+          "kicker": "CHEMIN A · ENVIRONNEMENT NATIF",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "Aller sur https://cran.r-project.org/bin/windows/base/ et télécharger l’installateur stable 64 bits. Utiliser le poste autorisé par votre établissement.",
+                "Lancer l’installateur officiel. Si le poste est administré et bloque l’installation, demander au support avant le cours ; ne pas modifier ses protections.",
+                "Facultatif : installer RStudio Desktop Open Source depuis https://docs.posit.co/ide/user/download.html ; choisir un installateur compatible avec votre Windows. La version actuelle documentée cible Windows 11.",
+                "Sans RStudio : utiliser R GUI, menu Fichier → Changer le répertoire courant, puis choisir le dossier contenant course.Rproj.",
+                "Dans RStudio : ouvrir course.Rproj ; ouvrir labs/TP01_vectors.R. Exécuter une ligne avec Ctrl+Entrée, ou tout le script avec Source."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "# Console R, pas PowerShell\ngetwd()\nfile.exists(\"data/noria_dirty.csv\")\nsource(\"scripts/00_check_setup.R\", encoding = \"UTF-8\")"
+            },
+            {
+              "type": "callout",
+              "label": "Windows 10 / poste ancien",
+              "text": "R et l’éditeur ont des exigences distinctes. Vérifier les pages officielles ; si R fonctionne mais que RStudio récent est incompatible, utiliser R GUI. WSL et Rtools ne sont pas requis pour ce cours."
+            }
+          ]
+        },
+        {
+          "title": "macOS : choisir la bonne puce",
+          "kicker": "CHEMIN B · APPLE SILICON OU INTEL",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "Menu Apple → À propos de ce Mac : identifier Puce Apple ou Processeur Intel.",
+                "Depuis https://cran.r-project.org/bin/macosx/ choisir le paquet compatible avec votre puce ET votre version de macOS. Le paquet ARM64 actuel exige macOS 14 ou plus.",
+                "Installer le paquet officiel signé ; ouvrir R.app et saisir 2 + 2. Pas de compilateur ni de Homebrew nécessaire.",
+                "Facultatif : installer RStudio Desktop Open Source compatible, puis ouvrir course.Rproj.",
+                "Sans RStudio : R.app → Divers / Misc → Changer le répertoire de travail ; choisir le dossier du cours. Ouvrir les scripts dans un éditeur de texte et utiliser source() depuis R."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "# Console R\nR.version.string\nsource(\"scripts/00_check_setup.R\", encoding = \"UTF-8\")\nsource(\"labs/TP01_vectors.R\")"
+            },
+            {
+              "type": "callout",
+              "label": "Raccourci et fichiers",
+              "text": "Dans RStudio : Cmd+Entrée exécute la ligne sélectionnée. Sur tous les systèmes, respecter les majuscules et utiliser des chemins relatifs avec / ; aucun chemin propre à l’enseignant."
+            }
+          ]
+        },
+        {
+          "title": "Ubuntu : une installation minimale",
+          "kicker": "CHEMIN C · UBUNTU LTS",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Pour ce cours sans paquets externes, le paquet de votre distribution suffit s’il fournit R ≥ 4.1. Les commandes suivantes vont dans le Terminal Ubuntu, jamais dans la console R."
+            },
+            {
+              "type": "code",
+              "text": "sudo apt update\nsudo apt install r-base\nR --version\nR"
+            },
+            {
+              "type": "text",
+              "text": "Dans R, choisir le dossier extrait via setwd() une seule fois pour démarrer, par exemple setwd(\"~/Documents/r-statistiques-18h\"). Les scripts du projet ne contiennent aucun setwd(). RStudio est facultatif : vérifier la compatibilité de son paquet .deb avec l’architecture du poste et l’Ubuntu installé."
+            },
+            {
+              "type": "code",
+              "text": "# Console R\nstopifnot(getRversion() >= \"4.1.0\")\nsource(\"scripts/00_check_setup.R\", encoding = \"UTF-8\")\nq(save = \"no\")"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Pour une installation CRAN plus récente : suivre exactement https://cran.r-project.org/bin/linux/ubuntu/ ; le choix du dépôt dépend de la version Ubuntu.",
+                "Sur ARM64, vérifier la disponibilité de l’éditeur ; le moteur R en terminal suffit.",
+                "Ne jamais coller une commande sudo dans R. Ne pas installer Hadoop pour les TPs."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Après le téléchargement",
+              "text": "Le noyau des six TPs fonctionne hors ligne. Aucun install.packages() n’est demandé."
+            }
+          ]
+        },
+        {
+          "title": "Faire une répétition complète",
+          "kicker": "10 MINUTES · PREUVE DE PRÉPARATION",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "# Console R depuis le dossier du projet\nsource(\"scripts/00_check_setup.R\", encoding = \"UTF-8\")\nsource(\"scripts/01_run_all.R\", encoding = \"UTF-8\")\nsource(\"tests/run_tests.R\", encoding = \"UTF-8\")\nlist.files(\"results\")"
+            },
+            {
+              "type": "text",
+              "text": "Le pipeline est un exemple de référence. Il vous montre le résultat final ; vos TPs demandent ensuite de reconstruire et de défendre les étapes. Les résultats sont générés dans results/ et peuvent être recréés."
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Signal",
+                "Attendu"
+              ],
+              "rows": [
+                [
+                  "Dossier",
+                  "course.Rproj et data/ visibles"
+                ],
+                [
+                  "Données",
+                  "241 lignes brutes ; 236 délais valides"
+                ],
+                [
+                  "Calcul",
+                  "Tables, figures PDF et sessionInfo dans results/"
+                ],
+                [
+                  "Tests",
+                  "Message final de succès, sans erreur"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Preuve à apporter",
+              "text": "Une capture du contrôle de préparation suffit. Garder les PDF et le ZIP sur le disque. Un compte cloud et Git ne sont pas nécessaires."
+            }
+          ]
+        },
+        {
+          "title": "Se débloquer sans attendre",
+          "kicker": "DÉBOGAGE · 3 QUESTIONS",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Où suis-je ?",
+                "Quel objet ?",
+                "Quel message ?"
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Symptôme",
+                "Action utile"
+              ],
+              "rows": [
+                [
+                  "cannot open file",
+                  "getwd(), puis file.exists(\"data/noria_dirty.csv\"). Ouvrir le projet extrait."
+                ],
+                [
+                  "object not found",
+                  "Exécuter les lignes précédentes ; vérifier orthographe et majuscules."
+                ],
+                [
+                  "unexpected symbol",
+                  "Vérifier guillemets, parenthèses et virgules ; utiliser des guillemets droits."
+                ],
+                [
+                  "NA dans mean()",
+                  "Compter les valeurs manquantes avant de décider na.rm = TRUE."
+                ],
+                [
+                  "Aucune figure",
+                  "Regarder results/ ; ouvrir les PDF générés."
+                ],
+                [
+                  "R ne démarre pas",
+                  "Vérifier puce/OS et installation officielle ; demander le poste de secours."
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Plan de secours en classe",
+              "text": "Le formateur garde le ZIP et les installateurs compatibles sur support local. Travail en binôme provisoire, chacun avec son propre raisonnement et sa restitution. Une session de rattrapage technique précède la notation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "02_cours_visuel.pdf",
+      "title": "De la donnée à une décision défendable",
+      "subtitle": "Noria Services · Les concepts utiles au bon moment",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Une question qui mérite une analyse",
+          "kicker": "PROJET 0 → 9 · MISSION",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Noria Services teste deux procédures A et B de traitement des tickets. Affectation simulée aléatoire équilibrée : 120 tickets par groupe avant exclusions. La direction demande : B réduit-elle le délai moyen, et de combien ? Vous devez fournir une analyse relançable et discutable."
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Question",
+                "Données",
+                "Audit",
+                "Analyse",
+                "Incertitude",
+                "Décision"
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Nous savons",
+                "Nous devons vérifier"
+              ],
+              "rows": [
+                [
+                  "240 tickets simulés et indépendants",
+                  "Qualité du fichier reçu"
+                ],
+                [
+                  "A/B affecté aléatoirement dans le générateur",
+                  "Effet des exclusions et des valeurs manquantes"
+                ],
+                [
+                  "Délai en minutes, complexité avant traitement",
+                  "Sens de B − A et pertinence opérationnelle"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Contrat scientifique",
+              "text": "Ce sont des données synthétiques, pas une étude réelle ni une preuve commerciale. Le générateur contient un effet ; l’exercice porte sur l’estimation et ses limites."
+            }
+          ]
+        },
+        {
+          "title": "R est un atelier de calcul",
+          "kicker": "01 · OBJET, FONCTION, RÉSULTAT",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Valeur : 12",
+                "Objet : delai",
+                "Fonction : mean()",
+                "Objet résultat"
+              ]
+            },
+            {
+              "type": "code",
+              "text": "# <- donne un nom à une valeur\ndelai <- c(12, 18, 30)\nmean(delai)\nlength(delai)\nclass(delai)\n?mean"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "La console répond immédiatement. Le script garde une recette relançable.",
+                "Une fonction reçoit des arguments nommés : mean(x = delai).",
+                "R distingue Delai et delai. # commence un commentaire ignoré lors du calcul.",
+                "Avant d’exécuter : prédire le type et la taille du résultat."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "À vous · 90 secondes",
+              "text": "Remplacer 30 par 120. Quel résumé bouge le plus : mean() ou median() ? Expliquer en une phrase."
+            }
+          ]
+        },
+        {
+          "title": "Les types changent le sens",
+          "kicker": "02 · TYPE ET STRUCTURE",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Valeur",
+                "Type / classe",
+                "Sens"
+              ],
+              "rows": [
+                [
+                  "12.5",
+                  "numeric",
+                  "Mesure quantitative"
+                ],
+                [
+                  "3L",
+                  "integer",
+                  "Entier"
+                ],
+                [
+                  "\"A\"",
+                  "character",
+                  "Texte"
+                ],
+                [
+                  "TRUE",
+                  "logical",
+                  "Condition vraie"
+                ],
+                [
+                  "factor(c(\"A\", \"B\"))",
+                  "factor",
+                  "Catégorie"
+                ],
+                [
+                  "NA",
+                  "manquant",
+                  "Information absente"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "text": "x <- c(10, 20, \"30\")\nclass(x)          # character : coercition\nas.numeric(x)     # conversion à contrôler\nstr(data.frame(groupe = c(\"A\", \"B\"), n = 1:2))"
+            },
+            {
+              "type": "callout",
+              "label": "Piège concret",
+              "text": "Un identifiant numérique reste un identifiant : la moyenne de ticket_id ne décrit pas une performance. Satisfaction 1–5 est ordinale ; ses distances ne sont pas garanties égales."
+            }
+          ]
+        },
+        {
+          "title": "Un vecteur, plusieurs questions",
+          "kicker": "03 · CRÉER ET INDEXER",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "x <- c(12, 18, 30, 45)\nx[1]                 # R commence à 1\nx[c(1, 4)]\nx[x > 20]            # filtre logique\nsum(x > 20)          # compte TRUE\nmean(x > 20)         # proportion\nseq(0, 60, by = 15)\nrep(c(\"A\", \"B\"), each = 2)"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "x > 20",
+                "FALSE FALSE TRUE TRUE",
+                "x[condition]",
+                "30 et 45"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Tracez avant de lancer",
+              "text": "Écrire les quatre valeurs de x > 20 sur papier. Puis comparer x[2] et x[-2] : position choisie ou retirée ? Le TP01 vous demande de construire votre propre exemple."
+            }
+          ]
+        },
+        {
+          "title": "NA ne veut pas dire zéro",
+          "kicker": "04 · DÉNOMINATEUR VISIBLE",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "x <- c(10, NA, 30)\nmean(x)                  # NA\nis.na(x)\nsum(is.na(x))            # 1\nmean(x, na.rm = TRUE)     # 20 sur 2 mesures\nx[!is.na(x) & x > 15]"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Choix",
+                "Conséquence"
+              ],
+              "rows": [
+                [
+                  "Remplacer NA par 0",
+                  "Change la mesure et la moyenne"
+                ],
+                [
+                  "Retirer NA",
+                  "Change la population analysée"
+                ],
+                [
+                  "Afficher n et n manquants",
+                  "Rend le choix vérifiable"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Si tout manque",
+              "text": "mean(c(NA_real_, NA_real_), na.rm = TRUE) donne NaN. Une fonction professionnelle définit ce cas explicitement et garde le nombre d’observations."
+            }
+          ]
+        },
+        {
+          "title": "Décider, répéter, puis simplifier",
+          "kicker": "05 · IF, FOR ET VECTORISATION",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "x <- c(12, 75, 35)\nif (mean(x) > 40) {\n  message(\"Moyenne au-dessus du seuil\")\n} else {\n  message(\"Moyenne au plus égale au seuil\")\n}\nfor (i in seq_along(x)) {\n  print(x[i] > 40)\n}\nx > 40   # même question, tout le vecteur"
+            },
+            {
+              "type": "text",
+              "text": "if() attend une seule condition TRUE/FALSE, sans NA. Une boucle est utile pour comprendre une suite d’étapes. Une opération vectorielle exprime directement une même question sur plusieurs valeurs."
+            },
+            {
+              "type": "callout",
+              "label": "Erreur à expliquer",
+              "text": "Pourquoi if (x > 40) est-il incorrect ici ? Écrire une version qui répond à « au moins un délai dépasse 40 » avec any()."
+            }
+          ]
+        },
+        {
+          "title": "Une fonction est un contrat",
+          "kicker": "06 · ENTRÉE, SORTIE, CAS LIMITE",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "safe_mean <- function(x) {\n  if (!is.numeric(x)) stop(\"x doit être numérique\")\n  if (any(!is.finite(x) & !is.na(x))) stop(\"Inf interdit\")\n  if (all(is.na(x))) return(NA_real_)\n  mean(x, na.rm = TRUE)\n}\nsafe_mean(c(10, NA, 30))\nsafe_mean(numeric(0))"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Vérifier le type",
+                "Refuser les infinis",
+                "Traiter tout NA",
+                "Renvoyer"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Même contrat que le kit",
+              "text": "Le vide ou un vecteur tout NA renvoie NA_real_. Les infinis déclenchent une erreur ; une mesure infinie doit être investiguée. Le contrat se vérifie aussi avec des entrées incorrectes."
+            }
+          ]
+        },
+        {
+          "title": "Une matrice organise un vecteur",
+          "kicker": "07 · DIMENSIONS ET ORDRE",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "v <- 1:6\nm <- matrix(v, nrow = 2)\nm                         # colonnes d’abord\nm_lignes <- matrix(v, nrow = 2, byrow = TRUE)\ndim(m)                    # 2 3\ndim(m) <- c(3, 2)          # mêmes 6 valeurs\nm[2, 1]"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Défaut : par colonnes",
+                "byrow = TRUE"
+              ],
+              "rows": [
+                [
+                  "1  3  5",
+                  "1  2  3"
+                ],
+                [
+                  "2  4  6",
+                  "4  5  6"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Avant d’exécuter",
+              "text": "Dessiner m après dim(m) <- c(3, 2). Modifier les dimensions ne réordonne pas le vecteur sous-jacent ; le nombre de cases doit rester 6."
+            }
+          ]
+        },
+        {
+          "title": "apply() suit une direction",
+          "kicker": "08 · LIGNES OU COLONNES",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "m <- matrix(1:6, nrow = 2)\napply(m, 1, sum)       # lignes : 9, 12\napply(m, 2, sum)       # colonnes : 3, 7, 11\ncolMeans(m)\nrowSums(m)"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Matrice",
+                "MARGIN = 1 : lignes",
+                "MARGIN = 2 : colonnes"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Une matrice a un type homogène. Un data.frame autorise des colonnes de types différents. apply() sur un data.frame mêlant texte et nombres peut convertir toute la table en texte."
+            },
+            {
+              "type": "callout",
+              "label": "Pratique sûre",
+              "text": "Sélectionner explicitement les colonnes numériques avant as.matrix() et apply(). Pour une liste ou des colonnes hétérogènes, lapply() et vapply() évitent cette coercition globale."
+            }
+          ]
+        },
+        {
+          "title": "Importer une table sans deviner",
+          "kicker": "09 · UNE LIGNE = UN TICKET",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "d <- read.csv(\"data/noria_dirty.csv\",\n              stringsAsFactors = FALSE,\n              na.strings = c(\"\", \"NA\"))\ndim(d)\nhead(d)\nstr(d)\nsummary(d)\ncolSums(is.na(d))"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "CSV brut",
+                "Types",
+                "Unités",
+                "Clé unique",
+                "Règles"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Avant la moyenne",
+              "text": "Nommer l’unité d’observation, la population cible, l’unité du délai et la clé ticket_id. Un fichier qui s’ouvre sans erreur peut encore contenir des doublons et des valeurs impossibles."
+            }
+          ]
+        },
+        {
+          "title": "Auditer avant d’exclure",
+          "kicker": "10 · CHAQUE PERTE A UNE RAISON",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "241 lignes brutes",
+                "240 tickets uniques",
+                "236 délais valides"
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Harmoniser les espaces des catégories workflow et team : sept cellules concernées au total.",
+                "Le ticket 17 est dupliqué à l’identique : garder sa première occurrence et noter la règle. Un doublon contradictoire demanderait une investigation.",
+                "Les tickets 21, 87 et 154 ont un délai absent ; le ticket 203 a un délai négatif. Les exclure de l’analyse du délai selon la règle annoncée.",
+                "Ne pas jeter une ligne pour sa seule satisfaction manquante : le délai peut rester analysable."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Une exclusion n’est pas une réparation",
+              "text": "Les 236 tickets valides constituent une analyse sur cas complets pour le délai. Comparer les exclusions par groupe et discuter le risque de biais ; ne pas écrire que les données sont « propres donc sans biais »."
+            }
+          ]
+        },
+        {
+          "title": "La table analysable est un choix",
+          "kicker": "10 BIS · AVANT TOUT GRAPHIQUE OU TEST",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Après avoir écrit vos règles dans le TP02, le code de référence permet de les comparer. d contient encore le brut de la page d’import ; nous gardons le brut et créons un objet distinct pour l’analyse."
+            },
+            {
+              "type": "code",
+              "text": "brut <- d\nsource(\"R/00_utils.R\", encoding = \"UTF-8\")\nsource(\"R/02_clean.R\", encoding = \"UTF-8\")\nnettoye <- clean_noria(brut)\nnettoye$audit\nnettoye$exclusions\nd <- nettoye$data\nstopifnot(nrow(d) == 236)"
+            },
+            {
+              "type": "callout",
+              "label": "Convention pour la suite",
+              "text": "Tous les exemples suivants utilisent d nettoyé, avec workflow A/B, team normalisé et délai strictement positif. Le fichier CSV brut reste intact."
+            }
+          ]
+        },
+        {
+          "title": "Le graphique doit répondre",
+          "kicker": "11 · DISTRIBUTION, PAS DÉCORATION",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Question",
+                "Graphique",
+                "Ce que l’on inspecte"
+              ],
+              "rows": [
+                [
+                  "Quelle forme ?",
+                  "Histogramme du délai",
+                  "Asymétrie, valeurs extrêmes, échelle"
+                ],
+                [
+                  "A diffère de B ?",
+                  "Boîtes + points par groupe",
+                  "Centre, dispersion, recouvrement, n"
+                ],
+                [
+                  "Complexité liée au délai ?",
+                  "Nuage de points",
+                  "Pente, non-linéarité, groupes"
+                ],
+                [
+                  "Le modèle manque quelque chose ?",
+                  "Résidus vs ajustés / QQ",
+                  "Structure, variance, queues"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "text": "hist(d$resolution_minutes, xlab = \"Délai (min)\",\n     main = \"Distribution des délais\")\nboxplot(resolution_minutes ~ workflow, data = d,\n        ylab = \"Délai (min)\")"
+            },
+            {
+              "type": "callout",
+              "label": "Toujours légender",
+              "text": "Unité sur chaque axe, titre qui dit ce qui est représenté, effectifs dans la légende ou la table. Éviter les axes trompeurs et une moyenne seule sans dispersion."
+            }
+          ]
+        },
+        {
+          "title": "Du hasard à l’incertitude",
+          "kicker": "12 · POPULATION, ÉCHANTILLON, EFFET",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Processus cible",
+                "Tickets observés",
+                "Différence B − A",
+                "Intervalle"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Une différence observée change d’un échantillon à l’autre. L’erreur standard mesure l’incertitude d’un estimateur ; l’écart-type décrit la dispersion des observations. Ce sont deux questions différentes."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "B − A < 0 signifie un délai moyen plus faible pour B. Un effet « favorable » doit être défini avant de regarder les résultats.",
+                "Un IC à 95 % décrit une procédure qui couvre le paramètre dans 95 % des répétitions, sous ses hypothèses. Il n’attribue pas 95 % de probabilité au paramètre fixe.",
+                "Un seuil opérationnel de 5 minutes sera discuté comme exemple pédagogique, pas comme exigence réelle de Noria."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Trois verdicts possibles",
+              "text": "Évidence d’une différence ; absence d’évidence suffisante ; bénéfice opérationnel incertain. Aucun n’équivaut automatiquement à « déployer »."
+            }
+          ]
+        },
+        {
+          "title": "Welch : comparer deux moyennes",
+          "kicker": "13 · CONTRASTE ANNONCÉ B − A",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "a <- d$resolution_minutes[d$workflow == \"A\"]\nb <- d$resolution_minutes[d$workflow == \"B\"]\ntest <- t.test(x = b, y = a,\n               alternative = \"two.sided\",\n               conf.level = 0.95)\nmean(b) - mean(a)\ntest$conf.int\ntest$p.value"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "H0 : différence moyenne B − A = 0. Welch ne suppose pas des variances égales.",
+                "Tickets indépendants, mesures comparables, moyenne pertinente, distributions/valeurs influentes à examiner. Une affectation aléatoire n’efface pas un biais dû aux exclusions.",
+                "La p-valeur est calculée sous H0 et le modèle ; elle n’est pas P(H0 vraie). Un test non significatif ne prouve pas l’équivalence."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Sens du résultat",
+              "text": "La formule t.test(delai ~ workflow) utilise l’ordre des niveaux ; elle peut afficher A − B. Ici x = b, y = a évite l’ambiguïté."
+            }
+          ]
+        },
+        {
+          "title": "Le résultat statistique est un objet",
+          "kicker": "14 · CLASS, ATTRIBUTES, MÉTHODES",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "class(test)          # \"htest\"\nnames(test)\nattributes(test)\nstr(test, max.level = 1)\ntest$estimate\nunname(test$conf.int)\n# Préférer une propriété à une capture console\nwrite.csv(data.frame(p = test$p.value),\n          \"results/test_exemple.csv\", row.names = FALSE)"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "t.test()",
+                "Objet htest",
+                "Propriétés",
+                "Table exportable"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Pour les modèles",
+              "text": "lm() produit un objet de classe lm. Les méthodes coef(), confint(), fitted() et residuals() décrivent sa structure sans copier à la main le texte imprimé."
+            }
+          ]
+        },
+        {
+          "title": "La régression ajoute une question",
+          "kicker": "15 · AJUSTER SUR LA COMPLEXITÉ",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "d$workflow <- factor(d$workflow, levels = c(\"A\", \"B\"))\nmodele <- lm(resolution_minutes ~ workflow + complexity + team,\n             data = d)\ncoef(modele)\nconfint(modele)\nsummary(modele)\nattributes(modele)"
+            },
+            {
+              "type": "text",
+              "text": "workflowB estime la différence B − A à complexité et équipe égales, dans ce modèle additif. complexity suppose une variation linéaire du délai entre niveaux 1–5 : hypothèse à discuter."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Complexité et équipe sont prétraitement. La satisfaction est après traitement : ne pas l’ajouter mécaniquement comme contrôle.",
+                "Welch est l’analyse principale. Le modèle ajusté est secondaire, fixé par le protocole du cours avant calcul ; rapporter les deux résultats, quelle que soit leur p-valeur.",
+                "L’IC d’un coefficient est conditionné au modèle et à ses hypothèses."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Au-delà du coefficient",
+              "text": "Un modèle ajusté aide à décrire ; il ne garantit ni causalité dans un autre contexte, ni validité pour de futurs clients."
+            }
+          ]
+        },
+        {
+          "title": "Un bon modèle accepte la critique",
+          "kicker": "16 · DIAGNOSTICS ET LIMITES",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "par(mfrow = c(1, 2))\nplot(fitted(modele), residuals(modele),\n     xlab = \"Délai ajusté (min)\", ylab = \"Résidu (min)\")\nabline(h = 0, lty = 2)\nqqnorm(residuals(modele))\nqqline(residuals(modele))\npar(mfrow = c(1, 1))"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Signal",
+                "Question suivante"
+              ],
+              "rows": [
+                [
+                  "Courbe dans les résidus",
+                  "La relation est-elle non linéaire ?"
+                ],
+                [
+                  "Éventail",
+                  "La variance change-t-elle avec le niveau ?"
+                ],
+                [
+                  "Point très influent",
+                  "Erreur de mesure ou cas réel à documenter ?"
+                ],
+                [
+                  "Même client répété",
+                  "L’indépendance des tickets est-elle plausible ?"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Interprétation honnête",
+              "text": "Un graphique rassurant ne prouve pas une hypothèse. En cas de doute : décrire la fragilité, tester une sensibilité annoncée, ou restreindre la conclusion."
+            }
+          ]
+        },
+        {
+          "title": "Extension : refaire le tirage",
+          "kicker": "17 · BOOTSTRAP RAISONNÉ",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "set.seed(42)\ndelta <- replicate(1000, {\n  mean(sample(b, length(b), replace = TRUE)) -\n    mean(sample(a, length(a), replace = TRUE))\n})\nquantile(delta, c(0.025, 0.975))"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Tickets A/B observés",
+                "Rééchantillonner par groupe",
+                "Recalculer B − A",
+                "Distribution des estimations"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Ce bootstrap non paramétrique respecte deux groupes indépendants ; son IC percentile est une approximation. Il ne corrige ni dépendance entre tickets, ni données manquantes informatives, ni échantillon non représentatif."
+            },
+            {
+              "type": "callout",
+              "label": "Option avancée, hors noyau",
+              "text": "Comparer l’IC bootstrap à Welch, conserver la graine et expliquer pourquoi un désaccord mérite une enquête plutôt qu’un choix opportuniste."
+            }
+          ]
+        },
+        {
+          "title": "MapReduce commence sur papier",
+          "kicker": "18 · CALCUL DÉCOMPOSABLE",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Découper",
+                "Map : somme / n",
+                "Shuffle : par clé",
+                "Reduce : additionner",
+                "Moyenne"
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Partition",
+                "Somme",
+                "n",
+                "Moyenne"
+              ],
+              "rows": [
+                [
+                  "P1 : 10, 20",
+                  "30",
+                  "2",
+                  "15"
+                ],
+                [
+                  "P2 : 90",
+                  "90",
+                  "1",
+                  "90"
+                ],
+                [
+                  "Ensemble",
+                  "120",
+                  "3",
+                  "40"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "text": "# La moyenne des moyennes est fausse ici\nmean(c(15, 90))            # 52.5\n(30 + 90) / (2 + 1)        # 40"
+            },
+            {
+              "type": "callout",
+              "label": "À préserver",
+              "text": "Transporter des sommes et des effectifs, pas seulement des moyennes. Les additions se combinent ; une médiane locale n’est pas suffisante pour retrouver la médiane globale."
+            }
+          ]
+        },
+        {
+          "title": "Hadoop n’est pas une fonction R",
+          "kicker": "19 · STOCKAGE, ORCHESTRATION, CALCUL",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "HDFS : blocs",
+                "Map : près des données",
+                "Shuffle réseau",
+                "Reduce : par clé"
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Composant",
+                "Responsabilité"
+              ],
+              "rows": [
+                [
+                  "HDFS NameNode",
+                  "Métadonnées du système de fichiers"
+                ],
+                [
+                  "HDFS DataNodes",
+                  "Stockage des blocs et réplication"
+                ],
+                [
+                  "YARN",
+                  "Allocation des ressources / ordonnancement"
+                ],
+                [
+                  "MapReduce",
+                  "Traitement distribué en tâches map et reduce"
+                ],
+                [
+                  "RHadoop",
+                  "Famille historique d’interfaces R, dont rhdfs et rmr2"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Ce que le TP prouve",
+              "text": "Le TP05 vérifie l’algorithme en mémoire dans un processus R. Il ne teste ni HDFS, ni parallélisme, ni reprise après panne, ni déploiement RHadoop. Un cluster est inutile pour nos 241 lignes."
+            }
+          ]
+        },
+        {
+          "title": "Lire une API RHadoop historique",
+          "kicker": "20 · PASSERELLE VERS LE PLAN OFFICIEL",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Le schéma ci-dessous est du pseudocode inspiré des primitives de rmr2, pas un script à exécuter dans ce dépôt. Un véritable environnement RHadoop devrait fournir paquets, versions compatibles, HDFS et configuration cluster."
+            },
+            {
+              "type": "code",
+              "text": "# PSEUDOCODE : environnement RHadoop séparé\nmapreduce(\n  input = \"hdfs:///tickets\",\n  map = function(key, rows) {\n    # émettre (workflow, somme_delai, effectif)\n  },\n  reduce = function(workflow, values) {\n    # additionner les sommes et effectifs\n  }\n)\n# finaliser : total_delai / total_effectif"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Repérer dans la documentation rmr2 : mapreduce(), keyval(), to.dfs(), from.dfs().",
+                "Relier chaque primitive aux étapes du TP05, puis nommer les garanties que notre simulation ne teste pas."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Adaptation à valider",
+              "text": "La mise en œuvre RHadoop réelle demandée par le plan n’est pas réalisée ici. Le formateur doit faire approuver la substitution pratique locale ; les notions Hadoop/HDFS restent traitées."
+            }
+          ]
+        },
+        {
+          "title": "Livrer comme un collègue fiable",
+          "kicker": "21 · REPRODUCTIBILITÉ À PETITE ÉCHELLE",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "raw immuable",
+                "fonctions",
+                "contrôles",
+                "résultats",
+                "sessionInfo"
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Relancer depuis une session vide ; utiliser des chemins relatifs et garder les données originales.",
+                "Enregistrer les exclusions et unités, pas seulement le dernier graphique.",
+                "Garder les graines des simulations et les versions avec sessionInfo().",
+                "Comparer une implémentation différente : calcul direct contre MapReduce.",
+                "Pour un projet futur avec paquets : versions contrôlées, renv, revue de code et automatisation deviennent utiles. Ici la dépendance minimale est un choix pédagogique."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Git est une extension",
+              "text": "Un commit explique une décision et permet de comparer. Ne jamais publier données personnelles, secrets, captures de comptes ou noms d’étudiants dans un dépôt public. Un ZIP local reste un livrable valable."
+            }
+          ]
+        },
+        {
+          "title": "Votre résultat tient en une page",
+          "kicker": "22 · LE PROJECTEUR EST À VOUS",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Bloc",
+                "Preuve attendue"
+              ],
+              "rows": [
+                [
+                  "Question",
+                  "Population, mesure, contraste B − A"
+                ],
+                [
+                  "Qualité",
+                  "Effectifs avant/après et causes d’exclusion"
+                ],
+                [
+                  "Résultat",
+                  "Estimation, IC, graphique et dénominateurs"
+                ],
+                [
+                  "Interprétation",
+                  "Ampleur, incertitude, hypothèses"
+                ],
+                [
+                  "Décision",
+                  "Recommandation conditionnelle et prochaine donnée utile"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Restitution : trois minutes par personne en triades. Un pair joue le décideur, un autre le relecteur. Chaque étudiant répond aussi individuellement à une question commune ; la visibilité à l’oral public n’ajoute aucun point."
+            },
+            {
+              "type": "callout",
+              "label": "Question de soutenance",
+              "text": "« Quelle observation nouvelle pourrait vous faire changer d’avis ? » Une bonne analyse peut proposer un prochain test au lieu de recommander immédiatement un déploiement."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "03_donnees_et_sources.pdf",
+      "title": "Données, méthode et références",
+      "subtitle": "Le contrat de données du projet Noria Services",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Le dictionnaire des tickets",
+          "kicker": "UN JEU SYNTHÉTIQUE · AUCUNE DONNÉE CLIENT",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Colonne",
+                "Type / unité",
+                "Règle"
+              ],
+              "rows": [
+                [
+                  "ticket_id",
+                  "integer / identifiant",
+                  "Un ticket unique attendu"
+                ],
+                [
+                  "workflow",
+                  "catégorie A/B",
+                  "Procédure affectée aléatoirement"
+                ],
+                [
+                  "resolution_minutes",
+                  "numeric / minutes",
+                  "Délai strictement positif et fini"
+                ],
+                [
+                  "complexity",
+                  "numeric / échelle 1–5",
+                  "Mesurée avant traitement"
+                ],
+                [
+                  "satisfaction",
+                  "ordinal / note 1–5",
+                  "NA possible ; ne pas confondre avec 0"
+                ],
+                [
+                  "team",
+                  "catégorie",
+                  "Atlas, Boreal, Cedre"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "noria_reference.csv contient 240 tickets synthétiques avant anomalies de transmission. noria_dirty.csv contient 241 lignes reçues. Le générateur est documenté dans scripts/02_generate_data.R ; il conserve une graine et un algorithme explicites pour reproduire les CSV."
+            },
+            {
+              "type": "callout",
+              "label": "L’unité compte",
+              "text": "Les tickets sont indépendants par construction dans cette simulation. Dans un vrai service, plusieurs tickets d’un même client ou agent pourraient être corrélés ; le modèle simple devrait alors être réexaminé."
+            }
+          ]
+        },
+        {
+          "title": "Un audit reproductible",
+          "kicker": "RÈGLES ANNONCÉES AVANT LE TEST",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Étape",
+                "Traitement",
+                "Effectif"
+              ],
+              "rows": [
+                [
+                  "Brut",
+                  "Aucune modification",
+                  "241"
+                ],
+                [
+                  "Catégories",
+                  "trimws() sur workflow et team",
+                  "241"
+                ],
+                [
+                  "Doublon",
+                  "ticket17 : première occurrence conservée",
+                  "240"
+                ],
+                [
+                  "Délai absent",
+                  "IDs21,87,154 exclus du délai",
+                  "237"
+                ],
+                [
+                  "Délai impossible",
+                  "ID203 négatif exclu du délai",
+                  "236"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Les espaces concernent sept cellules : trois de workflow et quatre de team.",
+                "Après traitement : A =117, B =119 ; douze satisfactions manquantes demeurent, à comptabiliser séparément.",
+                "Conserver un journal d’exclusions. Ne jamais écraser le CSV brut.",
+                "Les exclusions ont des raisons explicites mais leur effet sur l’inférence doit être discuté : une analyse sur cas complets suppose plus qu’un fichier sans erreur."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Pas de fuite de vérité",
+              "text": "Le fichier de référence aide à vérifier le générateur et les tests. Il ne faut pas remplacer les valeurs absentes du fichier reçu avec cette « vérité » fictive pour prétendre résoudre un vrai problème de données manquantes."
+            }
+          ]
+        },
+        {
+          "title": "Lire les sources primaires",
+          "kicker": "RÉFÉRENCES · VÉRIFIÉES LE 23 OCTOBRE 2026",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "R — introduction officielle : https://cran.r-project.org/doc/manuals/r-patched/R-intro.html",
+                "Documentation installée : ?mean, ?matrix, ?apply, ?t.test, ?lm, ?attributes, ?sessionInfo.",
+                "RStudio — guide et téléchargements : https://docs.posit.co/ide/user/download.html",
+                "HDFS — architecture : https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html",
+                "MapReduce — tutoriel Apache : https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html",
+                "rmr2 — tutoriel historique : https://github.com/RevolutionAnalytics/rmr2/blob/master/docs/tutorial.md",
+                "RHadoop — installation historique : https://github.com/RevolutionAnalytics/RHadoop/wiki/Installing-RHadoop-on-RHEL",
+                "R en contexte professionnel : https://rconsortium.github.io/submissions-wg/"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Portée de la préparation",
+              "text": "Le plan du coordinateur reste une source privée. Les exercices et données de ce dépôt ont été créés pour le cours. Les références techniques sont des ressources externes, pas des garanties de compatibilité de toutes leurs versions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "04_projection.pdf",
+      "title": "R : le projecteur est à vous",
+      "subtitle": "Support de projection · 16:9 · compléter avec les TPs",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Une question qui mérite une analyse",
+          "kicker": "PROJET 0 → 9 · MISSION",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Question",
+                "Données",
+                "Audit",
+                "Analyse",
+                "Incertitude",
+                "Décision"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Contrat scientifique",
+              "text": "Ce sont des données synthétiques, pas une étude réelle ni une preuve commerciale. Le générateur contient un effet ; l’exercice porte sur l’estimation et ses limites."
+            }
+          ]
+        },
+        {
+          "title": "R est un atelier de calcul",
+          "kicker": "01 · OBJET, FONCTION, RÉSULTAT",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Valeur : 12",
+                "Objet : delai",
+                "Fonction : mean()",
+                "Objet résultat"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "À vous · 90 secondes",
+              "text": "Remplacer 30 par 120. Quel résumé bouge le plus : mean() ou median() ? Expliquer en une phrase."
+            }
+          ]
+        },
+        {
+          "title": "Les types changent le sens",
+          "kicker": "02 · TYPE ET STRUCTURE",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Valeur",
+                "Type / classe",
+                "Sens"
+              ],
+              "rows": [
+                [
+                  "12.5",
+                  "numeric",
+                  "Mesure quantitative"
+                ],
+                [
+                  "3L",
+                  "integer",
+                  "Entier"
+                ],
+                [
+                  "\"A\"",
+                  "character",
+                  "Texte"
+                ],
+                [
+                  "TRUE",
+                  "logical",
+                  "Condition vraie"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Piège concret",
+              "text": "Un identifiant numérique reste un identifiant : la moyenne de ticket_id ne décrit pas une performance. Satisfaction 1–5 est ordinale ; ses distances ne sont pas garanties égales."
+            }
+          ]
+        },
+        {
+          "title": "Un vecteur, plusieurs questions",
+          "kicker": "03 · CRÉER ET INDEXER",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "x <- c(12, 18, 30, 45)\nx[1]                 # R commence à 1\nx[c(1, 4)]\nx[x > 20]            # filtre logique\nsum(x > 20)          # compte TRUE\nmean(x > 20)         # proportion\nseq(0, 60, by = 15)\nrep(c(\"A\", \"B\"), each = 2)"
+            },
+            {
+              "type": "callout",
+              "label": "Tracez avant de lancer",
+              "text": "Écrire les quatre valeurs de x > 20 sur papier. Puis comparer x[2] et x[-2] : position choisie ou retirée ? Le TP01 vous demande de construire votre propre exemple."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 04",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "NA ne veut pas dire zéro",
+          "kicker": "04 · DÉNOMINATEUR VISIBLE",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "x <- c(10, NA, 30)\nmean(x)                  # NA\nis.na(x)\nsum(is.na(x))            # 1\nmean(x, na.rm = TRUE)     # 20 sur 2 mesures\nx[!is.na(x) & x > 15]"
+            },
+            {
+              "type": "callout",
+              "label": "Si tout manque",
+              "text": "mean(c(NA_real_, NA_real_), na.rm = TRUE) donne NaN. Une fonction professionnelle définit ce cas explicitement et garde le nombre d’observations."
+            }
+          ]
+        },
+        {
+          "title": "Décider, répéter, puis simplifier",
+          "kicker": "05 · IF, FOR ET VECTORISATION",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "x <- c(12, 75, 35)\nfor (i in seq_along(x)) {\n  print(x[i] > 40)\n}\nx > 40\nany(x > 40)"
+            },
+            {
+              "type": "callout",
+              "label": "Erreur à expliquer",
+              "text": "Pourquoi if (x > 40) est-il incorrect ici ? Écrire une version qui répond à « au moins un délai dépasse 40 » avec any()."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 06",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Une fonction est un contrat",
+          "kicker": "06 · ENTRÉE, SORTIE, CAS LIMITE",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "safe_mean <- function(x) {\n  if (!is.numeric(x)) stop(\"Type incorrect\")\n  if (any(!is.finite(x) & !is.na(x))) stop(\"Inf\")\n  if (all(is.na(x))) return(NA_real_)\n  mean(x, na.rm = TRUE)\n}"
+            },
+            {
+              "type": "callout",
+              "label": "Un contrat testable",
+              "text": "Prédire les sorties pour c(10, NA, 30), numeric(0), c(NA, NA), Inf et \"10\". Puis vérifier chaque cas."
+            }
+          ]
+        },
+        {
+          "title": "Une matrice organise un vecteur",
+          "kicker": "07 · DIMENSIONS ET ORDRE",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "v <- 1:6\nm <- matrix(v, nrow = 2)\nm                         # colonnes d’abord\nm_lignes <- matrix(v, nrow = 2, byrow = TRUE)\ndim(m)                    # 2 3\ndim(m) <- c(3, 2)          # mêmes 6 valeurs\nm[2, 1]"
+            },
+            {
+              "type": "callout",
+              "label": "Avant d’exécuter",
+              "text": "Dessiner m après dim(m) <- c(3, 2). Modifier les dimensions ne réordonne pas le vecteur sous-jacent ; le nombre de cases doit rester 6."
+            }
+          ]
+        },
+        {
+          "title": "apply() suit une direction",
+          "kicker": "08 · LIGNES OU COLONNES",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "m <- matrix(1:6, nrow = 2)\napply(m, 1, sum)       # lignes : 9, 12\napply(m, 2, sum)       # colonnes : 3, 7, 11\ncolMeans(m)\nrowSums(m)"
+            },
+            {
+              "type": "callout",
+              "label": "Pratique sûre",
+              "text": "Sélectionner explicitement les colonnes numériques avant as.matrix() et apply(). Pour une liste ou des colonnes hétérogènes, lapply() et vapply() évitent cette coercition globale."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 09",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Importer une table sans deviner",
+          "kicker": "09 · UNE LIGNE = UN TICKET",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "d <- read.csv(\"data/noria_dirty.csv\",\n              stringsAsFactors = FALSE,\n              na.strings = c(\"\", \"NA\"))\ndim(d)\nhead(d)\nstr(d)\nsummary(d)\ncolSums(is.na(d))"
+            },
+            {
+              "type": "callout",
+              "label": "Avant la moyenne",
+              "text": "Nommer l’unité d’observation, la population cible, l’unité du délai et la clé ticket_id. Un fichier qui s’ouvre sans erreur peut encore contenir des doublons et des valeurs impossibles."
+            }
+          ]
+        },
+        {
+          "title": "Auditer avant d’exclure",
+          "kicker": "10 · CHAQUE PERTE A UNE RAISON",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "241 lignes brutes",
+                "240 tickets uniques",
+                "236 délais valides"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Une exclusion n’est pas une réparation",
+              "text": "Les 236 tickets valides constituent une analyse sur cas complets pour le délai. Comparer les exclusions par groupe et discuter le risque de biais ; ne pas écrire que les données sont « propres donc sans biais »."
+            }
+          ]
+        },
+        {
+          "title": "Utiliser la table analysable",
+          "kicker": "APRÈS LE TP02 · AVANT LES GRAPHIQUES ET TESTS",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "source(\"R/00_utils.R\", encoding = \"UTF-8\")\nsource(\"R/02_clean.R\", encoding = \"UTF-8\")\nnettoye <- clean_noria(d)\nnettoye$audit\nd <- nettoye$data\nstopifnot(nrow(d) == 236)"
+            },
+            {
+              "type": "callout",
+              "label": "Convention",
+              "text": "d désigne désormais les 236 tickets nettoyés. Le brut et ses exclusions restent conservés ; ne jamais écraser le CSV reçu."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 11",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Le graphique doit répondre",
+          "kicker": "11 · DISTRIBUTION, PAS DÉCORATION",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Question",
+                "Graphique",
+                "Ce que l’on inspecte"
+              ],
+              "rows": [
+                [
+                  "Quelle forme ?",
+                  "Histogramme du délai",
+                  "Asymétrie, valeurs extrêmes, échelle"
+                ],
+                [
+                  "A diffère de B ?",
+                  "Boîtes + points par groupe",
+                  "Centre, dispersion, recouvrement, n"
+                ],
+                [
+                  "Complexité liée au délai ?",
+                  "Nuage de points",
+                  "Pente, non-linéarité, groupes"
+                ],
+                [
+                  "Le modèle manque quelque chose ?",
+                  "Résidus vs ajustés / QQ",
+                  "Structure, variance, queues"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Toujours légender",
+              "text": "Unité sur chaque axe, titre qui dit ce qui est représenté, effectifs dans la légende ou la table. Éviter les axes trompeurs et une moyenne seule sans dispersion."
+            }
+          ]
+        },
+        {
+          "title": "Du hasard à l’incertitude",
+          "kicker": "12 · POPULATION, ÉCHANTILLON, EFFET",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Processus cible",
+                "Tickets observés",
+                "Différence B − A",
+                "Intervalle"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Trois verdicts possibles",
+              "text": "Évidence d’une différence ; absence d’évidence suffisante ; bénéfice opérationnel incertain. Aucun n’équivaut automatiquement à « déployer »."
+            }
+          ]
+        },
+        {
+          "title": "Welch : comparer deux moyennes",
+          "kicker": "13 · CONTRASTE ANNONCÉ B − A",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "a <- d$resolution_minutes[d$workflow == \"A\"]\nb <- d$resolution_minutes[d$workflow == \"B\"]\ntest <- t.test(x = b, y = a,\n               alternative = \"two.sided\",\n               conf.level = 0.95)\nmean(b) - mean(a)\ntest$conf.int\ntest$p.value"
+            },
+            {
+              "type": "callout",
+              "label": "Sens du résultat",
+              "text": "La formule t.test(delai ~ workflow) utilise l’ordre des niveaux ; elle peut afficher A − B. Ici x = b, y = a évite l’ambiguïté."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 14",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Le résultat statistique est un objet",
+          "kicker": "14 · CLASS, ATTRIBUTES, MÉTHODES",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "class(test)\nnames(test)\nattributes(test)\nstr(test, max.level = 1)\ntest$estimate\nunname(test$conf.int)\ntest$p.value"
+            },
+            {
+              "type": "callout",
+              "label": "Pour les modèles",
+              "text": "lm() produit un objet de classe lm. Les méthodes coef(), confint(), fitted() et residuals() décrivent sa structure sans copier à la main le texte imprimé."
+            }
+          ]
+        },
+        {
+          "title": "La régression ajoute une question",
+          "kicker": "15 · AJUSTER SUR LA COMPLEXITÉ",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "d$workflow <- factor(d$workflow, levels = c(\"A\", \"B\"))\nmodele <- lm(resolution_minutes ~ workflow + complexity + team,\n             data = d)\ncoef(modele)\nconfint(modele)\nsummary(modele)\nattributes(modele)"
+            },
+            {
+              "type": "callout",
+              "label": "Au-delà du coefficient",
+              "text": "Welch principal et modèle ajusté secondaire sont fixés par le protocole. Rapporter les deux résultats, sans choisir selon leur p-valeur ; les coefficients restent conditionnés aux hypothèses."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 16",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Un bon modèle accepte la critique",
+          "kicker": "16 · DIAGNOSTICS ET LIMITES",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "par(mfrow = c(1, 2))\nplot(fitted(modele), residuals(modele),\n     xlab = \"Délai ajusté (min)\", ylab = \"Résidu (min)\")\nabline(h = 0, lty = 2)\nqqnorm(residuals(modele))\nqqline(residuals(modele))\npar(mfrow = c(1, 1))"
+            },
+            {
+              "type": "callout",
+              "label": "Interprétation honnête",
+              "text": "Un graphique rassurant ne prouve pas une hypothèse. En cas de doute : décrire la fragilité, tester une sensibilité annoncée, ou restreindre la conclusion."
+            }
+          ]
+        },
+        {
+          "title": "Extension : refaire le tirage",
+          "kicker": "17 · BOOTSTRAP RAISONNÉ",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "set.seed(42)\ndelta <- replicate(1000, {\n  mean(sample(b, length(b), replace = TRUE)) -\n    mean(sample(a, length(a), replace = TRUE))\n})\nquantile(delta, c(0.025, 0.975))"
+            },
+            {
+              "type": "callout",
+              "label": "Option avancée, hors noyau",
+              "text": "Comparer l’IC bootstrap à Welch, conserver la graine et expliquer pourquoi un désaccord mérite une enquête plutôt qu’un choix opportuniste."
+            }
+          ]
+        },
+        {
+          "title": "MapReduce commence sur papier",
+          "kicker": "18 · CALCUL DÉCOMPOSABLE",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Découper",
+                "Map : somme / n",
+                "Shuffle : par clé",
+                "Reduce : additionner",
+                "Moyenne"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "À préserver",
+              "text": "Transporter des sommes et des effectifs, pas seulement des moyennes. Les additions se combinent ; une médiane locale n’est pas suffisante pour retrouver la médiane globale."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 19",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Hadoop n’est pas une fonction R",
+          "kicker": "19 · STOCKAGE, ORCHESTRATION, CALCUL",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "HDFS : blocs",
+                "Map : près des données",
+                "Shuffle réseau",
+                "Reduce : par clé"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Ce que le TP prouve",
+              "text": "Le TP05 vérifie l’algorithme en mémoire dans un processus R. Il ne teste ni HDFS, ni parallélisme, ni reprise après panne, ni déploiement RHadoop. Un cluster est inutile pour nos 241 lignes."
+            }
+          ]
+        },
+        {
+          "title": "Lire une API RHadoop historique",
+          "kicker": "20 · PASSERELLE VERS LE PLAN OFFICIEL",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "# PSEUDOCODE historique, pas executable ici\nmapreduce(\n  input = \"hdfs:///tickets\",\n  map = function(key, rows) emettre_somme_et_n(rows),\n  reduce = function(key, values) combiner_sommes_et_n(values)\n)\n# Finaliser : total_delai / total_effectif"
+            },
+            {
+              "type": "callout",
+              "label": "Adaptation à valider",
+              "text": "La mise en œuvre RHadoop réelle demandée par le plan n’est pas réalisée ici. Le formateur doit faire approuver la substitution pratique locale ; les notions Hadoop/HDFS restent traitées."
+            }
+          ]
+        },
+        {
+          "title": "Livrer comme un collègue fiable",
+          "kicker": "21 · REPRODUCTIBILITÉ À PETITE ÉCHELLE",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "raw immuable",
+                "fonctions",
+                "contrôles",
+                "résultats",
+                "sessionInfo"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Git est une extension",
+              "text": "Un commit explique une décision et permet de comparer. Ne jamais publier données personnelles, secrets, captures de comptes ou noms d’étudiants dans un dépôt public. Un ZIP local reste un livrable valable."
+            }
+          ]
+        },
+        {
+          "title": "Votre résultat tient en une page",
+          "kicker": "22 · LE PROJECTEUR EST À VOUS",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Bloc",
+                "Preuve attendue"
+              ],
+              "rows": [
+                [
+                  "Question",
+                  "Population, mesure, contraste B − A"
+                ],
+                [
+                  "Qualité",
+                  "Effectifs avant/après et causes d’exclusion"
+                ],
+                [
+                  "Résultat",
+                  "Estimation, IC, graphique et dénominateurs"
+                ],
+                [
+                  "Interprétation",
+                  "Ampleur, incertitude, hypothèses"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Question de soutenance",
+              "text": "« Quelle observation nouvelle pourrait vous faire changer d’avis ? » Une bonne analyse peut proposer un prochain test au lieu de recommander immédiatement un déploiement."
+            }
+          ]
+        },
+        {
+          "title": "À vous de prendre la main",
+          "kicker": "PAUSE ACTIVE · APRÈS LE CONCEPT 23",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Prédire → tester → expliquer",
+              "text": "Écrivez une prédiction seul, exécutez un exemple différent, puis comparez avec un pair. Chacun doit pouvoir expliquer une ligne et une limite."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "90 secondes : écrire sans lancer R.",
+                "3 minutes : tester et conserver une preuve.",
+                "2 minutes : défendre le résultat à un pair."
+              ]
+            }
+          ]
+        }
+      ],
+      "landscape": true
+    },
+    {
+      "filename": "diagnostic_entree.pdf",
+      "title": "Diagnostic d’entrée",
+      "subtitle": "20 minutes · sans note · adapter l’accompagnement",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Votre point de départ",
+          "kicker": "01 / Profil · 8 min",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Répondez seul, sans recherche. « Je ne sais pas encore » est utile. Ce diagnostic ne classe pas les étudiants et ne compte pas dans l’évaluation."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Donnez un pseudonyme de suivi ; aucune donnée personnelle n’est nécessaire.",
+                "Évaluez votre aisance de 0 (découverte) à 3 (autonomie) : fichiers et dossiers ; programmation ; tableaux ; statistiques ; terminal.",
+                "Quel outil avez-vous utilisé : Excel, SQL, Python, R, autre, aucun ? Donnez un exemple concret.",
+                "Quelle difficulté anticipez-vous : écrire du code, lire une erreur, choisir une analyse, interpréter, prendre la parole ?",
+                "Quel appui vous aide : mémo, exemple minimal, schéma, pair ? Ce choix peut changer."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Contrat d’apprentissage",
+              "text": "Chaque étudiant produit son script et son interprétation. Les échanges servent à expliquer et vérifier ; ils ne remplacent pas le travail personnel."
+            }
+          ]
+        },
+        {
+          "title": "Raisonner avant de calculer",
+          "kicker": "02 / Situations · 12 min",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1. Les délais valent 10, 12, 14, 100 minutes. Quel indicateur décrit un délai « typique » ? Justifiez.",
+                "2. Un délai est absent. Est-il équivalent à zéro ? Que vérifier avant une moyenne ?",
+                "3. B a une moyenne plus basse que A sur 20 tickets. Cela prouve-t-il une amélioration ? Citez une information manquante.",
+                "4. p = 0,04 est-il la probabilité que B soit meilleur ? Reformulez ce que vous pensez savoir.",
+                "5. Un IC de B − A vaut [−12 ; 3] minutes. Quelle incertitude décrit-il ? Peut-on conclure que les workflows sont identiques ?",
+                "6. Deux partitions contiennent 2 et 8 tickets, de moyennes 10 et 20. La moyenne globale est-elle la moyenne simple des deux moyennes ? Expliquez."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Sortie individuelle",
+              "text": "Choisissez une question à reprendre et écrivez ce que vous souhaitez savoir faire dimanche soir. L’enseignant utilise ces réponses pour adapter points d’entrée et défis."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "TP01_vectors.pdf",
+      "title": "TP01 · Prendre la main sur R",
+      "subtitle": "70 minutes · vecteurs, NA, indexation et erreurs",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Un programme que vous comprenez",
+          "kicker": "01 / Démarrer",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Noria Services est fictive : tickets simulés, affectation aléatoire équilibrée aux workflows A/B. R de base uniquement ; aucun paquet à installer."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : ouvrir un fichier ; aucune expérience de R requise. Ouvrez le projet depuis sa racine et labs/TP01_vectors.R.",
+                "Exécutez le contrôle ci-dessous. Réglez les messages de chemin avant de continuer.",
+                "Livrable : script exécutable de haut en bas, contrôles explicites et trois phrases d’interprétation."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Temps",
+                "Étape"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Repérer script, console, aide et dossier"
+                ],
+                [
+                  "10–58 min",
+                  "Noyau individuel puis défi au choix"
+                ],
+                [
+                  "58–67 min",
+                  "Triade : une preuve et un obstacle chacun"
+                ],
+                [
+                  "67–70 min",
+                  "Enregistrer et compléter la sortie"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Rythme",
+              "text": "Le mémo et les indices sont autorisés. Terminer le noyau prime sur la vitesse. Après le noyau, approfondissez sans attendre les autres."
+            },
+            {
+              "type": "text",
+              "text": "Repère du kit : modules 3 · langage. Les numéros de modules et de TP sont distincts."
+            }
+          ]
+        },
+        {
+          "title": "Construire, filtrer, diagnostiquer",
+          "kicker": "02 / Noyau individuel · 48 min",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "delais <- c(42, NA, 35, 80, 55, NA, 20, 60)"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "1. Prédisez length(delais), mean(delais) et le type de is.na(delais). Vérifiez et expliquez les surprises.",
+                "2. Créez des objets distincts : valeurs observées ; délais au plus égaux à 55 ; indicateur « observé et supérieur à 50 ». Conservez l’ordre.",
+                "3. Calculez nombre de NA, effectif utilisé, moyenne et médiane. Expliquez na.rm = TRUE ; ne remplacez pas les NA par zéro.",
+                "4. Comparez delais[1:3], delais[-1] et delais[delais > 50]. Pourquoi ce dernier résultat contient-il des NA ? Corrigez le filtre.",
+                "5. Provoquez une erreur réversible : nom mal orthographié ou opération sur une chaîne. Copiez le message en commentaire, localisez puis corrigez la cause.",
+                "6. Ajoutez deux stopifnot() sur des propriétés utiles. Relancez depuis une session propre."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Auto-contrôle après recherche",
+              "text": "8 éléments, 6 observés, 2 NA ; somme des valeurs observées : 292. Ces repères vérifient la manipulation, pas votre interprétation."
+            }
+          ]
+        },
+        {
+          "title": "Expliquer vos choix",
+          "kicker": "03 / Indices, défi et remise",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Indice",
+                "À consulter dans cet ordre"
+              ],
+              "rows": [
+                [
+                  "1 · Concept",
+                  "Une comparaison avec NA reste inconnue."
+                ],
+                [
+                  "2 · Outil",
+                  "?is.na, ?mean, ?Extract ; opérateurs !, & et |."
+                ],
+                [
+                  "3 · Piste",
+                  "Construisez un masque sans NA avant de filtrer."
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Défi code : créez une fonction renvoyant effectif total, effectif observé et moyenne. Définissez et testez les cas vide et tout manquant.",
+                "Défi raisonnement : ajoutez un délai extrême ; comparez moyenne et médiane. Proposez un usage pour chacune.",
+                "Remise individuelle : labs/TP01_vectors.R complété ; trois phrases « problème → vérification → résultat » dans le script.",
+                "Partage de 3 minutes : un filtre, son résultat, une erreur corrigée ; un pair reformule la logique.",
+                "Sortie : distinguez une erreur d’exécution d’un résultat plausible mais faux."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Réussite",
+              "text": "Le code tourne, les NA sont traités explicitement et vous expliquez le filtre sans lire une solution. Aucun dépôt Git nécessaire."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "TP02_cleaning.pdf",
+      "title": "TP02 · Auditer avant d’analyser",
+      "subtitle": "90 minutes · import, nettoyage traçable et exploration",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Du fichier reçu à la table analysable",
+          "kicker": "01 / Contrat de données",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Noria Services est fictive : tickets simulés, affectation aléatoire équilibrée aux workflows A/B. R de base uniquement ; aucun paquet à installer."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : TP01, filtres logiques et NA. Départ : labs/TP02_cleaning.R ; entrée : data/noria_dirty.csv. Ne modifiez pas le CSV source.",
+                "Champs : ticket_id ; workflow A/B ; resolution_minutes ; complexity de 1 à 5 ; satisfaction ordinale de 1 à 5 ou NA ; team Atlas/Boreal/Cedre.",
+                "240 tickets sous-jacents : une ligne reçue n’est pas forcément une unité statistique."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Importer",
+                "Auditer types et clés",
+                "Nettoyer selon les règles",
+                "Explorer et documenter"
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Temps",
+                "Étape"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Contrat et démarrage"
+                ],
+                [
+                  "10–75 min",
+                  "Audit, nettoyage et exploration individuels"
+                ],
+                [
+                  "75–87 min",
+                  "Triades : preuves et limites"
+                ],
+                [
+                  "87–90 min",
+                  "Journal et remise"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Découpage",
+              "text": "L’import et l’audit commencent séance 1 (40 min) ; nettoyage et exploration continuent séance 2 (50 min). Sauvegardez votre script au point d’arrêt."
+            },
+            {
+              "type": "text",
+              "text": "Repère du kit : modules 1–2–5 · import, nettoyage, exploration. Les numéros de modules et de TP sont distincts."
+            }
+          ]
+        },
+        {
+          "title": "Justifier chaque ligne retirée",
+          "kicker": "02 / Noyau individuel · 65 min",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1. Importez avec read.csv(). Examinez dim(), names(), str(), head(), summary(). Comptez les NA par colonne et répétitions de ticket_id.",
+                "2. Auditez les modalités workflow et team avant transformation ; appliquez trimws() aux deux colonnes. Validez modalités, types et domaines ; arrêtez-vous si une anomalie inconnue subsiste.",
+                "3. Gardez la première occurrence de chaque ticket_id. Prouvez que les copies sont identiques ; des copies contradictoires nécessiteraient une investigation.",
+                "4. Excluez ensuite les délais absents ou négatifs. Conservez les NA de satisfaction : ils n’invalident pas un délai observé.",
+                "5. Journalisez chaque étape : avant, retirés, après, motif et identifiants. Vérifiez l’unicité finale.",
+                "6. Par workflow : n, moyenne, médiane, écart-type et quartiles. Tracez histogramme et boxplot lisibles ; décrivez forme, extrêmes et comparaison."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Auto-contrôle après audit",
+              "text": "241 lignes ; 1 doublon (17) ; 7 cellules avec espaces : 3 workflow, 4 team. Trois délais absents (21, 87, 154), un négatif (203). Après règles : 236 tickets ; 12 satisfaction manquantes."
+            }
+          ]
+        },
+        {
+          "title": "Décrire n’est pas conclure",
+          "kicker": "03 / Indices, défis et preuves",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Indice",
+                "Piste graduée"
+              ],
+              "rows": [
+                [
+                  "1 · Préserver",
+                  "Un objet brut, un objet nettoyé ; une règle par étape."
+                ],
+                [
+                  "2 · Inspecter",
+                  "?duplicated, ?trimws, ?table ; colSums(is.na(...))."
+                ],
+                [
+                  "3 · Vérifier",
+                  "Comparez les identifiants avant/après sans compter deux fois."
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Défi : comparez la suppression de toute ligne incomplète à votre règle ciblée. Mesurez l’impact ; quelle population décrit chaque analyse ?",
+                "Défi : traduisez le contrat en assertions ; une modalité inconnue doit déclencher une erreur explicite.",
+                "Remise individuelle : script, audit, CSV nettoyé et tableau descriptif dans results/ ; graphique PDF avec unités et effectifs. Créez le dossier si nécessaire.",
+                "Ajoutez quatre phrases : unité statistique ; règles ; constat descriptif ; limite liée aux exclusions.",
+                "Partage de 3 minutes : anomalie, règle et preuve de conformité finale."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Satisfaction ordinale",
+              "text": "Les modalités sont ordonnées ; leurs écarts ne sont pas garantis égaux. Une absence ne vaut ni zéro ni insatisfaction. Le résultat principal porte sur le délai."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "TP03_matrices.pdf",
+      "title": "TP03 · Structurer et automatiser",
+      "subtitle": "75 minutes · matrices, conditions, boucles et fonctions",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Du calcul au programme vérifiable",
+          "kicker": "01 / Démarrer",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : TP01 et table nettoyée TP02. Départ : labs/TP03_matrices.R. Si le nettoyage manque, utilisez la reprise indiquée dans le starter sans effacer votre audit.",
+                "Objectif : distinguer matrice/data.frame ; produire un résumé avec une boucle puis apply() ; expliciter les cas manquants."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Temps",
+                "Étape"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Contrats et prédictions"
+                ],
+                [
+                  "10–63 min",
+                  "Noyau individuel puis défi"
+                ],
+                [
+                  "63–72 min",
+                  "Explications croisées"
+                ],
+                [
+                  "72–75 min",
+                  "Exécution complète et remise"
+                ]
+              ]
+            },
+            {
+              "type": "diagram",
+              "kind": "comparison",
+              "nodes": [
+                "Matrice : type homogène",
+                "data.frame : types par colonne",
+                "Fonction : entrée, règle, sortie"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Livrable",
+              "text": "Un script avec prédictions, deux résultats comparables et une fonction testée aux limites. Ne convertissez pas toute la table Noria en matrice : les chaînes peuvent forcer une conversion commune."
+            },
+            {
+              "type": "text",
+              "text": "Repère du kit : modules 3–4 · langage et matrices. Les numéros de modules et de TP sont distincts."
+            }
+          ]
+        },
+        {
+          "title": "Rangement, dimensions et cas limites",
+          "kicker": "02 / Noyau individuel · 53 min",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1. Créez une matrice 1:12 de 3 lignes et 4 colonnes. Prédisez sa disposition avant impression. Répétez avec byrow = TRUE ; expliquez la différence.",
+                "2. Nommez lignes et colonnes. Extrayez une case, une ligne, une colonne et un sous-tableau 2 × 2. Comparez dim() avant/après ; essayez drop = FALSE.",
+                "3. Calculez les sommes par ligne avec for, puis apply(). Vérifiez l’égalité ; expliquez MARGIN = 1. Recommencez par colonne.",
+                "4. Écrivez safe_mean(x) : entrée numérique ; retrait explicite des NA ; NA_real_ si aucune observation ; moyenne sinon. Rejetez une entrée non numérique avec un message clair.",
+                "5. Testez c(2, NA, 4), numeric(0), c(NA_real_, NA_real_) et une chaîne. Le dernier cas doit échouer volontairement.",
+                "6. Sur Noria nettoyé, créez la table complexity × workflow. Vérifiez sommes marginales et total ; décrivez une différence sans explication causale."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Auto-contrôle indépendant",
+              "text": "La case [2, 3] de la matrice remplie par défaut vaut 8 ; avec byrow = TRUE, elle vaut 7. safe_mean(c(2, NA, 4)) doit valoir 3."
+            }
+          ]
+        },
+        {
+          "title": "Une fonction annonce ses limites",
+          "kicker": "03 / Indices, défis et remise",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Indice",
+                "Piste graduée"
+              ],
+              "rows": [
+                [
+                  "1 · Décomposer",
+                  "Valider, isoler les observations, traiter le vide, calculer."
+                ],
+                [
+                  "2 · Aide",
+                  "?matrix, ?dim, ?apply, ?if, ?for, ?stop, ?is.numeric."
+                ],
+                [
+                  "3 · Structure",
+                  "sum(!is.na(x)) mesure l’effectif utile ; une branche if traite zéro."
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Défi : une fonction renvoie n total, n observé, moyenne, médiane ; comparez à summary() sur un groupe.",
+                "Défi : ajoutez une colonne texte, convertissez en matrice et expliquez le type final.",
+                "Remise : script avec assertions sur dimensions/résultats et un commentaire montrant quand drop = FALSE compte.",
+                "Partage de 3 minutes : une prédiction démentie ou un cas limite ; le pair propose un autre test.",
+                "Sortie : une boucle et apply() donnent la même réponse. Qu’avez-vous démontré et que reste-t-il à vérifier ?"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Réussite",
+              "text": "Une fonction courte comprise vaut mieux qu’une fonction générale non maîtrisée. Gardez les cas limites dans le script."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "TP04_inference.pdf",
+      "title": "TP04 · Comparer avec incertitude",
+      "subtitle": "100 minutes · Welch, objets et modèle linéaire",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "La question avant le test",
+          "kicker": "01 / Plan d’analyse",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : audit TP02, résumés, moyenne et dispersion. Départ : labs/TP04_inference.R ; utilisez la reprise du starter si le CSV nettoyé manque.",
+                "Question : quelle différence moyenne de délai entre B et A ? Définissez delta = moyenne(B) − moyenne(A), en minutes. Une valeur négative favorise B.",
+                "Analyse principale : Welch bilatéral et IC à 95 %. Ne choisissez pas le sens du test après lecture du résultat.",
+                "Discutez tickets indépendants, affectation aléatoire simulée, variances différentes possibles, extrêmes et exclusions."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Temps",
+                "Étape"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Question, contraste et hypothèses"
+                ],
+                [
+                  "10–85 min",
+                  "Noyau individuel : Welch, objets, modèle"
+                ],
+                [
+                  "85–97 min",
+                  "Interprétations en triades"
+                ],
+                [
+                  "97–100 min",
+                  "Conclusion et remise"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Règle pratique",
+              "text": "Le protocole du cours fixe Welch principal et modèle ajusté secondaire. Proposez aussi un seuil pratique en minutes comme hypothèse pédagogique ; les résultats de référence sont accessibles, ce choix ne constitue pas un préenregistrement indépendant."
+            },
+            {
+              "type": "text",
+              "text": "Repère du kit : modules 6–8 · Welch et modèle. Les numéros de modules et de TP sont distincts."
+            }
+          ]
+        },
+        {
+          "title": "Estimer, extraire et comparer",
+          "kicker": "02 / Noyau individuel · 75 min",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1. Reproduisez n, moyenne, écart-type et graphique par workflow. Vérifiez les NA et calculez delta directement.",
+                "2. Construisez x = délais B et y = délais A. Exécutez t.test(x, y, var.equal = FALSE, conf.level = 0.95). Vérifiez le sens B − A.",
+                "3. Affectez la sortie à un objet ; inspectez class(), names(), attributes(), str(). Extrayez estimate, statistic, parameter, p.value et conf.int. Distinguez objet et texte imprimé.",
+                "4. Fixez A comme référence de workflow. Ajustez le modèle secondaire prévu : lm(resolution_minutes ~ workflow + complexity + team, data = d). Complexity et team sont prétraitement. Inspectez class(), attributes(), coef(), confint() et summary().",
+                "5. Interprétez workflowB comme différence ajustée B − A à complexité et équipe égales, sous un effet additif. Rapportez le contraste brut de Welch ET ce résultat secondaire ; ne sélectionnez pas celui dont la p-value plaît.",
+                "6. Inspectez un graphique de résidus du modèle : quel motif fragiliserait son interprétation ? Rédigez cinq phrases : n, delta/unité, IC, p sous le modèle nul, limites."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Méthodes et classes",
+              "text": "coef() et confint() s’appliquent ici au modèle lm. Pour htest, utilisez les composantes décrites dans ?t.test ; tous les objets n’acceptent pas les mêmes méthodes."
+            }
+          ]
+        },
+        {
+          "title": "Décider sans surinterpréter",
+          "kicker": "03 / Indices, défis et remise",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Indice",
+                "Piste graduée"
+              ],
+              "rows": [
+                [
+                  "1 · Signe",
+                  "Comparez l’IC au calcul direct moyenne(B) − moyenne(A)."
+                ],
+                [
+                  "2 · Objets",
+                  "?t.test décrit les composantes ; ?coef et ?confint les méthodes."
+                ],
+                [
+                  "3 · Référence",
+                  "factor(workflow, levels = c(\"A\", \"B\")) fixe A."
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Défi : traiter complexity comme facteur, puis discuter l’hypothèse de linéarité du modèle principal. Signaler cette analyse comme exploratoire et garder les deux analyses prévues.",
+                "Défi : expliquez comment votre recommandation changerait aux deux bornes de l’IC.",
+                "Remise : script, tableau delta/IC/p/n, graphique et conclusion de cinq phrases. Relancez depuis une session propre ; aucun chiffre saisi manuellement dans l’analyse.",
+                "Partage de 3 minutes : expliquez signe, une borne de l’IC et une limite sans lire la console."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Prudence",
+              "text": "p n’est pas la probabilité que le nul soit vrai. Un IC fréquentiste observé n’attribue pas 95 % de probabilité au paramètre fixe. Inclure zéro ne prouve ni égalité ni équivalence ; un petit p ne mesure pas l’utilité pratique."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "TP05_mapreduce.pdf",
+      "title": "TP05 · Réduire sans perdre l’information",
+      "subtitle": "80 minutes · simulation locale et architecture Hadoop",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Ce que la simulation apprend",
+          "kicker": "01 / Périmètre technique",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : fonctions, listes, agrégations, table nettoyée. Départ : labs/TP05_mapreduce.R. Tout s’exécute localement en R de base.",
+                "Question : calculer une moyenne par workflow depuis des partitions inégales sans transmettre tous les tickets à chaque agrégation.",
+                "Cette activité simule split–map–shuffle–reduce ; elle n’installe ni Hadoop, ni HDFS, ni RHadoop et ne constitue pas une programmation RHadoop."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Split : partitions",
+                "Map : clé, somme, effectif",
+                "Shuffle : regrouper les clés",
+                "Reduce : sommer puis diviser"
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Temps",
+                "Étape"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Architecture et contrats"
+                ],
+                [
+                  "10–65 min",
+                  "Noyau individuel et contre-exemple"
+                ],
+                [
+                  "65–77 min",
+                  "Défense en triades"
+                ],
+                [
+                  "77–80 min",
+                  "Preuves et remise"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Point à arbitrer",
+              "text": "Si une programmation RHadoop réelle est obligatoire, cette substitution pédagogique doit être validée. Un environnement compatible, des accès et une séance dédiée restent nécessaires ; une réussite locale ne valide aucun déploiement."
+            },
+            {
+              "type": "text",
+              "text": "Repère du kit : modules 7 · MapReduce. Les numéros de modules et de TP sont distincts."
+            }
+          ]
+        },
+        {
+          "title": "La moyenne de moyennes peut tromper",
+          "kicker": "02 / Noyau individuel · 55 min",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1. Découpez les tickets en partitions inégales selon la stratégie du starter. Vérifiez présence de chaque identifiant une seule fois et tailles différentes.",
+                "2. Contrat map : pour chaque partition et workflow présent, émettre clé, somme des délais et effectif valide. Certaines partitions peuvent omettre un workflow.",
+                "3. Implémentez map, puis shuffle par clé. Implémentez reduce : sommer les sommes, sommer les effectifs, diviser à la fin.",
+                "4. Comparez au calcul central : effectifs et sommes, puis moyennes avec all.equal() et une tolérance annoncée.",
+                "5. Partitionnez autrement les mêmes tickets ; recommencez. Expliquez les invariants.",
+                "6. Contre-exemple : une partition de 2 délais de moyenne 10, une de 8 délais de moyenne 20. Comparez moyenne simple des moyennes et moyenne pondérée."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Auto-contrôle après calcul",
+              "text": "Le contre-exemple comporte 10 observations et une somme 180 ; moyenne globale 18. Les moyennes locales seules perdent les effectifs."
+            }
+          ]
+        },
+        {
+          "title": "Relier code et architecture distribuée",
+          "kicker": "03 / Analyse et remise",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Élément",
+                "Rôle à expliquer"
+              ],
+              "rows": [
+                [
+                  "HDFS",
+                  "Stockage en blocs répliqués, distinct du calcul"
+                ],
+                [
+                  "Moteur MapReduce",
+                  "Planification, regroupement par clé, gestion des tâches"
+                ],
+                [
+                  "RHadoop",
+                  "Famille historique d’interfaces R/Hadoop ; compatibilité à vérifier"
+                ],
+                [
+                  "Simulation R",
+                  "Listes et fonctions dans un processus ; ni réseau ni reprise de panne"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Dessinez données, map, shuffle et reduce. Situez réseau, réplication et reprise de tâche ; dites ce que l’expérience ne mesure pas.",
+                "Défi : partition vide ou clé absente ; rendez le code robuste. Détectez le double traitement d’une partition.",
+                "Remise : script, tailles de partitions, tableau central/distribué/écart, contre-exemple commenté et schéma annoté.",
+                "Partage de 3 minutes : pourquoi transmettre somme/effectif ? Citez une limite du passage à l’échelle."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Indices gradués",
+              "text": "1. Une moyenne globale exige des poids. 2. ?split, ?lapply, ?aggregate. 3. Testez map sur une petite partition avant assemblage. Les temps locaux ne mesurent pas un gain de performance distribuée."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "TP06_capstone.pdf",
+      "title": "TP06 · Une recommandation défendable",
+      "subtitle": "120 minutes · étude individuelle de bout en bout",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Votre mandat chez Noria Services",
+          "kicker": "01 / Brief",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Cas fictif et données simulées : tickets indépendants affectés aléatoirement à A/B. Noria envisage de privilégier B. Livrez une recommandation d’une page appuyée sur une analyse reproductible ; un essai supplémentaire est une décision possible."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : TP01–05, audit, graphiques, contraste B − A et IC. Départ : labs/TP06_capstone.R ; entrée imposée : data/noria_dirty.csv.",
+                "Code, choix et texte individuels. Mémo autorisé ; échangez sur la méthode sans partager de réponse finale."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Temps",
+                "Jalon"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Question, contraste, critère écrits"
+                ],
+                [
+                  "10–35 min",
+                  "Audit et table reconstruits"
+                ],
+                [
+                  "35–65 min",
+                  "Description, graphique, Welch et IC"
+                ],
+                [
+                  "65–90 min",
+                  "Modèle ajusté, limites, contrôles"
+                ],
+                [
+                  "90–108 min",
+                  "Recommandation et relance propre"
+                ],
+                [
+                  "108–117 min",
+                  "Répétition en triades : 3 min par personne"
+                ],
+                [
+                  "117–120 min",
+                  "Remise individuelle"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Autonomie",
+              "text": "Les clarifications et indices sont possibles. Notez l’aide reçue dans le script. Déclarez une partie inachevée plutôt que masquer un résultat manquant."
+            },
+            {
+              "type": "text",
+              "text": "Repère du kit : modules 0–9 · chaîne complète. Les numéros de modules et de TP sont distincts."
+            }
+          ]
+        },
+        {
+          "title": "Une chaîne de preuves",
+          "kicker": "02 / Noyau obligatoire",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1. Avant calcul : question, contraste B − A, IC 95 %, Welch bilatéral et seuil pratique justifié comme choix de gestion simulé.",
+                "2. Réimportez le brut ; appliquez et journalisez les règles TP02. Produisez la table analysable et vérifiez clés, types et domaines.",
+                "3. Résumez les groupes avec effectifs et dispersion. Créez un graphique titré, avec unités, source simulée et légende lisible ; reliez-le à la question.",
+                "4. Rapportez delta, IC, p et effectifs. Vérifiez le sens par calcul indépendant. Distinguez incertitude statistique et pertinence pratique.",
+                "5. Ajustez le modèle secondaire préspécifié : resolution_minutes ~ workflow + complexity + team. Interprétez workflowB sous les hypothèses du modèle, comparez au contraste brut et inspectez des résidus. Rapporter les deux résultats est obligatoire.",
+                "6. Citez trois limites précises : exclusions, indépendance, transférabilité, hypothèses du modèle, simulation, satisfaction ordinale ou incertitude.",
+                "7. Relancez depuis une session propre : tous les fichiers doivent être recréés depuis le brut."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Indices séparés",
+              "text": "1. Identifier l’étape bloquante. 2. Consulter la fonction dans le mémo. 3. Tester cette étape sur trois lignes artificielles. Aucun indice ne fournit l’analyse complète."
+            }
+          ]
+        },
+        {
+          "title": "La page que l’on doit pouvoir contester",
+          "kicker": "03 / Remise et défense",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "À rendre",
+                "Contenu"
+              ],
+              "rows": [
+                [
+                  "Script",
+                  "labs/TP06_capstone.R ; chemins relatifs ; aide déclarée"
+                ],
+                [
+                  "results/capstone/",
+                  "Audit CSV, tableau de résultats, graphique PDF, CSV nettoyé"
+                ],
+                [
+                  "Recommandation",
+                  "Une page : question, verdict, chiffres, règle, limites, action"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Verdict possible : adopter, poursuivre l’essai ou ne pas adopter. Il suit votre règle et vos résultats ; il ne prédit pas un déploiement réel.",
+                "Défi après noyau : complexity factorielle ou sensibilité aux valeurs extrêmes. Signalez l’exploration et conservez les analyses prévues.",
+                "Répétition en triades : 60 s verdict/preuve, 60 s hypothèse, 60 s question du pair. La défense finale et la réponse écrite commune ont lieu dans le créneau séparé prévu par le formateur.",
+                "Contrôle : retrouve-t-on n final, sens de delta, origine des chiffres ? La recommandation change-t-elle aux bornes de l’IC ?"
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Dépôt responsable",
+              "text": "Utilisez le canal indiqué par l’enseignant. Aucun Git requis. Si vous publiez volontairement : seulement données simulées et code nettoyé ; ni nom, email, compte, capture personnelle, secret ni chemin personnel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "memo_R.pdf",
+      "title": "Mémo R · du fichier à la décision",
+      "subtitle": "3 pages · aide autorisée pendant les TPs",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Lire, inspecter et sélectionner",
+          "kicker": "01 / Manipulations de base",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')\ngetwd()\nlist.files('data')\nd <- read.csv('data/noria_dirty.csv',\n              stringsAsFactors = FALSE)\nstr(d)\nsummary(d)\nnames(d)\ndim(d)"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Intention",
+                "Outil"
+              ],
+              "rows": [
+                [
+                  "Repérer les manquants",
+                  "is.na(x) ; sum(is.na(x))"
+                ],
+                [
+                  "Effectif observé",
+                  "sum(!is.na(x))"
+                ],
+                [
+                  "Comparer / combiner",
+                  "==, !=, <, <=, >, >= ; !, &, |"
+                ],
+                [
+                  "Sélectionner",
+                  "x[masque] ; d[masque, colonnes]"
+                ],
+                [
+                  "Espaces aux extrémités",
+                  "trimws(x)"
+                ],
+                [
+                  "Répétitions d’une clé",
+                  "duplicated(d$ticket_id)"
+                ],
+                [
+                  "Contrôle / aide",
+                  "stopifnot(condition) ; ?mean"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Débogage",
+              "text": "Lisez le message entier. Vérifiez nom, type, dimensions, NA et dossier. Testez un exemple minimal. = dans un argument n’est pas le test ==."
+            },
+            {
+              "type": "text",
+              "text": "Un chemin relatif part de la racine du projet. read.csv() ne nettoie pas les règles métier. Gardez l’objet brut ; expliquez chaque transformation. Les numéros de TP et de modules R sont distincts : 0 setup, 1 import, 2 nettoyage, 3 langage, 4 matrices, 5 exploration, 6 Welch, 7 MapReduce, 8 modèle, 9 exports."
+            }
+          ]
+        },
+        {
+          "title": "Résumer, programmer, dessiner",
+          "kicker": "02 / Outils de travail",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Besoin",
+                "R de base"
+              ],
+              "rows": [
+                [
+                  "Résumer",
+                  "mean, median, sd, quantile, range"
+                ],
+                [
+                  "Compter",
+                  "table(..., useNA = 'ifany')"
+                ],
+                [
+                  "Groupes",
+                  "split puis lapply ; aggregate"
+                ],
+                [
+                  "Matrices",
+                  "matrix, dim, rowSums, colSums, apply"
+                ],
+                [
+                  "Garder 2 dimensions",
+                  "M[i, j, drop = FALSE]"
+                ],
+                [
+                  "Boucle / condition",
+                  "for (i in seq_along(x)) {...} ; if (...) {...}"
+                ],
+                [
+                  "Fonction",
+                  "nom <- function(x) {...}"
+                ],
+                [
+                  "Comparer des calculs",
+                  "isTRUE(all.equal(a, b))"
+                ],
+                [
+                  "Exporter",
+                  "write.csv ; png ; dev.off"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "text": "hist(x, xlab = 'Délai (minutes)',\n     main = 'Distribution des délais')\nboxplot(resolution_minutes ~ workflow,\n        data = d, ylab = 'Minutes')"
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "na.rm = TRUE retire les NA du calcul, pas de la table. Comptez les observations utilisées.",
+                "mean(numeric(0)) donne NaN : annoncez le cas sans observation.",
+                "Une matrice a un type commun ; un data.frame conserve des types par colonne.",
+                "Graphique exporté : ouvrir png(...), tracer, fermer dev.off(). Créez le dossier avec dir.create(..., recursive = TRUE)."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Vérification",
+              "text": "Une assertion doit contrôler le sens des données. Enregistrez puis relancez sans dépendre d’objets anciens ; un code qui tourne peut encore calculer une mauvaise quantité."
+            }
+          ]
+        },
+        {
+          "title": "Estimer et lire des objets",
+          "kicker": "03 / Statistique et prudence",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "test <- t.test(x_B, x_A, var.equal = FALSE)\nclass(test)\nnames(test)\nstr(test)\ntest$p.value\ntest$conf.int\n\n# Après ajustement d’un modèle lm :\n# coef(modele)\n# confint(modele)"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Objet / idée",
+                "À retenir"
+              ],
+              "rows": [
+                [
+                  "htest",
+                  "Liste structurée renvoyée par t.test"
+                ],
+                [
+                  "lm",
+                  "coef et confint : coefficients et leurs IC"
+                ],
+                [
+                  "Méthodes",
+                  "methods(class = 'lm') ; dépend de la classe"
+                ],
+                [
+                  "Contraste",
+                  "B − A négatif : délai moyen inférieur pour B"
+                ],
+                [
+                  "Welch",
+                  "Variances non supposées égales ; indépendance à discuter"
+                ],
+                [
+                  "p-value",
+                  "Compatibilité avec le modèle nul ; pas probabilité du nul"
+                ],
+                [
+                  "IC 95 %",
+                  "Couverture de la procédure sur répétitions sous hypothèses"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Conclusion utile",
+              "text": "Donnez unités, n, estimation, IC, règle pratique et limite. Non-significatif ne démontre pas l’équivalence ; significatif peut être sans utilité pratique."
+            },
+            {
+              "type": "text",
+              "text": "MapReduce : transmettre somme et effectif par clé, additionner puis diviser. La moyenne simple des moyennes locales oublie les poids. Une simulation locale ne valide pas un système Hadoop ou un programme RHadoop."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "extension_solo.pdf",
+      "title": "Projet solo facultatif · éprouver la décision",
+      "subtitle": "60–80 minutes hors des 18 heures · approfondissement",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Une seule question supplémentaire",
+          "kicker": "01 / Contrat de projet",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Projet facultatif après le week-end, hors des 18 heures. Travaillez seul sur les données simulées Noria ; aucune collecte réelle."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Prérequis : capstone exécutable, résultat de Welch conservé, fonctions et listes. Copiez votre TP06 vers results/extension/extension.R ; conservez l’entrée data/noria_dirty.csv.",
+                "Choisissez une piste : A — rééchantillonnage ; B — pipeline MapReduce robuste ; C — exploration par complexité. Ne cumulez pas les trois.",
+                "Avant le code : question précise, sortie attendue et deux critères de réussite."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "source('scripts/00_check_setup.R', encoding = 'UTF-8')"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Durée",
+                "Jalon individuel"
+              ],
+              "rows": [
+                [
+                  "0–10 min",
+                  "Question, piste et contrat"
+                ],
+                [
+                  "10–45 min",
+                  "Implémentation et contrôles"
+                ],
+                [
+                  "45–60 min",
+                  "Comparaison au capstone"
+                ],
+                [
+                  "60–80 min",
+                  "Note et relance en session propre"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Livrable",
+              "text": "Script, figure ou tableau, note de 300 mots maximum et auto-évaluation de cinq lignes. Conservez le résultat principal ; les nouvelles analyses sont exploratoires."
+            }
+          ]
+        },
+        {
+          "title": "Choisir votre défi technique",
+          "kicker": "02 / Trois pistes au choix",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Piste",
+                "Travail demandé"
+              ],
+              "rows": [
+                [
+                  "A · Rééchantillonner",
+                  "set.seed ; tirer avec remise séparément dans A/B ; répéter delta ; tracer la distribution ; comparer un IC percentile au Welch."
+                ],
+                [
+                  "B · Robustesse",
+                  "Partitions inégales, une vide, clé absente localement ; valider sommes/effectifs ; injecter et détecter un double traitement."
+                ],
+                [
+                  "C · Complexité",
+                  "Distributions par niveau ; modèle avec interaction workflow × complexity ; effectifs, diagnostics et stabilité."
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "A : quelles hypothèses sur les tickets ? Pourquoi le bootstrap n’élimine-t-il ni biais ni données manquantes ?",
+                "B : comment vérifier l’unicité ? Pourquoi votre résultat ne prouve-t-il pas la tolérance aux pannes Hadoop ?",
+                "C : discutez petits sous-groupes et comparaisons multiples ; ne retenez pas uniquement un résultat favorable."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Indices gradués",
+              "text": "1. Expérience miniature sur dix observations. 2. A : ?sample, ?replicate ; B : ?split, ?Reduce ; C : ?lm, ?interaction. 3. Vérifiez une répétition, partition ou prédiction avant généralisation. Aucun paquet externe."
+            }
+          ]
+        },
+        {
+          "title": "Rendre l’apprentissage visible",
+          "kicker": "03 / Preuves et auto-évaluation",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "Comparez au capstone : qu’est-ce qui est confirmé, fragilisé ou inconnu ? Donnez un chiffre et une limite technique.",
+                "Incluez deux contrôles détectant un vrai défaut : perte/double compte, contraste inversé, non-reproductibilité, sous-groupe insuffisant.",
+                "Note de 300 mots : question, méthode, résultat, limite, prochaine vérification. Séparez observation et hypothèse.",
+                "Auto-évaluation : durée réelle ; obstacle ; aide consultée ; contrôle utile ; compétence à retravailler.",
+                "Préparez une présentation facultative de 3 minutes : preuve, limite, question ouverte. Aucune exposition publique exigée."
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Critère",
+                "Preuve"
+              ],
+              "rows": [
+                [
+                  "Reproductibilité",
+                  "Recréer les sorties depuis les fichiers fournis"
+                ],
+                [
+                  "Exactitude",
+                  "Contrôles indépendants et comparaison à la référence"
+                ],
+                [
+                  "Interprétation",
+                  "Unités, contraste et incertitude"
+                ],
+                [
+                  "Esprit critique",
+                  "Limite pouvant modifier la recommandation"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Partage responsable",
+              "text": "Aucun Git nécessaire. Un partage public volontaire ne contient que données simulées et code nettoyé ; ni nom, email, compte, capture personnelle, secret ni chemin machine. Une bonne extension maîtrise une question."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "01_parcours_18h.pdf",
+      "title": "Statistiques avec R — parcours de 18 heures",
+      "subtitle": "Master • Leaders University • Étude de cas Noria Services",
+      "audience": "Étudiantes et étudiants",
+      "pages": [
+        {
+          "title": "Une enquête complète, du CSV à la décision",
+          "kicker": "Votre mission",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Noria Services teste deux workflows A et B. Le scénario décrit une affectation randomisée et 240 tickets indépendants. Votre mission : évaluer la différence de délai de résolution, vérifier les données et défendre une conclusion proportionnée aux preuves."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Données simulées : ticket_id, workflow (A/B), resolution_minutes, complexity (numérique, 1–5), satisfaction (ordinale, 1–5) et team.",
+                "Un CSV volontairement imparfait impose un audit avant toute analyse.",
+                "Résultat principal : moyenne B moins moyenne A, en minutes, avec intervalle de confiance.",
+                "La satisfaction est ordinale : décrire les effectifs et la médiane, sans la traiter automatiquement comme une mesure continue.",
+                "Chaque personne produit son propre script et une courte note de décision."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Prérequis",
+              "text": "Savoir utiliser des fichiers et retrouver des statistiques déjà étudiées suffit. Aucune maîtrise de R n’est supposée. Les rappels statistiques sont intégrés."
+            },
+            {
+              "type": "callout",
+              "label": "Périmètre Hadoop",
+              "text": "Vous étudierez Hadoop, HDFS, MapReduce et la place de RHadoop. La pratique utilise une simulation MapReduce en R local. Aucun cluster ni environnement RHadoop distribué n’est exécuté ; cette substitution pratique reste à valider par le coordinateur."
+            }
+          ]
+        },
+        {
+          "title": "Quatre séances et dix modules de projet",
+          "kicker": "Organisation",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Séance",
+                "Travail principal",
+                "Modules mobilisés"
+              ],
+              "rows": [
+                [
+                  "Samedi matin • 270 min",
+                  "Bases R, import et audit",
+                  "0, 1 et 3"
+                ],
+                [
+                  "Samedi après-midi • 270 min",
+                  "Nettoyage, matrices et exploration",
+                  "2, 4 et 5"
+                ],
+                [
+                  "Dimanche matin • 270 min",
+                  "Inférence, modèle et MapReduce",
+                  "6, 7 et 8"
+                ],
+                [
+                  "Dimanche après-midi • 270 min",
+                  "Projet autonome et défense",
+                  "9 et reprise complète"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Les numéros 0–9 identifient les modules du code ; les TP suivent un ordre pédagogique adapté. Les bases sont travaillées avant de relancer le pipeline complet dans son ordre."
+            },
+            {
+              "type": "text",
+              "text": "Les 18 heures sont des heures pédagogiques : 4 × 270 minutes. Ajouter une pause de 15 minutes par séance et une pause déjeuner. Exemple : 08:00–12:45 et 13:45–18:30, les deux jours."
+            },
+            {
+              "type": "callout",
+              "label": "Rythme",
+              "text": "535 minutes sont réservées aux six TP, plus 20 minutes de diagnostic. Au moins 65 % de chaque TP sont consacrés au travail individuel autonome. Les extensions ne conditionnent jamais la réussite du noyau."
+            }
+          ]
+        },
+        {
+          "title": "Les dix modules de code",
+          "kicker": "CARTE DU PROJET · REPÈRES, PAS PRÉREQUIS",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Module du code",
+                "Preuve produite"
+              ],
+              "rows": [
+                [
+                  "0 • Préparer",
+                  "Configuration et utilitaires"
+                ],
+                [
+                  "1 • Importer",
+                  "Données brutes et structure"
+                ],
+                [
+                  "2 • Nettoyer",
+                  "Données propres et audit"
+                ],
+                [
+                  "3 • Programmer",
+                  "Types, vecteurs, if et boucles"
+                ],
+                [
+                  "4 • Transformer",
+                  "Matrices, apply et fonctions"
+                ],
+                [
+                  "5 • Explorer",
+                  "Résumés et graphiques"
+                ],
+                [
+                  "6 • Comparer",
+                  "Welch orienté B − A"
+                ],
+                [
+                  "7 • MapReduce",
+                  "Simulation locale et vérification"
+                ],
+                [
+                  "8 • Modéliser",
+                  "lm et diagnostics"
+                ],
+                [
+                  "9 • Reproduire",
+                  "Orchestration, exports et décision"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Deux numérotations",
+              "text": "Les TP donnent l’ordre pédagogique. Les modules R donnent une organisation de code ; ils ne sont pas dix cours supplémentaires."
+            }
+          ]
+        },
+        {
+          "title": "Séance 1 — comprendre ce que R manipule",
+          "kicker": "Modules 0, 1 et 3",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Commencer dans un dossier de projet. Lire les fichiers bruts sans les modifier. Garder toutes les décisions dans un script, puis relancer les instructions dans leur ordre."
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Activité",
+                "Durée",
+                "Votre production"
+              ],
+              "rows": [
+                [
+                  "Diagnostic individuel",
+                  "20 min",
+                  "Six réponses, sans note"
+                ],
+                [
+                  "TP01_vectors.pdf",
+                  "70 min",
+                  "Script : types, indexation, résumés, if, boucle et fonction"
+                ],
+                [
+                  "TP02_cleaning.pdf • première partie",
+                  "40 min",
+                  "Import, dimensions, valeurs manquantes et doublons"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Noyau : construire un vecteur, sélectionner des éléments, calculer un résumé et expliquer l’effet de NA.",
+                "Noyau : écrire une condition scalaire et une boucle qui collecte un résultat.",
+                "Noyau : définir une fonction, préciser ses entrées et son résultat.",
+                "Noyau : examiner class(), str(), names(), dim() et attributes() lorsque ces propriétés existent.",
+                "Extension : rendre la fonction explicite sur les valeurs manquantes et vérifier une entrée invalide."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "x <- c(12, 18, NA, 24)\nmean(x)\nmean(x, na.rm = TRUE)\nresume <- function(x) {\n  c(n = sum(!is.na(x)), moyenne = mean(x, na.rm = TRUE))\n}\nresume(x)\nattributes(x)"
+            },
+            {
+              "type": "callout",
+              "label": "Point de passage",
+              "text": "Vous savez expliquer le type de chaque colonne, retrouver le fichier importé et distinguer une valeur absente d’une valeur égale à zéro. Le script doit fonctionner après redémarrage de R."
+            }
+          ]
+        },
+        {
+          "title": "Séance 2 — rendre les observations exploitables",
+          "kicker": "Modules 2, 4 et 5",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Activité",
+                "Durée",
+                "Votre production"
+              ],
+              "rows": [
+                [
+                  "TP02_cleaning.pdf • suite",
+                  "50 min",
+                  "Nettoyage documenté et vérifications"
+                ],
+                [
+                  "TP03_matrices.pdf",
+                  "75 min",
+                  "Matrices, apply et exploration statistique"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Auditer avant de corriger : distinguer doublon, délai impossible, absence et espaces parasites.",
+                "Retirer le doublon du ticket 17 selon une règle documentée ; conserver la trace du retrait.",
+                "Pour l’analyse des délais, exclure les tickets 21, 87 et 154 sans délai et le ticket 203 au délai négatif.",
+                "Après dédoublonnage : 240 tickets. Pour l’analyse des délais : 236 tickets. Ne pas supprimer un ticket uniquement parce que sa satisfaction manque.",
+                "Créer une matrice numérique, inspecter dim(), transformer sa forme en conservant le nombre d’éléments et appliquer une fonction par ligne ou colonne.",
+                "Décrire effectifs, valeurs manquantes, distributions et différences visuelles entre A et B."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "m <- matrix(1:12, nrow = 3)\ndim(m)\ndim(m) <- c(4, 3)\napply(m, 2, mean)"
+            },
+            {
+              "type": "callout",
+              "label": "Point de passage",
+              "text": "Votre journal explique chaque exclusion. Les graphiques ont des axes et unités lisibles. Une différence visuelle n’est pas encore une preuve statistique."
+            },
+            {
+              "type": "callout",
+              "label": "Extension",
+              "text": "Comparer moyenne et médiane, construire une analyse par complexité et expliquer pourquoi une matrice mélangeant texte et nombres peut changer de type."
+            }
+          ]
+        },
+        {
+          "title": "Séance 3 — estimer, modéliser, examiner",
+          "kicker": "Modules 6, 7 et 8",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Activité",
+                "Durée",
+                "Votre production"
+              ],
+              "rows": [
+                [
+                  "TP04_inference.pdf",
+                  "100 min",
+                  "Welch, objet htest, modèle lm et diagnostics"
+                ],
+                [
+                  "TP05_mapreduce.pdf",
+                  "80 min",
+                  "Simulation MapReduce et schéma Hadoop"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Fixer la comparaison B − A avant de calculer : une valeur négative indique un délai moyen inférieur avec B.",
+                "Rapporter effectifs, moyennes, différence, intervalle de confiance et p-valeur ; commenter aussi l’ampleur métier.",
+                "Vérifier l’ordre réel du contraste. Ne pas recopier le signe affiché par un test par formule sans examiner les groupes.",
+                "Ajuster un modèle avec workflow, complexité et équipe, puis examiner résidus, variance et observations influentes.",
+                "Explorer attributes(), class(), names() et les composantes utiles de htest et lm.",
+                "Distinguer propriété d’objet, coefficient, prédiction et conclusion ; encapsuler un calcul répété dans une fonction."
+              ]
+            },
+            {
+              "type": "code",
+              "text": "a <- d$resolution_minutes[d$workflow == 'A']\nb <- d$resolution_minutes[d$workflow == 'B']\nwelch <- t.test(b, a)\nwelch$estimate\nwelch$conf.int\nattributes(welch)\nd$workflow <- factor(d$workflow, levels = c('A', 'B'))\nmodele <- lm(resolution_minutes ~ workflow + complexity + team, data = d)\nsummary(modele)\nplot(modele)"
+            },
+            {
+              "type": "callout",
+              "label": "Prudence attendue",
+              "text": "L’affectation est randomisée dans le scénario, mais l’indépendance et les données manquantes restent à discuter. Le coefficient ajusté et la différence brute répondent à des questions différentes. Aucune p-valeur ne remplace ces vérifications."
+            }
+          ]
+        },
+        {
+          "title": "Hadoop et RHadoop : comprendre la chaîne",
+          "kicker": "Module 7",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "HDFS : blocs répliqués",
+                "Map : couples clé–valeur",
+                "Shuffle : regrouper les clés",
+                "Reduce : agréger",
+                "Résultats par workflow"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Hadoop traite des données réparties sur plusieurs machines. HDFS organise leur stockage. MapReduce distribue les transformations et les agrégations. RHadoop désigne historiquement un ensemble d’outils reliant R à cet écosystème, notamment rhdfs et rmr2."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Noyau : découper localement les tickets en partitions, puis émettre pour chaque workflow une somme des délais et un effectif.",
+                "Regrouper les résultats intermédiaires par clé ; additionner sommes et effectifs ; calculer moyenne = somme totale / effectif total.",
+                "Comparer le résultat à une agrégation directe en R, avec une tolérance numérique explicite.",
+                "Montrer qu’une moyenne de moyennes non pondérée peut être fausse lorsque les partitions ont des tailles différentes.",
+                "Identifier ce qui manquerait sur un vrai cluster : stockage HDFS, ordonnanceur, tâches distribuées, transferts réseau, reprise après échec et dépendances compatibles."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Limite du TP",
+              "text": "split(), lapply() et Reduce() tournent ici dans R sur une seule machine. Cette activité illustre MapReduce ; elle ne constitue pas une exécution Hadoop ou RHadoop et ne mesure pas le passage à l’échelle."
+            },
+            {
+              "type": "callout",
+              "label": "Extension",
+              "text": "Changer la taille des partitions, introduire une partition vide et proposer des vérifications qui gardent la même moyenne finale."
+            }
+          ]
+        },
+        {
+          "title": "Votre dossier final et les critères de réussite",
+          "kicker": "Séance 4 • Module 9 et pipeline complet",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "TP06_capstone.pdf réserve 120 minutes à un projet individuel. Utiliser les corrections comme référence, puis reconstruire sa propre chaîne de décisions. Le dossier doit se relancer et se comprendre sans explication orale supplémentaire."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Livrer : script principal, données nécessaires, journal de nettoyage, figures et tableaux, note de décision courte et sessionInfo().",
+                "La note présente B − A avec son unité, son intervalle de confiance, les limites et une recommandation conditionnelle.",
+                "Défense en triades : chacun présente trois minutes, répond à une question et conserve une réponse écrite individuelle commune à tous.",
+                "Les passages publics tournants servent à apprendre ; ils ne donnent aucun bonus de note."
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Critère",
+                "Points"
+              ],
+              "rows": [
+                [
+                  "Reproductibilité et organisation",
+                  "10"
+                ],
+                [
+                  "Audit et nettoyage justifiés",
+                  "20"
+                ],
+                [
+                  "Bases R, fonctions, matrices et apply",
+                  "15"
+                ],
+                [
+                  "Exploration et graphiques",
+                  "10"
+                ],
+                [
+                  "Welch, contraste et interprétation",
+                  "15"
+                ],
+                [
+                  "lm, propriétés et diagnostics",
+                  "10"
+                ],
+                [
+                  "MapReduce et limites Hadoop/RHadoop",
+                  "10"
+                ],
+                [
+                  "Décision et défense individuelle écrite",
+                  "10"
+                ],
+                [
+                  "Total",
+                  "100"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Noyau et extension",
+              "text": "Le noyau suffit pour viser tous les points. L’extension approfondit la robustesse ; elle ne compense pas une erreur centrale. Le formateur évalue les décisions et leur compréhension, même si la syntaxe provient d’un exemple corrigé."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "05_transfert_donnees_reelles.pdf",
+      "title": "Transférer la méthode à des mesures réelles",
+      "subtitle": "Airquality · New York, mai–septembre 1973 · bonus hors des 18 h",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Une vraie série, d’autres limites",
+          "kicker": "30–45 MIN · SOLO FACULTATIF",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "R fournit airquality : 153 jours de mesures historiques à New York, de mai à septembre 1973. L’ozone vient du New York State Department of Conservation ; la météorologie du National Weather Service. Source : documentation du jeu datasets::airquality."
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Variable",
+                "Mesure",
+                "Question"
+              ],
+              "rows": [
+                [
+                  "Ozone",
+                  "Concentration en ppb",
+                  "Combien de jours manquent ?"
+                ],
+                [
+                  "Temp",
+                  "Maximum journalier en °F",
+                  "Comment convertir en °C ?"
+                ],
+                [
+                  "Month / Day",
+                  "Date de la mesure",
+                  "Les jours sont-ils indépendants ?"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "text": "d <- datasets::airquality\n?airquality\nsum(is.na(d$Ozone))\nkeep <- complete.cases(d[c(\"Ozone\", \"Temp\")])\nsum(keep)\nd$temp_c <- (d$Temp - 32) * 5 / 9"
+            },
+            {
+              "type": "callout",
+              "label": "Votre tâche",
+              "text": "Sans regarder l’exemple de correction : auditer, tracer Ozone selon la température en °C, décrire l’association, puis donner deux raisons empêchant une lecture causale."
+            }
+          ]
+        },
+        {
+          "title": "Faire un transfert, pas copier une conclusion",
+          "kicker": "LIVRER · VÉRIFIER · CRITIQUER",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "15 min : audit et graphique ; 10 min : lm(Ozone ~ temp_c) descriptif ; 10 min : limites et note de cinq lignes.",
+                "Produire audit CSV, graphique PDF avec unités et script. Comparer complete.cases sur Ozone/Temp à complete.cases sur toutes les colonnes. Pourquoi perd-on des jours inutilement dans le second cas ?",
+                "Vérification après tentative : 153 jours bruts, 37 ozone absents, 116 jours analysables pour Ozone/Temp contre 111 sur toutes les colonnes.",
+                "L’exemple complet est examples/airquality_transfer.R ; il fonctionne sans réseau ni installation de paquets."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "L’histoire change le modèle",
+              "text": "Aucune randomisation : température, ozone et saison sont liés. Les jours successifs peuvent être dépendants. Une pente descriptive ne mesure pas l’effet d’une intervention ; les IC classiques demanderaient une étude sérieuse des erreurs."
+            },
+            {
+              "type": "text",
+              "text": "Référence primaire et provenance : https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "80_corriges_et_preuves.pdf",
+      "title": "Corrigés, chiffres et preuves de référence",
+      "subtitle": "À consulter après une tentative · données simulées · R 4.6.1",
+      "audience": "Étudiant · Master",
+      "pages": [
+        {
+          "title": "Corriger une démarche",
+          "kicker": "MODE D’EMPLOI",
+          "blocks": [
+            {
+              "type": "diagram",
+              "kind": "pipeline",
+              "nodes": [
+                "Tenter seul",
+                "Conserver son essai",
+                "Comparer une étape",
+                "Expliquer l’écart"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Les corrections sont publiques pour l’autoformation. La compréhension est évaluée par un script individuel relançable, un choix justifié et une défense, pas par la possession d’un chiffre secret."
+            },
+            {
+              "type": "table",
+              "headers": [
+                "TP",
+                "Corrigé exécutable"
+              ],
+              "rows": [
+                [
+                  "01 / Vecteurs",
+                  "solutions/TP01_vectors_solution.R"
+                ],
+                [
+                  "02 / Qualité",
+                  "solutions/TP02_cleaning_solution.R"
+                ],
+                [
+                  "03 / Matrices",
+                  "solutions/TP03_matrices_solution.R"
+                ],
+                [
+                  "04 / Inférence",
+                  "solutions/TP04_inference_solution.R"
+                ],
+                [
+                  "05 / Agrégation",
+                  "solutions/TP05_mapreduce_solution.R"
+                ],
+                [
+                  "06 / Projet",
+                  "solutions/TP06_capstone_solution.R"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Même environnement",
+              "text": "Exécuter depuis le projet, en UTF-8. Les scripts sont commentés ; les tableaux de cette brochure résument les sorties calculées et ne remplacent pas leur reproduction."
+            }
+          ]
+        },
+        {
+          "title": "TP01 : le dénominateur change tout",
+          "kicker": "VECTEURS ET FONCTIONS",
+          "blocks": [
+            {
+              "type": "code",
+              "text": "delais <- c(42, NA, 35, 80, 55, NA, 20, 60)\nsum(!is.na(delais))\nmean(delais, na.rm = TRUE)\nmedian(delais, na.rm = TRUE)\ndelais[!is.na(delais) & delais > 50]"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Contrôle",
+                "Attendu"
+              ],
+              "rows": [
+                [
+                  "Taille / observés / absents",
+                  "8 / 6 / 2"
+                ],
+                [
+                  "Somme observée",
+                  "292 minutes"
+                ],
+                [
+                  "Moyenne / médiane",
+                  "48,6667 / 48,5 minutes"
+                ],
+                [
+                  "Délai >50 sur observés",
+                  "3 sur 6, soit 50 %"
+                ],
+                [
+                  "Filtre valide >50",
+                  "80,55,60"
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Ce que l’on veut entendre",
+              "text": "Le vecteur x[x > 50] peut contenir des NA parce que le masque contient des inconnus. Un compteur, un dénominateur et une règle explicites rendent la réponse défendable."
+            }
+          ]
+        },
+        {
+          "title": "TP02 et TP03 : des contrôles concrets",
+          "kicker": "QUALITÉ · STRUCTURES · MARGES",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Audit",
+                "Attendu"
+              ],
+              "rows": [
+                [
+                  "Lignes brutes → uniques → délai valide",
+                  "241 →240 →236"
+                ],
+                [
+                  "Libellés harmonisés",
+                  "3 workflow +4 team"
+                ],
+                [
+                  "Exclusions délai",
+                  "21,87,154 absents ;203 négatif"
+                ],
+                [
+                  "Groupes finaux",
+                  "A117 ;B119"
+                ],
+                [
+                  "Satisfaction NA conservée",
+                  "12 : A8 ;B4"
+                ]
+              ]
+            },
+            {
+              "type": "code",
+              "text": "m <- matrix(1:12, nrow = 3)\napply(m, 1, sum)  # 22 26 30\napply(m, 2, sum)  # 6 15 24 33\ndim(m) <- c(4, 3)\nrowSums(m)        # 15 18 21 24"
+            },
+            {
+              "type": "callout",
+              "label": "Distinguer les exercices",
+              "text": "Le cours montre aussi une matrice 2×3 sur 1:6, dont les sommes de lignes sont 9 et 12. Le TP03 utilise 1:12. apply sur une table mixte peut provoquer une coercition ; choisir des colonnes numériques."
+            }
+          ]
+        },
+        {
+          "title": "TP04 : présenter les deux analyses prévues",
+          "kicker": "WELCH PRINCIPAL · LM SECONDAIRE",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Mesure",
+                "A",
+                "B"
+              ],
+              "rows": [
+                [
+                  "n",
+                  "117",
+                  "119"
+                ],
+                [
+                  "Moyenne / min",
+                  "70,655",
+                  "66,090"
+                ],
+                [
+                  "Écart-type / min",
+                  "17,992",
+                  "17,738"
+                ],
+                [
+                  "Médiane / min",
+                  "68,2",
+                  "66,9"
+                ]
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Analyse B − A",
+                "Estimation / min",
+                "IC95 % / min",
+                "p"
+              ],
+              "rows": [
+                [
+                  "Welch brut",
+                  "−4,565",
+                  "[−9,148 ;0,018]",
+                  "0,0509"
+                ],
+                [
+                  "lm ajusté",
+                  "−5,150",
+                  "[−8,418 ;−1,882]",
+                  "0,00214"
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Modèle secondaire fixé par le protocole : resolution_minutes ~ workflow + complexity + team. Référence A pour workflow et Atlas pour team. Complexité et équipe sont prétraitement ; ne pas sélectionner cette formule parce qu’elle donne une petite p-valeur."
+            },
+            {
+              "type": "callout",
+              "label": "Interprétation attendue",
+              "text": "Le brut favorise B, avec une incertitude incluant zéro : ce n’est pas une preuve d’égalité. L’ajusté estime une association conditionnelle plus précise. Aucun IC n’établit un gain minimal de 5 min ; tous deux traversent −5."
+            }
+          ]
+        },
+        {
+          "title": "Voir l’incertitude",
+          "kicker": "UNE MÊME ÉCHELLE POUR DEUX ESTIMATIONS",
+          "blocks": [
+            {
+              "type": "image",
+              "path": "authoring/assets/comparaison_intervalles.png",
+              "height": 260
+            },
+            {
+              "type": "text",
+              "text": "Le point est l’estimation, le segment un IC à 95 %. Le trait zéro indique l’absence de différence ;−5min est un seuil opérationnel d’illustration. Le segment brut recoupe zéro et les deux segments recoupent−5."
+            },
+            {
+              "type": "callout",
+              "label": "Question pour le décideur",
+              "text": "Quel gain minimal justifierait le coût de B ? Quelles mesures de qualité et de charge faut-il suivre en plus du délai ? Les données simulées ne donnent pas une politique commerciale réelle."
+            }
+          ]
+        },
+        {
+          "title": "Les résidus invitent à enquêter",
+          "kicker": "NE PAS CONFONDRE DIAGNOSTIC ET PREUVE",
+          "blocks": [
+            {
+              "type": "image",
+              "path": "authoring/assets/model_diagnostics.png",
+              "height": 350
+            },
+            {
+              "type": "callout",
+              "label": "Comment lire",
+              "text": "Décrire un motif concret avant de conclure : courbure, éventail, queue, point influent. Les graphiques ne testent pas la façon dont les tickets ont été collectés ni leur indépendance."
+            }
+          ]
+        },
+        {
+          "title": "TP05 : garder la bonne information",
+          "kicker": "MAP · SHUFFLE PAR CLÉ · REDUCE",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Clé",
+                "Somme / min",
+                "Effectif",
+                "Moyenne / min"
+              ],
+              "rows": [
+                [
+                  "A",
+                  "8 266,6",
+                  "117",
+                  "70,6547"
+                ],
+                [
+                  "B",
+                  "7 864,7",
+                  "119",
+                  "66,0899"
+                ],
+                [
+                  "Global",
+                  "16 131,3",
+                  "236",
+                  "68,3530"
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Le mapper produit clé, somme et effectif. Le shuffle regroupe les mêmes workflows ; le reduce additionne les sommes et les effectifs.",
+                "Sur les partitions inégales du kit, la moyenne naïve des moyennes vaut 68,0481 contre 68,3530 pour la vraie moyenne.",
+                "Autre contre-exemple : deux tickets de moyenne 10 et huit tickets de moyenne 20 donnent 18, pas 15.",
+                "Les contrôles comparent calcul direct et agrégation, plusieurs découpages, clés absentes localement et partitions vides."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Portée",
+              "text": "Le code est un traitement local séquentiel. Il ne démontre ni tolérance aux pannes ni performances Hadoop. Cette limite doit figurer dans la restitution."
+            }
+          ]
+        },
+        {
+          "title": "TP06 : une conclusion possible",
+          "kicker": "EXEMPLE DE NOTE · PAS UNE PHRASE À RECOPIER",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Sur 236 tickets simulés analysables, B présente un délai moyen inférieur de 4,56 min à A. L’IC de Welch va de −9,15 à 0,02 min : il reste compatible avec un bénéfice important comme avec une différence quasiment nulle."
+            },
+            {
+              "type": "text",
+              "text": "Le modèle secondaire prévu, ajusté sur complexité et équipe, estime −5,15 min [−8,42 ;−1,88]. Il apporte une comparaison conditionnelle sous ses hypothèses additives et linéaires ; nous présentons les deux résultats sans sélectionner selon leur p-valeur."
+            },
+            {
+              "type": "text",
+              "text": "Si l’on exige un gain minimal de 5 min, ces résultats ne le démontrent pas. Pour cet exercice, poursuivre le pilote et préciser coûts/qualité est une recommandation cohérente. Il faut documenter les quatre exclusions, vérifier les diagnostics et éviter d’extrapoler cette simulation à une population réelle."
+            },
+            {
+              "type": "callout",
+              "label": "Preuves à joindre",
+              "text": "Audit, graphique, deux estimations/IC, modèle et diagnostic, limites, commande de relance et sessionInfo. Une autre recommandation est acceptable si la règle annoncée et les preuves la soutiennent."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
