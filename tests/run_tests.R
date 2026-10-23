@@ -1,116 +1,221 @@
-# Tests de contrats et propriétés, uniquement avec R de base.
-# Depuis la racine : Rscript tests/run_tests.R
-source("scripts/00_check_setup.R", encoding = "UTF-8")
-for (file in sort(list.files("R", pattern = "[.]R$", full.names = TRUE))) source(file, encoding = "UTF-8")
-expect_error <- function(expr) {
-  value <- tryCatch({ force(expr); NULL }, error = function(e) e)
-  if (!inherits(value, "error")) stop("Une erreur attendue n'a pas été produite.")
+# Verification publique du contrat. Depuis la racine : Rscript tests/run_tests.R
+# R >= 4.1, distribution standard uniquement. Aucun package a installer.
+if (getRversion() < "4.1") stop("R 4.1 ou plus recent est necessaire.")
+if (!file.exists("data/orders_raw.csv") || !file.exists("checks/check_tools.R")) {
+  stop("Lancez ce fichier depuis la racine du dossier du cours.")
+}
+root <- normalizePath(getwd(), winslash = "/", mustWork = TRUE)
+# commandArgs()[1] est l'executable R actif, y compris derriere Rscript.
+# Aucune installation particuliere ou adresse absolue n'est codee dans les tests.
+r_executable <- commandArgs()[1]
+if (!file.exists(r_executable)) stop("Executable R actif introuvable : ", r_executable)
+r_executable <- normalizePath(r_executable, winslash = "/", mustWork = TRUE)
+stems <- c("01_panier", "02_semaine", "03_importer", "04_nettoyer",
+           "05_analyser", "06_visualiser", "07_decider", "08_automatiser")
+workspace <- tempfile("noria-tests-")
+dir.create(workspace)
+results <- list()
+
+record <- function(label, ok, detail = "") {
+  results[[length(results) + 1L]] <<- list(label=label, ok=isTRUE(ok), detail=detail)
+  if (!isTRUE(ok)) cat("ECHEC :", label, "\n", detail, "\n")
+  invisible(ok)
+}
+make_copy <- function(label) {
+  destination <- file.path(workspace, label)
+  dir.create(destination)
+  paths <- c("data", "missions", "solutions", "examples", "checks",
+             "00_verifier_installation.R")
+  copied <- file.copy(file.path(root, paths), destination, recursive=TRUE)
+  if (!all(copied)) stop("Impossible de creer une copie isolee pour : ", label)
+  dir.create(file.path(destination, "outputs"))
+  destination
+}
+run_r <- function(directory, script, args=character()) {
+  previous_directory <- getwd()
+  on.exit(setwd(previous_directory), add=TRUE)
+  setwd(directory)
+  log_path <- tempfile("r-log-", tmpdir=workspace)
+  # macOS peut nettoyer DYLD_LIBRARY_PATH a l'entree du shell utilise par system2.
+  # Conserver le reglage deja fourni par l'installation active, sans chemin impose.
+  child_env <- character()
+  if (Sys.info()[["sysname"]] == "Darwin" && nzchar(Sys.getenv("DYLD_LIBRARY_PATH"))) {
+    child_env <- paste0("DYLD_LIBRARY_PATH=", shQuote(Sys.getenv("DYLD_LIBRARY_PATH")))
+  }
+  status <- suppressWarnings(system2(r_executable,
+    args=c("--vanilla", "--slave", paste0("--file=", shQuote(script)),
+           "--args", shQuote(args)), stdout=log_path, stderr=log_path, env=child_env))
+  text <- if (file.exists(log_path)) paste(readLines(log_path, warn=FALSE),collapse="\n") else ""
+  unlink(log_path)
+  list(status=as.integer(status), output=text)
+}
+expect_run <- function(label, directory, script, args=character(), succeeds=TRUE) {
+  actual <- run_r(directory, script, args)
+  record(label, (actual$status == 0L) == succeeds, actual$output)
+  invisible(actual)
+}
+write_script <- function(directory, name, lines) {
+  path <- file.path(directory, name)
+  writeLines(lines, path, useBytes=TRUE)
+  name
+}
+num_equal <- function(x, y) isTRUE(all.equal(as.numeric(x), as.numeric(y), tolerance=1e-8))
+
+main <- function() {
+  on.exit({setwd(root); unlink(workspace, recursive=TRUE)}, add=TRUE)
+  # Distinguer une panne de lancement R d'un starter refuse par son controle.
+  smoke <- make_copy("runtime")
+  write_script(smoke,"runtime.R","stopifnot(getRversion() >= '4.1')")
+  smoke_result <- run_r(smoke,"runtime.R")
+  if (smoke_result$status != 0L) stop("Impossible de lancer R enfant : ",smoke_result$output)
+  # Faits du carnet, independants de la forme des scripts des apprenants.
+  raw <- read.csv(file.path(root,"data/orders_raw.csv"), stringsAsFactors=FALSE)
+  reference <- read.csv(file.path(root,"data/orders_clean_reference.csv"), stringsAsFactors=FALSE)
+  mini <- read.csv(file.path(root,"data/orders_mini.csv"), stringsAsFactors=FALSE)
+  second <- read.csv(file.path(root,"data/orders_week2_raw.csv"), stringsAsFactors=FALSE)
+  complete <- unique(raw)
+  waiting <- complete[is.na(complete$quantite), ]
+  complete <- complete[!is.na(complete$quantite), ]
+  record("six colonnes contractuelles", identical(names(raw),
+    c("id","date","produit","quantite","prix_unitaire","cout_unitaire")))
+  record("14 lignes, une copie exacte O004, une quantite O013 inconnue",
+    nrow(raw)==14 && sum(duplicated(raw))==1 &&
+    identical(raw$id[duplicated(raw)],"O004") && nrow(waiting)==1 && waiting$id=="O013")
+  record("12 commandes propres, quantites connues, reference fidele",
+    nrow(complete)==12 && !anyNA(complete) &&
+    identical(complete$id,reference$id) &&
+    isTRUE(all.equal(complete,reference,check.attributes=FALSE)))
+  record("21 unites, 100 TND de recettes, 37 TND de cout, 63 TND de marge",
+    sum(complete$quantite)==21 &&
+    sum(complete$quantite*complete$prix_unitaire)==100 &&
+    sum(complete$quantite*complete$cout_unitaire)==37 &&
+    sum(complete$quantite*(complete$prix_unitaire-complete$cout_unitaire))==63)
+  day_ca <- tapply(complete$quantite*complete$prix_unitaire,complete$date,sum)
+  product_ca <- tapply(complete$quantite*complete$prix_unitaire,complete$produit,sum)
+  record("quatre jours : 19, 27, 33 et 21 TND",num_equal(day_ca,c(19,27,33,21)))
+  record("Cafe 30, Sandwich 40, The 30 TND",num_equal(product_ca,c(30,40,30)))
+  record("mini-carnet : trois premieres commandes, panier 19 TND",
+    nrow(mini)==3 && identical(mini$id,raw$id[1:3]) &&
+    sum(mini$quantite*mini$prix_unitaire)==19)
+  second_complete <- unique(second)
+  second_complete <- second_complete[!is.na(second_complete$quantite), ]
+  record("nouveau carnet : 8 lignes, 6 completes, 9 unites, 48/18/30 TND",
+    nrow(second)==8 && nrow(second_complete)==6 &&
+    sum(second_complete$quantite)==9 &&
+    sum(second_complete$quantite*second_complete$prix_unitaire)==48 &&
+    sum(second_complete$quantite*second_complete$cout_unitaire)==18 &&
+    sum(second_complete$quantite*(second_complete$prix_unitaire-second_complete$cout_unitaire))==30)
+
+  setup_copy <- make_copy("setup")
+  expect_run("installation : copie complete",setup_copy,"00_verifier_installation.R")
+  unlink(file.path(setup_copy,"missions/08_automatiser.R"))
+  expect_run("installation refuse une copie incomplete",setup_copy,"00_verifier_installation.R",succeeds=FALSE)
+  for (stem in stems) {
+    isolated <- make_copy(paste0(stem,"-solution"))
+    expect_run(paste(stem,"corrige executable seul"), isolated,
+               paste0("solutions/",stem,"_solution.R"))
+    expect_run(paste(stem,"corrige valide par son controle"), isolated,
+               paste0("checks/",stem,".R"), paste0("solutions/",stem,"_solution.R"))
+    starter_copy <- make_copy(paste0(stem,"-starter"))
+    expect_run(paste(stem,"starter vierge refuse"),starter_copy,
+               paste0("checks/",stem,".R"),succeeds=FALSE)
+    example_copy <- make_copy(paste0(stem,"-exemple"))
+    expect_run(paste(stem,"exemple executable seul"),example_copy,
+               paste0("examples/",stem,"_exemple.R"))
+  }
+  cumulative <- make_copy("parcours-complet")
+  for (stem in stems) {
+    expect_run(paste(stem,"execution cumulative avec exports precedents"),cumulative,
+               paste0("solutions/",stem,"_solution.R"))
+  }
+
+  # Le CSV propre de mission 4 est un input legitime pour les missions 5 a 7.
+  # Un script correct peut le lire directement, sans recopier le secours fourni.
+  for (stem in stems[5:7]) {
+    direct <- make_copy(paste0(stem,"-lecture-directe"))
+    expect_run(paste(stem,"preparer son input legitime de mission 4"),direct,
+               "solutions/04_nettoyer_solution.R")
+    solution_lines <- readLines(file.path(direct,"solutions",paste0(stem,"_solution.R")),warn=FALSE)
+    # Conserver le calcul de l'apprenant, remplacer seulement le bloc d'entree.
+    start <- grep("^propres <- read.csv",solution_lines)[1]
+    direct_lines <- c("propres <- read.csv('outputs/04_commandes_propres.csv',stringsAsFactors=FALSE)",
+                       solution_lines[seq.int(start+1L,length(solution_lines))])
+    write_script(direct,"lecture_directe.R",direct_lines)
+    expect_run(paste(stem,"lecture directe de son CSV propre acceptee"),direct,
+               paste0("checks/",stem,".R"),"lecture_directe.R")
+    corrupt_lines <- c("x <- read.csv('outputs/04_commandes_propres.csv',stringsAsFactors=FALSE)",
+                       "x$quantite[1] <- 99", "write.csv(x,'outputs/04_commandes_propres.csv',row.names=FALSE)")
+    write_script(direct,"corrompre.R",corrupt_lines)
+    expect_run(paste(stem,"modifier input pour tester le controle"),direct,"corrompre.R")
+    expect_run(paste(stem,"input corrompu refuse sans remplacement silencieux"),direct,
+               paste0("checks/",stem,".R"),"lecture_directe.R",succeeds=FALSE)
+
+    old_answers <- make_copy(paste0(stem,"-anciens-resultats"))
+    write_script(old_answers,"console.R",c(
+      "source('solutions/04_nettoyer_solution.R')",
+      paste0("source('solutions/",stem,"_solution.R')"),
+      paste0("source('checks/",stem,".R')"), "stopifnot(!controle$ok)"))
+    expect_run(paste(stem,"ancien resultat refuse meme avec input legitime"),old_answers,"console.R")
+  }
+
+  # Equivalent mathematique : le controle ne compare pas le texte du code.
+  alternative <- make_copy("variante-valide")
+  write_script(alternative,"variante.R",c(
+    "prix_cafe=3;quantite_cafe=2;prix_the=5;quantite_the=1;prix_sandwich=8;quantite_sandwich=1",
+    "total_panier=sum(c(6,5,8));cout_panier=sum(c(2,2,3));marge_panier=sum(c(4,3,5))"))
+  expect_run("calcul equivalent accepte",alternative,"checks/01_panier.R","variante.R")
+  perturbation <- make_copy("perturbation-tolerable")
+  original <- readLines(file.path(perturbation,"solutions/01_panier_solution.R"),warn=FALSE)
+  write_script(perturbation,"variante.R",c(original,
+    "total_panier <- total_panier + 1e-10", "marge_panier <- marge_panier - 1e-10"))
+  expect_run("difference numerique negligeable acceptee",perturbation,"checks/01_panier.R","variante.R")
+
+  # M8 doit travailler sur un nouveau chemin et de nouvelles valeurs.
+  fixed <- make_copy("fonction-a-nombres-fixes")
+  original <- readLines(file.path(fixed,"solutions/08_automatiser_solution.R"),warn=FALSE)
+  write_script(fixed,"fausse_fonction.R",c(original,
+    "resumer_commandes <- function(chemin) resultat_semaine_2"))
+  expect_run("fonction a nombres fixes refusee",fixed,"checks/08_automatiser.R",
+             "fausse_fonction.R",succeeds=FALSE)
+  general <- make_copy("fonction-nouvelles-valeurs")
+  write_script(general,"nouveau_carnet.R",c(
+    "source('solutions/08_automatiser_solution.R')",
+    "nouveau <- data.frame(id=c('X1','X2','X1','X3'),date='2026-10-22',produit=c('Cafe','The','Cafe','Sandwich'),quantite=c(5,3,5,NA),prix_unitaire=c(4,6,4,9),cout_unitaire=c(2,1,2,4))",
+    "write.csv(nouveau,'data/nouveau.csv',row.names=FALSE)",
+    "r <- resumer_commandes('data/nouveau.csv')",
+    "stopifnot(nrow(r)==1,r$chiffre_affaires==38,r$cout_total==13,r$marge==25,r$quantite==8,r$n_commandes==2)"))
+  expect_run("fonction accepte un carnet avec prix et quantites modifies",general,"nouveau_carnet.R")
+
+  console <- make_copy("console")
+  write_script(console,"console.R",c(
+    "avant_dossier <- getwd()",
+    "png(tempfile(fileext='.png')); avant_appareil <- dev.cur()",
+    "source('checks/01_panier.R')",
+    "stopifnot(exists('controle'),!controle$ok,controle$score==0)",
+    "stopifnot(getwd()==avant_dossier,dev.cur()==avant_appareil)",
+    "dev.off()", "cat('SESSION_PRESERVEE\\n')"))
+  expect_run("source preserve session, dossier et ancien appareil",console,"console.R")
+  expect_run("source ignore les arguments du processus appelant",console,"console.R",
+             args="ce-chemin-nexiste-pas.R")
+
+  no_inherit <- make_copy("sans-heritage-console")
+  write_script(no_inherit,"missions/01_panier.R",c(
+    "prix_cafe=3;quantite_cafe=2;prix_the=5;quantite_the=1;prix_sandwich=8;quantite_sandwich=1",
+    "total_panier <- oubli_console;cout_panier <- 7;marge_panier <- 12"))
+  write_script(no_inherit,"console.R",c(
+    "oubli_console <- 19", "source('checks/01_panier.R')",
+    "stopifnot(!controle$ok,controle$score==0)"))
+  expect_run("les objets precedents de Console ne donnent pas de points",no_inherit,"console.R")
+
+  stale <- make_copy("sans-anciens-exports")
+  write_script(stale,"console.R",c(
+    "source('solutions/06_visualiser_solution.R')",
+    "source('checks/06_visualiser.R')", "stopifnot(!controle$ok,controle$score<3)"))
+  expect_run("les anciens graphiques ne donnent pas de points au starter",stale,"console.R")
+
+  failed <- vapply(results,function(x)!x$ok,logical(1))
+  cat(sum(!failed), "/",length(results)," verifications reussies.\n",sep="")
+  if (any(failed)) stop(sum(failed)," verification(s) en echec.",call.=FALSE)
   invisible(TRUE)
 }
-near <- function(x, y, tolerance = 1e-9) isTRUE(all.equal(unname(x), unname(y), tolerance = tolerance))
-raw <- read_noria()
-original <- raw
-cleaned <- clean_noria(raw)
-d <- cleaned$data
-# Les données source restent intactes ; les exclusions sont traçables par identifiant.
-stopifnot(identical(raw, original), nrow(raw) == 241L, nrow(d) == 236L,
-          identical(cleaned$audit$count, c(241L, 7L, 1L, 3L, 1L, 236L, 12L)),
-          identical(cleaned$exclusions$ticket_id, c(21L, 87L, 154L, 203L)),
-          identical(as.integer(table(d$workflow)), c(117L, 119L)),
-          sum(is.na(d$satisfaction)) == 12L)
-reference <- read_noria("data/noria_reference.csv")
-expected <- reference[!reference$ticket_id %in% c(21, 87, 154, 203), ]
-stopifnot(near(d$resolution_minutes, expected$resolution_minutes),
-          identical(as.character(d$workflow), expected$workflow),
-          identical(as.character(d$team), expected$team))
-# L'algorithme générateur reproduit les CSV livrés, avec tolérance d'arrondi numérique.
-generated <- make_noria()
-stopifnot(near(generated$reference, reference), near(generated$dirty, raw))
-# Un second nettoyage ne change pas les observations analysables.
-stopifnot(near(clean_noria(d)$data, d))
-conflict <- raw
-conflict$resolution_minutes[nrow(conflict)] <- 999
-expect_error(clean_noria(conflict))
-bad <- raw
-bad$team[1] <- "Inconnue"
-expect_error(clean_noria(bad))
-bad <- raw
-bad$satisfaction[1] <- 6
-expect_error(clean_noria(bad))
-bad <- raw
-bad$ticket_id[1] <- NA_integer_
-expect_error(clean_noria(bad))
-expect_error(clean_noria(raw[, -1]))
-# Contrats des fonctions : vide, tout-NA, types incompatibles et valeurs infinies.
-stopifnot(identical(safe_mean(numeric(0)), NA_real_),
-          identical(safe_mean(c(NA_real_, NA_real_)), NA_real_),
-          near(safe_mean(c(10, NA_real_, 30)), 20))
-expect_error(safe_mean("10"))
-expect_error(safe_mean(c(10, Inf)))
-objects <- language_examples(d)
-matrices <- matrix_examples()
-stopifnot(identical(objects$selected, 30), identical(matrices$loop_totals, c(6, 15)),
-          identical(dim(matrices$one_column), c(2L, 1L)),
-          identical(matrices$mixed_matrix_type, "character"))
-# Résultats connus et symétrie du contraste : une inversion silencieuse serait détectée.
-contrast <- compare_workflows(d)
-stopifnot(near(contrast$result$estimate_minutes, -4.564784888314293),
-          near(summarise_noria(d)$mean_minutes, c(70.65470085470085, 66.08991596638656)),
-          contrast$result$conf_low < contrast$result$estimate_minutes,
-          contrast$result$estimate_minutes < contrast$result$conf_high,
-          inherits(contrast$test, "htest"))
-reverse <- t.test(d$resolution_minutes[d$workflow == "A"], d$resolution_minutes[d$workflow == "B"])
-stopifnot(near(contrast$test$p.value, reverse$p.value),
-          near(as.numeric(contrast$test$conf.int), -rev(as.numeric(reverse$conf.int))))
-expect_error(compare_workflows(d[d$workflow == "A", ]))
-expect_error(bootstrap_difference(d, reps = 1))
-stopifnot(identical(bootstrap_difference(d, reps = 50, seed = 8),
-                    bootstrap_difference(d, reps = 50, seed = 8)))
-# Un exemple volontairement déséquilibré distingue pondération juste et moyenne naïve.
-unequal <- list(0, rep(10, 9), c(NA_real_, NA_real_))
-mapped <- lapply(unequal, map_sum_count)
-reduced <- reduce_sum_count(mapped)
-stopifnot(near(reduced$mean, 9), reduced$count == 10,
-          near(mean(c(mean(unequal[[1]]), mean(unequal[[2]]))), 5),
-          identical(reduced, reduce_sum_count(rev(mapped))),
-          is.na(reduce_sum_count(list(map_sum_count(numeric(0))))$mean))
-# Changer les partitions conserve la moyenne globale ; chaque ticket est compté une fois.
-partitions <- split(d$resolution_minutes, rep(1:17, length.out = nrow(d)))
-stopifnot(near(reduce_sum_count(lapply(partitions, map_sum_count))$mean,
-              mean(d$resolution_minutes)))
-expect_error(map_sum_count(c(1, Inf)))
-expect_error(map_sum_count("1"))
-expect_error(reduce_sum_count(list()))
-expect_error(reduce_sum_count(list(c(sum = 1, count = 0))))
-expect_error(reduce_sum_count(list(c(sum = 1, count = -1))))
-expect_error(reduce_sum_count(list(c(sum = 1, count = 1.5))))
-# Le modèle a une ligne par ticket, un contraste B-A et une décomposition cohérente.
-adjusted <- fit_noria(d)
-stopifnot(inherits(adjusted$model, "lm"), nobs(adjusted$model) == nrow(d),
-          "workflowB" %in% adjusted$coefficients$term,
-          near(adjusted$diagnostics$fitted + adjusted$diagnostics$residual,
-               d$resolution_minutes), all(is.finite(adjusted$coefficients$estimate)))
-# Une anomalie de domaine sur une ligne à délai manquant doit rester visible.
-bad <- raw
-bad$workflow[21] <- "Inconnu"
-expect_error(clean_noria(bad))
-bad <- raw
-bad$ticket_id[1] <- 1.5
-expect_error(clean_noria(bad))
-# MapReduce par clé : même couverture malgré d'autres frontières de partitions.
-keyed <- mapreduce_by_workflow(d)
-stopifnot(identical(keyed$result$workflow, c("A", "B")),
-          near(keyed$result$sum, c(8266.6, 7864.7)),
-          all(keyed$result$count == c(117, 119)),
-          near(keyed$result$mean_minutes, c(70.65470085470085, 66.08991596638656)),
-          near(keyed$result, mapreduce_by_workflow(d, rep(1:17, length.out = nrow(d)))$result))
-empty_map <- map_by_workflow(d[FALSE, ])
-stopifnot(nrow(empty_map) == 0L,
-          near(reduce_by_workflow(c(keyed$mapped, list(vide = empty_map))), keyed$result))
-a_map <- map_by_workflow(d[d$workflow == "A", ])
-stopifnot(nrow(a_map) == 1L, reduce_by_workflow(list(a_map))$count == 117)
-expect_error(reduce_by_workflow(c(keyed$mapped, keyed$mapped[1])))
-expect_error(mapreduce_by_workflow(d, rep(NA_character_, nrow(d))))
-expect_error(map_by_workflow(data.frame(workflow = "C", resolution_minutes = 4)))
-expect_error(reduce_by_workflow(list(data.frame(workflow = "A", sum = factor("9"), count = 1))))
-cat("Tous les tests de contrats et de propriétés ont réussi.\n")
+main()

@@ -37,16 +37,7 @@ jobs:
         with:
           r-version: release
           use-public-rspm: false
-      - name: Contrats de la référence
+      - name: Installation et fichiers du parcours
+        run: Rscript 00_verifier_installation.R
+      - name: Huit missions, exemples et contrôles isolés
         run: Rscript tests/run_tests.R
-      - name: Parcours des quatre TP et contrôles apprenants
-        run: Rscript tests/learner_checks.R
-      - name: Référence complète facultative
-        run: Rscript scripts/01_run_all.R
-      - name: Mini-exemples facultatifs
-        run: |
-          Rscript examples/mini_regression.R
-          Rscript examples/mini_bootstrap.R
-          Rscript examples/mini_mapreduce.R
-      - name: Ancien TP06 facultatif conservé en archive
-        run: Rscript legacy/solutions/TP06_capstone_solution.R

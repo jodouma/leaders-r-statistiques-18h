@@ -1,0 +1,9 @@
+id,date,produit,quantite,prix_unitaire,cout_unitaire
+S001,2026-10-12,Cafe,1,3,1
+S002,2026-10-12,The,2,5,2
+S003,2026-10-12,Sandwich,1,8,3
+S004,2026-10-13,Cafe,2,3,1
+S005,2026-10-13,The,1,5,2
+S006,2026-10-13,Sandwich,2,8,3
+S001,2026-10-12,Cafe,1,3,1
+S007,2026-10-13,The,,5,2
