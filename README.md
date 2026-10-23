@@ -78,7 +78,7 @@ source("tests/run_tests.R", encoding = "UTF-8")
 source("tests/learner_checks.R", encoding = "UTF-8")
 ```
 
-Le [workflow](.github/workflows/r-check.yml) vérifie R sur Ubuntu, Windows et macOS : [résultats dans Actions](https://github.com/jodouma/leaders-r-statistiques-18h/actions). La validation automatisée et les simulations de parcours ne mesurent pas la réussite de vrais débutants ni la durée réelle en classe.
+Le [workflow](.github/workflows/r-check.yml) vérifie R sur Ubuntu (paquet de la distribution, ≥ 4.1), Windows et macOS (version R stable) : [résultats dans Actions](https://github.com/jodouma/leaders-r-statistiques-18h/actions). La validation automatisée et les simulations de parcours ne mesurent pas la réussite de vrais débutants ni la durée réelle en classe.
 
 `scripts/01_run_all.R` reproduit la référence complète, y compris modèle et agrégation locale. Il charge les réponses de référence et ne valide aucun TP étudiant. Les anciens exercices sont conservés dans `legacy/`. **Aucun environnement RHadoop réel n’est implémenté** ; l’adaptation du plan officiel reste à valider avec le coordinateur.
 
