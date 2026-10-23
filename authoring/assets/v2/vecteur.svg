@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T20:21:21.533847</dc:date>
+    <dc:date>2026-10-23T21:01:05.872327</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -36,7 +36,7 @@ L 202.862338 60.463168
 L 202.862338 98.844707 
 L 94.161039 98.844707 
 z
-" clip-path="url(#pf9a8e6e6f1)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p73de4ffb5e)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 202.862338 60.463168 
@@ -44,7 +44,7 @@ L 311.563636 60.463168
 L 311.563636 98.844707 
 L 202.862338 98.844707 
 z
-" clip-path="url(#pf9a8e6e6f1)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p73de4ffb5e)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 311.563636 60.463168 
@@ -52,11 +52,11 @@ L 420.264935 60.463168
 L 420.264935 98.844707 
 L 311.563636 98.844707 
 z
-" clip-path="url(#pf9a8e6e6f1)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#p73de4ffb5e)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- 10 -->
-    <g style="fill: #132f43" transform="translate(140.876688 82.771125) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(140.876688 82.771125) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-14" d="M 794 531 
 L 1825 531 
@@ -100,7 +100,7 @@ z
    </g>
    <g id="text_2">
     <!-- 20 -->
-    <g style="fill: #132f43" transform="translate(249.577987 82.771125) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(249.577987 82.771125) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-15" d="M 1228 531 
 L 3431 531 
@@ -133,7 +133,7 @@ z
    </g>
    <g id="text_3">
     <!-- 30 -->
-    <g style="fill: #132f43" transform="translate(358.279286 82.771125) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(358.279286 82.771125) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-16" d="M 2597 2516 
 Q 3050 2419 3304 2112 
@@ -174,7 +174,7 @@ z
    </g>
    <g id="text_4">
     <!-- x[1] -->
-    <g style="fill: #087d77" transform="translate(138.364891 51.286949) scale(0.09 -0.09)">
+    <g style="fill: #4e73ff" transform="translate(138.364891 51.286949) scale(0.09 -0.09)">
      <defs>
       <path id="DejaVuSans-Bold-5b" d="M 1422 1791 
 L 159 3500 
@@ -236,7 +236,7 @@ z
    </g>
    <g id="text_5">
     <!-- x[2] -->
-    <g style="fill: #087d77" transform="translate(247.06619 51.286949) scale(0.09 -0.09)">
+    <g style="fill: #4e73ff" transform="translate(247.06619 51.286949) scale(0.09 -0.09)">
      <defs>
       <path id="DejaVuSans-Bold-15" d="M 1844 884 
 L 3897 884 
@@ -269,7 +269,7 @@ z
    </g>
    <g id="text_6">
     <!-- x[3] -->
-    <g style="fill: #087d77" transform="translate(355.767489 51.286949) scale(0.09 -0.09)">
+    <g style="fill: #4e73ff" transform="translate(355.767489 51.286949) scale(0.09 -0.09)">
      <defs>
       <path id="DejaVuSans-Bold-16" d="M 2981 2516 
 Q 3453 2394 3698 2092 
@@ -312,7 +312,7 @@ z
    </g>
    <g id="text_7">
     <!-- Un vecteur numérique : 3 valeurs, un même type -->
-    <g style="fill: #132f43" transform="translate(7.2 17.757938) scale(0.132 -0.132)">
+    <g style="fill: #2b3180" transform="translate(7.2 17.757938) scale(0.132 -0.132)">
      <defs>
       <path id="DejaVuSans-Bold-38" d="M 588 4666 
 L 1791 4666 
@@ -795,7 +795,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pf9a8e6e6f1">
+  <clipPath id="p73de4ffb5e">
    <rect x="7.2" y="29.757938" width="418.5" height="99.792"/>
   </clipPath>
  </defs>

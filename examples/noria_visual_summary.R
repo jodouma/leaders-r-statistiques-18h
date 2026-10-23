@@ -12,6 +12,7 @@ estimate <- c(raw$estimate_minutes, adjusted$estimate)
 lower <- c(raw$conf_low, adjusted$conf_low)
 upper <- c(raw$conf_high, adjusted$conf_high)
 
+dir.create("results", showWarnings = FALSE)
 pdf("results/comparaison_intervalles.pdf", width = 9, height = 4.5)
 par(mar = c(5, 8, 4, 2), family = "sans")
 plot(NA, xlim = c(-11, 2), ylim = c(0.5, 2.5), yaxt = "n",

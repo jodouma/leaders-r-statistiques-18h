@@ -11,3 +11,6 @@
 *.pdf binary
 *.svg binary
 *.png binary
+
+*.ttf binary
+*.jpg binary

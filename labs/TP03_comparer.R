@@ -1,4 +1,4 @@
-# TP03 — Comparer deux moyennes indépendantes · 120 min · R de base, depuis la racine du projet.
+# TP03 — Comparer deux moyennes indépendantes · durée indicative : 120 min · R de base, depuis la racine du projet.
 # 1. Ouvrez course.Rproj ; ouvrez ce fichier dans l'éditeur.
 # 2. Lisez la première consigne puis exécutez une ligne avec Ctrl/Cmd + Entrée.
 # 3. Remplacez les TODO ; exécutez ensuite tout le fichier de haut en bas.

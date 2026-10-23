@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T20:21:21.590502</dc:date>
+    <dc:date>2026-10-23T21:01:05.924286</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -36,7 +36,7 @@ L 215.906494 52.370111
 L 215.906494 81.295329 
 L 99.958442 81.295329 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 215.906494 52.370111 
@@ -44,7 +44,7 @@ L 331.854545 52.370111
 L 331.854545 81.295329 
 L 215.906494 81.295329 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 331.854545 52.370111 
@@ -52,7 +52,7 @@ L 447.802597 52.370111
 L 447.802597 81.295329 
 L 331.854545 81.295329 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 99.958442 81.295329 
@@ -60,7 +60,7 @@ L 215.906494 81.295329
 L 215.906494 110.220546 
 L 99.958442 110.220546 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 215.906494 81.295329 
@@ -68,7 +68,7 @@ L 331.854545 81.295329
 L 331.854545 110.220546 
 L 215.906494 110.220546 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 331.854545 81.295329 
@@ -76,7 +76,7 @@ L 447.802597 81.295329
 L 447.802597 110.220546 
 L 331.854545 110.220546 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 99.958442 110.220546 
@@ -84,7 +84,7 @@ L 215.906494 110.220546
 L 215.906494 139.145764 
 L 99.958442 139.145764 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 215.906494 110.220546 
@@ -92,7 +92,7 @@ L 331.854545 110.220546
 L 331.854545 139.145764 
 L 215.906494 139.145764 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #f4f7f5; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
     <path d="M 331.854545 110.220546 
@@ -100,11 +100,11 @@ L 447.802597 110.220546
 L 447.802597 139.145764 
 L 331.854545 139.145764 
 z
-" clip-path="url(#p08cb73051a)" style="fill: #e4efeb; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pfc639e3c93)" style="fill: #edf0ff; stroke: #ffffff; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- 1 -->
-    <g style="fill: #132f43" transform="translate(154.114968 69.949908) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(154.114968 69.949908) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-14" d="M 794 531 
 L 1825 531 
@@ -126,7 +126,7 @@ z
    </g>
    <g id="text_2">
     <!-- A -->
-    <g style="fill: #132f43" transform="translate(269.776144 69.949908) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(269.776144 69.949908) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-24" d="M 2188 4044 
 L 1331 1722 
@@ -150,7 +150,7 @@ z
    </g>
    <g id="text_3">
     <!-- 10 -->
-    <g style="fill: #132f43" transform="translate(382.193571 69.949908) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(382.193571 69.949908) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-13" d="M 2034 4250 
 Q 1547 4250 1301 3770 
@@ -180,7 +180,7 @@ z
    </g>
    <g id="text_4">
     <!-- 2 -->
-    <g style="fill: #132f43" transform="translate(154.114968 98.875125) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(154.114968 98.875125) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-15" d="M 1228 531 
 L 3431 531 
@@ -212,7 +212,7 @@ z
    </g>
    <g id="text_5">
     <!-- B -->
-    <g style="fill: #132f43" transform="translate(269.763957 98.875125) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(269.763957 98.875125) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-25" d="M 1259 2228 
 L 1259 519 
@@ -252,14 +252,14 @@ z
    </g>
    <g id="text_6">
     <!-- 20 -->
-    <g style="fill: #132f43" transform="translate(382.193571 98.875125) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(382.193571 98.875125) scale(0.12 -0.12)">
      <use xlink:href="#DejaVuSans-15"/>
      <use xlink:href="#DejaVuSans-13" transform="translate(63.625 0)"/>
     </g>
    </g>
    <g id="text_7">
     <!-- 3 -->
-    <g style="fill: #132f43" transform="translate(154.114968 127.800342) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(154.114968 127.800342) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-16" d="M 2597 2516 
 Q 3050 2419 3304 2112 
@@ -299,20 +299,20 @@ z
    </g>
    <g id="text_8">
     <!-- A -->
-    <g style="fill: #132f43" transform="translate(269.776144 127.800342) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(269.776144 127.800342) scale(0.12 -0.12)">
      <use xlink:href="#DejaVuSans-24"/>
     </g>
    </g>
    <g id="text_9">
     <!-- 30 -->
-    <g style="fill: #132f43" transform="translate(382.193571 127.800342) scale(0.12 -0.12)">
+    <g style="fill: #2b3180" transform="translate(382.193571 127.800342) scale(0.12 -0.12)">
      <use xlink:href="#DejaVuSans-16"/>
      <use xlink:href="#DejaVuSans-13" transform="translate(63.625 0)"/>
     </g>
    </g>
    <g id="text_10">
     <!-- ticket_id : integer -->
-    <g style="fill: #087d77" transform="translate(113.108952 46.030788) scale(0.09 -0.09)">
+    <g style="fill: #4e73ff" transform="translate(113.108952 46.030788) scale(0.09 -0.09)">
      <defs>
       <path id="DejaVuSans-Bold-57" d="M 1759 4494 
 L 1759 3500 
@@ -552,7 +552,7 @@ z
    </g>
    <g id="text_11">
     <!-- workflow : character -->
-    <g style="fill: #087d77" transform="translate(221.648879 46.030788) scale(0.09 -0.09)">
+    <g style="fill: #4e73ff" transform="translate(221.648879 46.030788) scale(0.09 -0.09)">
      <defs>
       <path id="DejaVuSans-Bold-5a" d="M 225 3500 
 L 1313 3500 
@@ -693,7 +693,7 @@ z
    </g>
    <g id="text_12">
     <!-- resolution_minutes : numeric -->
-    <g style="fill: #087d77" transform="translate(315.772634 46.030788) scale(0.09 -0.09)">
+    <g style="fill: #4e73ff" transform="translate(315.772634 46.030788) scale(0.09 -0.09)">
      <defs>
       <path id="DejaVuSans-Bold-56" d="M 3272 3391 
 L 3272 2541 
@@ -821,7 +821,7 @@ z
    </g>
    <g id="text_13">
     <!-- ticket 1 -->
-    <g style="fill: #5b707b" transform="translate(39.523519 69.430767) scale(0.1 -0.1)">
+    <g style="fill: #52617d" transform="translate(39.523519 69.430767) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-57" d="M 1172 4494 
 L 1172 3500 
@@ -931,7 +931,7 @@ z
    </g>
    <g id="text_14">
     <!-- ticket 2 -->
-    <g style="fill: #5b707b" transform="translate(39.523519 98.355984) scale(0.1 -0.1)">
+    <g style="fill: #52617d" transform="translate(39.523519 98.355984) scale(0.1 -0.1)">
      <use xlink:href="#DejaVuSans-57"/>
      <use xlink:href="#DejaVuSans-4c" transform="translate(39.203125 0)"/>
      <use xlink:href="#DejaVuSans-46" transform="translate(66.984375 0)"/>
@@ -944,7 +944,7 @@ z
    </g>
    <g id="text_15">
     <!-- ticket 3 -->
-    <g style="fill: #5b707b" transform="translate(39.523519 127.281202) scale(0.1 -0.1)">
+    <g style="fill: #52617d" transform="translate(39.523519 127.281202) scale(0.1 -0.1)">
      <use xlink:href="#DejaVuSans-57"/>
      <use xlink:href="#DejaVuSans-4c" transform="translate(39.203125 0)"/>
      <use xlink:href="#DejaVuSans-46" transform="translate(66.984375 0)"/>
@@ -957,7 +957,7 @@ z
    </g>
    <g id="text_16">
     <!-- data.frame : une colonne par variable, une ligne par observation -->
-    <g style="fill: #132f43" transform="translate(7.2 17.229938) scale(0.132 -0.132)">
+    <g style="fill: #2b3180" transform="translate(7.2 17.229938) scale(0.132 -0.132)">
      <defs>
       <path id="DejaVuSans-Bold-11" d="M 653 1209 
 L 1778 1209 
@@ -1128,7 +1128,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p08cb73051a">
+  <clipPath id="pfc639e3c93">
    <rect x="7.2" y="29.229938" width="446.4" height="133.056"/>
   </clipPath>
  </defs>

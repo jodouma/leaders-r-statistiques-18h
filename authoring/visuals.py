@@ -9,7 +9,7 @@ from matplotlib.patches import Rectangle
 import numpy as np
 
 DEST=Path('authoring/assets/v2');DEST.mkdir(parents=True,exist_ok=True)
-NAVY='#132F43';TEAL='#087D77';ORANGE='#D4603D';PALE='#E4EFEB';MUTED='#5B707B'
+NAVY='#2B3180';TEAL='#4E73FF';ORANGE='#FF9A3C';PALE='#EDF0FF';MUTED='#52617D';LABEL_ORANGE='#A34A00'
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':11,'svg.fonttype':'path','axes.spines.top':False,'axes.spines.right':False,'axes.labelcolor':NAVY,'text.color':NAVY,'axes.edgecolor':'#9BB0B5'})
 
 def finish(fig,name):
@@ -42,15 +42,15 @@ for j,(name,body) in enumerate([('donnees','vecteur : 10, 20, 30'),('titre','tex
     ax.text(xx+.15,.61,name,ha='center',transform=ax.transAxes,fontweight='bold',color=TEAL);ax.text(xx+.15,.39,body,ha='center',transform=ax.transAxes,fontsize=10)
 ax.text(.02,.94,'Une list conserve des objets de formes et types différents',transform=ax.transAxes,fontsize=13,fontweight='bold');finish(fig,'liste')
 fig,ax=plt.subplots(figsize=(8,2.4));x=np.array([10,20,30]);ax.scatter(x,np.zeros(3),s=120,color=TEAL,zorder=3);ax.axhline(0,color=MUTED,lw=1);ax.axvline(x.mean(),color=ORANGE,lw=2,ls='--');ax.set_yticks([]);ax.set_xticks([10,20,30]);ax.set_xlabel('Durée (minutes)');ax.set_ylim(-.5,1)
-for v in x:ax.annotate(f'{v-x.mean():+.0f}',xy=((v+x.mean())/2,.25),ha='center',color=ORANGE,fontsize=12)
-ax.annotate('moyenne = 20 min',xy=(20,.75),ha='center',fontweight='bold',color=ORANGE)
+for v in x:ax.annotate(f'{v-x.mean():+.0f}',xy=((v+x.mean())/2,.25),ha='center',color=LABEL_ORANGE,fontsize=12)
+ax.annotate('moyenne = 20 min',xy=(20,.75),ha='center',fontweight='bold',color=LABEL_ORANGE)
 ax.set_title('La somme des écarts à la moyenne vaut zéro',loc='left',fontweight='bold');finish(fig,'moyenne')
 fig,ax=plt.subplots(figsize=(8,2.5));deviations=np.array([-10,0,10]);ax.bar([0,1,2],deviations,color=[TEAL,'#AAA',TEAL]);ax.axhline(0,color=MUTED,lw=1);ax.set_xticks([0,1,2],['10 − 20','20 − 20','30 − 20']);ax.set_ylabel('Écart à la moyenne (min)');ax.set_title('Écarts : −10, 0, +10 min → carrés : 100, 0, 100 min²',loc='left',fontweight='bold');finish(fig,'dispersion')
 fig,ax=plt.subplots(figsize=(8,2.5));xx=np.linspace(0,100,500)
 for mu,n,color in [(50,4,ORANGE),(50,100,TEAL)]:
     se=10/np.sqrt(n);yy=np.exp(-.5*((xx-mu)/se)**2)/(se*np.sqrt(2*np.pi));ax.plot(xx,yy,color=color,lw=2,label=f'n = {n}, SE = {se:g} min')
 ax.set_xlim(30,70);ax.set_xlabel('Moyennes répétées dans ce modèle illustratif (min)');ax.set_ylabel('Densité');ax.set_title('Même dispersion des tickets (s = 10 min), précision différente',loc='left',fontweight='bold');ax.legend(frameon=False);finish(fig,'se')
-fig,ax=plt.subplots(figsize=(8,2.2));ax.set_xlim(-11,3);ax.set_ylim(0,2);ax.set_yticks([]);ax.axvline(0,color=NAVY,ls='--');ax.axvline(-5,color=ORANGE,ls=':');ax.plot([-9.1476483068,.0180785301],[1,1],color=TEAL,lw=4);ax.scatter([-4.5647848883],[1],s=100,color=TEAL,zorder=3);ax.set_xlabel('Différence moyenne B − A (minutes)');ax.set_title('Noria : estimation −4,565 min ; IC 95 % [−9,148 ; 0,018]',loc='left',fontweight='bold');ax.text(-5,1.6,'−5 min : seuil illustratif',ha='center',color=ORANGE,fontsize=10);finish(fig,'welch_noria')
+fig,ax=plt.subplots(figsize=(8,2.2));ax.set_xlim(-11,3);ax.set_ylim(0,2);ax.set_yticks([]);ax.axvline(0,color=NAVY,ls='--');ax.axvline(-5,color=ORANGE,ls=':');ax.plot([-9.1476483068,.0180785301],[1,1],color=TEAL,lw=4);ax.scatter([-4.5647848883],[1],s=100,color=TEAL,zorder=3);ax.set_xlabel('Différence moyenne B − A (minutes)');ax.set_title('Noria : estimation −4,565 min ; IC 95 % [−9,148 ; 0,018]',loc='left',fontweight='bold');ax.text(-5,1.6,'−5 min : seuil illustratif',ha='center',color=LABEL_ORANGE,fontsize=10);finish(fig,'welch_noria')
 fig,ax=plt.subplots(figsize=(8,3.0))
 x=[10,20,30,40,50,60,70,80,150]
 ax.boxplot(x,vert=False,positions=[1],widths=.28,
@@ -63,7 +63,7 @@ ax.set_xlabel('Durée (minutes)');ax.set_xticks([10,30,50,70,80,130,150])
 for xx,label,yy in [(30,'Q1 = 30',1.5),(50,'médiane = 50',.45),(70,'Q3 = 70',1.5),(10,'moustache = 10',.68),(80,'moustache = 80',.68),(150,'point isolé = 150',1.5)]:
     ax.annotate(label,xy=(xx,1),xytext=(xx,yy),ha='center',fontsize=9,
                 arrowprops={'arrowstyle':'-','color':MUTED},color=NAVY)
-ax.axvline(130,color=ORANGE,ls=':',lw=1);ax.text(130,.38,'limite 130',ha='center',fontsize=8,color=ORANGE)
+ax.axvline(130,color=ORANGE,ls=':',lw=1);ax.text(130,.38,'limite 130',ha='center',fontsize=8,color=LABEL_ORANGE)
 ax.set_title('Boîte Q1–Q3 ; moustaches jusqu’aux valeurs admissibles',loc='left',fontweight='bold')
 finish(fig,'boxplot')
 print('Vector illustrations generated:' ,len(list(DEST.glob('*.svg'))))

@@ -1,4 +1,4 @@
-# TP04 — Projet autonome : de la source à la décision · 150 min · R de base, depuis la racine du projet.
+# TP04 — Projet autonome : de la source à la décision · durée indicative : 150 min · R de base, depuis la racine du projet.
 # 1. Ouvrez course.Rproj ; ouvrez ce fichier dans l'éditeur.
 # 2. Lisez la première consigne puis exécutez une ligne avec Ctrl/Cmd + Entrée.
 # 3. Remplacez les TODO ; exécutez ensuite tout le fichier de haut en bas.

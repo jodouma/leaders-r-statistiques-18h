@@ -1,4 +1,4 @@
-# TP02 — Corrigé commenté : préparer · 120 min · R de base, depuis la racine du projet.
+# TP02 — Corrigé commenté : préparer · durée indicative : 120 min · R de base, depuis la racine du projet.
 # 1. Ouvrez course.Rproj ; ouvrez ce fichier dans l'éditeur.
 # 2. Exécutez une ligne à la fois pour relier le calcul à sa justification.
 # 3. Relancez ensuite le corrigé entier dans une session R neuve.

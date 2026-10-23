@@ -18,7 +18,7 @@ run_learner_checks <- function() {
     paste0("solutions/TP", specs$tp, "_", specs$nom, "_solution.R"),
     paste0("checks/TP", specs$tp, ".R"), "checks/_utils.R",
     "data/noria_dirty.csv", "data/noria_clean_reprise.csv",
-    "examples/mini_welch.R", "examples/mini_note_pdf.R")
+    "examples/mini_welch.R", "examples/mini_note_pdf.R", "examples/mini_structures.R")
   expect_error_matching <- function(expr, pattern) {
     err <- tryCatch({ force(expr); NULL }, error = identity)
     if (!inherits(err, "error")) stop("Le contrôle aurait dû refuser ce cas : ", pattern)
@@ -99,6 +99,16 @@ run_learner_checks <- function() {
     original <- e$resumer_durees
     e$resumer_durees <- function(x) as.data.frame(as.list(original(x)))
     source_quiet("checks/TP02.R", e)
+  })
+  in_case("exemple structures : retirer le nom du quantile avant de nommer q1", function() {
+    e <- new_student_env()
+    source_quiet("examples/mini_structures.R", e)
+    stopifnot(identical(names(e$q), "25%"), unname(e$q) == 15,
+              identical(names(e$quartile_avec_nom), "q1.25%"),
+              identical(names(e$quartile_sans_nom), "q1"),
+              identical(unname(e$quartile_avec_nom), unname(e$quartile_sans_nom)))
+    ligne <- data.frame(workflow = "A", as.list(e$quartile_sans_nom))
+    stopifnot(identical(names(ligne), c("workflow", "q1")), ligne$q1 == 15)
   })
   # Régression critique : un ID identique avec un contenu différent ne peut être dédupliqué.
   for (tp in c("02", "04")) {

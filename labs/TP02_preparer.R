@@ -1,4 +1,4 @@
-# TP02 — Préparer, auditer et décrire · 120 min · R de base, depuis la racine du projet.
+# TP02 — Préparer, auditer et décrire · durée indicative : 120 min · R de base, depuis la racine du projet.
 # 1. Ouvrez course.Rproj ; ouvrez ce fichier dans l'éditeur.
 # 2. Lisez la première consigne puis exécutez une ligne avec Ctrl/Cmd + Entrée.
 # 3. Remplacez les TODO ; exécutez ensuite tout le fichier de haut en bas.
@@ -35,6 +35,10 @@ clean <- data.frame()          # TODO : tableau final.
 n_satisfaction_absente <- NA_integer_
 # Transfert de mini_structures.R : écrivez une fonction recevant UN vecteur.
 # Elle doit renvoyer n, moyenne, ecart_type, q1, mediane, q3 ; quantile(type = 7).
+# quantile() ajoute un nom automatique ("25%" ou "75%") : retirez-le avec unname()
+# avant d'attribuer q1= ou q3=, comme dans le mini-exemple de mini_structures.R.
+# Exemple de geste : q1 = unname(quantile(x, .25, type = 7)).
+# Vérifiez names(descriptifs) : q1 et q3, sans pourcentage ajouté.
 resumer_durees <- function(x) {
   stop("TODO : compléter resumer_durees avec length/mean/sd/quantile/median.")
 }

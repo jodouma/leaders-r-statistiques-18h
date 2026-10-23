@@ -29,6 +29,17 @@ attributes(m)              # dim et dimnames ; les nombres seuls ne disent pas t
 boite$resume
 # Transfert TP02 : remplacer les calculs de resumer_mini par les six statistiques demandées.
 
+# quantile() renvoie un nombre ET une étiquette automatique, ici "25%".
+# c() réunit les noms : ajouter q1= sans retirer l'étiquette donne "q1.25%".
+q <- quantile(c(10,20,30), .25, type = 7)
+names(q)                   # "25%" : le nom, pas la valeur du quartile.
+quartile_avec_nom <- c(q1 = q)
+quartile_sans_nom <- c(q1 = unname(q))
+quartile_avec_nom           # q1.25% = 15 : le nom a été assemblé.
+quartile_sans_nom           # q1 = 15 : unname() retire le nom, pas la valeur.
+# Transfert : c(q1 = unname(quantile(x, .25, type = 7))) ; même geste pour q3.
+# as.list() puis data.frame() conservent ces noms : vérifiez names(descriptifs).
+
 # Passer d'un vecteur nommé à une ligne, puis réunir deux groupes.
 resumer_mini <- function(x) c(n=length(x), moyenne=mean(x), ecart_type=sd(x))
 ra <- resumer_mini(c(10,20,30))

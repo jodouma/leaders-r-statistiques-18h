@@ -17,26 +17,76 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.pagesizes import A4
 
-NAVY=colors.HexColor('#132F43'); TEAL=colors.HexColor('#087D77')
-ORANGE=colors.HexColor('#D4603D'); INK=colors.HexColor('#193448')
-MUTED=colors.HexColor('#5B707B'); PAPER=colors.HexColor('#F7F6F1')
-PALE=colors.HexColor('#E4EFEB'); LINE=colors.HexColor('#CEDAD7')
+NAVY=colors.HexColor('#2B3180'); TEAL=colors.HexColor('#4E73FF')
+DARK=colors.HexColor('#07152F'); ORANGE=colors.HexColor('#FF9A3C')
+INK=colors.HexColor('#1A1F4D'); MUTED=colors.HexColor('#666270')
+PAPER=colors.white; PALE=colors.HexColor('#F3F5FC'); LINE=colors.HexColor('#E6E4EE')
+ASSETS=Path(__file__).resolve().parent/'assets'/'v3'
+
 
 def fonts():
-    root=Path('/System/Library/Fonts/Supplemental')
-    # Reproducible on another OS by setting COURSE_FONT_DIR to a folder
-    # containing the listed Arial/Courier New fonts, or using PDF base fonts.
-    import os
-    root=Path(os.environ.get('COURSE_FONT_DIR',str(root)))
-    spec={'Body':'Arial.ttf','Bold':'Arial Bold.ttf','Mono':'Courier New.ttf'}
-    ok=all((root/f).exists() for f in spec.values())
-    if ok:
-        for name,f in spec.items(): pdfmetrics.registerFont(TTFont(name,str(root/f)))
-        pdfmetrics.registerFontFamily('Body',normal='Body',bold='Bold',italic='Body',boldItalic='Bold')
-        return 'Body','Bold','Mono'
-    return 'Helvetica','Helvetica-Bold','Courier'
+    root=Path(__file__).resolve().parent/'fonts'
+    for name,file in {'Body':'Inter-400.ttf','Bold':'Inter-700.ttf',
+                      'Heading':'PlusJakartaSans-800.ttf'}.items():
+        pdfmetrics.registerFont(TTFont(name,str(root/file)))
+    pdfmetrics.registerFontFamily('Body',normal='Body',bold='Bold',italic='Body',boldItalic='Bold')
+    mono=Path(os.environ.get('COURSE_MONO_FONT','/System/Library/Fonts/Supplemental/Courier New.ttf'))
+    if mono.exists():pdfmetrics.registerFont(TTFont('Mono',str(mono)));monofont='Mono'
+    else:monofont='Courier'
+    return 'Body','Bold',monofont,'Heading'
 
-BODY,BOLD,MONO=fonts()
+BODY,BOLD,MONO,HEAD=fonts()
+
+def asset(path):
+    p=Path(path)
+    return p if p.is_absolute() else Path(__file__).resolve().parent.parent/p
+
+def draw_page_header(c,doc,p,i,n,W,H,m):
+    slide=doc.get('landscape',False)
+    c.setFillColor(PAPER);c.rect(0,0,W,H,fill=1,stroke=0)
+    c.saveState();c.setFillColor(PALE)
+    c.circle(W+28,H+30,95,fill=1,stroke=0)
+    c.setStrokeColor(colors.HexColor('#E7ECFF'));c.setLineWidth(12)
+    c.circle(W+28,H+30,76,fill=0,stroke=1);c.restoreState()
+    c.drawImage(str(ASSETS/'leaders-logo-blue.png'),m,H-47,width=83,height=29,preserveAspectRatio=True,anchor='sw',mask='auto')
+    c.setFont(BOLD,8 if not slide else 10);c.setFillColor(NAVY)
+    c.drawRightString(W-m-40,H-34,'MASTER  /  À VOTRE RYTHME')
+    c.setFillColor(colors.white);c.circle(W-m-15,H-31,17,fill=1,stroke=0)
+    c.drawImage(str(ASSETS/'Rlogo.png'),W-m-28,H-42,width=27,height=21,preserveAspectRatio=True,anchor='c',mask='auto')
+    y=H-67
+    if doc.get('level'):
+        c.setFillColor(ORANGE);c.circle(m+11,y-6,11,fill=1,stroke=0)
+        c.setFont(BOLD,9);c.setFillColor(DARK);c.drawCentredString(m+11,y-9,str(doc['level']))
+        y=draw_par(c,p.get('kicker',''),m+32,y,W-2*m-32,8.3,color=NAVY,font=BOLD)-12
+    else:y=draw_par(c,p.get('kicker',''),m,y,W-2*m,8.3 if not slide else 11,color=NAVY,font=BOLD)-12
+    return draw_par(c,p['title'],m,y,W-2*m,26 if not slide else 34,color=NAVY,font=HEAD)-24
+
+def draw_cover(c,doc,p,W,H,m):
+    c.setFillColor(DARK);c.rect(0,0,W,H,fill=1,stroke=0)
+    c.drawImage(str(ASSETS/'course-cover-students.png'),0,0,width=W,height=W*2/3,mask='auto')
+    c.drawImage(str(ASSETS/'leaders-logo-white.png'),m,H-80,width=118,height=42,preserveAspectRatio=True,anchor='sw',mask='auto')
+    c.setFont(BOLD,9);c.setFillColor(ORANGE);c.drawString(m,H-121,'MASTER · STATISTIQUE APPLIQUÉE')
+    c.setFont(HEAD,43);c.setFillColor(colors.white)
+    c.drawString(m,H-187,'Statistiques')
+    c.drawString(m,H-241,'avec R')
+    c.setFillColor(ORANGE);c.setFont(HEAD,32);c.drawString(m,H-295,'À votre rythme')
+    c.setFillColor(colors.white);c.circle(W-m-53,H-213,48,fill=1,stroke=0)
+    c.drawImage(str(ASSETS/'Rlogo.png'),W-m-86,H-239,width=66,height=51,preserveAspectRatio=True,anchor='c',mask='auto')
+    draw_par(c,p.get('subtitle',''),m,H-325,W-2*m,15,color=colors.HexColor('#B4C5FF'))
+    draw_par(c,p.get('tagline',''),m,H-353,W-2*m,10.5,color=colors.white)
+    xx=m
+    for label in p.get('chips',[]):
+        width=pdfmetrics.stringWidth(label,BOLD,8)+20
+        c.setFillColor(colors.HexColor('#25355C'));c.roundRect(xx,H-402,width,24,12,fill=1,stroke=0)
+        c.setFillColor(colors.white);c.setFont(BOLD,8);c.drawString(xx+10,H-394,label);xx+=width+8
+
+def draw_footer(c,doc,i,n,W,H,m):
+    c.setStrokeColor(LINE);c.setLineWidth(.5);c.line(m,40,W-m,40)
+    c.setFont(BOLD,7);c.setFillColor(NAVY);c.drawString(m,26,'LEADERS  /  R')
+    c.setFont(BODY,7);c.setFillColor(MUTED);c.drawRightString(W-m,26,f'{i:02} / {n:02}  ·  Y. Douma')
+    if doc.get('index_link'):
+        c.setFont(BOLD,8);c.setFillColor(NAVY);c.drawCentredString(W/2,26,'Revenir au parcours')
+        c.linkURL(doc['index_link'],(W/2-55,19,W/2+55,36),relative=True,thickness=0)
 
 @lru_cache(maxsize=256)
 def equation(latex, size):
@@ -49,7 +99,7 @@ def equation(latex, size):
     content=latex.strip().strip('$')
     stream=BytesIO()
     with rc_context({'mathtext.fontset':'stix','svg.fonttype':'path','font.size':size}):
-        math_to_image('$'+content+'$',stream,format='svg',dpi=144,color='#132F43',prop=FontProperties(size=size))
+        math_to_image('$'+content+'$',stream,format='svg',dpi=144,color='#2B3180',prop=FontProperties(size=size))
     drawing=svg2rlg(BytesIO(stream.getvalue()))
     if drawing is None: raise ValueError('Equation could not be rendered: '+latex)
     return drawing
@@ -64,7 +114,7 @@ def draw_equation(c,latex,x,y,w,size=23,max_height=90):
     return height
 def markup(s):
     s=escape(str(s))
-    return re.sub(r'(https://[^\s]+)',lambda m:f'<link href="{m[1]}" color="#087D77">{m[1]}</link>',s)
+    return re.sub(r'(https://[^\s]+)',lambda m:f'<link href="{m[1]}" color="#2B3180">{m[1]}</link>',s)
 
 def para(s,size=11,leading=None,color=INK,font=BODY):
     return Paragraph(markup(s),ParagraphStyle('p',fontName=font,fontSize=size,leading=leading or size*1.36,textColor=color,spaceAfter=0,splitLongWords=True))
@@ -81,7 +131,7 @@ def block(c,b,x,y,w,slide=False):
         eh=drawing.height*scale
         p=para(cap,13 if slide else 9.8,color=MUTED);_,ph=p.wrap(w-30,1000)
         h=eh+(ph+9 if cap else 0)+28
-        c.setFillColor(colors.HexColor('#EBF2F1'));c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
+        c.setFillColor(colors.HexColor('#EDF0FF'));c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
         draw_equation(c,latex,x+15,y-13,w-30,30 if slide else 24,110 if slide else 90)
         if cap:p.drawOn(c,x+15,y-13-eh-9-ph)
         return y-h-14
@@ -104,12 +154,27 @@ def block(c,b,x,y,w,slide=False):
     if typ=='links':
         for item in b['items']:
             label=item['label']; target=item['target']
-            p=para(label,10.5 if not slide else 15,color=TEAL,font=BOLD);_,h=p.wrap(w-20,1000)
+            p=para(label,10.5 if not slide else 15,color=NAVY,font=BOLD);_,h=p.wrap(w-43,1000)
             c.setFillColor(PALE);c.roundRect(x,y-h-15,w,h+15,5,fill=1,stroke=0)
             p.drawOn(c,x+10,y-7-h)
+            c.setFillColor(ORANGE);c.circle(x+w-17,y-(h+15)/2,7,fill=1,stroke=0)
+            c.setStrokeColor(DARK);c.setLineWidth(1);c.line(x+w-19,y-(h+15)/2+2,x+w-16,y-(h+15)/2);c.line(x+w-19,y-(h+15)/2-2,x+w-16,y-(h+15)/2)
             c.linkURL(target,(x,y-h-15,x+w,y),relative=not target.startswith(('https://','http://')),thickness=0)
             y-=h+24
         return y-3
+    if typ=='brandgrid':
+        items=b['items'];gap=12;cw=(w-gap*(len(items)-1))/len(items)
+        paragraphs=[];height=0
+        for item in items:
+            title=para(item['title'],11,color=NAVY,font=BOLD);_,th=title.wrap(cw-24,1000)
+            body=para(item['text'],9.5,color=INK);_,bh=body.wrap(cw-24,1000)
+            paragraphs.append((title,th,body,bh));height=max(height,th+bh+91)
+        for j,(item,parts) in enumerate(zip(items,paragraphs)):
+            xx=x+j*(cw+gap);title,th,body,bh=parts
+            c.setFillColor(PALE);c.setStrokeColor(LINE);c.roundRect(xx,y-height,cw,height,9,fill=1,stroke=1)
+            c.drawImage(str(asset(item['image'])),xx+16,y-59,width=cw-32,height=40,preserveAspectRatio=True,anchor='c',mask='auto')
+            title.drawOn(c,xx+12,y-75-th);body.drawOn(c,xx+12,y-82-th-bh)
+        return y-height-18
     if typ=='figure':
         from svglib.svglib import svg2rlg
         from reportlab.graphics import renderPDF
@@ -129,18 +194,14 @@ def block(c,b,x,y,w,slide=False):
         return y-4
     if typ=='code':
         fs=16 if slide else 9.3; lead=fs*(1.25 if slide else 1.36)
-        maxchars=int((w-28)/(fs*.60))
-        lines=[]
-        for line in b['text'].splitlines():
-            if len(line)>maxchars:
-                # Never silently alter runnable code; wrapped display gets a marker.
-                parts=textwrap.wrap(line,maxchars-2,replace_whitespace=False,drop_whitespace=False) or ['']
-                lines.extend([parts[0]]+['  '+v for v in parts[1:]])
-            else: lines.append(line)
+        lines=b['text'].splitlines()
+        longest=max((pdfmetrics.stringWidth(v,MONO,fs) for v in lines),default=0)
+        if longest>w-28:
+            raise ValueError('Code line exceeds available width; format the source explicitly: '+max(lines,key=len))
         h=len(lines)*lead+24
-        c.setFillColor(NAVY);c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
+        c.setFillColor(DARK);c.roundRect(x,y-h,w,h,8,fill=1,stroke=0)
         for i,line in enumerate(lines):
-            c.setFont(MONO,fs);c.setFillColor(colors.HexColor('#9FCDC4') if line.lstrip().startswith('#') else colors.HexColor('#FFFFFF'))
+            c.setFont(MONO,fs);c.setFillColor(colors.HexColor('#B4C5FF') if line.lstrip().startswith('#') else colors.HexColor('#FFFFFF'))
             c.drawString(x+14,y-17-i*lead,line)
         return y-h-14
     if typ=='callout':
@@ -148,8 +209,8 @@ def block(c,b,x,y,w,slide=False):
         p=para(body,size if not slide else 15);_,ph=p.wrap(w-30,2000)
         h=ph+43
         c.setFillColor(PALE);c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
-        c.setFillColor(TEAL);c.rect(x,y-h,4,h,fill=1,stroke=0)
-        draw_par(c,label.upper(),x+15,y-12,w-30,9 if not slide else 11,color=TEAL,font=BOLD)
+        c.setFillColor(ORANGE);c.rect(x,y-h,4,h,fill=1,stroke=0)
+        draw_par(c,label.upper(),x+15,y-12,w-30,9 if not slide else 11,color=NAVY,font=BOLD)
         p.drawOn(c,x+15,y-31-ph)
         return y-h-16
     if typ=='table':
@@ -158,14 +219,14 @@ def block(c,b,x,y,w,slide=False):
         if n==3 and rows[0][1]=='Durée': widths=[w*.2,w*.12,w*.68]
         cells=[[para(v,fs,fs*1.35,colors.white if i==0 else INK,BOLD if i==0 else BODY) for v in row] for i,row in enumerate(rows)]
         t=Table(cells,colWidths=widths,hAlign='LEFT')
-        t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),TEAL),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('LINEBELOW',(0,0),(-1,0),.5,TEAL)]))
+        t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),NAVY),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('LINEBELOW',(0,0),(-1,0),.5,TEAL)]))
         _,h=t.wrap(w,2000);t.drawOn(c,x,y-h);return y-h-18
     if typ=='diagram':
         nodes=b.get('nodes',[]); n=len(nodes); cols=min(4 if not slide else 5,n); rows=math.ceil(n/cols); gap=18
         bw=(w-gap*(cols-1))/cols; bh=66 if not slide else 82
         for i,label in enumerate(nodes):
             row,col=divmod(i,cols); xx=x+col*(bw+gap); yy=y-row*(bh+20)
-            c.setFillColor(TEAL if i%2==0 else NAVY);c.roundRect(xx,yy-bh,bw,bh,8,fill=1,stroke=0)
+            c.setFillColor(NAVY if i%2==0 else DARK);c.roundRect(xx,yy-bh,bw,bh,8,fill=1,stroke=0)
             p=para(label,10 if not slide else 14,color=colors.white,font=BOLD);_,h=p.wrap(bw-20,bh-12);p.drawOn(c,xx+10,yy-bh/2-h/2)
             if col<cols-1 and i<n-1:
                 c.setStrokeColor(ORANGE);c.setLineWidth(1.8); ay=yy-bh/2
@@ -188,27 +249,16 @@ def build(doc,out):
     c=canvas.Canvas(str(path),pagesize=(W,H),pageCompression=1)
     c.setTitle(doc['title']);c.setAuthor('Youssef Douma · Leaders University');c.setSubject(doc.get('subtitle',''))
     n=len(doc['pages']); errors=[]
+    if n>2:c.showOutline()
     for i,p in enumerate(doc['pages'],1):
-        c.setFillColor(PAPER);c.rect(0,0,W,H,fill=1,stroke=0)
-        c.setFillColor(TEAL);c.rect(0,H-8,W,8,fill=1,stroke=0)
-        c.setFont(BOLD,9 if not slide else 11);c.setFillColor(TEAL)
-        c.drawString(m,H-36,'LEADERS UNIVERSITY  /  ATELIER STATISTIQUE AVEC R')
-        c.setFont(BODY,8 if not slide else 10);c.setFillColor(MUTED)
-        c.drawRightString(W-m,H-36,'MASTER · 18 H')
-        y=H-67
-        y=draw_par(c,p.get('kicker',''),m,y,W-2*m,9 if not slide else 11,color=ORANGE,font=BOLD)-12
-        y=draw_par(c,p['title'],m,y,W-2*m,26 if not slide else 34,color=NAVY,font=BOLD)-24
         c.bookmarkPage(f'p{i}');c.addOutlineEntry(p['title'],f'p{i}',level=0)
-        for b in p['blocks']:
-            y=block(c,b,m,y,W-2*m,slide)
-        if y<54: errors.append((str(path),i,p['title'],round(y,1)))
-        c.setStrokeColor(LINE);c.setLineWidth(.5);c.line(m,40,W-m,40)
-        c.setFont(BODY,7.5 if not slide else 9);c.setFillColor(MUTED)
-        short=doc['title'][:28 if not slide else 45]
-        c.drawString(m,26,short);c.drawRightString(W-m,26,f'{i:02} / {n:02}  ·  Y. Douma')
-        if doc.get('index_link'):
-            label='Index des supports';c.setFillColor(TEAL);c.drawCentredString(W/2,26,label)
-            c.linkURL(doc['index_link'],(W/2-48,19,W/2+48,36),relative=True,thickness=0)
+        if p.get('layout')=='cover':
+            draw_cover(c,doc,p,W,H,m)
+        else:
+            y=draw_page_header(c,doc,p,i,n,W,H,m)
+            for b in p['blocks']:y=block(c,b,m,y,W-2*m,slide)
+            if y<54:errors.append((str(path),i,p['title'],round(y,1)))
+            draw_footer(c,doc,i,n,W,H,m)
         c.showPage()
     c.save()
     if errors: raise RuntimeError('Page overflow: '+repr(errors))

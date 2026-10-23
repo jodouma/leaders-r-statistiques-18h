@@ -3,7 +3,12 @@
 if (getRversion() < "4.1.0") stop("R 4.1.0 ou plus récent est requis.")
 if (!file.exists("course.Rproj")) stop("Ouvrir course.Rproj et lancer depuis sa racine.")
 required <- c("data/noria_dirty.csv", "data/noria_clean_reprise.csv",
-              "labs/TP01_demarrer.R", "checks/TP01.R")
+              "labs/TP01_demarrer.R", "labs/TP02_preparer.R",
+              "labs/TP03_comparer.R", "labs/TP04_projet.R",
+              "checks/_utils.R", paste0("checks/TP0", 1:4, ".R"),
+              "examples/mini_vecteurs.R", "examples/mini_structures.R",
+              "examples/mini_nettoyage.R", "examples/mini_welch.R",
+              "examples/mini_note_pdf.R")
 if (!all(file.exists(required))) {
   stop(paste("Fichiers manquants :", paste(required[!file.exists(required)], collapse = ", ")))
 }

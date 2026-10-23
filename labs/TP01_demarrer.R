@@ -1,4 +1,4 @@
-# TP01 — Démarrer et décrire · 90 min · R de base, depuis la racine du projet.
+# TP01 — Démarrer et décrire · durée indicative : 90 min · R de base, depuis la racine du projet.
 # 1. Ouvrez course.Rproj ; ouvrez ce fichier dans l'éditeur.
 # 2. Lisez la première consigne puis exécutez une ligne avec Ctrl/Cmd + Entrée.
 # 3. Remplacez les TODO ; exécutez ensuite tout le fichier de haut en bas.

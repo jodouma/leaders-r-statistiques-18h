@@ -3,12 +3,12 @@
     {
       "filename": "00_demarrer.pdf",
       "title": "Votre première analyse commence ici",
-      "subtitle": "Installation · Windows / macOS / Ubuntu · 30 min de préparation",
+      "subtitle": "Installation · Windows / macOS / Ubuntu · préparation à votre rythme",
       "audience": "Étudiant · Master",
       "pages": [
         {
           "title": "Choisir son chemin",
-          "kicker": "AVANT LE SAMEDI",
+          "kicker": "PRÉPARER SON DOSSIER",
           "blocks": [
             {
               "type": "diagram",
@@ -146,7 +146,7 @@
                   "target": "00_premiers_pas.pdf"
                 },
                 {
-                  "label": "Suivre les quatre étapes du week-end",
+                  "label": "Suivre les quatre niveaux du parcours",
                   "target": "01_parcours_18h.pdf"
                 }
               ]
@@ -202,12 +202,13 @@
             {
               "type": "callout",
               "label": "Plan de secours en classe",
-              "text": "Le formateur garde le ZIP et les installateurs compatibles sur support local. Travail en binôme provisoire, chacun avec son propre raisonnement et sa restitution. Une session de rattrapage technique précède la notation."
+              "text": "Si R est indisponible, conservez votre raisonnement papier et signalez le blocage au coach. Utilisez les outils et postes autorisés ; le coach peut fournir le ZIP local et aider à organiser la reprise technique. Le partage provisoire d’un poste est possible si vous le souhaitez ; chacun conserve son travail. Ne déclarez pas de relance individuelle avant de l’avoir réellement réalisée."
             }
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "00_premiers_pas.pdf",
@@ -227,7 +228,7 @@
               "type": "bullets",
               "items": [
                 "Télécharger le ZIP du cours et l’extraire dans un dossier facile à retrouver, par exemple Documents/r-statistiques-18h. Ouvrir le dossier extrait, pas l’archive ZIP.",
-                "Installer R depuis https://cran.r-project.org/ : Windows → base ; macOS → installateur adapté au Mac ; Ubuntu → instructions de la distribution. Le responsable vérifie l’installation avant la séance.",
+                "Installer R depuis https://cran.r-project.org/ : Windows → base ; macOS → installateur adapté au Mac ; Ubuntu → instructions de la distribution. Vérifier l’installation avec 00_demarrer.pdf ; demander au coach en cas de blocage.",
                 "Option conseillée : installer RStudio Desktop depuis https://posit.co/download/rstudio-desktop/ après R. Si un poste refuse cette installation, utiliser le chemin R seul page 3.",
                 "Le dossier du cours contient course.Rproj, data, labs, scripts et pdf. Garder cette organisation : les scripts utilisent des chemins comme data/noria_dirty.csv."
               ]
@@ -339,7 +340,7 @@
             {
               "type": "callout",
               "label": "Vérifier sans mémoire cachée",
-              "text": "Fermer R ; si R propose d’enregistrer l’espace de travail, choisir Non / Don’t Save. Rouvrir R, choisir de nouveau le dossier et relancer source(...). Le résultat doit être [1] 8. En séance, demander de l’aide si un menu diffère : cette vérification compte davantage que le nom exact du menu."
+              "text": "Fermer R ; si R propose d’enregistrer l’espace de travail, choisir Non / Don’t Save. Rouvrir R, choisir de nouveau le dossier et relancer source(...). Le résultat doit être [1] 8. Si un menu diffère, demander au coach : cette vérification compte davantage que le nom exact du menu."
             }
           ]
         },
@@ -397,397 +398,352 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "01_parcours_18h.pdf",
-      "title": "Statistiques avec R : le parcours de 18 heures",
-      "subtitle": "Master · Public mixte informatique et non informatique · Cas Noria",
+      "title": "Statistiques avec R : votre parcours autonome",
+      "subtitle": "Quatre niveaux · fenêtre de 18 heures · mathématiques puis R",
       "audience": "Étudiantes et étudiants",
       "pages": [
         {
-          "title": "Une question concrète, quatre étapes",
-          "kicker": "LE CONTRAT DU COURS",
+          "title": "Une question, quatre niveaux",
+          "kicker": "18 H · FENÊTRE DE TRAVAIL",
           "blocks": [
             {
               "type": "text",
               "text": "Noria teste deux façons de traiter les tickets, A et B. Vous cherchez si le délai moyen diffère, de combien et avec quelle incertitude. Les données sont simulées : elles servent à apprendre, sans prouver un gain réel dans une entreprise."
             },
             {
-              "type": "diagram",
-              "kind": "pipeline",
-              "nodes": [
-                "1. Démarrer\n90 min de TP",
-                "2. Préparer\n120 min de TP",
-                "3. Comparer\n120 min de TP",
-                "4. Décider\n150 min de TP"
-              ]
+              "type": "callout",
+              "label": "Un cadre souple",
+              "text": "Les 18 heures sont une fenêtre d’apprentissage autonome accompagnée par un coach. Les pauses et les horaires réels sont annoncés localement. Aucun niveau ne doit être terminé à une heure commune ; les estimations de TP (90 / 120 / 120 / 150 minutes) sont indicatives et ne comprennent pas une garantie de réussite ni tout le temps de lecture, calcul et reprise."
             },
             {
               "type": "bullets",
               "items": [
-                "Point de départ : savoir ouvrir un fichier et faire un calcul scolaire. Aucun langage informatique n’est supposé connu. Les mathématiques utiles sont reprises avec de petits nombres, avant le code.",
-                "240 tickets indépendants ont été simulés avec une affectation A/B randomisée et équilibrée. Le fichier brut contient 241 lignes après introduction d’anomalies. L’audit conduit à 236 tickets retenus : A = 117 et B = 119.",
-                "12 satisfactions manquent dans les données retenues. Elles ne retirent pas automatiquement les tickets de l’analyse des délais ; l’effectif utile dépend de la variable étudiée.",
-                "Résultat principal : délai moyen B moins délai moyen A, en minutes, avec intervalle de confiance de Welch. Une valeur négative correspond à un délai moyen plus court sous B."
+                "Les quatre TP constituent le cœur ; le soutien est plus détaillé si nécessaire, sans changer les preuves ou le barème. Les extensions servent à approfondir après les acquisitions.",
+                "Toujours : mathématiques → petit calcul à la main → code R → interprétation. Les mini-exemples montrent un geste sur d’autres valeurs ; votre TP conserve votre raisonnement.",
+                "Les seuils de passage ci-dessous orientent votre reprise. Ils ne constituent ni un examen chronométré ni une note automatique. Le parcours n’a pas encore été observé dans un pilote avec des apprenants."
               ]
-            },
-            {
-              "type": "callout",
-              "label": "18 heures, réellement comptées",
-              "text": "4 séances de 270 minutes = 1 080 minutes de contact pédagogique. Les pauses sont à ajouter hors de ces créneaux. Les quatre TP occupent 480 minutes dédiées ; les exercices de maths, démonstrations et contrôles occupent le reste. Ce parcours n’a pas encore fait l’objet d’un pilote en classe."
-            },
-            {
-              "type": "callout",
-              "label": "Deux rythmes, un même objectif",
-              "text": "Parcours accompagné : nombres plus petits, étapes visibles, aide du formateur. Parcours rapide : justification supplémentaire, contre-exemple ou contrôle indépendant. Les mêmes quatre livrables et le même barème s’appliquent ; finir une extension n’est pas requis."
             }
           ]
         },
         {
-          "title": "Une seule route pour les quatre TP",
-          "kicker": "INDEX · ÉNONCÉ, LECTURE, FICHIER",
+          "title": "Niveau 0 · ouvrir, enregistrer, relancer",
+          "kicker": "AVANT LE TP01",
           "blocks": [
-            {
-              "type": "table",
-              "headers": [
-                "Étape",
-                "Lire dans le cours",
-                "Fichier"
-              ],
-              "rows": [
-                [
-                  "TP01",
-                  "Cours p.2–12",
-                  "labs/TP01_demarrer.R"
-                ],
-                [
-                  "TP02",
-                  "Cours p.13–24",
-                  "labs/TP02_preparer.R"
-                ],
-                [
-                  "TP03",
-                  "Cours p.25–33",
-                  "labs/TP03_comparer.R"
-                ],
-                [
-                  "TP04",
-                  "Cours p.31–34",
-                  "labs/TP04_projet.R"
-                ]
-              ]
-            },
             {
               "type": "links",
               "items": [
                 {
-                  "label": "TP01 : ouvrir l’énoncé",
-                  "target": "10_TP01_demarrer.pdf"
+                  "label": "Ouvrir 00_demarrer.pdf : installer et vérifier",
+                  "target": "00_demarrer.pdf"
                 },
                 {
-                  "label": "TP02 : ouvrir l’énoncé",
-                  "target": "11_TP02_preparer.pdf"
-                },
-                {
-                  "label": "TP03 : ouvrir l’énoncé",
-                  "target": "12_TP03_comparer.pdf"
-                },
-                {
-                  "label": "TP04 : ouvrir l’énoncé",
-                  "target": "13_TP04_projet.pdf"
+                  "label": "Ouvrir 00_premiers_pas.pdf : votre premier fichier",
+                  "target": "00_premiers_pas.pdf"
                 }
               ]
             },
             {
-              "type": "callout",
-              "label": "Lire les PDF téléchargés",
-              "text": "Les liens de fichiers sont prévus pour le dossier extrait. Sur GitHub, utiliser aussi le README ; les noms et pages restent indiqués. Les mini-exemples précèdent les TP, les corrigés viennent après une tentative."
-            }
-          ]
-        },
-        {
-          "title": "Séance 1 : prendre la main",
-          "kicker": "270 MIN / DU PAPIER AU SCRIPT",
-          "blocks": [
-            {
               "type": "table",
               "headers": [
                 "Repère",
-                "Durée",
-                "Activité et résultat"
+                "Action ou preuve"
               ],
               "rows": [
                 [
-                  "00–20",
-                  "20 min",
-                  "Accueil et diagnostic sans note : fichiers, moyenne, unités et lecture de graphique."
+                  "Entrée",
+                  "Un ordinateur autorisé et le ZIP réellement extrait ; aucun langage préalable."
                 ],
                 [
-                  "20–50",
-                  "30 min",
-                  "Premier essai sur ordinateur : ouvrir, prédire, exécuter, enregistrer, redémarrer et relancer."
+                  "Faire",
+                  "Dans le PDF Premiers pas, suivre la création de premier_essai.R, son enregistrement, son exécution et sa relance."
                 ],
                 [
-                  "50–85",
-                  "35 min",
-                  "Maths à la main : moyenne de petits délais ; dire ce que mesure le résultat et dans quelle unité."
+                  "Prêt à avancer",
+                  "Retrouver le fichier enregistré et obtenir 8 avec le petit calcul 4 + 4 après fermeture puis réouverture de R, sans restaurer l’espace de travail."
                 ],
                 [
-                  "85–125",
-                  "40 min",
-                  "R pas à pas : vecteur, nom d’objet, sélection et fonctions simples ; annoncer le résultat avant Run."
-                ],
-                [
-                  "125–215",
-                  "90 min",
-                  "TP01_demarrer.R : 70 min individuels, 9 min en triade, 11 min de retour et reprise."
-                ],
-                [
-                  "215–240",
-                  "25 min",
-                  "Maths à la main : même moyenne, répartitions différentes ; prévoir l’effet d’une grande valeur."
-                ],
-                [
-                  "240–261",
-                  "21 min",
-                  "Contrôle individuel : expliquer son calcul et relancer le script dans une session vide."
-                ],
-                [
-                  "261–270",
-                  "9 min",
-                  "Billet de sortie : un résultat, son unité, une question précise pour la séance suivante."
+                  "Si cela bloque",
+                  "Lire la première erreur, vérifier le dossier contenant course.Rproj et demander au coach ; garder la copie du message."
                 ]
               ]
             },
             {
               "type": "callout",
-              "label": "Avant d’ouvrir le code",
-              "text": "Sur quatre délais, calculer une moyenne, dire son unité et prévoir comment une grande valeur la déplace. Ensuite seulement, vérifier avec R."
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "À conserver : labs/TP01_demarrer.R complété avec prédictions, calculs et explications en commentaires.",
-                "Accompagné : refaire le premier essai avec le formateur et calculer sur quatre valeurs. Rapide : expliquer pourquoi deux séries peuvent avoir la même moyenne avec des répartitions très différentes.",
-                "Le contrôle porte sur un calcul compris et une relance réussie. La vitesse de frappe ne compte pas."
-              ]
+              "label": "Choisir ses lectures",
+              "text": "Ne lisez pas tout le cours avant de commencer. Au niveau suivant, consultez seulement les notions nommées ; revenez à une explication au moment où elle devient utile."
             }
           ]
         },
         {
-          "title": "Séance 2 : obtenir des données défendables",
-          "kicker": "270 MIN / AUDITER AVANT DE RÉSUMER",
+          "title": "Niveau 1 · Démarrer et décrire",
+          "kicker": "TP01 · ENTRÉE → CŒUR → PREUVE",
           "blocks": [
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Ouvrir 10_TP01_demarrer.pdf",
+                  "target": "10_TP01_demarrer.pdf"
+                },
+                {
+                  "label": "Ouvrir labs/TP01_demarrer.R",
+                  "target": "../labs/TP01_demarrer.R"
+                },
+                {
+                  "label": "Aides progressives : 07_aides_progressives.pdf",
+                  "target": "07_aides_progressives.pdf"
+                }
+              ]
+            },
             {
               "type": "table",
               "headers": [
                 "Repère",
-                "Durée",
-                "Activité et résultat"
+                "Votre prochaine action"
               ],
               "rows": [
                 [
-                  "00–20",
-                  "20 min",
-                  "Rappel actif : rouvrir son travail, lire un message d’erreur, expliquer une sélection."
+                  "Entrée",
+                  "Savoir ouvrir le projet, écrire une ligne, enregistrer et relancer ; sinon reprendre 00_premiers_pas.pdf."
                 ],
                 [
-                  "20–50",
-                  "30 min",
-                  "Maths à la main : médiane, quartiles et dispersion sur quelques valeurs ; esquisser le graphe."
+                  "Lire au besoin",
+                  "02_cours_visuel.pdf (p. 3–14) : vecteurs, moyenne, médiane et proportions ; mini_vecteurs.R."
                 ],
                 [
-                  "50–90",
-                  "40 min",
-                  "Démonstration guidée : importer, contrôler les types, repérer doublons et valeurs impossibles."
+                  "À la main",
+                  "Sur les durées du TP, compter positions et valeurs présentes, calculer somme, moyenne, médiane et deux fractions avec leurs dénominateurs."
                 ],
                 [
-                  "90–110",
-                  "20 min",
-                  "Pont matrice/apply : 8 min de tableau à la main, puis 12 min de lecture et d’exécution R."
+                  "Cœur de travail",
+                  "Traduire les calculs dans les objets demandés, exporter le résumé et expliquer les NA ; ne pas remplacer une expression par le nombre attendu."
                 ],
                 [
-                  "110–230",
-                  "120 min",
-                  "TP02_preparer.R : 90 min individuels, 9 min en triade, 21 min de retour et reprise."
+                  "Prêt à avancer",
+                  "Script + results/TP01_resume.csv ; calcul manuel concordant, deux dénominateurs expliqués, unité minutes et relance sans objets anciens."
                 ],
                 [
-                  "230–252",
-                  "22 min",
-                  "Maths et lecture de graphes : relier dispersion, valeurs atypiques et résumé choisi."
+                  "Reprise",
+                  "Si l’indexation bloque, reprendre le vecteur de trois nombres du mémo et vérifier un seul masque."
                 ],
                 [
-                  "252–270",
-                  "18 min",
-                  "Contrôle individuel : justifier une exclusion, une valeur manquante et un graphique."
+                  "Approfondir, facultatif",
+                  "Deux séries de même moyenne ont-elles le même étalement ? Construire un contre-exemple."
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Petite passerelle de programmation",
-              "text": "Une matrice est ici un petit tableau de nombres. On calcule un résumé par colonne à la main, puis avec apply. Une courte lecture de if, for et function relie condition, répétition et opération nommée. Ce pont ne devient pas un projet informatique supplémentaire. Cette reconnaissance appartient au cœur, sans point de barème distinct."
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "À conserver : TP02_preparer.R, trace des exclusions et graphiques demandés. Retrouver 241 lignes brutes puis 236 retenues et expliquer chaque règle.",
-                "Accompagné : comparer une ligne suspecte à la règle écrite avant de modifier le tableau. Rapide : tester un cas limite et montrer que la règle ne retire pas un cas légitime.",
-                "L’écart-type décrit l’étalement des délais. Le graphique sert à voir ce qu’un seul nombre peut masquer. La satisfaction, ordinale, se décrit avec effectifs et médiane."
               ]
             }
           ]
         },
         {
-          "title": "Séance 3 : comparer sans surinterpréter",
-          "kicker": "270 MIN / UNE DIFFÉRENCE ET SON INCERTITUDE",
+          "title": "Niveau 2 · Préparer et auditer",
+          "kicker": "TP02 · ENTRÉE → CŒUR → PREUVE",
           "blocks": [
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Ouvrir 11_TP02_preparer.pdf",
+                  "target": "11_TP02_preparer.pdf"
+                },
+                {
+                  "label": "Ouvrir labs/TP02_preparer.R",
+                  "target": "../labs/TP02_preparer.R"
+                },
+                {
+                  "label": "Aides progressives : 07_aides_progressives.pdf",
+                  "target": "07_aides_progressives.pdf"
+                }
+              ]
+            },
             {
               "type": "table",
               "headers": [
                 "Repère",
-                "Durée",
-                "Activité et résultat"
+                "Votre prochaine action"
               ],
               "rows": [
                 [
-                  "00–20",
-                  "20 min",
-                  "Rappel actif : effectifs propres, délais par groupe et sens de la comparaison."
+                  "Entrée",
+                  "TP01 relançable ; savoir distinguer une valeur manquante de zéro et sélectionner des valeurs."
                 ],
                 [
-                  "20–60",
-                  "40 min",
-                  "Maths à la main : petites répétitions d’échantillons ; distinguer dispersion et incertitude de la moyenne."
+                  "Lire au besoin",
+                  "02_cours_visuel.pdf (p. 15–26) : import, types, audit, dispersion, quartiles et graphiques ; mini_nettoyage.R et mini_structures.R."
                 ],
                 [
-                  "60–95",
-                  "35 min",
-                  "Démonstration Welch : définir B−A, calculer l’IC puis lire les éléments de l’objet résultat."
+                  "À la main",
+                  "Écrire les règles avant les exclusions ; sur une petite série, calculer médiane et dispersion, dessiner ce qu’un graphique doit montrer."
                 ],
                 [
-                  "95–215",
-                  "120 min",
-                  "TP03_comparer.R : 90 min individuels, 9 min en triade, 21 min de retour et reprise."
+                  "Cœur de travail",
+                  "Conserver raw intact, tracer chaque règle, décrire les durées par A/B, produire CSV et graphiques. Le petit pont matrice/apply et condition/boucle/fonction se lit dans les exemples, sans projet supplémentaire. Repérer aussi liste et array dans les sections nommées du cours ; cette reconnaissance non notée ne constitue pas un blocage supplémentaire au passage TP02."
                 ],
                 [
-                  "215–240",
-                  "25 min",
-                  "Atelier de raisonnement : changer un effectif ou la dispersion ; prévoir l’effet sur l’IC."
+                  "Prêt à avancer",
+                  "Audit de 241 lignes brutes à 236 tickets retenus (117 A, 119 B), 12 satisfactions manquantes conservées ; exports et graphes ouverts, une exclusion et une conservation justifiées."
                 ],
                 [
-                  "240–261",
-                  "21 min",
-                  "Contrôle individuel : interpréter l’IC en minutes ; vérifier le sens B−A et les hypothèses."
+                  "Reprise",
+                  "Comparer le nombre avant/après chaque règle ; isoler la première étape divergente et vérifier le masque sur quelques lignes."
                 ],
                 [
-                  "261–270",
-                  "9 min",
-                  "Billet de sortie : une conclusion étayée et une limite, sans reformuler seulement une p-valeur."
+                  "Approfondir, facultatif",
+                  "Tester un cas limite légitime et expliquer pourquoi la règle le conserve."
                 ]
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Deux questions différentes",
-              "text": "La dispersion parle des tickets ; l’incertitude parle de l’estimation de la moyenne ou de la différence. Un intervalle de confiance accompagne une estimation ; il ne contient pas 95 % des tickets."
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "À conserver : TP03_comparer.R, estimation B−A, IC à 95 % et phrases d’interprétation en minutes. Lire les attributs et les éléments de l’objet produit par le test pour retrouver ces résultats.",
-                "Accompagné : écrire d’abord « B−A » et « minutes », puis suivre la lecture de l’IC. Rapide : expliquer le sens d’un IC qui recouvre zéro et ce qui changerait avec un effectif plus petit.",
-                "Vérifier l’indépendance supposée et distinguer le scénario randomisé du cours d’une étude réelle. Un petit nombre de tickets retirés peut modifier l’équilibre initial : le signaler."
               ]
             }
           ]
         },
         {
-          "title": "Séance 4 : mener et défendre l’analyse",
-          "kicker": "270 MIN / DU SCRIPT À UNE DÉCISION NUANCÉE",
+          "title": "Niveau 3 · Comparer avec incertitude",
+          "kicker": "TP03 · ENTRÉE → CŒUR → PREUVE",
           "blocks": [
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Ouvrir 12_TP03_comparer.pdf",
+                  "target": "12_TP03_comparer.pdf"
+                },
+                {
+                  "label": "Ouvrir labs/TP03_comparer.R",
+                  "target": "../labs/TP03_comparer.R"
+                },
+                {
+                  "label": "Aides progressives : 07_aides_progressives.pdf",
+                  "target": "07_aides_progressives.pdf"
+                }
+              ]
+            },
             {
               "type": "table",
               "headers": [
                 "Repère",
-                "Durée",
-                "Activité et résultat"
+                "Votre prochaine action"
               ],
               "rows": [
                 [
-                  "00–20",
-                  "20 min",
-                  "Plan de projet : question, fichiers de départ, preuves attendues et critères du barème."
+                  "Entrée",
+                  "TP02 audité ; savoir lire les effectifs A/B et distinguer dispersion et moyenne. Une reprise de données peut débloquer l’inférence sans valider le nettoyage."
                 ],
                 [
-                  "20–50",
-                  "30 min",
-                  "Maths et décision avant le code : lire deux IC fictifs, discuter gain utile et incertitude."
+                  "Lire au besoin",
+                  "02_cours_visuel.pdf (p. 27–35) : B−A, erreur standard, Welch, intervalle de confiance et objet test ; mini_welch.R."
                 ],
                 [
-                  "50–200",
-                  "150 min",
-                  "TP04_projet.R : 115 min individuels, 9 min de défense en triade, 26 min de retour et reprise."
+                  "À la main",
+                  "Écrire B−A et minutes, calculer le contraste du mini-exemple puis prédire le signe ; expliquer ce qu’est une estimation de moyenne."
                 ],
                 [
-                  "200–235",
-                  "35 min",
-                  "Restitution collective : 5 exemples de 5 min, puis 10 min de synthèse ; tout le monde compare à sa note."
+                  "Cœur de travail",
+                  "Extraire estimation, IC et p d’un objet Welch orienté x=B, y=A ; tracer et interpréter."
                 ],
                 [
-                  "235–258",
-                  "23 min",
-                  "Contrôle final individuel : redémarrer, tout relancer et rendre les preuves du portfolio."
+                  "Prêt à avancer",
+                  "Script + results/TP03_comparaison.csv + results/TP03_resultats.pdf ; signe B−A, unité, IC et limites expliqués ; relance indépendante."
                 ],
                 [
-                  "258–270",
-                  "12 min",
-                  "Auto-évaluation et suite : ce qui est acquis, ce qui reste fragile, extensions facultatives."
+                  "Reprise",
+                  "Si TP02 reste bloqué, suivre la reprise explicitement prévue dans l’énoncé et inscrire « données de reprise » ; revenir au TP02 avant de revendiquer son acquisition."
+                ],
+                [
+                  "Approfondir, facultatif",
+                  "Prévoir comment effectif ou dispersion modifie l’incertitude ; ne pas confondre IC et dispersion des tickets."
                 ]
               ]
-            },
-            {
-              "type": "bullets",
-              "items": [
-                "Avant le code, lire deux résultats fictifs et discuter ce qui rend un gain utile. Pour le TP04, 5 minutes constituent un critère pédagogique fictif fixé avant de lire les résultats ; ce seuil ne provient pas d’une étude métier réelle.",
-                "À conserver : TP04_projet.R, sorties utiles et note de décision en PDF. La note indique question, audit, effectifs, différence B−A, IC, conclusion et limites.",
-                "Chaque personne défend sa conclusion pendant 3 minutes dans sa triade. Les restitutions collectives portent sur des exemples choisis ; elles ne permettent pas une soutenance individuelle devant toute la classe.",
-                "Accompagné : utiliser la trame de note et faire vérifier le sens de la différence. Rapide : examiner un scénario qui rendrait la recommandation fragile ; aucun modèle de régression n’est requis."
-              ]
-            },
-            {
-              "type": "callout",
-              "label": "Une conclusion attendue",
-              "text": "Donner un nombre, une unité, un intervalle et une conséquence raisonnable. Distinguer ce qui est observé, ce qui est supposé et ce qu’il faudrait vérifier dans des données réelles."
             }
           ]
         },
         {
-          "title": "Travailler, s’entraider et rendre",
-          "kicker": "VOTRE PORTFOLIO DU CŒUR",
+          "title": "Niveau 4 · Relier source et décision",
+          "kicker": "TP04 · ENTRÉE → CŒUR → PREUVE",
+          "blocks": [
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Ouvrir 13_TP04_projet.pdf",
+                  "target": "13_TP04_projet.pdf"
+                },
+                {
+                  "label": "Ouvrir labs/TP04_projet.R",
+                  "target": "../labs/TP04_projet.R"
+                },
+                {
+                  "label": "Aides progressives : 07_aides_progressives.pdf",
+                  "target": "07_aides_progressives.pdf"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Repère",
+                "Votre prochaine action"
+              ],
+              "rows": [
+                [
+                  "Entrée",
+                  "Savoir auditer le brut et interpréter B−A avec IC ; TP02/03 encore fragiles : reprendre leurs preuves avant de poursuivre."
+                ],
+                [
+                  "Lire au besoin",
+                  "02_cours_visuel.pdf (p. 33–36) : décision et limites ; mini_note_pdf.R ; trame de l’énoncé."
+                ],
+                [
+                  "À la main",
+                  "Écrire question, hypothèses, règles et seuil pédagogique fictif de 5 minutes avant de lire le résultat."
+                ],
+                [
+                  "Cœur de travail",
+                  "Repartir de data/noria_dirty.csv en session neuve, écrire les fonctions du projet, auditer, décrire, comparer et rédiger une page."
+                ],
+                [
+                  "Prêt à avancer",
+                  "Quatre scripts conservés ; exports TP04, graphiques, recommandation PDF d’une page et results/TP04_sessionInfo.txt ; chaîne complète du brut à la décision relancée."
+                ],
+                [
+                  "Reprise",
+                  "S’arrêter à la première fonction qui échoue ; vérifier entrée, sortie et audit. Une donnée propre fournie ne prouve pas le nettoyage du projet."
+                ],
+                [
+                  "Approfondir, facultatif",
+                  "Examiner une objection à la décision ou faire le transfert facultatif vers des données réelles."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Arrêter, reprendre et garder ses preuves",
+          "kicker": "LE RYTHME N’EST PAS UN CRITÈRE",
           "blocks": [
             {
               "type": "table",
               "headers": [
-                "Travail conservé",
-                "Part du barème"
+                "Travail",
+                "Barème du cœur"
               ],
               "rows": [
                 [
-                  "TP01_demarrer.R : premier calcul et interprétation",
+                  "TP01 : calculs et interprétation",
                   "15 / 100"
                 ],
                 [
-                  "TP02_preparer.R : audit, dispersion et graphes",
+                  "TP02 : audit, dispersion et graphes",
                   "25 / 100"
                 ],
                 [
-                  "TP03_comparer.R : B−A, IC, hypothèses et interprétation",
+                  "TP03 : B−A, IC, hypothèses et interprétation",
                   "30 / 100"
                 ],
                 [
-                  "TP04_projet.R + note PDF : relance, décision et défense",
+                  "TP04 : relance, décision, défense et limites",
                   "30 / 100"
                 ]
               ]
@@ -795,29 +751,45 @@
             {
               "type": "bullets",
               "items": [
-                "480 minutes de TP dédiées : 365 minutes sont réservées à la production individuelle, soit 76 %. Chaque TP réserve au moins deux tiers de sa durée à ce travail.",
-                "Triades : 3 personnes, 3 minutes de parole chacune, soit 9 minutes. La personne qui parle montre une preuve ; les deux autres vérifient le sens et posent une question. À deux, garder 6 minutes de parole et utiliser 3 minutes pour la reprise.",
-                "Garder ses quatre scripts, leurs exports, la note finale PDF et results/TP04_sessionInfo.txt (versions de R et de la session). Les commentaires expliquent les choix. Redémarrer et relancer le script ; une capture d’écran ne suffit pas.",
-                "Dire « je ne sais pas encore » avec une preuve précise est utile. Appeler le formateur si la même erreur résiste à deux essais ciblés. Les participants rapides approfondissent leur explication sans faire le travail des autres."
+                "Confort : travaillez une question à la fois, avec le mémo et le mini-exemple ouverts ; faites le cœur demandé. Plus à l’aise : un contre-exemple ou une vérification indépendante, puis les extensions facultatives. Aucun raccourci ne supprime une preuve du cœur.",
+                "Après cinq minutes sans progrès : arrêtez les essais au hasard, conservez la première erreur et demandez au coach. Il cherche avec vous le prochain pas ; il peut proposer un petit exercice ou un exemple sans terminer votre TP.",
+                "À chaque pause : enregistrer le script, noter dernier objet correct / premier obstacle / prochaine action. À la reprise, relancer depuis le début au lieu de compter sur les objets de la veille.",
+                "À la fin de la fenêtre : conserver les acquis réels, indiquer les niveaux encore incomplets et convenir du rattrapage. Le présent support ne fixe pas de date de remise institutionnelle.",
+                "Le portfolio et une démonstration entre pairs sont facultatifs comme moment de partage ; les quatre scripts et les livrables du cœur restent les preuves à conserver. La défense peut être écrite dans la note ; aucun pair ou oral collectif n’est requis pour avancer.",
+                "Un contrôle réussi ne juge ni la pertinence d’une recommandation ni la justesse de vos phrases. Relisez-les avec les critères et sollicitez un retour formatif du coach si utile."
               ]
             },
             {
               "type": "callout",
-              "label": "Après les 18 heures seulement",
-              "text": "Le TP matrices approfondi, la régression ajustée, le bootstrap et MapReduce sont des extensions facultatives. RHadoop n’est pas mis en œuvre dans le cœur ni validé comme atelier pratique. Ces sujets ne sont ni des prérequis à la réussite ni des tâches à finir en urgence à la maison."
+              "label": "Extensions",
+              "text": "Matrices approfondies, régression ajustée, bootstrap et MapReduce sont facultatifs, sans points supplémentaires dans le barème cœur. RHadoop n’est pas mis en œuvre comme atelier pratique."
             }
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "02_cours_visuel.pdf",
       "title": "Comprendre les statistiques, puis coder en R",
-      "subtitle": "Édition 2 · équations, petits calculs et interprétation",
+      "subtitle": "Autoformation accompagnée · comprendre, calculer, analyser",
       "audience": "Master · profils IT et non IT",
       "index_link": "../COMMENCER_ICI.pdf",
       "pages": [
+        {
+          "layout": "cover",
+          "title": "Statistiques avec R",
+          "kicker": "MASTER · LEADERS UNIVERSITY",
+          "subtitle": "Comprendre. Calculer. Décider.",
+          "tagline": "À votre rythme, avec un coach au point de besoin.",
+          "chips": [
+            "18 h accompagnées",
+            "4 TP individuels",
+            "Maths → R → décision"
+          ],
+          "blocks": []
+        },
         {
           "title": "La question vient avant la commande",
           "kicker": "NOTRE MÉTHODE · REGARDER, CALCULER, CODER, EXPLIQUER",
@@ -942,6 +914,45 @@
             {
               "type": "text",
               "text": "Source vérifiée le 23 octobre 2026 : https://r-consortium.org/posts/submissions-wg-2026/"
+            }
+          ]
+        },
+        {
+          "title": "R : des outils et des métiers",
+          "kicker": "REPÈRES PROFESSIONNELS · EXEMPLES DOCUMENTÉS",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "R est un outil de travail actuel dans des équipes spécialisées. Voici des exemples précis, sans prétendre décrire tous les métiers ni mesurer une part de marché."
+            },
+            {
+              "type": "brandgrid",
+              "items": [
+                {
+                  "image": "authoring/assets/v3/posit-logo-fullcolor.png",
+                  "title": "Posit / RStudio",
+                  "text": "RStudio est un éditeur pour R. Son édition Open Source est gratuite ; elle reste facultative pour ce parcours."
+                },
+                {
+                  "image": "authoring/assets/v3/pfizer-logo.png",
+                  "title": "Pfizer · statistiques",
+                  "text": "Le R Consortium décrit un R Centre of Excellence chez Pfizer : reproductibilité, automatisation et analyse statistique."
+                },
+                {
+                  "image": "authoring/assets/v3/swiss-re-logo.png",
+                  "title": "Swiss Re · actuariat",
+                  "text": "Le R Consortium décrit l’adoption de R et d’outils ouverts ainsi qu’une plateforme interne fondée sur Posit."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Ce que l’on prépare ici",
+              "text": "Un collègue doit pouvoir relire vos règles, relancer le script, retrouver les versions et comprendre estimation et incertitude. Le projet Noria construit ces habitudes sur un cas synthétique."
+            },
+            {
+              "type": "text",
+              "text": "Logos d’identification des outils et exemples, sans affiliation à la formation. Sources vérifiées le 23 octobre 2026 : https://posit.co/products/open-source/rstudio/ ; https://r-consortium.org/about/governance"
             }
           ]
         },
@@ -2188,7 +2199,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "03_donnees_et_sources.pdf",
@@ -2331,15 +2343,39 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "04_projection.pdf",
-      "title": "Des maths au code : à vous de jouer",
-      "subtitle": "Projection · une idée à la fois",
+      "title": "Cartes de révision facultatives · maths et R",
+      "subtitle": "À consulter au besoin · aucune projection collective requise",
       "audience": "Master · profils IT et non IT",
       "index_link": "../COMMENCER_ICI.pdf",
       "pages": [
+        {
+          "title": "Vos cartes de révision",
+          "kicker": "FACULTATIF · À VOTRE RYTHME",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Choisissez une idée utile à votre niveau. Refaites un petit calcul, expliquez la figure puis reprenez votre propre script."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "02_cours_visuel.pdf · explications et exemples",
+                  "target": "02_cours_visuel.pdf"
+                },
+                {
+                  "label": "01_parcours_18h.pdf · choisir son prochain niveau",
+                  "target": "01_parcours_18h.pdf"
+                }
+              ]
+            }
+          ]
+        },
         {
           "title": "La question vient avant la commande",
           "kicker": "NOTRE MÉTHODE · REGARDER, CALCULER, CODER, EXPLIQUER",
@@ -2354,11 +2390,6 @@
                 "Code R",
                 "Interprétation"
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2390,11 +2421,6 @@
                   "Une équipe R Core internationale contribue au développement"
                 ]
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2426,11 +2452,6 @@
                   "Données, code, versions et sorties traçables"
                 ]
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2467,11 +2488,6 @@
                   "Tickets du processus et contexte concernés"
                 ]
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2508,11 +2524,6 @@
                   "numeric codé ou ordered factor"
                 ]
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2525,11 +2536,6 @@
               "path": "authoring/assets/v2/dataframe.svg",
               "height": 180,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2541,11 +2547,6 @@
               "type": "formula",
               "latex": "I=\\{i:x_i\\ \\mathrm{est\\ fini},\\ x_i>0\\},\\quad n=|I|",
               "caption": "On définit les valeurs admises, puis on les compte."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2557,11 +2558,6 @@
               "type": "formula",
               "latex": "\\hat{p}_B=\\frac{n_B}{n},\\quad \\mathrm{pourcentage}=100\\hat{p}_B",
               "caption": "Une part compare un nombre de tickets à une population clairement définie."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2573,11 +2569,6 @@
               "type": "formula",
               "latex": "\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i",
               "caption": "Additionner les durées retenues, puis partager en n parts égales."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2590,11 +2581,6 @@
               "path": "authoring/assets/v2/moyenne.svg",
               "height": 205,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2606,11 +2592,6 @@
               "type": "formula",
               "latex": "n=2k+1:\\ m=x_{(k+1)}",
               "caption": "Nombre impair : prendre la valeur centrale après tri."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2621,11 +2602,6 @@
             {
               "type": "text",
               "text": "Le CSV reçu contient des anomalies de transmission. Gardez-le intact. On va compter les lignes, vérifier les unités et annoncer les règles avant d’interpréter un résultat."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2637,11 +2613,6 @@
               "type": "formula",
               "latex": "n_{\\mathrm{analyse}}=241-1-3-1=236",
               "caption": "Un doublon de ligne, puis quatre tickets sans durée admissible."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2653,11 +2624,6 @@
               "type": "formula",
               "latex": "s^2=\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i-\\bar{x})^2,\\quad s=\\sqrt{s^2}",
               "caption": "R utilise n − 1 pour la variance et l’écart-type d’échantillon."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2670,11 +2636,6 @@
               "path": "authoring/assets/v2/dispersion.svg",
               "height": 210,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2686,11 +2647,6 @@
               "type": "formula",
               "latex": "h=1+(n-1)p,\\quad j=\\lfloor h\\rfloor,\\quad g=h-j",
               "caption": "Convention R type 7 : déterminer un rang et sa partie décimale."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2702,11 +2658,6 @@
               "type": "formula",
               "latex": "[Q_1-1.5\\,IQR,\\ Q_3+1.5\\,IQR]=[-30,130]",
               "caption": "Les moustaches vont jusqu’aux valeurs observées dans ces limites : 10 et 80. Le point 150 est affiché séparément."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2719,11 +2670,6 @@
               "path": "authoring/assets/v2/matrice.svg",
               "height": 170,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2736,11 +2682,6 @@
               "path": "authoring/assets/v2/array.svg",
               "height": 170,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2753,11 +2694,6 @@
               "path": "authoring/assets/v2/liste.svg",
               "height": 140,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2769,11 +2705,6 @@
               "type": "formula",
               "latex": "\\bar{x}_{obs}=\\frac{\\sum_{i\\in I}x_i}{|I|}",
               "caption": "I contient les valeurs non manquantes ; vérifier les valeurs admissibles avant de résumer."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2785,11 +2716,6 @@
               "type": "formula",
               "latex": "\\bar{x}_{i\\cdot}=\\frac{1}{c}\\sum_{j=1}^{c}x_{ij},\\quad \\bar{x}_{\\cdot j}=\\frac{1}{r}\\sum_{i=1}^{r}x_{ij}",
               "caption": "Une moyenne par ligne utilise les c colonnes ; par colonne, les r lignes."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2801,11 +2727,6 @@
               "type": "formula",
               "latex": "n_j=\\sum_{i=1}^{n}\\mathbf{1}\\{a_j\\leq x_i<a_{j+1}\\}",
               "caption": "n_j compte les valeurs dans la classe j ; l’indicatrice vaut 1 si la condition est vraie, 0 sinon."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2817,11 +2738,6 @@
               "type": "formula",
               "latex": "\\hat{\\Delta}=\\bar{x}_B-\\bar{x}_A",
               "caption": "Une différence orientée : toujours B moins A."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2833,11 +2749,6 @@
               "type": "formula",
               "latex": "\\widehat{SE}(\\bar{x})=\\frac{s}{\\sqrt{n}}",
               "caption": "L’erreur standard estimée décrit la variation de la moyenne entre échantillons."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2850,11 +2761,6 @@
               "path": "authoring/assets/v2/se.svg",
               "height": 220,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2866,11 +2772,6 @@
               "type": "formula",
               "latex": "\\widehat{SE}(\\hat{\\Delta})=\\sqrt{\\frac{s_B^2}{n_B}+\\frac{s_A^2}{n_A}}",
               "caption": "Les variances estimées des deux moyennes indépendantes s’additionnent."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2882,11 +2783,6 @@
               "type": "formula",
               "latex": "t_{\\mathrm{obs}}=\\frac{\\hat{\\Delta}-0}{\\widehat{SE}(\\hat{\\Delta})}",
               "caption": "Exprimer l’écart à zéro en nombre d’erreurs standards."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2898,11 +2794,6 @@
               "type": "formula",
               "latex": "IC_{95\\%}=\\left[\\hat{\\Delta}-t_{0.975,\\nu}\\widehat{SE},\\ \\hat{\\Delta}+t_{0.975,\\nu}\\widehat{SE}\\right]",
               "caption": "Estimation ± marge : le multiplicateur vient de la loi de Student."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2914,11 +2805,6 @@
               "type": "formula",
               "latex": "\\hat{\\Delta}=-4.5648,\\quad IC_{95\\%}=[-9.1476,\\ 0.0181]",
               "caption": "Différence B − A et bornes de son intervalle, toutes en minutes."
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2931,11 +2817,6 @@
               "path": "authoring/assets/v2/welch_noria.svg",
               "height": 220,
               "caption": ""
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2946,11 +2827,6 @@
             {
               "type": "code",
               "text": "class(w)\nnames(w)\nattributes(w)\nw$estimate\nw$conf.int\nw$p.value\nresultat <- data.frame(\n  delta = mean(B) - mean(A),\n  bas = w$conf.int[1], haut = w$conf.int[2], p = w$p.value)"
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2967,11 +2843,6 @@
                 "Effet + intervalle",
                 "Action conditionnelle"
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         },
@@ -2989,16 +2860,12 @@
                 "R en pratique industrielle en 2026 : https://r-consortium.org/posts/submissions-wg-2026/",
                 "Dans votre installation : ?mean, ?median, ?var, ?sd, ?quantile, ?matrix, ?array, ?data.frame, ?list, ?t.test."
               ]
-            },
-            {
-              "type": "callout",
-              "label": "À vous",
-              "text": "Nommer les quantités et unités. Prédire un résultat à la main, puis exécuter un exemple et expliquer ce qu’il signifie."
             }
           ]
         }
       ],
-      "landscape": true
+      "landscape": true,
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "05_transfert_donnees_reelles.pdf",
@@ -3008,7 +2875,7 @@
       "pages": [
         {
           "title": "Une vraie série, d’autres limites",
-          "kicker": "30–45 MIN · SOLO FACULTATIF",
+          "kicker": "TRANSFERT FACULTATIF · À VOTRE RYTHME",
           "blocks": [
             {
               "type": "text",
@@ -3057,7 +2924,7 @@
             {
               "type": "bullets",
               "items": [
-                "15 min : audit et graphique ; 10 min : lm(Ozone ~ temp_c) descriptif ; 10 min : limites et note de cinq lignes.",
+                "Repères indicatifs, à adapter : audit et graphique ; lm(Ozone ~ temp_c) descriptif ; limites et note de cinq lignes. Avancez par preuves plutôt que par chronomètre.",
                 "Produire audit CSV, graphique PDF avec unités et script. Comparer complete.cases sur Ozone/Temp à complete.cases sur toutes les colonnes. Pourquoi perd-on des jours inutilement dans le second cas ?",
                 "Vérification après tentative : 153 jours bruts, 37 ozone absents, 116 jours analysables pour Ozone/Temp contre 111 sur toutes les colonnes.",
                 "L’exemple complet est examples/airquality_transfer.R ; il fonctionne sans réseau ni installation de paquets."
@@ -3075,31 +2942,71 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "10_TP01_demarrer.pdf",
       "title": "TP01 · Démarrer et décrire",
-      "subtitle": "90 min · du calcul à la main aux objets R",
+      "subtitle": "Niveau 1 · rythme individuel · maths → calcul manuel → R → interprétation",
       "audience": "Étudiant · Master · informatique et autres spécialités",
       "pages": [
         {
+          "title": "Niveau 1 · votre carte de mission",
+          "kicker": "AUTOFORMATION ACCOMPAGNÉE · AVANCER PAR PREUVES",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Entrée du niveau",
+              "text": "Savoir ouvrir le projet, écrire une ligne, enregistrer et relancer ; sinon reprendre 00_premiers_pas.pdf."
+            },
+            {
+              "type": "callout",
+              "label": "Votre rythme",
+              "text": "Le cœur est le travail décrit dans les étapes qui suivent. Avancez une question à la fois ; les temps sont indicatifs. Un échange avec un pair est facultatif. Pour une aide plus détaillée : 07_aides_progressives.pdf, section TP01."
+            },
+            {
+              "type": "callout",
+              "label": "Prêt à avancer",
+              "text": "Script + results/TP01_resume.csv ; calcul manuel concordant, deux dénominateurs expliqués, unité minutes et relance sans objets anciens."
+            },
+            {
+              "type": "callout",
+              "label": "Si cela bloque / si vous avancez vite",
+              "text": "Si l’indexation bloque, reprendre le vecteur de trois nombres du mémo et vérifier un seul masque. Après cinq minutes sans progrès, conserver la première erreur et demander au coach. Pour approfondir : Deux séries de même moyenne ont-elles le même étalement ? Construire un contre-exemple."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "07_aides_progressives.pdf · choisir un indice",
+                  "target": "07_aides_progressives.pdf"
+                },
+                {
+                  "label": "01_parcours_18h.pdf · reprendre sa route",
+                  "target": "01_parcours_18h.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Commencer par les nombres",
-          "kicker": "TP01 · 90 MIN · 70 INDIVIDUELLES / 9 TRIADE / 11 RETOUR",
+          "kicker": "TP01 · ENTRER ET RAISONNER",
           "blocks": [
             {
               "type": "links",
               "items": [
                 {
-                  "label": "Cours p.2–12 : cours visuel",
-                  "target": "02_cours_visuel.pdf"
+                  "label": "02_cours_visuel.pdf · niveau 1 · p. 3–14",
+                  "target": "02_cours_visuel.pdf#page=3"
                 },
                 {
-                  "label": "Voir le mini-exemple guidé",
+                  "label": "Ouvrir 06_exemples_guides.pdf : mini-exemple",
                   "target": "06_exemples_guides.pdf"
                 },
                 {
-                  "label": "Ouvrir le fichier de travail",
+                  "label": "Ouvrir labs/TP01_demarrer.R",
                   "target": "../labs/TP01_demarrer.R"
                 }
               ]
@@ -3139,7 +3046,7 @@
         },
         {
           "title": "Écrire puis vérifier chaque objet",
-          "kicker": "02 / 03 · 40 min de programmation",
+          "kicker": "TP01 · ÉCRIRE ET CONFRONTER",
           "blocks": [
             {
               "type": "table",
@@ -3191,7 +3098,7 @@
         },
         {
           "title": "Une preuve et trois phrases",
-          "kicker": "03 / 03 · 10 min de contrôle + 10 min d’interprétation",
+          "kicker": "TP01 · VÉRIFIER ET INTERPRÉTER",
           "blocks": [
             {
               "type": "code",
@@ -3207,7 +3114,7 @@
               "items": [
                 "Livrez votre script personnel et results/TP01_resume.csv. Le contrôle compare aussi le contenu du CSV à l’objet en mémoire.",
                 "Complétez interpretation_tp01 : 1) moyenne et médiane avec unité ; 2) les deux proportions et leurs dénominateurs ; 3) ce que NA signifie et pourquoi zéro changerait la réponse.",
-                "Expliquez oralement une ligne d’indexation à votre voisin. Demandez-lui quelle question votre proportion mesure exactement."
+                "Expliquez par écrit une ligne d’indexation et la question exacte que mesure votre proportion. Vous pouvez en discuter avec un pair volontaire, puis conserver votre propre formulation."
               ]
             },
             {
@@ -3243,31 +3150,72 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée",
+      "level": 1
     },
     {
       "filename": "11_TP02_preparer.pdf",
       "title": "TP02 · Préparer, auditer et décrire",
-      "subtitle": "120 min · nettoyage manuel, fonctions et livrables",
+      "subtitle": "Niveau 2 · rythme individuel · maths → calcul manuel → R → interprétation",
       "audience": "Étudiant · Master · informatique et autres spécialités",
       "pages": [
         {
+          "title": "Niveau 2 · votre carte de mission",
+          "kicker": "AUTOFORMATION ACCOMPAGNÉE · AVANCER PAR PREUVES",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Entrée du niveau",
+              "text": "TP01 relançable ; savoir distinguer une valeur manquante de zéro et sélectionner des valeurs."
+            },
+            {
+              "type": "callout",
+              "label": "Votre rythme",
+              "text": "Le cœur est le travail décrit dans les étapes qui suivent. Avancez une question à la fois ; les temps sont indicatifs. Un échange avec un pair est facultatif. Pour une aide plus détaillée : 07_aides_progressives.pdf, section TP02."
+            },
+            {
+              "type": "callout",
+              "label": "Prêt à avancer",
+              "text": "Audit de 241 lignes brutes à 236 tickets retenus (117 A, 119 B), 12 satisfactions manquantes conservées ; exports et graphes ouverts, une exclusion et une conservation justifiées."
+            },
+            {
+              "type": "callout",
+              "label": "Si cela bloque / si vous avancez vite",
+              "text": "Comparer le nombre avant/après chaque règle ; isoler la première étape divergente et vérifier le masque sur quelques lignes. Après cinq minutes sans progrès, conserver la première erreur et demander au coach. Pour approfondir : Tester un cas limite légitime et expliquer pourquoi la règle le conserve."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "07_aides_progressives.pdf · choisir un indice",
+                  "target": "07_aides_progressives.pdf"
+                },
+                {
+                  "label": "01_parcours_18h.pdf · reprendre sa route",
+                  "target": "01_parcours_18h.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Du brut aux règles",
-          "kicker": "TP02 · 120 MIN · 90 INDIVIDUELLES / 9 TRIADE / 21 RETOUR",
+          "kicker": "TP02 · ENTRER ET RAISONNER",
           "blocks": [
             {
               "type": "links",
               "items": [
                 {
-                  "label": "Cours p.13–24 : cours visuel",
-                  "target": "02_cours_visuel.pdf"
+                  "label": "02_cours_visuel.pdf · niveau 2 · p. 15–26",
+                  "target": "02_cours_visuel.pdf#page=15"
                 },
                 {
-                  "label": "Voir le mini-exemple guidé",
+                  "label": "Ouvrir 06_exemples_guides.pdf : mini-exemple",
                   "target": "06_exemples_guides.pdf"
                 },
                 {
-                  "label": "Ouvrir le fichier de travail",
+                  "label": "Ouvrir labs/TP02_preparer.R",
                   "target": "../labs/TP02_preparer.R"
                 }
               ]
@@ -3321,7 +3269,7 @@
         },
         {
           "title": "Auditer après chaque règle",
-          "kicker": "02 / 03 · 40 min de nettoyage",
+          "kicker": "TP02 · ÉCRIRE ET CONFRONTER",
           "blocks": [
             {
               "type": "table",
@@ -3377,7 +3325,7 @@
         },
         {
           "title": "Décrire et livrer les preuves",
-          "kicker": "03 / 03 · 30 min décrire + 20 min exporter et contrôler",
+          "kicker": "TP02 · VÉRIFIER ET INTERPRÉTER",
           "blocks": [
             {
               "type": "formula",
@@ -3410,31 +3358,72 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée",
+      "level": 2
     },
     {
       "filename": "12_TP03_comparer.pdf",
       "title": "TP03 · Comparer deux moyennes",
-      "subtitle": "120 min · contraste B − A, Welch et incertitude",
+      "subtitle": "Niveau 3 · rythme individuel · maths → calcul manuel → R → interprétation",
       "audience": "Étudiant · Master · informatique et autres spécialités",
       "pages": [
         {
+          "title": "Niveau 3 · votre carte de mission",
+          "kicker": "AUTOFORMATION ACCOMPAGNÉE · AVANCER PAR PREUVES",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Entrée du niveau",
+              "text": "TP02 audité ; savoir lire les effectifs A/B et distinguer dispersion et moyenne. Une reprise de données peut débloquer l’inférence sans valider le nettoyage."
+            },
+            {
+              "type": "callout",
+              "label": "Votre rythme",
+              "text": "Le cœur est le travail décrit dans les étapes qui suivent. Avancez une question à la fois ; les temps sont indicatifs. Un échange avec un pair est facultatif. Pour une aide plus détaillée : 07_aides_progressives.pdf, section TP03."
+            },
+            {
+              "type": "callout",
+              "label": "Prêt à avancer",
+              "text": "Script + results/TP03_comparaison.csv + results/TP03_resultats.pdf ; signe B−A, unité, IC et limites expliqués ; relance indépendante."
+            },
+            {
+              "type": "callout",
+              "label": "Si cela bloque / si vous avancez vite",
+              "text": "Si TP02 reste bloqué, suivre la reprise explicitement prévue dans l’énoncé et inscrire « données de reprise » ; revenir au TP02 avant de revendiquer son acquisition. Après cinq minutes sans progrès, conserver la première erreur et demander au coach. Pour approfondir : Prévoir comment effectif ou dispersion modifie l’incertitude ; ne pas confondre IC et dispersion des tickets."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "07_aides_progressives.pdf · choisir un indice",
+                  "target": "07_aides_progressives.pdf"
+                },
+                {
+                  "label": "01_parcours_18h.pdf · reprendre sa route",
+                  "target": "01_parcours_18h.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Poser la comparaison avant le test",
-          "kicker": "TP03 · 120 MIN · 90 INDIVIDUELLES / 9 TRIADE / 21 RETOUR",
+          "kicker": "TP03 · ENTRER ET RAISONNER",
           "blocks": [
             {
               "type": "links",
               "items": [
                 {
-                  "label": "Cours p.25–33 : cours visuel",
-                  "target": "02_cours_visuel.pdf"
+                  "label": "02_cours_visuel.pdf · niveau 3 · p. 27–35",
+                  "target": "02_cours_visuel.pdf#page=27"
                 },
                 {
-                  "label": "Voir le mini-exemple guidé",
+                  "label": "Ouvrir 06_exemples_guides.pdf : mini-exemple",
                   "target": "06_exemples_guides.pdf"
                 },
                 {
-                  "label": "Ouvrir le fichier de travail",
+                  "label": "Ouvrir labs/TP03_comparer.R",
                   "target": "../labs/TP03_comparer.R"
                 }
               ]
@@ -3470,7 +3459,7 @@
         },
         {
           "title": "Un résultat est aussi un objet",
-          "kicker": "02 / 03 · 35 min coder + 25 min exporter",
+          "kicker": "TP03 · ÉCRIRE ET CONFRONTER",
           "blocks": [
             {
               "type": "code",
@@ -3495,7 +3484,7 @@
         },
         {
           "title": "Dire ce que les données permettent",
-          "kicker": "03 / 03 · 20 min contrôle et interprétation",
+          "kicker": "TP03 · VÉRIFIER ET INTERPRÉTER",
           "blocks": [
             {
               "type": "formula",
@@ -3528,31 +3517,72 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée",
+      "level": 3
     },
     {
       "filename": "13_TP04_projet.pdf",
       "title": "TP04 · De la source à la décision",
-      "subtitle": "150 min · projet autonome et recommandation d’une page",
+      "subtitle": "Niveau 4 · rythme individuel · maths → calcul manuel → R → interprétation",
       "audience": "Étudiant · Master · informatique et autres spécialités",
       "pages": [
         {
+          "title": "Niveau 4 · votre carte de mission",
+          "kicker": "AUTOFORMATION ACCOMPAGNÉE · AVANCER PAR PREUVES",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Entrée du niveau",
+              "text": "Savoir auditer le brut et interpréter B−A avec IC ; TP02/03 encore fragiles : reprendre leurs preuves avant de poursuivre."
+            },
+            {
+              "type": "callout",
+              "label": "Votre rythme",
+              "text": "Le cœur est le travail décrit dans les étapes qui suivent. Avancez une question à la fois ; les temps sont indicatifs. Un échange avec un pair est facultatif. Pour une aide plus détaillée : 07_aides_progressives.pdf, section TP04."
+            },
+            {
+              "type": "callout",
+              "label": "Prêt à avancer",
+              "text": "Quatre scripts conservés ; exports TP04, graphiques, recommandation PDF d’une page et results/TP04_sessionInfo.txt ; chaîne complète du brut à la décision relancée."
+            },
+            {
+              "type": "callout",
+              "label": "Si cela bloque / si vous avancez vite",
+              "text": "S’arrêter à la première fonction qui échoue ; vérifier entrée, sortie et audit. Une donnée propre fournie ne prouve pas le nettoyage du projet. Après cinq minutes sans progrès, conserver la première erreur et demander au coach. Pour approfondir : Examiner une objection à la décision ou faire le transfert facultatif vers des données réelles."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "07_aides_progressives.pdf · choisir un indice",
+                  "target": "07_aides_progressives.pdf"
+                },
+                {
+                  "label": "01_parcours_18h.pdf · reprendre sa route",
+                  "target": "01_parcours_18h.pdf"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title": "Planifier une analyse reproductible",
-          "kicker": "TP04 · 150 MIN · 115 INDIVIDUELLES / 9 TRIADE / 26 RETOUR",
+          "kicker": "TP04 · ENTRER ET RAISONNER",
           "blocks": [
             {
               "type": "links",
               "items": [
                 {
-                  "label": "Cours p.31–34 : cours visuel",
-                  "target": "02_cours_visuel.pdf"
+                  "label": "02_cours_visuel.pdf · niveau 4 · p. 33–36",
+                  "target": "02_cours_visuel.pdf#page=33"
                 },
                 {
-                  "label": "Voir le mini-exemple guidé",
+                  "label": "Ouvrir 06_exemples_guides.pdf : mini-exemple",
                   "target": "06_exemples_guides.pdf"
                 },
                 {
-                  "label": "Ouvrir le fichier de travail",
+                  "label": "Ouvrir labs/TP04_projet.R",
                   "target": "../labs/TP04_projet.R"
                 }
               ]
@@ -3600,7 +3630,7 @@
         },
         {
           "title": "Décrire, comparer, visualiser",
-          "kicker": "02 / 03 · 30 min décrire + 25 min inférence",
+          "kicker": "TP04 · ÉCRIRE ET CONFRONTER",
           "blocks": [
             {
               "type": "bullets",
@@ -3646,7 +3676,7 @@
         },
         {
           "title": "Une page pour un décideur",
-          "kicker": "03 / 03 · 30 min recommandation et contrôle",
+          "kicker": "TP04 · VÉRIFIER ET INTERPRÉTER",
           "blocks": [
             {
               "type": "bullets",
@@ -3691,12 +3721,14 @@
             {
               "type": "callout",
               "label": "Validation finale",
-              "text": "Le contrôle doit afficher TP04 : contrôles réussis. Il ne remplace pas une relecture humaine : ouvrez tous les fichiers, vérifiez la page de recommandation et préparez une défense orale de 3 minutes."
+              "text": "Le contrôle doit afficher TP04 : contrôles réussis. Il ne remplace pas une relecture humaine : ouvrez tous les fichiers et vérifiez la page de recommandation. Dans votre note, expliquez la chaîne question → résultat → conclusion et répondez à une objection ; une démonstration orale ou entre pairs reste facultative."
             }
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée",
+      "level": 4
     },
     {
       "filename": "14_memo_R.pdf",
@@ -3871,7 +3903,8 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "06_exemples_guides.pdf",
@@ -3980,7 +4013,7 @@
             },
             {
               "type": "code",
-              "text": "masque <- !is.na(mini_d$minutes)\nmini_d <- mini_d[masque, , drop = FALSE]\n# Le fichier complet montre une ligne d’audit après chaque règle.\ndir.create(\"results\", showWarnings = FALSE)\nwrite.csv(mini_d, \"results/mini_nettoyage_clean.csv\",\n  row.names = FALSE)\npdf(\"results/mini_nettoyage.pdf\")\nplot(mini_d$id, mini_d$minutes, ylab = \"Minutes\")\ndev.off()"
+              "text": "source(\"examples/mini_nettoyage.R\", encoding=\"UTF-8\")\nmasque <- !is.na(mini_d$minutes)\nmini_d <- mini_d[masque, , drop = FALSE]\n# Le fichier complet montre une ligne d’audit après chaque règle.\ndir.create(\"results\", showWarnings = FALSE)\nwrite.csv(mini_d, \"results/mini_nettoyage_clean.csv\",\n  row.names = FALSE)\npdf(\"results/mini_nettoyage.pdf\")\nplot(mini_d$id, mini_d$minutes, ylab = \"Minutes\")\ndev.off()"
             },
             {
               "type": "bullets",
@@ -4068,6 +4101,30 @@
           ]
         },
         {
+          "title": "Quartiles : conserver le nombre et choisir son nom",
+          "kicker": "R · UNE PRÉCAUTION AVANT LE TP02",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Sur 10, 20, 30 minutes, le premier quartile de type 7 vaut 15. R lui ajoute le nom « 25% ». Cette étiquette est utile à l’affichage ; elle peut modifier le nom d’une colonne si on l’empile sur q1."
+            },
+            {
+              "type": "callout",
+              "label": "Quartiles : garder la valeur, choisir son nom",
+              "text": "quantile() renvoie une valeur déjà nommée. Sans précaution, q1 devient q1.25% ; data.frame() peut afficher q1.25. Le nom demandé reste q1. unname() retire seulement l’étiquette."
+            },
+            {
+              "type": "code",
+              "text": "q <- quantile(c(10, 20, 30), .25, type = 7)\nnames(q)                  # \"25%\"\nc(q1 = q)                 # q1.25% = 15\nc(q1 = unname(q))         # q1 = 15\n# Dans votre fonction : q1 = unname(quantile(x, .25, type = 7))\n# Même geste pour q3 ; inspecter names(descriptifs) avant export."
+            },
+            {
+              "type": "callout",
+              "label": "Vérifier avant d’exporter",
+              "text": "Affichez names(descriptifs). Les colonnes attendues sont workflow, n, moyenne, ecart_type, q1, mediane, q3. unname() ne change aucune valeur statistique."
+            }
+          ]
+        },
+        {
           "title": "Comparer les distributions de deux groupes",
           "kicker": "AVANT TP02 ET TP03 · LIRE LE SYMBOLE ~",
           "blocks": [
@@ -4147,7 +4204,8 @@
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "20_extensions.pdf",
@@ -4415,7 +4473,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "80_corriges_et_preuves.pdf",
@@ -4480,6 +4539,11 @@
                   "target": "06_exemples_guides.pdf"
                 }
               ]
+            },
+            {
+              "type": "callout",
+              "label": "Après une tentative et une aide",
+              "text": "Ouvrez seulement le point à vérifier après une tentative personnelle et une aide graduée. Puis refermez et refaites sur votre script ; les solutions ne doivent pas être chargées pour produire vos preuves. Le contrôle technique n’évalue pas automatiquement vos interprétations."
             }
           ]
         },
@@ -4684,102 +4748,129 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "COMMENCER_ICI.pdf",
-      "title": "Commencer : quatre étapes pour apprendre R",
-      "subtitle": "Édition 2 · sommaire cliquable",
-      "audience": "Master · profils IT et non IT",
-      "index_link": "COMMENCER_ICI.pdf",
+      "title": "Commencer : apprendre à votre rythme",
+      "subtitle": "Édition 3 · quatre niveaux · sommaire cliquable",
+      "audience": "Étudiantes et étudiants",
       "pages": [
         {
-          "title": "Votre point de départ",
-          "kicker": "LIRE → ESSAYER → VÉRIFIER",
+          "title": "Choisir la prochaine action",
+          "kicker": "AUCUN COURS ORAL À ATTENDRE",
           "blocks": [
+            {
+              "type": "figure",
+              "path": "authoring/assets/v3/journey.svg",
+              "height": 108
+            },
             {
               "type": "links",
               "items": [
                 {
-                  "label": "1 · Installer R / choisir son système",
+                  "label": "Mode d’emploi : 00_LIRE_MOI.pdf",
+                  "target": "00_LIRE_MOI.pdf"
+                },
+                {
+                  "label": "Installer et vérifier R : pdf/00_demarrer.pdf",
                   "target": "pdf/00_demarrer.pdf"
                 },
                 {
-                  "label": "2 · Écrire, enregistrer et relancer un premier fichier",
+                  "label": "Écrire et relancer : pdf/00_premiers_pas.pdf",
                   "target": "pdf/00_premiers_pas.pdf"
                 },
                 {
-                  "label": "3 · Voir le programme et la route des lectures",
+                  "label": "Repérer ses besoins : pdf/diagnostic_entree.pdf",
+                  "target": "pdf/diagnostic_entree.pdf"
+                },
+                {
+                  "label": "Voir le parcours : pdf/01_parcours_18h.pdf",
                   "target": "pdf/01_parcours_18h.pdf"
-                },
-                {
-                  "label": "4 · Lire les maths et leurs traductions en R",
-                  "target": "pdf/02_cours_visuel.pdf"
-                },
-                {
-                  "label": "5 · Faire les mini-exemples avant les TP",
-                  "target": "pdf/06_exemples_guides.pdf"
                 }
               ]
             },
             {
+              "type": "text",
+              "text": "Pré-requis : ouvrir et enregistrer un fichier, additionner et diviser de petits nombres. Aucun langage de programmation ni logiciel statistique préalable n’est supposé connu. Si un geste manque, utilisez le PDF Premiers pas ; si un calcul manque, reprenez le mini-exemple indiqué avant le TP."
+            },
+            {
               "type": "callout",
-              "label": "Sur GitHub ou hors ligne",
-              "text": "Télécharger et extraire le ZIP pour les liens locaux. Sur GitHub, le README ouvre chaque PDF. Tous les supports obligatoires et données sont fournis ; aucun paquet R externe requis."
+              "label": "Boucle d’apprentissage",
+              "text": "Question mathématique → petit calcul à la main → prédiction → R → interprétation → relance. Le cours 02_cours_visuel.pdf est une ressource à consulter au point de besoin, pas une présentation à attendre."
             }
           ]
         },
         {
-          "title": "Les quatre travaux pratiques",
-          "kicker": "VOTRE PORTFOLIO INDIVIDUEL",
+          "title": "Quatre niveaux, quatre preuves",
+          "kicker": "LE CŒUR AVANT LES EXTENSIONS",
           "blocks": [
             {
               "type": "links",
               "items": [
                 {
-                  "label": "TP01 · Cours p.2–12",
+                  "label": "Niveau 1 : pdf/10_TP01_demarrer.pdf",
                   "target": "pdf/10_TP01_demarrer.pdf"
                 },
                 {
-                  "label": "TP02 · Cours p.13–24",
+                  "label": "Niveau 2 : pdf/11_TP02_preparer.pdf",
                   "target": "pdf/11_TP02_preparer.pdf"
                 },
                 {
-                  "label": "TP03 · Cours p.25–33",
+                  "label": "Niveau 3 : pdf/12_TP03_comparer.pdf",
                   "target": "pdf/12_TP03_comparer.pdf"
                 },
                 {
-                  "label": "TP04 · Cours p.31–34",
+                  "label": "Niveau 4 : pdf/13_TP04_projet.pdf",
                   "target": "pdf/13_TP04_projet.pdf"
                 }
               ]
             },
             {
-              "type": "links",
+              "type": "bullets",
               "items": [
-                {
-                  "label": "Mémo : commandes et notations",
-                  "target": "pdf/14_memo_R.pdf"
-                },
-                {
-                  "label": "Corrigés, après une tentative",
-                  "target": "pdf/80_corriges_et_preuves.pdf"
-                },
-                {
-                  "label": "Défis facultatifs",
-                  "target": "pdf/20_extensions.pdf"
-                }
+                "Ouvrez l’énoncé PDF, puis le fichier labs/ nommé dans sa première page. Vous complétez votre propre script ; ne chargez pas les solutions pour produire votre rendu.",
+                "Avancez lorsque la preuve du niveau est relançable et expliquée. Un contrôle réussi vérifie des éléments techniques ; il ne note pas automatiquement vos interprétations.",
+                "En difficulté : consultez la première aide utile, faites un nouvel essai ciblé puis demandez au coach après cinq minutes de recherche. Vous pouvez aussi demander de l’aide plus tôt.",
+                "En avance : améliorez la lisibilité ou testez un contre-exemple, puis choisissez une extension. La note complète du cœur reste accessible sans extension."
               ]
             },
             {
-              "type": "callout",
-              "label": "Un résultat vérifiable",
-              "text": "Votre contrôle de TP doit examiner vos objets, pas lancer les solutions. Conservez les quatre scripts, exports et note PDF. Le barème complet est accessible sans extension."
+              "type": "links",
+              "items": [
+                {
+                  "label": "Maths et illustrations : pdf/02_cours_visuel.pdf",
+                  "target": "pdf/02_cours_visuel.pdf"
+                },
+                {
+                  "label": "Mini-exemples : pdf/06_exemples_guides.pdf",
+                  "target": "pdf/06_exemples_guides.pdf"
+                },
+                {
+                  "label": "Aides par paliers : pdf/07_aides_progressives.pdf",
+                  "target": "pdf/07_aides_progressives.pdf"
+                },
+                {
+                  "label": "Mémo : pdf/14_memo_R.pdf",
+                  "target": "pdf/14_memo_R.pdf"
+                },
+                {
+                  "label": "Corrigés après tentative et aide : pdf/80_corriges_et_preuves.pdf",
+                  "target": "pdf/80_corriges_et_preuves.pdf"
+                },
+                {
+                  "label": "Extensions facultatives : pdf/20_extensions.pdf",
+                  "target": "pdf/20_extensions.pdf"
+                }
+              ]
             }
           ]
         }
       ],
-      "root_document": true
+      "root_document": true,
+      "index_link": "COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "extensions/AT01_matrices.pdf",
@@ -4815,19 +4906,19 @@
               ],
               "rows": [
                 [
-                  "0–10 min",
+                  "Étape 1",
                   "Contrats et prédictions"
                 ],
                 [
-                  "10–63 min",
+                  "Étape 2",
                   "Noyau individuel puis défi"
                 ],
                 [
-                  "63–72 min",
+                  "Étape 3",
                   "Explications croisées"
                 ],
                 [
-                  "72–75 min",
+                  "Étape 4",
                   "Exécution complète et remise"
                 ]
               ]
@@ -4853,8 +4944,19 @@
           ]
         },
         {
+          "title": "Du calcul au programme vérifiable · suite",
+          "kicker": "CONTINUER · 01 / Démarrer",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Extension facultative",
+              "text": "À choisir après le cœur, à votre rythme. Les repères de durée sont indicatifs ; aucun partage en groupe n’est requis et ce travail ne change pas le barème cœur."
+            }
+          ]
+        },
+        {
           "title": "Rangement, dimensions et cas limites",
-          "kicker": "02 / Noyau individuel · 53 min",
+          "kicker": "APPROFONDIR · TRAVAIL INDIVIDUEL",
           "blocks": [
             {
               "type": "bullets",
@@ -4905,7 +5007,7 @@
                 "Défi : une fonction renvoie n total, n observé, moyenne, médiane ; comparez à summary() sur un groupe.",
                 "Défi : ajoutez une colonne texte, convertissez en matrice et expliquez le type final.",
                 "Remise : script avec assertions sur dimensions/résultats et un commentaire montrant quand drop = FALSE compte.",
-                "Partage de 3 minutes : une prédiction démentie ou un cas limite ; le pair propose un autre test.",
+                "Écrivez une prédiction démentie ou un cas limite ; proposez un autre test. Vous pouvez demander une lecture à un pair volontaire.",
                 "Sortie : une boucle et apply() donnent la même réponse. Qu’avez-vous démontré et que reste-t-il à vérifier ?"
               ]
             },
@@ -4917,7 +5019,8 @@
           ]
         }
       ],
-      "index_link": "../../COMMENCER_ICI.pdf"
+      "index_link": "../../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "extensions/AT03_mapreduce.pdf",
@@ -4964,19 +5067,19 @@
               ],
               "rows": [
                 [
-                  "0–10 min",
+                  "Étape 1",
                   "Architecture et contrats"
                 ],
                 [
-                  "10–65 min",
+                  "Étape 2",
                   "Noyau individuel et contre-exemple"
                 ],
                 [
-                  "65–77 min",
-                  "Défense en triades"
+                  "Étape 3",
+                  "Auto-explication écrite ; échange avec un pair facultatif"
                 ],
                 [
-                  "77–80 min",
+                  "Étape 4",
                   "Preuves et remise"
                 ]
               ]
@@ -4993,8 +5096,19 @@
           ]
         },
         {
+          "title": "Ce que la simulation apprend · suite",
+          "kicker": "CONTINUER · 01 / Périmètre technique",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Extension facultative",
+              "text": "À choisir après le cœur, à votre rythme. Les repères de durée sont indicatifs ; aucun partage en groupe n’est requis et ce travail ne change pas le barème cœur."
+            }
+          ]
+        },
+        {
           "title": "La moyenne de moyennes peut tromper",
-          "kicker": "02 / Noyau individuel · 55 min",
+          "kicker": "APPROFONDIR · TRAVAIL INDIVIDUEL",
           "blocks": [
             {
               "type": "bullets",
@@ -5049,7 +5163,7 @@
                 "Dessinez données, map, shuffle et reduce. Situez réseau, réplication et reprise de tâche ; dites ce que l’expérience ne mesure pas.",
                 "Défi : partition vide ou clé absente ; rendez le code robuste. Détectez le double traitement d’une partition.",
                 "Remise : script, tailles de partitions, tableau central/distribué/écart, contre-exemple commenté et schéma annoté.",
-                "Partage de 3 minutes : pourquoi transmettre somme/effectif ? Citez une limite du passage à l’échelle."
+                "Expliquez par écrit pourquoi transmettre somme/effectif et citez une limite du passage à l’échelle. Un partage avec un pair est facultatif."
               ]
             },
             {
@@ -5060,17 +5174,18 @@
           ]
         }
       ],
-      "index_link": "../../COMMENCER_ICI.pdf"
+      "index_link": "../../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "diagnostic_entree.pdf",
       "title": "Diagnostic d’entrée",
-      "subtitle": "20 minutes · sans note · adapter l’accompagnement",
+      "subtitle": "Sans note · estimer ses besoins et choisir une aide",
       "audience": "Étudiant · Master",
       "pages": [
         {
           "title": "Votre point de départ",
-          "kicker": "01 / Profil · 8 min",
+          "kicker": "PROFIL · À VOTRE RYTHME",
           "blocks": [
             {
               "type": "text",
@@ -5095,7 +5210,7 @@
         },
         {
           "title": "Raisonner avant de calculer",
-          "kicker": "02 / Situations · 12 min",
+          "kicker": "SITUATIONS · RÉPONSES ET REPRISE",
           "blocks": [
             {
               "type": "bullets",
@@ -5111,12 +5226,56 @@
             {
               "type": "callout",
               "label": "Sortie individuelle",
-              "text": "Choisissez une question à reprendre et écrivez ce que vous souhaitez savoir faire dimanche soir. L’enseignant utilise ces réponses pour adapter points d’entrée et défis."
+              "text": "Choisissez une question à reprendre et notez votre prochaine action. Ce diagnostic ne bloque pas le démarrage ; vos hésitations servent à choisir une aide. Le coach peut vous aider à interpréter une réponse. Le critère de réussite est de pouvoir expliquer et refaire, pas de tout savoir avant le cours."
+            }
+          ]
+        },
+        {
+          "title": "Comparer après votre tentative",
+          "kicker": "VÉRIFICATION SÉPARÉE",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Question",
+                "Réponse possible"
+              ],
+              "rows": [
+                [
+                  "1",
+                  "Médiane = 13 minutes ; moyenne = 34 minutes. La valeur 100 éloigne la moyenne des trois premières valeurs. Justifier selon la question, pas selon un indicateur toujours supérieur."
+                ],
+                [
+                  "2",
+                  "Non. Compter les valeurs présentes et annoncer le dénominateur ; comprendre la cause du manque avant toute décision."
+                ],
+                [
+                  "3",
+                  "Non. Il manque notamment dispersion, incertitude, comparabilité des groupes et contexte de collecte."
+                ],
+                [
+                  "4",
+                  "Non. p est la probabilité, sous H0 et les hypothèses du test, d’un résultat au moins aussi extrême ; ce n’est pas la probabilité que B soit meilleur."
+                ],
+                [
+                  "5",
+                  "L’IC concerne la différence de moyennes. Il contient zéro et d’autres différences : cela ne prouve pas l’égalité."
+                ],
+                [
+                  "6",
+                  "Non : pondérer par les effectifs. (2×10+8×20)/10 = 18 ; la moyenne simple 15 donne le même poids à des partitions de tailles différentes."
+                ]
+              ]
+            },
+            {
+              "type": "text",
+              "text": "Refermez les réponses puis expliquez une question avec vos mots. Ces réponses sont formatives et ne produisent aucune note automatique."
             }
           ]
         }
       ],
-      "index_link": "../COMMENCER_ICI.pdf"
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "TP01_vectors.pdf",
@@ -5148,7 +5307,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "TP02_cleaning.pdf",
@@ -5180,7 +5340,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "TP03_matrices.pdf",
@@ -5212,7 +5373,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "TP04_inference.pdf",
@@ -5244,7 +5406,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "TP05_mapreduce.pdf",
@@ -5276,7 +5439,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "TP06_capstone.pdf",
@@ -5308,7 +5472,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "memo_R.pdf",
@@ -5340,7 +5505,8 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
     },
     {
       "filename": "extension_solo.pdf",
@@ -5372,33 +5538,389 @@
             }
           ]
         }
-      ]
+      ],
+      "edition": "Autoformation accompagnée"
+    },
+    {
+      "filename": "00_LIRE_MOI.pdf",
+      "title": "Lire d’abord : votre atelier autonome",
+      "subtitle": "Édition 3 · entrée du dossier · français · base R",
+      "audience": "Étudiantes et étudiants",
+      "pages": [
+        {
+          "title": "Un dossier, une porte d’entrée",
+          "kicker": "OUVRIR → APPRENDRE → CONSERVER",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Ce PDF est le mode d’emploi destiné aux apprenants. Ouvrez-le après avoir téléchargé puis extrait tout le ZIP. Gardez les dossiers pdf/, labs/, examples/, checks/ et data/ ensemble ; déplacer un seul PDF peut casser ses liens."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Ouvrir COMMENCER_ICI.pdf : votre prochaine action",
+                  "target": "COMMENCER_ICI.pdf"
+                },
+                {
+                  "label": "Ouvrir pdf/01_parcours_18h.pdf : niveaux et preuves",
+                  "target": "pdf/01_parcours_18h.pdf"
+                },
+                {
+                  "label": "Ouvrir pdf/07_aides_progressives.pdf : se débloquer",
+                  "target": "pdf/07_aides_progressives.pdf"
+                }
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Double-cliquez sur COMMENCER_ICI.pdf à la racine du dossier extrait, puis sur le lien qui correspond à votre situation. Si votre lecteur bloque le lien, ouvrez le fichier nommé depuis le gestionnaire de fichiers.",
+                "Les énoncés, cours, aides et corrigés destinés à la lecture sont des PDF en français. Les fichiers .R sont les fichiers de travail à ouvrir dans RStudio ou R ; les CSV contiennent les données.",
+                "README.md est l’entrée technique du dépôt et du téléchargement GitHub. Il doit vous renvoyer à 00_LIRE_MOI.pdf ; sa lecture n’est pas un prérequis pédagogique.",
+                "Après le téléchargement des outils et du dossier, les quatre TP utilisent les données locales et R de base. Les pages web sont des références ; elles ne sont pas nécessaires pour calculer hors ligne."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Vous avancez grâce à vos preuves",
+          "kicker": "18 H DISPONIBLES · RYTHME INDIVIDUEL",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "L’atelier offre une fenêtre de 18 heures de travail et de disponibilité du coach. Vous avancez individuellement dans l’ordre TP01 → TP02 → TP03 → TP04, en reprenant si nécessaire. Les durées sont des estimations : elles ne garantissent pas une arrivée commune au dernier TP."
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Avant chaque code : lisez la question mathématique, faites un petit calcul à la main, prédisez le résultat ; traduisez dans R, puis interprétez avec unité et limites.",
+                "À chaque fin de niveau : enregistrez, redémarrez R sans restaurer les anciens objets, relancez votre script, ouvrez vos exports et vérifiez vos explications.",
+                "Le coach répond aux blocages et questionne votre raisonnement. Aucune explication orale collective n’est indispensable. Les comparaisons entre pairs et démonstrations de portfolio sont facultatives.",
+                "Si la fenêtre se termine avant TP04 : rendez les preuves réellement obtenues, signalez ce qui manque et notez la prochaine action. Reprenez au même point en rattrapage ; vérifiez avec le coach les conditions et la date applicables."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Votre première décision",
+              "text": "R ne fonctionne pas encore : ouvrir pdf/00_demarrer.pdf. R fonctionne mais vous ne savez pas où écrire : ouvrir pdf/00_premiers_pas.pdf. Sinon, ouvrir COMMENCER_ICI.pdf et démarrer le niveau TP01."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Crédits visuels : pdf/99_sources_visuelles.pdf",
+                  "target": "pdf/99_sources_visuelles.pdf"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "root_document": true,
+      "index_link": "COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
+    },
+    {
+      "filename": "07_aides_progressives.pdf",
+      "title": "Aides progressives : trouver votre prochain pas",
+      "subtitle": "Lire un palier, essayer, puis seulement ouvrir le suivant",
+      "audience": "Étudiantes et étudiants",
+      "pages": [
+        {
+          "title": "Chercher utilement, puis appeler le coach",
+          "kicker": "ÉCHELLE DE DÉBOGAGE · CINQ MINUTES",
+          "blocks": [
+            {
+              "type": "bullets",
+              "items": [
+                "1 · Arrêter : enregistrer le script et conserver la première erreur complète. Ne pas lancer les lignes suivantes pour masquer le problème.",
+                "2 · Localiser : quel fichier est ouvert, quelle question cherchez-vous à résoudre, quelle dernière ligne fonctionne ? Vérifier le dossier du projet, noms et majuscules.",
+                "3 · Réduire : sur quelques valeurs ou lignes, comparer ce que vous attendez avec ce que vous obtenez. Vérifier nombre de lignes, noms de colonnes, type et valeurs manquantes.",
+                "4 · Lire une seule aide ci-dessous ou dans 14_memo_R.pdf ; modifier un seul point et refaire un essai. Les mini-exemples portent sur d’autres données.",
+                "5 · Après cinq minutes sans progrès, demander au coach avec : « je veux…, j’attends…, j’obtiens…, j’ai essayé… ». Vous pouvez demander plus tôt ; attendre davantage n’est pas une preuve d’autonomie."
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Arrêt sûr",
+              "text": "Ne modifiez pas data/noria_dirty.csv, ne remplacez pas les valeurs inconnues par zéro pour satisfaire un contrôle et n’effacez pas des fichiers au hasard. Une protection du poste ou une dépendance manquante relève du coach/support. Sauvegardez votre état avant la reprise."
+            },
+            {
+              "type": "text",
+              "text": "Les pages suivantes proposent des paliers. Cachez les paliers non lus avec une feuille si utile. Dès qu’un indice suffit, revenez au TP ; il n’est pas nécessaire de lire toutes les aides. Les réponses des auto-tests sont sur une page séparée à la fin."
+            }
+          ]
+        },
+        {
+          "title": "TP01 · compter avant de résumer",
+          "kicker": "AIDE 1 → TENTATIVE → AIDE 2",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Palier 1 · question",
+              "text": "Parlez-vous de toutes les positions du vecteur ou seulement des durées observées ? Écrivez ces deux ensembles sur papier avant la commande."
+            },
+            {
+              "type": "callout",
+              "label": "Palier 2 · piste",
+              "text": "Relisez « Vecteur », « Moyenne » et « Médiane » dans 02_cours_visuel.pdf. Dans 14_memo_R.pdf, repérez sélection logique et valeurs manquantes. Le mini-exemple examples/mini_vecteurs.R sert à essayer un seul geste sur d’autres nombres."
+            },
+            {
+              "type": "callout",
+              "label": "Palier 3 · vérification",
+              "text": "Comparez la somme et le nombre de valeurs de votre papier avec l’objet R. Votre export doit être calculé par le script ; retaper les résultats attendus ne démontre pas le geste. Après relance, ouvrez results/TP01_resume.csv."
+            },
+            {
+              "type": "callout",
+              "label": "Auto-test sans exécuter R",
+              "text": "Sur 4, NA, 8 : quelle moyenne des valeurs observées ? Quelle part de positions est manquante ? Donnez les dénominateurs. Réponse séparée à la dernière page."
+            },
+            {
+              "type": "text",
+              "text": "Prêt à avancer : je peux expliquer pourquoi une valeur manquante n’est pas zéro, retrouver ma moyenne avec son unité et relancer mon propre script."
+            }
+          ]
+        },
+        {
+          "title": "TP02 · une règle, une trace",
+          "kicker": "AIDE 1 → TENTATIVE → AIDE 2",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Palier 1 · question",
+              "text": "Pourquoi une ligne doit-elle être retirée ? Une durée très grande est-elle impossible, ou seulement inhabituelle ? Une satisfaction absente rend-elle la durée absente ?"
+            },
+            {
+              "type": "callout",
+              "label": "Palier 2 · piste",
+              "text": "Écrivez le critère de sélection avant R, puis observez quelques lignes conservées et retirées. Dans 06_exemples_guides.pdf, relisez « Une table sale, une trace visible ». Consultez examples/mini_nettoyage.R pour masque, virgule et export ; ne reprenez pas une règle sans la justifier pour Noria."
+            },
+            {
+              "type": "callout",
+              "label": "Palier 3 · vérification",
+              "text": "Cherchez la première étape où votre audit diverge. Vérifiez le compte avant/après cette seule règle, puis l’identité des lignes concernées. Gardez raw intact. Un CSV final de la bonne taille sans audit fidèle ne suffit pas."
+            },
+            {
+              "type": "callout",
+              "label": "Auto-test sans exécuter R",
+              "text": "Un ticket a une durée valide et une satisfaction inconnue. Faut-il le retirer d’une moyenne de durée ? Quel contrôle faudra-t-il faire pour résumer la satisfaction ? Réponse séparée à la dernière page."
+            },
+            {
+              "type": "text",
+              "text": "Prêt à avancer : je relie une règle à sa trace, justifie une exclusion et un maintien, lis mes graphes et relance l’audit depuis le fichier brut. La reconnaissance matrice/liste/array est un repère de lecture, sans points distincts."
+            }
+          ]
+        },
+        {
+          "title": "TP03 · orienter et interpréter",
+          "kicker": "AIDE 1 → TENTATIVE → AIDE 2",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Palier 1 · question",
+              "text": "Nommez la quantité comparée et son unité. Écrivez B−A. Si B est plus rapide, quel signe attendez-vous ? L’IC concerne-t-il les tickets ou une différence de moyennes ?"
+            },
+            {
+              "type": "callout",
+              "label": "Palier 2 · piste",
+              "text": "Dans 02_cours_visuel.pdf, relisez « Définir le sens de la différence », « Dispersion des tickets ≠ précision de la moyenne », « Welch » et « Intervalle à 95 % ». Dans examples/mini_welch.R, confrontez le petit calcul papier au signe obtenu avant de transposer le geste."
+            },
+            {
+              "type": "callout",
+              "label": "Palier 3 · vérification",
+              "text": "Comparez vos moyennes par groupe au signe extrait du test. Lisez les noms de l’objet résultat plutôt que de retaper la Console. Ouvrez CSV et PDF : le contraste et les axes doivent dire B−A et minutes. La reprise data/noria_clean_reprise.csv permet d’apprendre l’inférence ; elle ne valide pas TP02."
+            },
+            {
+              "type": "callout",
+              "label": "Auto-test sans exécuter R",
+              "text": "B−A vaut −4 minutes avec IC [−9 ; +1]. Peut-on affirmer que chaque ticket B gagne 4 minutes ? Que signifie la présence de zéro ? Réponse séparée à la dernière page."
+            },
+            {
+              "type": "text",
+              "text": "Prêt à avancer : je distingue effet moyen, incertitude et variabilité individuelle, explique le signe, l’IC et une limite sans réciter seulement p."
+            }
+          ]
+        },
+        {
+          "title": "TP04 · prouver la chaîne complète",
+          "kicker": "AIDE 1 → TENTATIVE → AIDE 2",
+          "blocks": [
+            {
+              "type": "callout",
+              "label": "Palier 1 · question",
+              "text": "Si vous fermez R, de quels fichiers avez-vous besoin pour reconstruire vos résultats ? Votre décision se fonde-t-elle sur le seuil prévu et l’incertitude, ou seulement sur p ?"
+            },
+            {
+              "type": "callout",
+              "label": "Palier 2 · piste",
+              "text": "Dessinez brut → audit → descriptifs → comparaison → note. Pour la première fonction incomplète, écrivez en mots son entrée et sa sortie. Reprenez votre propre TP02 ou TP03 pour le geste, puis rendez la dépendance explicite dans TP04. Le mini-exemple examples/mini_note_pdf.R aide à l’export, pas à la conclusion."
+            },
+            {
+              "type": "callout",
+              "label": "Palier 3 · vérification",
+              "text": "Redémarrez R et exécutez uniquement votre script TP04 depuis le brut ; ouvrez chaque sortie et la note PDF d’une page. Vérifiez qu’un chiffre de la note correspond à son export. La qualité des phrases exige une relecture humaine même si les contrôles techniques réussissent."
+            },
+            {
+              "type": "callout",
+              "label": "Auto-test sans exécuter R",
+              "text": "Le script réussit seulement après exécution de TP02 dans la même session. Est-ce une preuve de relance TP04 ? Que devez-vous rendre explicite ? Réponse séparée à la dernière page."
+            },
+            {
+              "type": "text",
+              "text": "Prêt à terminer : je peux suivre une valeur depuis le fichier brut jusqu’à la note, expliquer une objection et nommer l’action proposée ainsi que ses limites. Un partage de portfolio est facultatif."
+            }
+          ]
+        },
+        {
+          "title": "Vérifier vos réponses, puis refaire",
+          "kicker": "À OUVRIR APRÈS VOTRE TENTATIVE",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "Auto-test",
+                "Réponse et prochain geste"
+              ],
+              "rows": [
+                [
+                  "TP01",
+                  "Moyenne : (4+8)/2 = 6, dans l’unité des données ; part manquante : 1/3 des positions. Deux valeurs observées, trois positions. Si confus : refaire avec trois valeurs présentes, puis une valeur inconnue."
+                ],
+                [
+                  "TP02",
+                  "Non : une satisfaction manquante ne supprime pas une durée valide. Pour la satisfaction, compter les observations disponibles et annoncer ce dénominateur ; décrire la variable ordinale avec effectifs et médiane."
+                ],
+                [
+                  "TP03",
+                  "Non : −4 décrit un contraste moyen observé. L’IC concerne l’estimation de différence ; il ne décrit pas les gains de chaque ticket. Il recouvre zéro : les données restent compatibles avec zéro et d’autres effets sous les hypothèses, sans prouver l’égalité."
+                ],
+                [
+                  "TP04",
+                  "Non : un objet ancien masque une dépendance. Le script TP04 doit lire la source brute et créer lui-même les objets/fonctions nécessaires avant utilisation ; recommencer en session neuve."
+                ]
+              ]
+            },
+            {
+              "type": "bullets",
+              "items": [
+                "Une réponse lue devient une piste, pas une preuve d’acquisition. Refermez cette page, expliquez à nouveau avec vos mots et vérifiez un autre petit cas.",
+                "Si le doute persiste, demandez au coach un contre-exemple ou une question de clarification. Le coach peut proposer un retour formatif sur vos phrases.",
+                "Les corrigés 80_corriges_et_preuves.pdf s’ouvrent après une tentative et une aide ciblée. Lisez seulement le point nécessaire, puis refermez et refaites votre propre démarche ; ne chargez pas les solutions pour valider votre script."
+              ]
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Retour au parcours : 01_parcours_18h.pdf",
+                  "target": "01_parcours_18h.pdf"
+                },
+                {
+                  "label": "Retour au mémo : 14_memo_R.pdf",
+                  "target": "14_memo_R.pdf"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "index_link": "../COMMENCER_ICI.pdf",
+      "edition": "Autoformation accompagnée"
+    },
+    {
+      "filename": "99_sources_visuelles.pdf",
+      "title": "Sources visuelles et fabrication",
+      "subtitle": "Attributions et illustration de couverture",
+      "index_link": "../COMMENCER_ICI.pdf",
+      "pages": [
+        {
+          "title": "L’identité visuelle du parcours",
+          "kicker": "CRÉDITS · VISUELS ET MARQUES",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "La direction graphique reprend les repères du dossier Leaders University fourni : indigo, bleu, orange, cartes arrondies, cercles et typographies Inter / Plus Jakarta Sans."
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Élément",
+                "Crédit et source"
+              ],
+              "rows": [
+                [
+                  "Leaders University",
+                  "Logos fournis dans le projet de référence de Youssef Douma."
+                ],
+                [
+                  "R",
+                  "Logo © 2016 The R Foundation ; CC BY-SA 4.0 ; visuel non modifié. https://www.r-project.org/logo/ ; https://creativecommons.org/licenses/by-sa/4.0/"
+                ],
+                [
+                  "Posit / RStudio",
+                  "Marques identifiant l’éditeur facultatif. https://posit.co/products/open-source/rstudio/ ; https://posit-dev.github.io/brand-yml/inspiration/brand-guidelines/posit/"
+                ],
+                [
+                  "Pfizer / Swiss Re",
+                  "Logos issus du R Consortium ; exemples d’usage documentés par les biographies de gouvernance. https://r-consortium.org/members ; https://r-consortium.org/about/governance"
+                ],
+                [
+                  "Typographies",
+                  "Inter et Plus Jakarta Sans, SIL Open Font License. Sources : https://github.com/google/fonts ; licences conservées avec les polices."
+                ],
+                [
+                  "Équations et graphiques",
+                  "Formules rendues en tracés vectoriels ; graphiques produits à partir des valeurs et conventions du cours."
+                ]
+              ]
+            },
+            {
+              "type": "callout",
+              "label": "Usage des visuels",
+              "text": "Les marques servent à identifier une université, un outil ou un contexte professionnel ; leur présence n’annonce aucun partenariat. L’illustration de couverture est un visuel d’ambiance original."
+            }
+          ]
+        },
+        {
+          "title": "Illustration originale de couverture",
+          "kicker": "IMAGE GEN · PROMPT ET TRAÇABILITÉ",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Illustration créée avec l’outil intégré image_gen puis conservée dans authoring/assets/v3/course-cover-students.png. Le texte, les logos et les schémas pédagogiques ont été composés séparément."
+            },
+            {
+              "type": "text",
+              "text": "Prompt de production : Use case: illustration-story. Asset type: premium landscape cover illustration for a French-language university Master statistics course PDF. Primary request: diverse Master students in a modern Tunisian university studying separately at their own laptops, with one approachable coach in the background. Elegant flat editorial blue vector-like illustration, crisp sophisticated shapes, expressive but refined students and plausible hands. Composition: wide 3:2 landscape. Scene occupies right two-thirds, with left third and upper-left negative space in dark navy reserved for independently typeset title. Subtle giant circular framing and sparse data dots. Simplified unlabeled bar/scatter marks only on laptop screens. Modern bright campus windows with understated Tunisian Mediterranean ambience. Palette: dark navy #07152F, indigo #2B3180, electric blue #4E73FF, orange #FF9A3C, off-white. Print-ready high resolution with clean edges and polished visual rhythm. No text, no letters, no logos, no numbers, no watermark. Decorative illustration only; not a technical diagram. Avoid generic clipart, gradients with banding, clutter, overly cute cartoon proportions, or color outside the palette."
+            },
+            {
+              "type": "callout",
+              "label": "Reproduire les supports",
+              "text": "Les sources de contenu sont dans authoring/content.json ; la fabrication utilise authoring/build_pdfs.py. Les étudiants utilisent uniquement les PDF, R, leurs scripts et les données fournies."
+            }
+          ]
+        }
+      ],
+      "edition": "Autoformation accompagnée"
     }
   ],
-  "route": [
-    [
-      "TP01",
-      "10_TP01_demarrer.pdf",
-      "labs/TP01_demarrer.R",
-      "Cours p.2–12"
+  "course_routes": {
+    "1": [
+      3,
+      14
     ],
-    [
-      "TP02",
-      "11_TP02_preparer.pdf",
-      "labs/TP02_preparer.R",
-      "Cours p.13–24"
+    "2": [
+      15,
+      26
     ],
-    [
-      "TP03",
-      "12_TP03_comparer.pdf",
-      "labs/TP03_comparer.R",
-      "Cours p.25–33"
+    "3": [
+      27,
+      35
     ],
-    [
-      "TP04",
-      "13_TP04_projet.pdf",
-      "labs/TP04_projet.R",
-      "Cours p.31–34"
+    "4": [
+      33,
+      36
     ]
-  ]
+  }
 }

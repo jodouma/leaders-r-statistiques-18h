@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T20:21:21.604089</dc:date>
+    <dc:date>2026-10-23T21:01:05.936391</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -36,7 +36,7 @@ L 150.048 105.414929
 L 150.048 38.332529 
 L 16.128 38.332529 
 z
-" clip-path="url(#p323e6a6124)" style="fill: #e4efeb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pf9aae19195)" style="fill: #edf0ff; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 163.44 105.414929 
@@ -44,7 +44,7 @@ L 297.36 105.414929
 L 297.36 38.332529 
 L 163.44 38.332529 
 z
-" clip-path="url(#p323e6a6124)" style="fill: #e4efeb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pf9aae19195)" style="fill: #edf0ff; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 310.752 105.414929 
@@ -52,11 +52,11 @@ L 444.672 105.414929
 L 444.672 38.332529 
 L 310.752 38.332529 
 z
-" clip-path="url(#p323e6a6124)" style="fill: #e4efeb; stroke: #ffffff; stroke-linejoin: miter"/>
+" clip-path="url(#pf9aae19195)" style="fill: #edf0ff; stroke: #ffffff; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- donnees -->
-    <g style="fill: #087d77" transform="translate(56.807453 57.847409) scale(0.11 -0.11)">
+    <g style="fill: #4e73ff" transform="translate(56.807453 57.847409) scale(0.11 -0.11)">
      <defs>
       <path id="DejaVuSans-Bold-47" d="M 2919 2988 
 L 2919 4863 
@@ -195,7 +195,7 @@ z
    </g>
    <g id="text_2">
     <!-- vecteur : 10, 20, 30 -->
-    <g style="fill: #132f43" transform="translate(33.735656 84.680369) scale(0.1 -0.1)">
+    <g style="fill: #2b3180" transform="translate(33.735656 84.680369) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-59" d="M 191 3500 
 L 800 3500 
@@ -452,7 +452,7 @@ z
    </g>
    <g id="text_3">
     <!-- titre -->
-    <g style="fill: #087d77" transform="translate(216.814141 57.847409) scale(0.11 -0.11)">
+    <g style="fill: #4e73ff" transform="translate(216.814141 57.847409) scale(0.11 -0.11)">
      <defs>
       <path id="DejaVuSans-Bold-57" d="M 1759 4494 
 L 1759 3500 
@@ -515,7 +515,7 @@ z
    </g>
    <g id="text_4">
     <!-- texte : "Noria" -->
-    <g style="fill: #132f43" transform="translate(194.683594 84.680369) scale(0.1 -0.1)">
+    <g style="fill: #2b3180" transform="translate(194.683594 84.680369) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-5b" d="M 3513 3500 
 L 2247 1797 
@@ -645,7 +645,7 @@ z
    </g>
    <g id="text_5">
     <!-- valide -->
-    <g style="fill: #087d77" transform="translate(358.976766 57.847409) scale(0.11 -0.11)">
+    <g style="fill: #4e73ff" transform="translate(358.976766 57.847409) scale(0.11 -0.11)">
      <defs>
       <path id="DejaVuSans-Bold-59" d="M 97 3500 
 L 1216 3500 
@@ -708,7 +708,7 @@ z
    </g>
    <g id="text_6">
     <!-- logique : TRUE -->
-    <g style="fill: #132f43" transform="translate(341.071375 84.680369) scale(0.1 -0.1)">
+    <g style="fill: #2b3180" transform="translate(341.071375 84.680369) scale(0.1 -0.1)">
      <defs>
       <path id="DejaVuSans-4f" d="M 603 4863 
 L 1178 4863 
@@ -867,7 +867,7 @@ z
    </g>
    <g id="text_7">
     <!-- Une list conserve des objets de formes et types différents -->
-    <g style="fill: #132f43" transform="translate(16.128 17.597969) scale(0.13 -0.13)">
+    <g style="fill: #2b3180" transform="translate(16.128 17.597969) scale(0.13 -0.13)">
      <defs>
       <path id="DejaVuSans-Bold-38" d="M 588 4666 
 L 1791 4666 
@@ -1178,7 +1178,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p323e6a6124">
+  <clipPath id="pf9aae19195">
    <rect x="7.2" y="10.279889" width="446.4" height="121.968"/>
   </clipPath>
  </defs>
