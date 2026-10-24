@@ -1,0 +1,178 @@
+{
+  "status": "genuine_course_UI",
+  "asset_key_to_path": {
+    "files_more_root": "authoring/assets/v7/screens/files_more_root.png",
+    "files_project_icon": "authoring/assets/v7/screens/files_project_icon.png",
+    "files_project_root": "authoring/assets/v7/screens/files_project_root.png",
+    "files_next_script": "authoring/assets/v7/screens/files_next_script.png",
+    "source_find_block": "authoring/assets/v7/screens/source_find_block.png",
+    "source_select_complete_block": "authoring/assets/v7/screens/source_select_complete_block.png",
+    "run_code_section_menu": "authoring/assets/v7/screens/run_code_section_menu.png",
+    "source_section_jump": "authoring/assets/v7/screens/source_section_jump.png"
+  },
+  "assets": {
+    "files_more_root": {
+      "path": "authoring/assets/v7/screens/files_more_root.png",
+      "original": "work/v7/evidence/ui/originals/files_more_root.png",
+      "original_sha256": "721b6ad1cc9f991913e9d9705841b77c783a86b48c6a69ea8b603339321eb5df",
+      "crop_xyxy": [
+        1048,
+        462,
+        1710,
+        825
+      ],
+      "action": "From Files outputs/00, opened More; actual Go To Working Directory label visible. Clicked command and verified Files returned to Noria, the current R working directory.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "files_project_icon": {
+      "path": "authoring/assets/v7/screens/files_project_icon.png",
+      "original": "work/v7/evidence/ui/originals/files_project_icon.png",
+      "original_sha256": "736e6c390e95805f2febb81be37990746e5ef54f31d576641d7b4b2ba9183677",
+      "crop_xyxy": [
+        1264,
+        462,
+        1911,
+        566
+      ],
+      "action": "Files browses outputs/00. The R-project icon at right of breadcrumb is the actual Go to project directory button, verified by AX label and subsequent click. No tooltip captured.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "files_project_root": {
+      "path": "authoring/assets/v7/screens/files_project_root.png",
+      "original": "work/v7/evidence/ui/originals/files_project_icon_result.png",
+      "original_sha256": "fb4bcb50678d823151943456f5498cbd64551175160b02a9aa88e1d2ac4e04b7",
+      "crop_xyxy": [
+        1264,
+        462,
+        1911,
+        690
+      ],
+      "action": "Clicked actual Go to project directory icon from outputs/00. Files returned to Noria and shows course.Rproj, data, outputs, R and scripts.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "files_next_script": {
+      "path": "authoring/assets/v7/screens/files_next_script.png",
+      "original": "work/v7/evidence/ui/originals/files_next_script.png",
+      "original_sha256": "12cabc4726b61411bb6d4e61d4512bb5e10226fe4d47bb67a18b8233e34ff071",
+      "crop_xyxy": [
+        1048,
+        462,
+        1665,
+        643
+      ],
+      "action": "From recovered Noria root, clicked scripts. Clicked exact file 01_capital_et_pourcentages.R and verified it opened in Source in the subsequent action.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "source_find_block": {
+      "path": "authoring/assets/v7/screens/source_find_block.png",
+      "original": "work/v7/evidence/ui/originals/source_find_block.png",
+      "original_sha256": "130a54b90e70ff4ef5643477b8233fad5fc69377c70a495edc5c827c30fe0ffc",
+      "crop_xyxy": [
+        8,
+        188,
+        700,
+        627
+      ],
+      "action": "Clicked Source Find/Replace, entered # B02, clicked Next; B02 heading selected and Source status shows B02.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "source_select_complete_block": {
+      "path": "authoring/assets/v7/screens/source_select_complete_block.png",
+      "original": "work/v7/evidence/ui/originals/source_select_complete_block.png",
+      "original_sha256": "d0376f5b5f7a46f39c175d2bcbca5f63247edfedca9f447bdb8c4dc428892000",
+      "crop_xyxy": [
+        8,
+        478,
+        650,
+        659
+      ],
+      "action": "Dragged from start of 01 B02 heading through end of final print line, stopping before B03. Actual selection shading covers B02; B03 remains outside.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "run_code_section_menu": {
+      "path": "authoring/assets/v7/screens/run_code_section_menu.png",
+      "original": "work/v7/evidence/ui/originals/run_code_section_menu.png",
+      "original_sha256": "b6cac1dc2ee1d2d86f7862233659f168c71273a66ceb8d491e194d9ac0ab2006",
+      "crop_xyxy": [
+        140,
+        664,
+        643,
+        839
+      ],
+      "action": "Placed cursor in 00 B01. Opened Code > Run Region (Right expanded submenu). Actual Run Code Section command help says: Run the code section that contains the cursor. Clicked it; complete B01 executed. Clicked inside B02 and used actual macOS Option+Command+T; Console prints 300.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "source_section_jump": {
+      "path": "authoring/assets/v7/screens/source_section_jump.png",
+      "original": "work/v7/evidence/ui/originals/source_section_jump.png",
+      "original_sha256": "394088d2b5280222a3922f94f4783fa700dcffb8f222e15a32334db80fecaa67",
+      "crop_xyxy": [
+        8,
+        488,
+        455,
+        628
+      ],
+      "action": "Clicked Bxx section name at bottom of Source; actual menu lists B01 through B04. Clicked B03; cursor moved to heading. Same selector used for 12 B02 and B03, then Run Code Section executed each successfully.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    }
+  },
+  "runtime": {
+    "image": "rocker/rstudio@sha256:3d2018093b4a0ff2acd65273082aec00a9d1b2606f0ac73b1beaa25ef37f7157",
+    "bind": "127.0.0.1:8788",
+    "authentication": true,
+    "host_mounts": false,
+    "transfer": "docker cp public course only",
+    "native_UI": "Cua native Chrome, dedicated window",
+    "source": "https://rocker-project.org/images/versioned/rstudio"
+  },
+  "caption": "Capture réelle de RStudio Server sous Linux, ouverte dans Chrome sur macOS. Les raccourcis affichés sont ceux de macOS ; les raccourcis Windows/Linux du cours sont des indications distinctes.",
+  "verified_execution": [
+    "00 B01 via actual menu: complete brace block, tools loaded, output_dir outputs/00.",
+    "00 B02 via actual macOS Option+Command+T: Console prints [1] 300.",
+    "12 B01 via actual shortcut: raw 1862 rows, prices 1860 rows.",
+    "12 B02 via Source bottom section selector then shortcut: complete analyze_basket function defined, returns > prompt; Environment Functions lists function.",
+    "12 B03 via Source selector then shortcut: summary 3 rows, 12 variables; comparison CSV saved."
+  ],
+  "navigation_note": "Go To Working Directory returns current R working directory, not necessarily project root if setwd changed it. Go to project directory icon directly returns to open project.",
+  "cleanup": "Dedicated native Chrome window closed using native close button; verified original existing browser window returned. leaders-v7-ui stopped and automatically removed; docker ps -a name filter empty. Random task credential file deleted."
+}
