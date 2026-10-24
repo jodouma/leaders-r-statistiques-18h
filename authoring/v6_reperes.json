@@ -1,0 +1,592 @@
+{
+  "schema": "leaders-guided-playbook-v6",
+  "filename": "02_reperes_R.pdf",
+  "title": "Repères R · Noria Gestion",
+  "subtitle": "Un mémo pour lire et relancer les scripts fournis",
+  "author": "Youssef Douma",
+  "language": "fr",
+  "pages": [
+    {
+      "id": "v6.memo.gestures",
+      "title": "Où regarder, quoi relancer",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ce mémo accompagne 01_aventure_noria.pdf. Il rappelle les gestes déjà montrés ; le playbook contient les explications et les expériences. Ouvrir course.Rproj dans le dossier extrait, puis le fichier .R indiqué dans scripts/."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Votre besoin",
+            "Repère dans RStudio"
+          ],
+          "rows": [
+            [
+              "Lire ou modifier la recette",
+              "Source · le script .R."
+            ],
+            [
+              "Voir un nombre ou une erreur",
+              "Console · lire le dernier résultat et l’invite >."
+            ],
+            [
+              "Trouver un objet temporaire",
+              "Environment · objets de la session."
+            ],
+            [
+              "Voir une figure",
+              "Plots · Zoom pour agrandir."
+            ],
+            [
+              "Trouver un résultat enregistré",
+              "Files → outputs → numéro du script."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Sous Windows",
+            "Effet"
+          ],
+          "rows": [
+            [
+              "Ctrl+Enter ou Run",
+              "Ligne courante sans sélection ; toutes les lignes sélectionnées sinon."
+            ],
+            [
+              "Ctrl+S",
+              "Enregistrer le script ; cela ne recalcule pas les résultats."
+            ],
+            [
+              "Ctrl+Z",
+              "Annuler la dernière modification dans l’éditeur."
+            ],
+            [
+              "Esc dans une Console avec +",
+              "Annuler une instruction incomplète ; resélectionner ensuite le bloc entier."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "La règle commune",
+          "text": "Nouveau script : B01, puis les blocs du guide dans l’ordre. Après modification d’un paramètre : relancer son bloc et les blocs qui utilisent le résultat. Source, facultatif après lecture, exécute tout le fichier actif."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.syntax",
+      "title": "Lire les petites phrases de R",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "mental_assignment",
+          "caption": "La valeur calculée à droite est affectée au nom à gauche. Un nom permet de réutiliser une valeur.",
+          "height": 145
+        },
+        {
+          "type": "code",
+          "text": "capital <- 10000\ncapital",
+          "illustrative": true
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Écriture",
+            "Sens"
+          ],
+          "rows": [
+            [
+              "<-",
+              "Affecter une valeur à un nom ; ce nom reste disponible en mémoire."
+            ],
+            [
+              "# commentaire",
+              "Une note pour le lecteur ; R ne l’exécute pas."
+            ],
+            [
+              "\"CAC\"",
+              "Du texte ; garder les guillemets droits."
+            ],
+            [
+              "0.05",
+              "Nombre décimal, soit 5 %. R utilise le point."
+            ],
+            [
+              "+ − * /",
+              "Additionner, soustraire, multiplier, diviser. Dans le code, le signe moins est -."
+            ],
+            [
+              "( ) · { }",
+              "Parenthèses pour un appel ou un calcul ; accolades pour regrouper des instructions."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Lire une fonction",
+          "text": "Dans head(raw), head est l’action et raw son entrée. Dans head(raw, n = 10), n précise combien de premières lignes afficher. Un argument est une information transmise à la fonction."
+        },
+        {
+          "type": "callout",
+          "label": "Un nom exact",
+          "text": "capital et Capital sont distincts. Modifier uniquement les valeurs proposées, sans changer les noms ni effacer les signes autour."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.table",
+      "title": "Tableau, colonne, cellule : trois échelles",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "mental_table",
+          "caption": "Une ligne contient les quatre niveaux d’un rang d’observation ; une colonne rassemble les niveaux d’un indice.",
+          "height": 155
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Écriture déjà fournie",
+            "Lecture"
+          ],
+          "rows": [
+            [
+              "prices",
+              "Le tableau complet des niveaux propres."
+            ],
+            [
+              "prices$CAC",
+              "La colonne CAC : un vecteur de nombres."
+            ],
+            [
+              "prices$CAC[1]",
+              "La première valeur de cette colonne."
+            ],
+            [
+              "prices[1, \"CAC\"]",
+              "La cellule de la ligne 1 et de la colonne CAC."
+            ],
+            [
+              "c(\"CAC\", \"DAX\")",
+              "Un vecteur de deux noms, dans cet ordre."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Un rang est une position",
+          "text": "Les crochets [ ] permettent de choisir. Dans [ligne, colonne], la virgule sépare les deux choix ; une place vide conserve toutes les lignes ou colonnes correspondantes. Le code de sélection est déjà fourni."
+        },
+        {
+          "type": "callout",
+          "label": "NA et contrôle",
+          "text": "NA signifie une information manquante, distincte de 0. Les copies exactes peuvent être dédoublonnées ; une forte variation de marché valide reste une donnée à analyser."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.functions",
+      "title": "Retrouver une fonction par sa question",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Question",
+            "Fonction rencontrée",
+            "Sortie à lire"
+          ],
+          "rows": [
+            [
+              "Qu’y a-t-il au début / à la fin ?",
+              "head / tail",
+              "Quelques lignes ou valeurs."
+            ],
+            [
+              "Combien de lignes ?",
+              "nrow",
+              "Un nombre de lignes."
+            ],
+            [
+              "Quels noms / quelle structure ?",
+              "names / str",
+              "Noms et types des colonnes."
+            ],
+            [
+              "Une ligne est-elle répétée ?",
+              "duplicated",
+              "TRUE ou FALSE pour chaque ligne."
+            ],
+            [
+              "La ligne est-elle complète ?",
+              "complete.cases",
+              "TRUE si aucune valeur n’y manque."
+            ],
+            [
+              "Quel centre / quelle dispersion ?",
+              "mean / median / sd",
+              "Un nombre dans l’unité de la série."
+            ],
+            [
+              "Quel seuil / quelle association ?",
+              "quantile / cor",
+              "Un seuil ou une corrélation."
+            ],
+            [
+              "Comment montrer ou garder ?",
+              "print / save_table",
+              "Console ou CSV dans outputs/."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "TRUE, FALSE et !",
+          "text": "TRUE veut dire vrai ; FALSE, faux. ! inverse la réponse. Dans le nettoyage fourni, « ne répète pas » devient un critère pour garder une ligne. Ces mots servent à expliquer le code, sans le réécrire."
+        },
+        {
+          "type": "callout",
+          "label": "Fonctions du cours",
+          "text": "save_table et save_plot sont des outils fournis dans R/outils.R, chargés par B01. Ils ne sont pas des fonctions à installer depuis un paquet. Les scripts affichent les résultats et indiquent les chemins utiles."
+        },
+        {
+          "type": "callout",
+          "label": "Définition puis appel",
+          "text": "Dans 12, function définit une méthode nommée analyze_basket. B02 prépare la recette ; B03 l’appelle pour plusieurs paramètres. Sélectionner toute la définition, jusqu’à son accolade fermante."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.units",
+      "title": "Garder les unités avec les nombres",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Notion",
+            "Exemple et dénominateur"
+          ],
+          "rows": [
+            [
+              "Pourcentage",
+              "5 % = 5/100 = 0.05."
+            ],
+            [
+              "Gain simple",
+              "10 000 UM × 0.05 = 500 UM."
+            ],
+            [
+              "Capital final",
+              "10 000 UM + 500 UM = 10 500 UM."
+            ],
+            [
+              "Rendement simple",
+              "(nouveau − ancien) / ancien ; 100 → 105 donne +5 %."
+            ],
+            [
+              "Capitalisation",
+              "10 000 × 1.05 × 0.95 = 9 975 UM ; +5 % puis −5 % donne −0,25 % au total."
+            ],
+            [
+              "Base 100",
+              "Niveau / premier niveau de sa série × 100 ; 120 signifie +20 % depuis ce départ."
+            ],
+            [
+              "Poids",
+              "0.60 CAC et 0.40 DAX totalisent 1, soit 100 %."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Pourcent et point de pourcentage",
+          "text": "Passer de 2 % à 3 % est une hausse de 1 point de pourcentage. Le script 11 affiche les erreurs RMSE en points de pourcentage de rendement ; 0.831 correspond à environ 0,831 point."
+        },
+        {
+          "type": "callout",
+          "label": "Les unités du cas",
+          "text": "Les données sont des niveaux d’indices ; le panier utilise leurs rendements locaux. Le capital est pédagogique, en UM. Les indicateurs de variation portent sur une observation de marché, sans annualisation automatique."
+        },
+        {
+          "type": "callout",
+          "label": "L’ordre du temps",
+          "text": "1 860 niveaux → 1 859 variations adjacentes. Le rang observation n’est pas une date. Un horizon de 20 observations ne signifie pas 20 jours calendaires."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.interpret",
+      "title": "Nommer le résultat et sa limite",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Résultat",
+            "Ce qu’on peut dire",
+            "Limite à garder"
+          ],
+          "rows": [
+            [
+              "Moyenne / écart-type",
+              "Centre / dispersion des rendements.",
+              "Ce sont des descriptifs de l’échantillon."
+            ],
+            [
+              "Corrélation",
+              "Association linéaire des rendements.",
+              "Ni cause ni prévision à elle seule."
+            ],
+            [
+              "VaR historique 95 %",
+              "Seuil de perte par observation de marché, calculé sur −rendement.",
+              "Des pertes au-delà sont possibles ; ce n’est pas le maximum."
+            ],
+            [
+              "Drawdown maximal",
+              "Plus forte baisse depuis un sommet du chemin.",
+              "Autre horizon et autre question que la VaR par observation de marché."
+            ],
+            [
+              "Stress test",
+              "Effet d’un choc explicitement choisi.",
+              "Le calcul ne donne pas la probabilité du choc."
+            ],
+            [
+              "Bootstrap",
+              "Distribution issue de tirages avec remise.",
+              "Hypothèse d’indépendance et distribution ancienne."
+            ],
+            [
+              "Modèle CAC ~ DAX",
+              "Relation de la même observation ; comparaison au test.",
+              "Ni causalité ni prévision du lendemain."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Une phrase complète",
+          "text": "« Sur cet historique, sous ces hypothèses, l’indicateur vaut …, en …, sur l’horizon … ; sa limite principale est … » Le nombre seul ne suffit pas."
+        },
+        {
+          "type": "callout",
+          "label": "Toujours préciser",
+          "text": "Le panier est rééquilibré à chaque observation. Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Les conventions des indices peuvent différer. Les résultats ne représentent pas un produit réellement négocié en UM après tous les coûts."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.files_core",
+      "title": "Retrouver le bon script · 00 à 06",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Fichier dans scripts/",
+            "Repères et sorties"
+          ],
+          "rows": [
+            [
+              "00_premiers_pas.R",
+              "B02 calcul ; B03 noms ; B04 trace → outputs/00/premier_calcul.csv."
+            ],
+            [
+              "01_capital_et_pourcentages.R",
+              "B02 paramètres ; B03 gain ; B04 composition → outputs/01/capital.csv."
+            ],
+            [
+              "02_importer_les_marches.R",
+              "B02 import ; B03 colonne ; B04 comparaison → outputs/02/importation.csv."
+            ],
+            [
+              "03_controler_les_donnees.R",
+              "B02 anomalies ; B03 séparation ; B04 exports ; B05 copie en mémoire → outputs/03/."
+            ],
+            [
+              "04_calculer_les_rendements.R",
+              "B02 une paire ; B03 toutes les paires ; B04 courbe → outputs/04/."
+            ],
+            [
+              "05_decrire_les_variations.R",
+              "B02 colonne ; B03 synthèse ; B04 histogramme → outputs/05/."
+            ],
+            [
+              "06_comparer_les_marches.R",
+              "B02 base 100 ; B03 courbes ; B04 corrélations → outputs/06/."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Repère stable",
+          "text": "Les titres # B01, # B02… sont vos points de navigation. Un commentaire explique le code ; les instructions qui suivent réalisent l’action. Ne recopiez pas le PDF pour reconstituer un script."
+        },
+        {
+          "type": "callout",
+          "label": "Les fichiers restent ensemble",
+          "text": "Ouvrir le .Rproj du dossier extrait. Les chemins de données et de sorties sont relatifs à ce dossier ; déplacer un seul script hors du projet casse ce repère."
+        }
+      ]
+    },
+    {
+      "id": "v6.memo.files_advanced",
+      "title": "Retrouver le bon script · 07 à 12",
+      "kicker": "REPÈRES R · À CONSULTER AU BESOIN",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Fichier dans scripts/",
+            "Repères et sorties"
+          ],
+          "rows": [
+            [
+              "07_composer_un_portefeuille.R",
+              "B02 poids ; B03 capital ; B04 trajectoire → outputs/07/."
+            ],
+            [
+              "08_mesurer_le_risque.R",
+              "B02 VaR ; B03 drawdown ; B04 courbe → outputs/08/."
+            ],
+            [
+              "09_tester_un_choc.R",
+              "B02 choc ; B03 contributions ; B04 graphique → outputs/09/."
+            ],
+            [
+              "10_simuler_des_scenarios.R · option",
+              "B02 hypothèses ; B03 quantiles ; B04 distribution → outputs/10/."
+            ],
+            [
+              "11_tester_un_modele.R · option",
+              "B02 séparation ; B03 modèle ; B04 erreurs ; B05 nuage → outputs/11/."
+            ],
+            [
+              "12_automatiser_le_rapport.R · option",
+              "B02 fonction ; B03 lots ; B04 HTML ; B05 ouvrir → outputs/12/rapport_noria.html."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Réinitialiser la mémoire",
+          "text": "Ctrl+S → Session → Restart R → B01 du script courant → ses blocs dans l’ordre. Les objets temporaires disparaissent ; les fichiers enregistrés restent. Chaque script reconstruit ses entrées."
+        },
+        {
+          "type": "callout",
+          "label": "Si vous êtes bloqué",
+          "text": "Montrer le fichier, le bloc Bxx, le message exact et le paramètre changé. Si le résultat diffère, comparer aussi l’entrée CSV et la graine de simulation. Restaurer une seule hypothèse à la fois."
+        },
+        {
+          "type": "callout",
+          "label": "Garder une trace utile",
+          "text": "Avant → après → résultat → interprétation. Après une expérience, restaurer les paramètres de référence ou annoncer votre variante dans la présentation."
+        }
+      ]
+    }
+  ],
+  "source_refs": [
+    {
+      "id": "r_about",
+      "title": "R Project · What is R?",
+      "url": "https://www.r-project.org/about.html",
+      "accessed": "2026-10-24",
+      "supports": "Nature de R, calcul statistique, graphiques, logiciel libre ; pas de revendication d’adoption."
+    },
+    {
+      "id": "r_origin",
+      "title": "R FAQ · What is R?",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-FAQ.html",
+      "accessed": "2026-10-24",
+      "supports": "Origine : Ross Ihaka, Robert Gentleman, université d’Auckland."
+    },
+    {
+      "id": "r_windows",
+      "title": "CRAN · R for Windows",
+      "url": "https://cran.r-project.org/bin/windows/base/",
+      "accessed": "2026-10-24",
+      "supports": "Téléchargement officiel de R pour Windows."
+    },
+    {
+      "id": "posit_intro",
+      "title": "Posit · RStudio User Guide",
+      "url": "https://docs.posit.co/ide/user/",
+      "accessed": "2026-10-24",
+      "supports": "RStudio, environnement de développement avec éditeur et Console."
+    },
+    {
+      "id": "posit_download",
+      "title": "Posit · Download RStudio",
+      "url": "https://docs.posit.co/ide/user/download.html",
+      "accessed": "2026-10-24",
+      "supports": "Installation R séparée ; téléchargement actuel RStudio 2026.10.0 pour Windows 11."
+    },
+    {
+      "id": "windows_zip",
+      "title": "Microsoft Support · Zip and unzip files",
+      "url": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/zip-and-unzip-files",
+      "accessed": "2026-10-24",
+      "supports": "Clic droit, Extract All / Extraire tout sous Windows."
+    },
+    {
+      "id": "posit_projects",
+      "title": "Posit · RStudio Projects",
+      "url": "https://docs.posit.co/ide/user/ide/guide/code/projects.html",
+      "accessed": "2026-10-24",
+      "supports": "Ouverture d’un .Rproj, dossier du projet, session et mémoire."
+    },
+    {
+      "id": "posit_start",
+      "title": "Posit · Get Started",
+      "url": "https://docs.posit.co/ide/user/ide/get-started/index.html",
+      "accessed": "2026-10-24",
+      "supports": "Panes Source, Console, Environment, Output ; mémoire distincte du script."
+    },
+    {
+      "id": "posit_sections",
+      "title": "Posit · Code Sections",
+      "url": "https://docs.posit.co/ide/user/ide/guide/code/code-sections.html",
+      "accessed": "2026-10-24",
+      "supports": "Titres de sections RStudio à base de commentaires."
+    },
+    {
+      "id": "posit_execution",
+      "title": "Posit · Executing code",
+      "url": "https://docs.posit.co/ide/user/ide/guide/code/execution.html",
+      "accessed": "2026-10-24",
+      "supports": "Run ligne/sélection ; Source fichier entier, distinction de l’affichage."
+    },
+    {
+      "id": "posit_shortcuts",
+      "title": "Posit · Keyboard Shortcuts",
+      "url": "https://docs.posit.co/ide/user/ide/reference/shortcuts.html",
+      "accessed": "2026-10-24",
+      "supports": "Windows Ctrl+Enter, Ctrl+S, Ctrl+Z."
+    },
+    {
+      "id": "posit_viewer",
+      "title": "Posit · Data Viewer",
+      "url": "https://docs.posit.co/ide/user/ide/guide/data/data-viewer.html",
+      "accessed": "2026-10-24",
+      "supports": "Ouverture du tableau depuis Environment et lecture tabulaire."
+    },
+    {
+      "id": "eu_stock",
+      "title": "R datasets · EuStockMarkets",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/EuStockMarkets.html",
+      "accessed": "2026-10-24",
+      "supports": "1991–1998 ; 1 860 observations ; DAX, SMI, CAC, FTSE ; temps ouvré ; source Erste Bank AG, Vienne."
+    }
+  ],
+  "binding_notes": {
+    "figures": "Use same asset keys as main playbook; no synthetic GUI",
+    "main_document": "01_aventure_noria.pdf"
+  }
+}

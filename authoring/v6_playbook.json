@@ -1,0 +1,3414 @@
+{
+  "schema": "leaders-guided-playbook-v6",
+  "filename": "01_aventure_noria.pdf",
+  "title": "Lire les marchés avec R · Playbook Noria Gestion",
+  "subtitle": "Windows · RStudio · scripts prêts à exécuter",
+  "author": "Youssef Douma",
+  "language": "fr",
+  "pages": [
+    {
+      "id": "v6.cover",
+      "layout": "cover",
+      "title": "Lire les marchés avec R",
+      "title_lines": [
+        "Lire les marchés",
+        "avec R"
+      ],
+      "strapline": "Comprendre, lancer, vérifier",
+      "subtitle": "Le playbook guidé de Noria Gestion",
+      "tagline": "Windows · RStudio · scripts complets et commentés",
+      "chips": [
+        "13 scripts prêts",
+        "Données historiques réelles",
+        "À votre rythme"
+      ]
+    },
+    {
+      "id": "v6.route",
+      "title": "Votre rôle : éclairer un comité financier",
+      "kicker": "LE PROJET",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Noria Gestion est une organisation fictive. Son comité vous demande une analyse simple : comparer quatre marchés, comprendre leurs variations, puis expliquer le risque d’un panier CAC–DAX. Votre livrable est un rapport local, avec des résultats que vous pouvez refaire et commenter."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Votre route",
+            "Votre résultat"
+          ],
+          "rows": [
+            [
+              "00–06 · Le socle",
+              "Lire un script, contrôler un tableau, calculer et comparer."
+            ],
+            [
+              "07–09 · L’analyse financière",
+              "Composer un panier, lire son risque et tester un choc."
+            ],
+            [
+              "10–12 · Explorations facultatives",
+              "Observer une simulation, un modèle et un rapport automatisé."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Le bon rythme",
+          "text": "Avancez quand vous pouvez expliquer ce que vous venez d’observer. Les scripts 10–12 sont des explorations guidées : atteindre le script 12 pendant une seule séance n’est pas un objectif imposé."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Le PDF explique le sens et les gestes ; le code complet est déjà dans scripts/.",
+            "Pour chaque étape : comprendre → ouvrir le script → lancer les blocs indiqués → observer → modifier un paramètre → expliquer.",
+            "02_reperes_R.pdf sert de mémo ; 03_sources.pdf documente données et méthodes. Le présent guide se lit dans l’ordre."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6.r_context",
+      "title": "R calcule ; RStudio organise votre travail",
+      "kicker": "L’OUTIL AVANT LE CODE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "R est un langage et un environnement de calcul statistique et de graphiques. Ross Ihaka et Robert Gentleman l’ont initialement développé à l’université d’Auckland, dans la filiation du langage S. R est un logiciel libre ; vous pouvez garder et relancer vos analyses."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Élément",
+            "Image utile",
+            "Dans ce cours"
+          ],
+          "rows": [
+            [
+              "R",
+              "Le moteur",
+              "Exécuter les calculs et construire les graphiques."
+            ],
+            [
+              "RStudio Desktop",
+              "Le poste de travail",
+              "Lire les scripts et voir résultats, objets et fichiers."
+            ],
+            [
+              "Le script .R",
+              "La recette enregistrée",
+              "Conserver les règles, les paramètres et les commentaires."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Pourquoi R ici ?",
+          "text": "Une fois la méthode écrite, changer un capital ou un fichier permet de refaire les mêmes contrôles. R de base suffit pour ce parcours : aucun paquet supplémentaire n’est nécessaire."
+        },
+        {
+          "type": "callout",
+          "label": "Une compétence réaliste",
+          "text": "Vous apprenez à utiliser et expliquer une analyse préparée, puis à modifier quelques paramètres. R ne choisit ni les hypothèses économiques ni la qualité des données à votre place. Un graphique convaincant peut accompagner une conclusion fragile."
+        },
+        {
+          "type": "text",
+          "text": "Références officielles : R Project, « What is R? » et R FAQ ; Posit, guide RStudio. Les liens complets sont dans 03_sources.pdf."
+        }
+      ],
+      "source_refs": [
+        "r_about",
+        "r_origin",
+        "posit_intro"
+      ]
+    },
+    {
+      "id": "v6.setup_windows",
+      "title": "Windows : vérifier avant d’installer",
+      "kicker": "DÉMARRAGE · FACULTATIF SI DÉJÀ PRÊT",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "RStudio s’ouvre déjà avec une Console R ?",
+          "text": "Passez à la page suivante. Les deux logiciels sont distincts : installer RStudio seul ne remplace pas R."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Ordre",
+            "Sur votre ordinateur Windows"
+          ],
+          "rows": [
+            [
+              "1 · Installer R",
+              "Ouvrir cran.r-project.org/bin/windows/base/ ; choisir Download R for Windows, puis ouvrir le fichier .exe téléchargé. Suivre l’assistant."
+            ],
+            [
+              "2 · Installer RStudio",
+              "Ouvrir docs.posit.co/ide/user/download.html ; choisir RStudio Desktop pour Windows et son .exe. Suivre l’assistant, puis ouvrir RStudio."
+            ],
+            [
+              "3 · Vérifier",
+              "Une Console affiche une version de R et une invite >. C’est le moteur prêt à recevoir des instructions."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Version de Windows",
+          "text": "Le téléchargement RStudio actuel documenté en octobre 2026 cible Windows 11. Si votre RStudio déjà installé fonctionne sur un autre Windows, conservez-le pour la séance. Si l’installation échoue, montrez le message et la version de Windows au professeur avant de changer de configuration."
+        },
+        {
+          "type": "text",
+          "text": "Le cours utilise R de base ≥ 4.1. Internet sert à télécharger les logiciels et le dossier ; les analyses fournies fonctionnent ensuite localement. Aucun compte RStudio, GitHub ou service cloud n’est nécessaire."
+        },
+        {
+          "type": "callout",
+          "label": "Contrôle de départ",
+          "text": "Je peux ouvrir RStudio et repérer la Console. Si RStudio demande de choisir R, sélectionner l’installation de R qui vient d’être installée."
+        }
+      ],
+      "source_refs": [
+        "r_windows",
+        "posit_download"
+      ]
+    },
+    {
+      "id": "v6.setup_project",
+      "title": "Décompresser, puis ouvrir course.Rproj",
+      "kicker": "VOTRE DOSSIER DE TRAVAIL",
+      "blocks": [
+        {
+          "type": "bullets",
+          "items": [
+            "Sur la page du cours : Code → Download ZIP. Dans l’Explorateur Windows, retrouver le ZIP téléchargé.",
+            "Clic droit sur le ZIP → Extraire tout… / Extract All… → choisir un dossier dans Documents → Extraire. Ouvrir ensuite le dossier extrait.",
+            "Double-cliquer course.Rproj. Si nécessaire : dans RStudio, File → Open Project… → choisir ce fichier."
+          ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_project",
+          "height": 135,
+          "caption": "Le dossier extrait contient course.Rproj, scripts/, R/, data/, outputs/ et pdf/. Le projet est le point de départ ; les résultats vont dans outputs/."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "À repérer dans le dossier extrait",
+            "Son rôle"
+          ],
+          "rows": [
+            [
+              "course.Rproj",
+              "Le point d’entrée qui place R dans le bon dossier."
+            ],
+            [
+              "scripts/ · R/",
+              "Les 13 scripts et leurs outils communs fournis."
+            ],
+            [
+              "data/",
+              "Les données à lire ; gardez les originaux."
+            ],
+            [
+              "outputs/ · pdf/",
+              "Vos résultats créés par R et les trois guides."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Vous êtes au bon endroit",
+          "text": "Dans Files, vous voyez course.Rproj, scripts et data. Si vous voyez seulement un sous-dossier contenant ces éléments, ouvrez son course.Rproj. Gardez cette édition dans un nouveau dossier : ne fusionnez pas son contenu avec vos anciens essais. Ne travaillez pas dans le ZIP."
+        }
+      ],
+      "source_refs": [
+        "windows_zip",
+        "posit_projects"
+      ]
+    },
+    {
+      "id": "v6.panes",
+      "title": "Quatre zones ; une seule étape à la fois",
+      "kicker": "LE REPÉRAGE RSTUDIO",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "pane_map",
+          "height": 215,
+          "caption": "Capture réelle de RStudio sur macOS ; les noms Source, Console, Environment, Files et Plots se retrouvent sous Windows. La disposition peut varier."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Zone",
+            "Votre question"
+          ],
+          "rows": [
+            [
+              "Source · éditeur",
+              "Quel script et quel bloc suis-je en train de lire ?"
+            ],
+            [
+              "Console",
+              "Quel résultat ou quel message R vient-il d’afficher ?"
+            ],
+            [
+              "Environment",
+              "Quels objets sont actuellement en mémoire ?"
+            ],
+            [
+              "Files / Plots",
+              "Quel fichier a été créé ? Quel graphique regarder ?"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Ouvrir le premier script",
+          "text": "Dans Files, cliquer scripts, puis 00_premiers_pas.R. Il apparaît dans Source. Les titres # B01, # B02… découpent le fichier en étapes nommées ; un # introduit un commentaire, destiné à vous aider."
+        },
+        {
+          "type": "callout",
+          "label": "Le principe commun à tous les scripts",
+          "text": "À chaque nouveau fichier, commencer par B01, « Préparer cette séance ». Puis suivre les blocs du guide dans l’ordre. Chaque script prépare ses propres entrées : nul besoin d’avoir réussi le précédent."
+        }
+      ],
+      "source_refs": [
+        "posit_start",
+        "posit_sections"
+      ]
+    },
+    {
+      "id": "v6.run",
+      "title": "Une ligne, puis un bloc complet",
+      "kicker": "LE GESTE RUN · À APPRENDRE UNE FOIS",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "run_block",
+          "height": 195,
+          "caption": "Capture réelle sur macOS : une sélection complète dans Source. Sous Windows, Ctrl+Enter ou le bouton Run exécute la ligne ou la sélection."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Dans 00_premiers_pas.R, sélectionner tout B01, du titre jusqu’avant # B02. Cliquer Run, au-dessus de Source, ou appuyer sur Ctrl+Enter.",
+            "Dans B02, cliquer sur la ligne print(2 * 150), sans la sélectionner, puis Ctrl+Enter. La Console affiche [1] 300 ; [1] repère la première valeur affichée.",
+            "Pour les étapes suivantes, sélectionner le bloc indiqué en entier, puis utiliser le même geste. Lire la Console avant de continuer."
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Une instruction peut prendre plusieurs lignes",
+          "text": "Une parenthèse ou une accolade ouverte peut se fermer plusieurs lignes plus bas. Inclure cette fermeture dans la sélection. Une invite + en Console indique souvent que R attend la suite ; appuyer sur Esc, puis sélectionner de nouveau l’instruction complète."
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle",
+          "text": "Je sais montrer la différence entre le texte du script, le texte sélectionné et le résultat en Console. Les pages suivantes indiquent simplement le fichier et les blocs : le geste reste le même."
+        }
+      ],
+      "source_refs": [
+        "posit_execution",
+        "posit_shortcuts"
+      ]
+    },
+    {
+      "id": "v6.edit",
+      "title": "Changer une valeur et garder la recette",
+      "kicker": "LE GESTE EXPÉRIENCE",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "edit_parameter",
+          "height": 190,
+          "caption": "Capture réelle sur macOS : la valeur se modifie dans Source. Sous Windows, Ctrl+S enregistre le script ; Run exécute ensuite les blocs concernés."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Geste",
+            "Ce qui change"
+          ],
+          "rows": [
+            [
+              "1 · Repérer le paramètre",
+              "Une valeur simple dans le bloc indiqué : capital, poids ou nombre de scénarios."
+            ],
+            [
+              "2 · Prédire, puis modifier",
+              "Changer seulement la valeur proposée, sans effacer le nom, <-, les guillemets ou les parenthèses."
+            ],
+            [
+              "3 · Ctrl+S, puis blocs indiqués",
+              "Enregistrer la recette et recalculer les objets qui en dépendent. Enregistrer seul ne refait pas le calcul."
+            ],
+            [
+              "4 · Observer et expliquer",
+              "Comparer avec le résultat de départ. Restaurer ensuite la valeur initiale et les mêmes blocs pour retrouver le cas de référence."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Votre trace",
+          "text": "Écrire une courte note sur papier : valeur avant → valeur après → effet observé → interprétation. Les fichiers de outputs/ peuvent être remplacés quand vous relancez un script."
+        },
+        {
+          "type": "callout",
+          "label": "Si vous avez effacé trop de texte",
+          "text": "Ctrl+Z annule la dernière modification dans Source. Pour repartir d’un script fourni, récupérer une nouvelle copie dans un second dossier extrait ; garder vos essais séparés."
+        }
+      ],
+      "source_refs": [
+        "posit_shortcuts"
+      ]
+    },
+    {
+      "id": "v6.recovery",
+      "title": "Repartir proprement sans perdre son travail",
+      "kicker": "RÉCUPÉRATION ET RACCOURCI FACULTATIF",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Ce que vous voyez",
+            "La bonne reprise"
+          ],
+          "rows": [
+            [
+              "object not found",
+              "L’objet n’a pas été créé dans cette session. Reprendre le script courant à B01, puis ses blocs précédents."
+            ],
+            [
+              "Dossier incorrect / fichier introuvable",
+              "File → Open Project… → course.Rproj du dossier extrait. Reprendre B01."
+            ],
+            [
+              "Console avec +",
+              "Esc ; reprendre la sélection entière, fermetures comprises."
+            ],
+            [
+              "Les résultats restent inchangés",
+              "Vérifier le bon onglet, le paramètre enregistré et les blocs recalculés."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Redémarrer R",
+          "text": "Enregistrer le script avec Ctrl+S. Menu Session → Restart R. Les objets de Environment disparaissent ; les scripts et les fichiers enregistrés restent. Reprendre le fichier courant à B01. Si une fermeture demande de sauvegarder l’espace de travail, choisir Don’t Save / Ne pas enregistrer : la recette suffit."
+        },
+        {
+          "type": "callout",
+          "label": "Source · une option après compréhension",
+          "text": "Le bouton Source, en haut de Source, exécute tout le script actif. Après une première lecture bloc par bloc, vous pouvez l’utiliser pour refaire le cas complet. Il passe aussi par les lignes de paramètres : vérifier leurs valeurs enregistrées. Il n’est pas nécessaire de saisir une commande source() en Console."
+        },
+        {
+          "type": "text",
+          "text": "Le redémarrage teste une idée essentielle : votre analyse doit pouvoir se reconstruire à partir des fichiers, sans dépendre d’objets oubliés en mémoire. Les scripts fournis sont prévus pour cela."
+        }
+      ],
+      "source_refs": [
+        "posit_projects",
+        "posit_execution",
+        "posit_start"
+      ]
+    },
+    {
+      "id": "v6.00.assignment",
+      "title": "00 · Donner un nom à une valeur",
+      "kicker": "PREMIERS PAS · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le comité travaille avec un capital pédagogique en unités monétaires, notées UM. Avant toute statistique, il faut pouvoir nommer ce capital et le réutiliser. Un objet est une valeur — ou un ensemble de valeurs — accessible par un nom."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_assignment",
+          "height": 160,
+          "caption": "Lire de droite vers la gauche : la valeur 3 est rangée sous le nom x. Plus tard, écrire x permet de retrouver cette valeur."
+        },
+        {
+          "type": "code",
+          "text": "x <- 3\nx",
+          "illustrative": true
+        },
+        {
+          "type": "text",
+          "text": "Ce petit extrait illustre la lecture ; le script complet est déjà ouvert. <- signifie « affecter à ». x n’est pas une inconnue à résoudre : c’est le nom choisi pour une valeur. Une nouvelle affectation sous le même nom remplace sa valeur en mémoire."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/00_premiers_pas.R",
+          "text": "B03 · Nommer puis consulter une valeur. Dans 00_premiers_pas.R, après B01–B02, passer à B03 « Nommer puis consulter une valeur ». La Console montre 10000, « UM », puis 10500 ; Environment contient les noms créés. Les guillemets indiquent du texte, pas un nombre.",
+          "run": {
+            "script_id": "00",
+            "blocks": [
+              "B03"
+            ],
+            "script_path": "scripts/00_premiers_pas.R",
+            "block_refs": [
+              {
+                "id": "B03",
+                "title": "Nommer puis consulter une valeur",
+                "line_start": 21,
+                "line_end": 32
+              }
+            ]
+          },
+          "block_labels": [
+            "B03 · Nommer puis consulter une valeur"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6.00.trace",
+      "title": "00 · Distinguer valeur, calcul et fichier",
+      "kicker": "PREMIERS PAS · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Objet ou fichier",
+            "Votre lecture"
+          ],
+          "rows": [
+            [
+              "capital",
+              "Le capital de départ : 10 000 UM."
+            ],
+            [
+              "capital_after_gain",
+              "Le capital après un gain fixe de 500 UM : 10 500 UM."
+            ],
+            [
+              "outputs/00/premier_calcul.csv",
+              "Une trace enregistrée sur le disque ; elle demeure après redémarrage."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "scripts/00_premiers_pas.R",
+          "text": "B04 · Essayer et garder une trace. B04 « Essayer et garder une trace » affiche un petit tableau et enregistre premier_calcul.csv. Dans Files, remonter au dossier du projet par .., puis ouvrir outputs → 00 pour le retrouver. Un fichier .csv est un tableau en texte, réutilisable.",
+          "run": {
+            "script_id": "00",
+            "blocks": [
+              "B04"
+            ],
+            "script_path": "scripts/00_premiers_pas.R",
+            "block_refs": [
+              {
+                "id": "B04",
+                "title": "Essayer et garder une trace",
+                "line_start": 33,
+                "line_end": 40
+              }
+            ]
+          },
+          "block_labels": [
+            "B04 · Essayer et garder une trace"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B03, remplacer capital <- 10000 par capital <- 12000. Refaire B03 puis B04. Le gain restant fixé à 500 UM, le résultat devient 12 500 UM. Revenir ensuite à 10000. Que faudrait-il changer pour modifier aussi le gain ?",
+          "experiment": {
+            "script_id": "00",
+            "manifest": {
+              "block": "B03",
+              "parameter": "capital",
+              "default": 10000,
+              "try": 12000,
+              "rerun": [
+                "B03",
+                "B04"
+              ],
+              "expect": "Le capital final passe à 12500 UM.",
+              "expected_value": 12500
+            },
+            "script_path": "scripts/00_premiers_pas.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Affecter une valeur à un nom, consulter cette valeur et distinguer un objet en mémoire d’un fichier enregistré. Je peux expliquer pourquoi changer le script sans le relancer ne change pas le résultat."
+        },
+        {
+          "type": "callout",
+          "label": "Si besoin",
+          "text": "R distingue les majuscules : capital et Capital sont deux noms. Pour les nombres, écrire 10000, sans espace ni séparateur de milliers."
+        }
+      ]
+    },
+    {
+      "id": "v6.01.percentage",
+      "title": "01 · Un pourcentage est une fraction",
+      "kicker": "CAPITAL · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le comité pose une question simple : que rapporte un capital de 10 000 UM avec un gain de 5 % sur une période ? Le pourcentage décrit une part du capital initial ; il n’est pas lui-même un montant en UM."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_percentage",
+          "height": 170,
+          "caption": "5 % = 5 parts sur 100 = 0,05. Appliquer cette fraction à 10 000 UM donne 500 UM ; les ajouter au capital donne 10 500 UM."
+        },
+        {
+          "type": "code",
+          "text": "rate <- 0.05",
+          "illustrative": true
+        },
+        {
+          "type": "text",
+          "text": "Dans R, le séparateur décimal est le point : 0.05 représente 5 %. Écrire 5 représenterait 500 %. Les symboles * et / signifient multiplier et diviser. Une valeur et son unité doivent rester associées dans votre explication."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/01_capital_et_pourcentages.R",
+          "text": "B01 · Préparer cette séance ; B02 · Décrire le petit scénario inventé ; B03 · Calculer le gain puis le capital final. Ouvrir 01_capital_et_pourcentages.R. Commencer par B01, puis repérer le capital et le taux avant de lancer les calculs. Le gain simple attendu est 500 UM ; le capital final, 10 500 UM.",
+          "run": {
+            "script_id": "01",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03"
+            ],
+            "script_path": "scripts/01_capital_et_pourcentages.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 15
+              },
+              {
+                "id": "B02",
+                "title": "Décrire le petit scénario inventé",
+                "line_start": 16,
+                "line_end": 24
+              },
+              {
+                "id": "B03",
+                "title": "Calculer le gain puis le capital final",
+                "line_start": 25,
+                "line_end": 36
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Décrire le petit scénario inventé",
+            "B03 · Calculer le gain puis le capital final"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6.01.compound",
+      "title": "01 · Le deuxième gain porte sur un nouveau capital",
+      "kicker": "CAPITAL · COMPARER",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "mental_compounding",
+          "height": 175,
+          "caption": "Exemple inventé du script : 10 000 UM → +5 % → 10 500 UM → −5 % → 9 975 UM. Le second pourcentage porte sur le nouveau capital."
+        },
+        {
+          "type": "text",
+          "text": "Quand plusieurs périodes se succèdent, les gains se composent : chaque variation s’applique au capital atteint juste avant. Additionner +5 % et −5 % masquerait la perte de 25 UM, soit 0,25 % du capital de départ."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/01_capital_et_pourcentages.R",
+          "text": "B04 « Composer deux périodes ». Le script applique +5 %, puis −5 % à 10 000 UM : il affiche 9 975 UM. Le recul de 5 % porte sur 10 500 UM. Retrouver la synthèse dans outputs/01/capital.csv.",
+          "run": {
+            "script_id": "01",
+            "blocks": [
+              "B04"
+            ],
+            "script_path": "scripts/01_capital_et_pourcentages.R",
+            "block_refs": [
+              {
+                "id": "B04",
+                "title": "Composer deux périodes",
+                "line_start": 37,
+                "line_end": 49
+              }
+            ]
+          },
+          "block_labels": [
+            "B04 · Composer deux périodes"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B02, changer rate de 0.05 à 0.10 ; refaire B02, B03 et B04. Le premier gain devient 1 000 UM et le capital 11 000 UM. La seconde variation reste −5 %. Pourquoi le résultat final ne correspond-il pas à une simple addition des pourcentages ? Restaurer 0.05.",
+          "experiment": {
+            "script_id": "01",
+            "manifest": {
+              "block": "B02",
+              "parameter": "rate",
+              "default": 0.05,
+              "try": 0.1,
+              "rerun": [
+                "B02",
+                "B03",
+                "B04"
+              ],
+              "expect": "Le gain passe à 1000 UM ; capital après la première période : 11000 UM.",
+              "expected_gain_UM": 1000
+            },
+            "script_path": "scripts/01_capital_et_pourcentages.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Passer de 5 % à 0.05, distinguer gain et capital final, et expliquer pourquoi des rendements successifs se multiplient. Les exemples de cette étape sont inventés pour rendre l’arithmétique visible."
+        }
+      ]
+    },
+    {
+      "id": "v6.02.table",
+      "title": "02 · Lire un vrai tableau de marchés",
+      "kicker": "IMPORTER · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nous passons des petits exemples aux données historiques réelles EuStockMarkets : quatre indices européens, observés de 1991 à 1998. Un indice est un niveau de référence pour un marché ; son niveau n’est ni un prix en dinars ni le prix d’un actif que nous achetons."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_table",
+          "height": 170,
+          "caption": "Une ligne = un rang d’observation ; une colonne = une information. observation donne l’ordre ; DAX, SMI, CAC et FTSE contiennent des niveaux d’indices."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Donnée",
+            "Ce qu’elle signifie"
+          ],
+          "rows": [
+            [
+              "1 860 lignes d’origine",
+              "1 860 observations historiques communes aux quatre indices."
+            ],
+            [
+              "observation",
+              "Un rang dans la série, pas une date de calendrier."
+            ],
+            [
+              "DAX · SMI · CAC · FTSE",
+              "Allemagne · Suisse · France · Royaume-Uni."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Le temps de marché",
+          "text": "La série est donnée en temps ouvré, sans week-ends ni jours fériés. Nous conservons son ordre ; nous n’inventons pas de dates. « Quotidien » désigne ici une variation entre deux observations consécutives de marché."
+        }
+      ],
+      "source_refs": [
+        "eu_stock"
+      ]
+    },
+    {
+      "id": "v6.02.import",
+      "title": "02 · Du CSV au tableau en mémoire",
+      "kicker": "IMPORTER · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "code",
+          "text": "head(raw)",
+          "illustrative": true
+        },
+        {
+          "type": "text",
+          "text": "Une fonction est une action nommée, avec des entrées entre parenthèses. Ici, head reçoit le tableau raw et en montre les premières lignes. L’importation lit le fichier ; elle ne transforme pas encore ses niveaux en rendements."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/02_importer_les_marches.R",
+          "text": "B01 · Préparer cette séance ; B02 · Importer le CSV réel enrichi ; B03 · Examiner une colonne et ses premières valeurs ; B04 · Comparer la source et le fichier d'entraînement. Ouvrir 02_importer_les_marches.R. B02 importe data/marches_brut.csv : la Console indique 1 862 lignes et 5 colonnes. B03 inspecte une colonne ; B04 compare le fichier d’origine de 1 860 lignes et le fichier d’entraînement de 1 862 lignes.",
+          "run": {
+            "script_id": "02",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/02_importer_les_marches.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 15
+              },
+              {
+                "id": "B02",
+                "title": "Importer le CSV réel enrichi",
+                "line_start": 16,
+                "line_end": 23
+              },
+              {
+                "id": "B03",
+                "title": "Examiner une colonne et ses premières valeurs",
+                "line_start": 24,
+                "line_end": 30
+              },
+              {
+                "id": "B04",
+                "title": "Comparer la source et le fichier d'entraînement",
+                "line_start": 31,
+                "line_end": 44
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Importer le CSV réel enrichi",
+            "B03 · Examiner une colonne et ses premières valeurs",
+            "B04 · Comparer la source et le fichier d'entraînement"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Voir un tableau dans RStudio",
+          "text": "Après l’import, dans Environment, cliquer l’icône de tableau en face de raw pour ouvrir le Data Viewer. Lire une ligne et une colonne. La Console reste le repère pour les nombres de lignes. Dans Files → outputs → 02, retrouver importation.csv."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B04, changer preview_rows de 6 à 10 ; refaire B04. L’aperçu montre dix lignes originales au lieu de six. Le nombre total de lignes et le CSV restent identiques. Pourquoi changer la taille d’un aperçu ne change-t-il pas le fichier importé ? Restaurer 6.",
+          "experiment": {
+            "script_id": "02",
+            "manifest": {
+              "block": "B04",
+              "parameter": "preview_rows",
+              "default": 6,
+              "try": 10,
+              "rerun": [
+                "B04"
+              ],
+              "expect": "Dix lignes originales sont affichées au lieu de six ; le CSV ne change pas."
+            },
+            "script_path": "scripts/02_importer_les_marches.R"
+          }
+        }
+      ],
+      "source_refs": [
+        "posit_viewer"
+      ]
+    },
+    {
+      "id": "v6.03.clean_model",
+      "title": "03 · Corriger un défaut, préserver un événement",
+      "kicker": "CONTRÔLER · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le fichier d’entraînement ajoute volontairement deux anomalies à la source : une copie exacte de l’observation 100 et une observation 1861 incomplète, dont FTSE manque. Ces ajouts servent à apprendre les contrôles ; ils ne sont pas des défauts annoncés dans la source historique."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_cleaning",
+          "height": 180,
+          "caption": "1 862 lignes brutes → retirer 1 copie exacte → 1 861 lignes distinctes → isoler 1 ligne incomplète → 1 860 lignes complètes."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Signe rencontré",
+            "Décision explicable"
+          ],
+          "rows": [
+            [
+              "Doublon exact",
+              "Garder une seule copie de la même observation."
+            ],
+            [
+              "NA",
+              "Valeur absente ; isoler la ligne et conserver sa trace."
+            ],
+            [
+              "Forte variation valide",
+              "La garder : un choc de marché n’est pas une erreur de saisie."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Ne pas inventer l’information",
+          "text": "NA ne vaut pas zéro. Remplacer mécaniquement un indice manquant par 0 fabriquerait un effondrement. Ici, la ligne ajoutée est mise à part ; les observations historiques complètes restent disponibles."
+        },
+        {
+          "type": "callout",
+          "label": "Votre prédiction",
+          "text": "Quel total doit-on retrouver si l’on additionne les lignes complètes et la ligne isolée après dédoublonnage ? Pourquoi ce total est-il différent du nombre brut ?"
+        }
+      ]
+    },
+    {
+      "id": "v6.03.clean_run",
+      "title": "03 · Rendre les contrôles visibles",
+      "kicker": "CONTRÔLER · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "scripts/03_controler_les_donnees.R",
+          "text": "Ouvrir scripts/03_controler_les_donnees.R. B01 prépare la séance ; B02 repère les anomalies ; B03 sépare les lignes ; B04 enregistre ; B05 teste une copie en mémoire. La Console montre 1 862 lignes brutes, 1 861 distinctes, 1 860 complètes et 1 isolée. Dans outputs/03/, retrouver controle.csv, marches_propres.csv et quarantaine.csv.",
+          "run": {
+            "script_id": "03",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04",
+              "B05"
+            ],
+            "script_path": "scripts/03_controler_les_donnees.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 15
+              },
+              {
+                "id": "B02",
+                "title": "Repérer les anomalies ajoutées pour apprendre",
+                "line_start": 16,
+                "line_end": 26
+              },
+              {
+                "id": "B03",
+                "title": "Séparer, sans supprimer un rendement extrême réel",
+                "line_start": 27,
+                "line_end": 38
+              },
+              {
+                "id": "B04",
+                "title": "Enregistrer les deux tables et vérifier",
+                "line_start": 39,
+                "line_end": 45
+              },
+              {
+                "id": "B05",
+                "title": "Essayer une valeur manquante en mémoire",
+                "line_start": 46,
+                "line_end": 56
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Repérer les anomalies ajoutées pour apprendre",
+            "B03 · Séparer, sans supprimer un rendement extrême réel",
+            "B04 · Enregistrer les deux tables et vérifier",
+            "B05 · Essayer une valeur manquante en mémoire"
+          ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "view_table",
+          "height": 175,
+          "caption": "Capture réelle de RStudio sur macOS : le Data Viewer sert à inspecter le tableau. Le tri visuel d’un tableau n’est pas une règle de nettoyage enregistrée."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "B05 prépare déjà une copie demo et y rend FTSE manquante à la ligne demo_row <- 10. La Console affiche 2 lignes en quarantaine : celle ajoutée au fichier et celle modifiée en mémoire. Changer seulement demo_row de 10 à 20 ; refaire B05. Le total reste 2, mais la ligne modifiée change. Pourquoi ? Restaurer 10 ; les CSV de data/ restent intacts.",
+          "experiment": {
+            "script_id": "03",
+            "manifest": {
+              "block": "B05",
+              "parameter": "demo_row",
+              "default": 10,
+              "try": 20,
+              "rerun": [
+                "B05"
+              ],
+              "expect": "La ligne artificielle incomplète et l’observation20 modifiée en mémoire partent en quarantaine ; total2. Les CSV restent intacts.",
+              "expected_quarantine_rows": 2
+            },
+            "script_path": "scripts/03_controler_les_donnees.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Décrire une ligne et une colonne, distinguer donnée absente et zéro, justifier la suppression d’une copie exacte et garder une trace des exclusions. Je peux expliquer les trois nombres 1 862, 1 861 et 1 860."
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle",
+          "text": "Ouvrir la trace des contrôles dans outputs/03/. Une conclusion « données propres » doit préciser les règles appliquées et les lignes écartées."
+        }
+      ]
+    },
+    {
+      "id": "v6.04.return",
+      "title": "04 · Mesurer une variation relative",
+      "kicker": "RENDEMENTS · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un niveau d’indice ne permet pas à lui seul de comparer la variation de deux marchés. Le rendement rapporte le changement à la valeur de départ. Nous utilisons le rendement simple entre deux observations consécutives."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_return",
+          "height": 170,
+          "caption": "Exemple inventé : 100 → 105. Le changement vaut 5 ; divisé par le départ 100, il donne 0,05, soit +5 %. Le dénominateur est toujours le niveau précédent."
+        },
+        {
+          "type": "code",
+          "text": "first_return <- (new_value - old_value) / old_value",
+          "illustrative": true
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Lecture",
+            "Unité"
+          ],
+          "rows": [
+            [
+              "0.01",
+              "+1 % sur une observation de marché."
+            ],
+            [
+              "−0.02",
+              "−2 % sur une observation de marché."
+            ],
+            [
+              "1 860 niveaux",
+              "1 859 paires adjacentes, donc 1 859 rendements."
+            ],
+            [
+              "Dans le script",
+              "old_value = ancien niveau ; new_value = nouveau niveau."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Pourquoi une ligne de moins ?",
+          "text": "Le premier niveau n’a pas de niveau précédent dans le fichier. Une variation utilise deux niveaux ; nous ne fabriquons pas un rendement initial nul."
+        }
+      ]
+    },
+    {
+      "id": "v6.04.return_run",
+      "title": "04 · Vérifier la première transition",
+      "kicker": "RENDEMENTS · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "scripts/04_calculer_les_rendements.R",
+          "text": "B01 · Préparer cette séance ; B02 · Comprendre une seule variation réelle ; B03 · Étendre le même calcul aux observations voisines ; B04 · Observer et vérifier une série. Ouvrir 04_calculer_les_rendements.R à B01. Suivre le calcul sur deux valeurs, puis sur toute la série. Repérer les 1 859 rendements et le graphique dans Plots ; retrouver les résultats dans outputs/04/. B02 affiche CAC 1 772,8 → 1 750,5 : le premier rendement vaut environ −1,258 %. Dans prices$CAC[1], $CAC choisit la colonne et [1] sa première valeur.",
+          "run": {
+            "script_id": "04",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/04_calculer_les_rendements.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 18
+              },
+              {
+                "id": "B02",
+                "title": "Comprendre une seule variation réelle",
+                "line_start": 19,
+                "line_end": 26
+              },
+              {
+                "id": "B03",
+                "title": "Étendre le même calcul aux observations voisines",
+                "line_start": 27,
+                "line_end": 37
+              },
+              {
+                "id": "B04",
+                "title": "Observer et vérifier une série",
+                "line_start": 38,
+                "line_end": 48
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Comprendre une seule variation réelle",
+            "B03 · Étendre le même calcul aux observations voisines",
+            "B04 · Observer et vérifier une série"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Une colonne peut contenir une suite de valeurs : un vecteur. R applique ici la même opération à chaque paire de niveaux. La répétition est déjà écrite dans le script ; votre travail est de vérifier l’alignement et le sens du calcul."
+        },
+        {
+          "type": "figure",
+          "asset_key": "plots",
+          "height": 175,
+          "caption": "Capture réelle sur macOS : Plots contient le graphique calculé. Cliquer Zoom l’agrandit ; le PNG écrit dans outputs/ se partage sans ouvrir RStudio."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B04, remplacer market <- \"CAC\" par market <- \"DAX\". Refaire B04 seulement : la courbe représente désormais DAX, avec toujours 1 859 variations. Les guillemets indiquent le nom du marché, un texte. Revenir à \"CAC\" ; les fichiers data/ restent inchangés.",
+          "experiment": {
+            "script_id": "04",
+            "manifest": {
+              "block": "B04",
+              "parameter": "market",
+              "default": "CAC",
+              "try": "DAX",
+              "rerun": [
+                "B04"
+              ],
+              "expect": "La courbe affiche DAX ; 1859 variations restent disponibles."
+            },
+            "script_path": "scripts/04_calculer_les_rendements.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Expliquer le dénominateur d’un rendement, retrouver son unité et justifier les 1 859 lignes. Je lis l’axe horizontal comme un ordre d’observations, sans le transformer en calendrier."
+        }
+      ]
+    },
+    {
+      "id": "v6.05.describe",
+      "title": "05 · Le centre ne raconte pas toute l’histoire",
+      "kicker": "DÉCRIRE · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le comité veut résumer les variations entre observations de marché. Une moyenne décrit un centre, mais deux séries de même moyenne peuvent avoir des mouvements très différents. Il faut aussi montrer leur dispersion et leurs extrêmes."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_spread",
+          "height": 175,
+          "caption": "Deux séries pédagogiques peuvent partager une moyenne, avec des écarts petits ou grands. L’écart-type résume la dispersion autour du centre ; ce n’est pas une garantie sur le prochain rendement."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Indicateur",
+            "Question en français"
+          ],
+          "rows": [
+            [
+              "Moyenne · mean",
+              "Quel est le rendement moyen par observation ?"
+            ],
+            [
+              "Médiane · median",
+              "Quelle valeur partage les rendements ordonnés en deux ?"
+            ],
+            [
+              "Écart-type · sd",
+              "Quelle ampleur de dispersion autour de la moyenne ?"
+            ],
+            [
+              "Minimum / maximum",
+              "Quels extrêmes ont été observés dans cet échantillon ?"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Même unité, même horizon",
+          "text": "Ces indicateurs portent sur des rendements historiques par observation de marché. Un écart-type de rendement se lit en fraction, ou en points de pourcentage après multiplication par 100. Ce n’est pas un rendement annuel."
+        },
+        {
+          "type": "text",
+          "text": "Une fonction évite de refaire la même opération à la main. Dans le script, mean reçoit un vecteur et renvoie un nombre ; le nom explique l’action, les parenthèses indiquent l’entrée."
+        }
+      ]
+    },
+    {
+      "id": "v6.05.describe_run",
+      "title": "05 · Lire un histogramme et ses limites",
+      "kicker": "DÉCRIRE · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "scripts/05_decrire_les_variations.R",
+          "text": "B01 · Préparer cette séance ; B02 · Décrire une colonne ; B03 · Mettre les statistiques dans une table ; B04 · Voir la répartition et expérimenter. Ouvrir 05_decrire_les_variations.R à B01. Lire le tableau de synthèse en Console, puis l’histogramme dans Plots. L’axe horizontal porte des rendements ; l’axe vertical compte les observations dans chaque intervalle. Les résultats sont dans outputs/05/. Pour CAC, la moyenne vaut environ 0,050 %, la médiane 0 % et l’écart-type 1,103 % par observation.",
+          "run": {
+            "script_id": "05",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/05_decrire_les_variations.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 19
+              },
+              {
+                "id": "B02",
+                "title": "Décrire une colonne",
+                "line_start": 20,
+                "line_end": 28
+              },
+              {
+                "id": "B03",
+                "title": "Mettre les statistiques dans une table",
+                "line_start": 29,
+                "line_end": 37
+              },
+              {
+                "id": "B04",
+                "title": "Voir la répartition et expérimenter",
+                "line_start": 38,
+                "line_end": 48
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Décrire une colonne",
+            "B03 · Mettre les statistiques dans une table",
+            "B04 · Voir la répartition et expérimenter"
+          ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/05/distribution.png",
+          "height": 175,
+          "caption": "CAC : rendements en % sur l’axe horizontal ; nombre d’observations sur l’axe vertical. Une barre regroupe un intervalle de rendements."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B04, remplacer bins <- 30 par bins <- 15, puis refaire B04. Les intervalles et les barres changent ; les 1 859 rendements et leur tableau statistique restent identiques. Pourquoi une autre présentation ne change-t-elle pas la moyenne ? Restaurer 30.",
+          "experiment": {
+            "script_id": "05",
+            "manifest": {
+              "block": "B04",
+              "parameter": "bins",
+              "default": 30,
+              "try": 15,
+              "rerun": [
+                "B04"
+              ],
+              "expect": "La forme des barres change, mais les statistiques et les données restent identiques."
+            },
+            "script_path": "scripts/05_decrire_les_variations.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "Votre phrase pour le comité",
+          "text": "« Le rendement moyen donne un centre ; la dispersion et les extrêmes montrent les variations autour de ce centre, sur cet ancien échantillon. » Compléter avec deux nombres visibles en Console, en indiquant leur unité."
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Distinguer centre, dispersion et extrême. Je peux lire une barre d’histogramme sans la confondre avec une observation individuelle, et je n’efface pas un choc valide pour rendre le graphique plus calme."
+        }
+      ]
+    },
+    {
+      "id": "v6.06.normalize",
+      "title": "06 · Mettre les marchés sur la même ligne de départ",
+      "kicker": "COMPARER · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Comparer directement des niveaux comme 1 500 et 3 000 n’indique pas quel marché a progressé le plus. La base 100 ramène chaque série à 100 au départ : elle montre une évolution relative commune."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_normalize",
+          "height": 180,
+          "caption": "Chaque niveau est divisé par le premier niveau de sa propre série, puis multiplié par 100. Toutes les courbes partent de 100 ; une valeur 120 indique +20 % depuis ce départ."
+        },
+        {
+          "type": "callout",
+          "label": "La question à poser au graphique",
+          "text": "À la fin de l’échantillon, la base 100 vaut environ 225,35 pour CAC et 336,07 pour DAX. Cela décrit +125,35 % et +236,07 % depuis le départ dans leurs conventions d’indices locales ; ces nombres ne sont pas des montants en UM."
+        },
+        {
+          "type": "callout",
+          "label": "La limite économique",
+          "text": "La base 100 compare des évolutions d’indices dans leurs conventions locales. Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Les conventions des indices peuvent différer. Elle ne simule pas directement ce qu’un investisseur tunisien aurait gagné."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/06_comparer_les_marches.R",
+          "text": "B01 · Préparer cette séance ; B02 · Partir de la même base 100 ; B03 · Tracer une comparaison normalisée. Ouvrir 06_comparer_les_marches.R, à partir de B01. Suivre le bloc de normalisation, puis regarder les quatre courbes dans Plots. Retrouver le graphique enregistré dans outputs/06/.",
+          "run": {
+            "script_id": "06",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03"
+            ],
+            "script_path": "scripts/06_comparer_les_marches.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 19
+              },
+              {
+                "id": "B02",
+                "title": "Partir de la même base 100",
+                "line_start": 20,
+                "line_end": 28
+              },
+              {
+                "id": "B03",
+                "title": "Tracer une comparaison normalisée",
+                "line_start": 29,
+                "line_end": 39
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Partir de la même base 100",
+            "B03 · Tracer une comparaison normalisée"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6.06.correlation",
+      "title": "06 · Bouger ensemble n’est pas causer",
+      "kicker": "COMPARER · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrélation résume ici la façon dont deux séries de rendements évoluent ensemble. Proche de +1, les mouvements sont souvent de même sens ; proche de −1, de sens opposé ; proche de 0, il y a peu de relation linéaire. Elle ne prouve pas une cause."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/06_comparer_les_marches.R",
+          "text": "B04 · Mesurer une association. Dans le même script, passer au bloc de corrélation des rendements. Lire un croisement de la matrice : nom de la ligne, nom de la colonne, puis valeur. La diagonale vaut 1, car une série se compare à elle-même. La case CAC/DAX vaut environ 0,733 : une association positive sur cet échantillon.",
+          "run": {
+            "script_id": "06",
+            "blocks": [
+              "B04"
+            ],
+            "script_path": "scripts/06_comparer_les_marches.R",
+            "block_refs": [
+              {
+                "id": "B04",
+                "title": "Mesurer une association",
+                "line_start": 40,
+                "line_end": 47
+              }
+            ]
+          },
+          "block_labels": [
+            "B04 · Mesurer une association"
+          ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/06/comparaison.png",
+          "height": 175,
+          "caption": "Évolutions des quatre indices, base 100. Ce graphique répond à la question de progression depuis le début ; la corrélation porte, elle, sur les rendements par observation de marché."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B03, remplacer selected <- c(\"CAC\", \"DAX\", \"SMI\", \"FTSE\") par selected <- c(\"CAC\", \"DAX\"). Refaire B03 : deux courbes, toutes deux au départ 100. c rassemble les noms dans une liste ordonnée de valeurs, appelée vecteur. La matrice de corrélation n’a pas été recalculée ; elle porte toujours sur quatre marchés. Restaurer la liste initiale.",
+          "experiment": {
+            "script_id": "06",
+            "manifest": {
+              "block": "B03",
+              "parameter": "selected",
+              "default": [
+                "CAC",
+                "DAX",
+                "SMI",
+                "FTSE"
+              ],
+              "try": [
+                "CAC",
+                "DAX"
+              ],
+              "rerun": [
+                "B03"
+              ],
+              "expect": "Deux courbes, toutes deux au départ 100."
+            },
+            "script_path": "scripts/06_comparer_les_marches.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Comparer des évolutions relatives, choisir le bon objet pour une corrélation et formuler une limite. Je peux présenter une courbe et une case de matrice sans les confondre."
+        }
+      ]
+    },
+    {
+      "id": "v6.07.weights",
+      "title": "07 · Composer un panier de rendements",
+      "kicker": "PORTEFEUILLE PÉDAGOGIQUE · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Noria souhaite comparer un panier de 60 % CAC et 40 % DAX. Les poids représentent les parts de l’exposition totale. Pour une observation, le rendement du panier est la somme des rendements pondérés."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_weights",
+          "height": 175,
+          "caption": "Exemple inventé : CAC +1 %, DAX −1 %. 60 % × 1 % + 40 % × (−1 %) = +0,2 %. Appliqué à 10 000 UM, cela fait +20 UM."
+        },
+        {
+          "type": "code",
+          "text": "cac_weight <- 0.60",
+          "illustrative": true
+        },
+        {
+          "type": "callout",
+          "label": "Les hypothèses du panier",
+          "text": "Le script rééquilibre les poids à chaque observation et compose les rendements dans le temps. Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Les conventions des indices peuvent différer. Le capital reste en UM pédagogiques, sans conversion vers une devise réelle."
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle avant calcul",
+          "text": "Les deux poids doivent totaliser 1, soit 100 %. 60 et 40 seraient des poids cent fois trop grands ; 0.60 et 0.40 expriment les fractions attendues."
+        }
+      ]
+    },
+    {
+      "id": "v6.07.weights_run",
+      "title": "07 · D’un rendement au chemin du capital",
+      "kicker": "PORTEFEUILLE PÉDAGOGIQUE · OBSERVER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "scripts/07_composer_un_portefeuille.R",
+          "text": "B01 · Préparer cette séance ; B02 · Choisir les poids et calculer le panier ; B03 · Composer le capital au fil des observations ; B04 · Visualiser puis modifier une hypothèse. Ouvrir 07_composer_un_portefeuille.R à B01. Suivre le bloc des paramètres, celui des rendements pondérés, puis celui du capital. Repérer le départ à 10 000 UM et le capital final en Console ; la trajectoire est dans Plots et outputs/07/. Avec 60 % CAC / 40 % DAX, le capital final de référence vaut environ 26 803,14 UM.",
+          "run": {
+            "script_id": "07",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/07_composer_un_portefeuille.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 19
+              },
+              {
+                "id": "B02",
+                "title": "Choisir les poids et calculer le panier",
+                "line_start": 20,
+                "line_end": 31
+              },
+              {
+                "id": "B03",
+                "title": "Composer le capital au fil des observations",
+                "line_start": 32,
+                "line_end": 41
+              },
+              {
+                "id": "B04",
+                "title": "Visualiser puis modifier une hypothèse",
+                "line_start": 42,
+                "line_end": 51
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Choisir les poids et calculer le panier",
+            "B03 · Composer le capital au fil des observations",
+            "B04 · Visualiser puis modifier une hypothèse"
+          ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/07/capital_panier.png",
+          "height": 170,
+          "caption": "Trajectoire historique du panier pédagogique, en UM. La courbe inclut le capital initial ; l’ordre des observations reste celui des données."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B02, remplacer cac_weight <- 0.60 par cac_weight <- 0.80 ; dax_weight <- 1 - cac_weight calcule déjà le complément de 20 %. Refaire B02 à B04. Le capital final devient environ 24 632,31 UM. Comparer les chemins, puis restaurer 0.60. Cela démontre-t-il un meilleur choix futur ?",
+          "experiment": {
+            "script_id": "07",
+            "manifest": {
+              "block": "B02",
+              "parameter": "cac_weight",
+              "default": 0.6,
+              "try": 0.8,
+              "rerun": [
+                "B02",
+                "B03",
+                "B04"
+              ],
+              "expect": "Les poids deviennent 80 % CAC et 20 % DAX ; le chemin et le capital final changent.",
+              "expected_final_UM": 24632.3134824392
+            },
+            "script_path": "scripts/07_composer_un_portefeuille.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "Votre phrase pour le comité",
+          "text": "« Sous les hypothèses du panier, le capital passe de … UM à … UM sur l’échantillon. Modifier les poids change le chemin et le résultat historique ; cela ne désigne pas automatiquement le meilleur choix futur. »"
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Relier poids et exposition, vérifier leur somme et expliquer le rééquilibrage. Je peux distinguer une illustration de panier d’une performance réelle après tous les coûts."
+        }
+      ]
+    },
+    {
+      "id": "v6.08.var",
+      "title": "08 · La VaR est un seuil, pas le pire cas",
+      "kicker": "RISQUE · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le comité demande : « À partir de quelle perte par observation de marché se trouvent les observations les plus défavorables ? » Nous transformons les rendements du panier en pertes : une baisse donne une perte positive. Nous cherchons ensuite le seuil historique à 95 %."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_var",
+          "height": 180,
+          "caption": "Ordonner les pertes historiques, puis repérer le seuil à 95 %. Environ 5 % des pertes de cet échantillon se situent au-delà ; elles peuvent être plus grandes."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Calcul du cours",
+            "Votre lecture"
+          ],
+          "rows": [
+            [
+              "Quantile à 95 % de −rendement",
+              "Seuil en fraction du capital, méthode d’interpolation type 7 de R."
+            ],
+            [
+              "Seuil × 10 000 UM",
+              "VaR historique par observation de marché, exprimée en UM."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "La phrase à éviter",
+          "text": "« Nous ne pouvons pas perdre plus que la VaR » est faux. La VaR ne dit pas la taille de toutes les pertes au-delà du seuil et ne promet pas une fréquence future."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/08_mesurer_le_risque.R",
+          "text": "B01 · Préparer cette séance ; B02 · Transformer les variations en pertes. Ouvrir 08_mesurer_le_risque.R à B01. Repérer les paramètres capital et niveau de confiance, puis le bloc VaR. Lire le montant, l’horizon d’une observation de marché et le seuil choisi dans la Console. À 95 %, le seuil vaut environ 1,530 % du capital, soit 153,05 UM sur 10 000 UM.",
+          "run": {
+            "script_id": "08",
+            "blocks": [
+              "B01",
+              "B02"
+            ],
+            "script_path": "scripts/08_mesurer_le_risque.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 20
+              },
+              {
+                "id": "B02",
+                "title": "Transformer les variations en pertes",
+                "line_start": 21,
+                "line_end": 34
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Transformer les variations en pertes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6.08.drawdown",
+      "title": "08 · Mesurer une chute depuis un sommet",
+      "kicker": "RISQUE · LE CHEMIN COMPTE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La VaR décrit des variations sur une observation. Le drawdown décrit une autre question : combien le capital a-t-il perdu par rapport au plus haut déjà atteint ? Le capital initial fait partie des sommets possibles."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_drawdown",
+          "height": 180,
+          "caption": "Exemple inventé : capital 100 → 110 → 99. Le sommet est 110 ; la baisse jusqu’à 99 vaut 10 % depuis ce sommet. Ce n’est pas la variation de −1 % depuis le départ."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/08_mesurer_le_risque.R",
+          "text": "B03 · Mesurer la baisse depuis un sommet déjà atteint ; B04 · Lire la profondeur des baisses. Dans le même script, passer au bloc drawdown. Lire le graphique de capital et celui des baisses depuis les sommets. Le drawdown maximal désigne la plus forte baisse sur ce chemin historique ; il ne résume pas une seule journée. La baisse maximale de référence est d’environ −21,75 % ; le graphique de ce script montre le drawdown en %.",
+          "run": {
+            "script_id": "08",
+            "blocks": [
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/08_mesurer_le_risque.R",
+            "block_refs": [
+              {
+                "id": "B03",
+                "title": "Mesurer la baisse depuis un sommet déjà atteint",
+                "line_start": 35,
+                "line_end": 46
+              },
+              {
+                "id": "B04",
+                "title": "Lire la profondeur des baisses",
+                "line_start": 47,
+                "line_end": 56
+              }
+            ]
+          },
+          "block_labels": [
+            "B03 · Mesurer la baisse depuis un sommet déjà atteint",
+            "B04 · Lire la profondeur des baisses"
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Indicateur",
+            "Question et horizon"
+          ],
+          "rows": [
+            [
+              "VaR par observation de marché",
+              "Un seuil de perte entre deux observations."
+            ],
+            [
+              "Drawdown maximal",
+              "La plus forte baisse depuis un sommet sur toute la trajectoire."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle",
+          "text": "Sur le dessin, montrer le sommet qui sert de dénominateur. Une baisse doit-elle forcément partir du capital initial ? Expliquer pourquoi la réponse est non."
+        }
+      ]
+    },
+    {
+      "id": "v6.08.risk_run",
+      "title": "08 · Faire varier une hypothèse de risque",
+      "kicker": "RISQUE · ESSAYER ET INTERPRÉTER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B02, changer confidence de 0.95 à 0.99. Refaire B02 à B04. Comparer les seuils ; le drawdown ne change pas puisque les rendements et le capital restent identiques. Restaurer 0.95 et les mêmes blocs. La VaR reste un seuil, même à 99 %.",
+          "experiment": {
+            "script_id": "08",
+            "manifest": {
+              "block": "B02",
+              "parameter": "confidence",
+              "default": 0.95,
+              "try": 0.99,
+              "rerun": [
+                "B02",
+                "B03",
+                "B04"
+              ],
+              "expect": "Le seuil de VaR augmente ou reste identique ; le drawdown ne change pas."
+            },
+            "script_path": "scripts/08_mesurer_le_risque.R"
+          }
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/08/drawdown.png",
+          "height": 170,
+          "caption": "Drawdown du panier, en % depuis le sommet déjà atteint. Une valeur nulle signifie un sommet ; une valeur négative signifie un capital sous ce sommet."
+        },
+        {
+          "type": "callout",
+          "label": "Lire l’ensemble",
+          "text": "Avant de présenter un chiffre de risque, nommer l’échantillon, le capital, l’horizon, les poids et la méthode. Relier la VaR aux pertes au-delà du seuil et le drawdown au chemin du capital. Les résultats sont dans outputs/08/."
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Expliquer une VaR historique à 95 % sans en faire une perte maximale. Je peux aussi distinguer ce seuil par observation de marché de la plus forte chute depuis un sommet."
+        },
+        {
+          "type": "text",
+          "text": "Les données datent de 1991–1998 : leurs risques observés servent à apprendre une méthode. Ils ne constituent pas une mesure actuelle du risque des marchés."
+        }
+      ]
+    },
+    {
+      "id": "v6.09.stress",
+      "title": "09 · Poser une question « et si… »",
+      "kicker": "STRESS TEST · COMPRENDRE",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le comité veut comprendre un scénario défavorable précis. Nous choisissons, pour l’exercice, CAC −2 % et DAX −12 % sur une même observation. Ce choc est inventé ; il n’est ni une prévision ni une observation ajoutée à la série."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_stress",
+          "height": 185,
+          "caption": "60 % × (−2 %) + 40 % × (−12 %) = −6 %. Avec 10 000 UM au départ : perte 600 UM ; capital après choc 9 400 UM."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Approche",
+            "Sa question"
+          ],
+          "rows": [
+            [
+              "VaR historique",
+              "Quel seuil ressort de la distribution des pertes passées ?"
+            ],
+            [
+              "Stress test choisi",
+              "Quel serait l’effet de ce choc précis sous nos hypothèses ?"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Ce que le scénario ne dit pas",
+          "text": "Le calcul ne donne pas la probabilité de ce choc. Il ne couvre pas tous les événements possibles. Il sert à relier une hypothèse explicite à son effet sur le panier."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/09_tester_un_choc.R",
+          "text": "B01 · Préparer cette séance ; B02 · Poser le scénario inventé, distinct de l'historique. Ouvrir 09_tester_un_choc.R à B01. Repérer les chocs et les poids, puis le bloc de calcul. La Console doit montrer −6 %, une perte de 600 UM et 9 400 UM après choc.",
+          "run": {
+            "script_id": "09",
+            "blocks": [
+              "B01",
+              "B02"
+            ],
+            "script_path": "scripts/09_tester_un_choc.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 19
+              },
+              {
+                "id": "B02",
+                "title": "Poser le scénario inventé, distinct de l'historique",
+                "line_start": 20,
+                "line_end": 38
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Poser le scénario inventé, distinct de l'historique"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6.09.stress_run",
+      "title": "09 · Expliquer quelle exposition fait mal",
+      "kicker": "STRESS TEST · OBSERVER ET ESSAYER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "scripts/09_tester_un_choc.R",
+          "text": "B03 · Décomposer la perte du panier ; B04 · Comparer les contributions et expérimenter. Lire le tableau et le graphique du scénario. Chercher quelle contribution pèse le plus : le poids seul ne suffit pas, l’ampleur du choc intervient aussi. Les sorties sont dans outputs/09/.",
+          "run": {
+            "script_id": "09",
+            "blocks": [
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/09_tester_un_choc.R",
+            "block_refs": [
+              {
+                "id": "B03",
+                "title": "Décomposer la perte du panier",
+                "line_start": 39,
+                "line_end": 49
+              },
+              {
+                "id": "B04",
+                "title": "Comparer les contributions et expérimenter",
+                "line_start": 50,
+                "line_end": 60
+              }
+            ]
+          },
+          "block_labels": [
+            "B03 · Décomposer la perte du panier",
+            "B04 · Comparer les contributions et expérimenter"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B02, remplacer dax_shock <- -0.12 par dax_shock <- -0.20. Garder CAC à −2 % et les poids 60 % / 40 %. Refaire B02 à B04 : le panier perd 9,2 %, soit 920 UM ; le capital devient 9 080 UM. Le résultat est-il la probabilité du choc ? Restaurer −0.12.",
+          "experiment": {
+            "script_id": "09",
+            "manifest": {
+              "block": "B02",
+              "parameter": "dax_shock",
+              "default": -0.12,
+              "try": -0.2,
+              "rerun": [
+                "B02",
+                "B03",
+                "B04"
+              ],
+              "expect": "Le panier perd 9,2 % ; le capital final vaut 9080 UM.",
+              "expected_return": -0.092,
+              "expected_final_UM": 9080
+            },
+            "script_path": "scripts/09_tester_un_choc.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "Votre phrase pour le comité",
+          "text": "« Si le CAC subissait … % et le DAX … % sur la même observation, notre panier subirait … %, soit … UM sur le capital choisi. C’est l’effet d’un scénario, pas sa probabilité. »"
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Transformer une hypothèse en effet chiffré, attribuer le résultat aux expositions et distinguer scénario, fréquence historique et prévision."
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/09/choc.png",
+          "height": 160,
+          "caption": "Contributions au choc de référence : CAC −1,2 point et DAX −4,8 points de rendement du panier ; ensemble, −6 %."
+        }
+      ]
+    },
+    {
+      "id": "v6.checkpoint",
+      "title": "Présenter une analyse courte et honnête",
+      "kicker": "ARRÊT UTILE APRÈS 09",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le comité a surtout besoin d’une réponse compréhensible, de ses preuves et de ses limites. Préparez une présentation brève à partir de vos sorties ; votre voisin doit pouvoir retrouver les nombres que vous citez."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Votre phrase",
+            "Votre preuve"
+          ],
+          "rows": [
+            [
+              "Je sais ce que mesure le tableau.",
+              "1 860 niveaux complets ; 1 859 rendements consécutifs."
+            ],
+            [
+              "Je compare des évolutions comparables.",
+              "Courbes en base 100 et corrélations des rendements."
+            ],
+            [
+              "Je connais les hypothèses du panier.",
+              "Poids, capital en UM, rééquilibrage et éléments exclus."
+            ],
+            [
+              "Je distingue les formes de risque.",
+              "VaR par observation de marché, drawdown et stress test choisi."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Essayez d’expliquer sans lire le code",
+          "text": "Choisir un graphique et un indicateur. Dire : quelle question ? quelle unité ? quel résultat ? quelle limite ? Puis montrer le bloc et le fichier qui permettent de les refaire."
+        },
+        {
+          "type": "callout",
+          "label": "La suite est facultative",
+          "text": "Les scripts 10–12 montrent des mécanismes déjà écrits : rééchantillonner, comparer un modèle et automatiser. Vous pouvez en comprendre les sorties sans savoir écrire vous-même tout ce code."
+        },
+        {
+          "type": "callout",
+          "label": "Votre autonomie augmente",
+          "text": "Si une expérience change un résultat, vous savez désormais chercher le paramètre, les blocs recalculés, le fichier produit et l’hypothèse qui a changé."
+        }
+      ]
+    },
+    {
+      "id": "v6.10.bootstrap",
+      "title": "10 · Réassembler des variations déjà observées",
+      "kicker": "EXPLORATION FACULTATIVE · SIMULER",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Une seule trajectoire historique n’épuise pas les ordres possibles de variations. Le bootstrap construit d’autres chemins en tirant, avec remise, des rendements du panier dans l’échantillon existant."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_bootstrap",
+          "height": 190,
+          "caption": "Un sac de rendements historiques → tirer une valeur, la remettre → répéter 20 fois → composer un chemin. Refaire 5 000 chemins permet de voir une distribution de capitaux finaux."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Paramètre du cas de départ",
+            "Rôle"
+          ],
+          "rows": [
+            [
+              "20 observations de marché",
+              "Longueur d’un chemin simulé ; ce n’est pas 20 jours calendaires."
+            ],
+            [
+              "5 000 chemins",
+              "Nombre de répétitions pour décrire la distribution."
+            ],
+            [
+              "Graine fixée · seed",
+              "Rendre le même tirage pseudo-aléatoire reproductible."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Hypothèse forte",
+          "text": "Les tirages utilisent la même distribution historique et traitent les rendements comme indépendants. L’ordre d’origine et d’éventuelles périodes de calme ou de crise ne sont donc pas préservés."
+        },
+        {
+          "type": "callout",
+          "label": "La bonne question",
+          "text": "« Quelles issues apparaissent sous ce mécanisme ? » Le bootstrap n’est pas une prévision du prochain mois."
+        }
+      ]
+    },
+    {
+      "id": "v6.10.bootstrap_run",
+      "title": "10 · Lire les chemins et leur distribution",
+      "kicker": "EXPLORATION FACULTATIVE · OBSERVER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "scripts/10_simuler_des_scenarios.R",
+          "text": "B01 · Préparer cette séance ; B02 · Fixer les hypothèses de simulation ; B03 · Composer chaque scénario et lire des quantiles ; B04 · Lire la dispersion puis changer l'horizon. Ouvrir 10_simuler_des_scenarios.R à B01. Repérer horizon, nombre de chemins et graine. Suivre les blocs de tirage et de synthèse. La Console donne des repères de la distribution ; Plots montre les chemins ou les capitaux finaux, enregistrés dans outputs/10/. À 20 observations et avec la graine 2026, les quantiles 5 %, 50 % et 95 % sont environ 9 381,10, 10 118,31 et 10 863,21 UM.",
+          "run": {
+            "script_id": "10",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04"
+            ],
+            "script_path": "scripts/10_simuler_des_scenarios.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 20
+              },
+              {
+                "id": "B02",
+                "title": "Fixer les hypothèses de simulation",
+                "line_start": 21,
+                "line_end": 41
+              },
+              {
+                "id": "B03",
+                "title": "Composer chaque scénario et lire des quantiles",
+                "line_start": 42,
+                "line_end": 52
+              },
+              {
+                "id": "B04",
+                "title": "Lire la dispersion puis changer l'horizon",
+                "line_start": 53,
+                "line_end": 64
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Fixer les hypothèses de simulation",
+            "B03 · Composer chaque scénario et lire des quantiles",
+            "B04 · Lire la dispersion puis changer l'horizon"
+          ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/10/simulation.png",
+          "height": 175,
+          "caption": "Distribution de 5 000 capitaux finaux simulés. Une barre compte des chemins, pas des journées ; la ligne verticale repère le capital initial de 10 000 UM."
+        },
+        {
+          "type": "callout",
+          "label": "Graine et hasard",
+          "text": "Relancer avec les mêmes données, paramètres et graine retrouve les mêmes tirages. Cela rend le calcul contrôlable ; cela ne rend pas les résultats prédictifs. La graine est un réglage technique, pas une information économique."
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B02, changer horizon de 20 à 40 ; refaire B02 à B04. Les quantiles et la dispersion changent, avec toujours 5 000 chemins. La même graine est conservée, mais le nombre et le regroupement des tirages changent. Restaurer 20. Un horizon doublé implique-t-il un gain doublé ?",
+          "experiment": {
+            "script_id": "10",
+            "manifest": {
+              "block": "B02",
+              "parameter": "horizon",
+              "default": 20,
+              "try": 40,
+              "rerun": [
+                "B02",
+                "B03",
+                "B04"
+              ],
+              "expect": "Les quantiles et la dispersion simulés changent ; 5000 scénarios restent calculés.",
+              "note": "La graine est identique, mais le nombre de tirages et leur groupement changent."
+            },
+            "script_path": "scripts/10_simuler_des_scenarios.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle",
+          "text": "Pourquoi plus de chemins peut-il stabiliser l’estimation de cette distribution, sans corriger l’hypothèse d’indépendance ni rajeunir les données ?"
+        }
+      ]
+    },
+    {
+      "id": "v6.10.bootstrap_limits",
+      "title": "10 · Séparer trois types d’histoires",
+      "kicker": "EXPLORATION FACULTATIVE · INTERPRÉTER",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Objet",
+            "Origine",
+            "Ce qu’il apporte"
+          ],
+          "rows": [
+            [
+              "Trajectoire historique",
+              "L’ordre des rendements observés",
+              "Ce qui s’est effectivement passé dans cet échantillon."
+            ],
+            [
+              "Stress test",
+              "Un choc choisi explicitement",
+              "L’effet d’une hypothèse particulière."
+            ],
+            [
+              "Bootstrap",
+              "Des tirages avec remise",
+              "Des issues sous un mécanisme de rééchantillonnage."
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Aucune de ces approches ne devient une promesse parce qu’elle produit un graphique. La précision numérique du calcul et la pertinence de ses hypothèses sont deux questions distinctes."
+        },
+        {
+          "type": "callout",
+          "label": "Votre phrase pour le comité",
+          "text": "« Dans nos simulations de 20 observations, les capitaux finaux se répartissent ainsi sous une distribution historique réutilisée et une hypothèse d’indépendance. Cette distribution simulée n’est pas une probabilité garantie pour le futur. »"
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Décrire un tirage avec remise, l’horizon d’un chemin et le rôle d’une graine. Je peux lire la sortie d’une simulation fournie et nommer l’hypothèse qui limite son interprétation."
+        }
+      ]
+    },
+    {
+      "id": "v6.11.model",
+      "title": "11 · Résumer une relation entre deux rendements",
+      "kicker": "EXPLORATION FACULTATIVE · MODÉLISER",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le modèle fourni relie le rendement CAC au rendement DAX de la même observation. Un nuage de points montre ces couples ; la droite cherche à résumer leur relation linéaire."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_regression",
+          "height": 185,
+          "caption": "Chaque point : DAX en abscisse, CAC en ordonnée, sur la même observation. La droite résume une tendance ; les distances verticales sont des erreurs de prédiction du CAC pour un DAX donné."
+        },
+        {
+          "type": "code",
+          "text": "lm(CAC ~ DAX, data = train)",
+          "illustrative": true
+        },
+        {
+          "type": "text",
+          "text": "Lecture de la syntaxe : lm est la fonction de modèle linéaire ; CAC ~ DAX signifie « relier CAC à DAX » ; data = train précise le tableau d’apprentissage. Le script contient la préparation et les calculs complets."
+        },
+        {
+          "type": "callout",
+          "label": "Une distinction décisive",
+          "text": "Pour prédire le CAC d’une observation avec ce modèle, il faut connaître le DAX de cette même observation. Nous étudions une association contemporaine : ce n’est pas une prévision du CAC du lendemain ni une preuve que le DAX cause le CAC."
+        }
+      ]
+    },
+    {
+      "id": "v6.11.split",
+      "title": "11 · Tester sur des observations gardées à part",
+      "kicker": "EXPLORATION FACULTATIVE · COMPARER",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Une méthode peut s’adapter à ses données d’apprentissage et décevoir ailleurs. Nous gardons donc les 20 % dernières observations pour le test ; les 80 % premières servent à ajuster le modèle. L’ordre chronologique est conservé."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_regression_split",
+          "height": 160,
+          "caption": "Début de série : apprentissage → fin de série : test. La droite utilise seulement l’apprentissage ; le test sert à comparer ses erreurs à une référence simple."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Méthode",
+            "Ce qui est comparé sur le test"
+          ],
+          "rows": [
+            [
+              "Modèle CAC ~ DAX",
+              "Valeur du CAC estimée à partir du DAX contemporain."
+            ],
+            [
+              "Référence simple · baseline",
+              "Même moyenne CAC d’apprentissage pour chaque observation de test."
+            ],
+            [
+              "RMSE",
+              "Taille résumée des erreurs ; plus petite est préférable sur ce test, à unité identique."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "scripts/11_tester_un_modele.R",
+          "text": "B01 · Préparer cette séance ; B02 · Séparer le passé en deux parties chronologiques ; B03 · Ajuster, puis estimer sur la partie réservée ; B04 · Comparer les erreurs sur les mêmes lignes ; B05 · Examiner l'association et ses limites. Ouvrir 11_tester_un_modele.R à B01. Repérer la séparation, l’ajustement puis la comparaison. Lire les deux RMSE en Console et le nuage dans Plots ; les sorties sont dans outputs/11/. Le cas de départ utilise 1 487 observations d’apprentissage et 372 de test. La RMSE vaut environ 0,831 point de pourcentage pour le modèle, contre 1,341 pour la référence.",
+          "run": {
+            "script_id": "11",
+            "blocks": [
+              "B01",
+              "B02",
+              "B03",
+              "B04",
+              "B05"
+            ],
+            "script_path": "scripts/11_tester_un_modele.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 19
+              },
+              {
+                "id": "B02",
+                "title": "Séparer le passé en deux parties chronologiques",
+                "line_start": 20,
+                "line_end": 30
+              },
+              {
+                "id": "B03",
+                "title": "Ajuster, puis estimer sur la partie réservée",
+                "line_start": 31,
+                "line_end": 39
+              },
+              {
+                "id": "B04",
+                "title": "Comparer les erreurs sur les mêmes lignes",
+                "line_start": 40,
+                "line_end": 50
+              },
+              {
+                "id": "B05",
+                "title": "Examiner l'association et ses limites",
+                "line_start": 51,
+                "line_end": 62
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Séparer le passé en deux parties chronologiques",
+            "B03 · Ajuster, puis estimer sur la partie réservée",
+            "B04 · Comparer les erreurs sur les mêmes lignes",
+            "B05 · Examiner l'association et ses limites"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Pas de fuite vers l’apprentissage",
+          "text": "Le test ne sert ni à calculer la moyenne de référence ni à ajuster la droite. Employer les observations futures pour ces réglages rendrait la comparaison trop favorable."
+        }
+      ]
+    },
+    {
+      "id": "v6.11.model_run",
+      "title": "11 · Un modèle doit gagner une comparaison",
+      "kicker": "EXPLORATION FACULTATIVE · ESSAYER",
+      "blocks": [
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B02, changer train_fraction de 0.80 à 0.70 ; refaire B02 à B05. Le script utilise alors 1 301 observations pour ajuster et 558 pour tester. Les RMSE changent aussi. Comme le test contient d’autres lignes, comparer deux découpages exige de la prudence. Restaurer 0.80.",
+          "experiment": {
+            "script_id": "11",
+            "manifest": {
+              "block": "B02",
+              "parameter": "train_fraction",
+              "default": 0.8,
+              "try": 0.7,
+              "rerun": [
+                "B02",
+                "B03",
+                "B04",
+                "B05"
+              ],
+              "expect": "1301 observations pour ajuster, 558 pour tester ; les RMSE changent.",
+              "expected_train_rows": 1301,
+              "expected_test_rows": 558
+            },
+            "script_path": "scripts/11_tester_un_modele.R"
+          }
+        },
+        {
+          "type": "figure",
+          "asset_key": "outputs/11/modele.png",
+          "height": 175,
+          "caption": "Sur les observations de test : rendements DAX et CAC simultanés, en %. La droite a été ajustée sur la partie d’apprentissage, avant le test."
+        },
+        {
+          "type": "callout",
+          "label": "Votre phrase pour le comité",
+          "text": "« Avec le DAX de la même observation, le modèle obtient une RMSE de … contre … pour la référence, sur les dernières observations réservées au test. Cela ne démontre ni une causalité ni une capacité à prévoir le lendemain. »"
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Distinguer apprentissage et test, lire une comparaison à une référence simple et expliquer les entrées nécessaires au modèle. Je peux critiquer une annonce de « prévision » qui utilise déjà une information du même instant."
+        }
+      ]
+    },
+    {
+      "id": "v6.12.function",
+      "title": "12 · Donner un nom à une méthode complète",
+      "kicker": "EXPLORATION FACULTATIVE · AUTOMATISER",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Jusqu’ici, nous avons donné des noms à des valeurs et appelé des fonctions existantes. Une fonction peut aussi regrouper notre propre méthode : recevoir des paramètres, effectuer les mêmes étapes, puis rendre un résultat."
+        },
+        {
+          "type": "figure",
+          "asset_key": "mental_function",
+          "height": 180,
+          "caption": "Entrées : fichier, capital, poids → une méthode nommée → sorties : indicateurs, graphiques, rapport. Les règles sont les mêmes ; les entrées peuvent changer."
+        },
+        {
+          "type": "text",
+          "text": "Définir la fonction enregistre sa recette ; appeler la fonction exécute cette recette avec des entrées choisies. Les parenthèses indiquent les entrées ; les accolades délimitent les instructions regroupées. Le code complet est fourni et commenté."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/12_automatiser_le_rapport.R",
+          "text": "B01 « Préparer cette séance » ; B02 « Définir une tâche réutilisable ». Ouvrir scripts/12_automatiser_le_rapport.R. Sélectionner la définition analyze_basket en entier, jusqu’à sa dernière accolade. Ce bloc prépare la recette ; B03, à la page suivante, l’appellera pour plusieurs poids.",
+          "run": {
+            "script_id": "12",
+            "blocks": [
+              "B01",
+              "B02"
+            ],
+            "script_path": "scripts/12_automatiser_le_rapport.R",
+            "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 18
+              },
+              {
+                "id": "B02",
+                "title": "Définir une tâche réutilisable",
+                "line_start": 19,
+                "line_end": 34
+              }
+            ]
+          },
+          "block_labels": [
+            "B01 · Préparer cette séance",
+            "B02 · Définir une tâche réutilisable"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle",
+          "text": "Si vous exécutez seulement la définition, le nom de la fonction devient disponible. Pour obtenir ses résultats, il faut aussi exécuter son appel. Ce sont deux rôles différents."
+        }
+      ]
+    },
+    {
+      "id": "v6.12.batch",
+      "title": "12 · Comparer plusieurs poids sans réécrire la méthode",
+      "kicker": "EXPLORATION FACULTATIVE · RÉUTILISER",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "outputs/12/comparaison_paniers.png",
+          "height": 175,
+          "caption": "Même méthode pour trois poids : VaR historique 95 %, en UM par observation. Comparer un seul indicateur ne suffit pas à choisir un investissement."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/12_automatiser_le_rapport.R",
+          "text": "B03 « Appeler la recette pour plusieurs poids » est un traitement par lots : la même méthode pour chaque poids, sans réécriture. weights <- c(0.40, 0.60, 0.80) produit 40 %, 60 % et 80 % CAC. Les capitaux finaux valent environ 29 033,49, 26 803,14 et 24 632,31 UM. Les VaR sont environ 149,82, 153,05 et 160,90 UM. Retrouver comparaison_paniers.csv dans outputs/12/.",
+          "run": {
+            "script_id": "12",
+            "blocks": [
+              "B03"
+            ],
+            "script_path": "scripts/12_automatiser_le_rapport.R",
+            "block_refs": [
+              {
+                "id": "B03",
+                "title": "Appeler la recette pour plusieurs poids",
+                "line_start": 35,
+                "line_end": 46
+              }
+            ]
+          },
+          "block_labels": [
+            "B03 · Appeler la recette pour plusieurs poids"
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "À vous · une seule modification",
+          "text": "Dans B03, remplacer weights <- c(0.40, 0.60, 0.80) par weights <- c(0.20, 0.60, 1.00). Refaire B03, puis B04 et B05 à la page suivante : le rapport compare trois nouveaux choix. La ligne 60 % CAC reste identique. Pourquoi cette ligne sert-elle de point de contrôle ? Restaurer la liste initiale.",
+          "experiment": {
+            "script_id": "12",
+            "manifest": {
+              "block": "B03",
+              "parameter": "weights",
+              "default": [
+                0.4,
+                0.6,
+                0.8
+              ],
+              "try": [
+                0.2,
+                0.6,
+                1.0
+              ],
+              "rerun": [
+                "B03",
+                "B04",
+                "B05"
+              ],
+              "expect": "Le rapport est remplacé par trois nouvelles comparaisons ; la ligne 60 % CAC reste identique."
+            },
+            "script_path": "scripts/12_automatiser_le_rapport.R"
+          }
+        },
+        {
+          "type": "callout",
+          "label": "Réutiliser un autre CSV",
+          "text": "Le fichier de remplacement doit respecter la structure attendue : observation, DAX, SMI, CAC, FTSE ; niveaux numériques positifs et ordre correct. Un nouveau nom de fichier ne garantit pas des données comparables. Le script vérifie les entrées avant l’analyse."
+        },
+        {
+          "type": "callout",
+          "label": "À ce stade, je sais…",
+          "text": "Distinguer définition et appel, reconnaître les entrées et les sorties d’une fonction, puis relancer une même méthode sur plusieurs paramètres sans en recopier le code."
+        }
+      ]
+    },
+    {
+      "id": "v6.12.report",
+      "title": "12 · Ouvrir votre rapport local",
+      "kicker": "EXPLORATION FACULTATIVE · LIVRER",
+      "blocks": [
+        {
+          "type": "figure",
+          "asset_key": "mental_report",
+          "height": 175,
+          "caption": "Le CSV d’entrée et les paramètres alimentent la méthode ; celle-ci produit un rapport HTML local et ses fichiers. Le rapport est une sortie de l’analyse, pas une copie du script."
+        },
+        {
+          "type": "callout",
+          "label": "scripts/12_automatiser_le_rapport.R",
+          "text": "B04 « Dessiner la comparaison et fabriquer le HTML » ; B05 « Retrouver et relire le livrable ». Le navigateur ouvre outputs/12/rapport_noria.html. Sinon, retrouver ce fichier dans l’Explorateur Windows, puis double-cliquer pour l’ouvrir dans le navigateur. Garder comparaison_paniers.png à côté du HTML pour que son image s’affiche.",
+          "run": {
+            "script_id": "12",
+            "blocks": [
+              "B04",
+              "B05"
+            ],
+            "script_path": "scripts/12_automatiser_le_rapport.R",
+            "block_refs": [
+              {
+                "id": "B04",
+                "title": "Dessiner la comparaison et fabriquer le HTML",
+                "line_start": 47,
+                "line_end": 73
+              },
+              {
+                "id": "B05",
+                "title": "Retrouver et relire le livrable",
+                "line_start": 74,
+                "line_end": 79
+              }
+            ]
+          },
+          "block_labels": [
+            "B04 · Dessiner la comparaison et fabriquer le HTML",
+            "B05 · Retrouver et relire le livrable"
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "À lire dans le rapport",
+            "À vérifier"
+          ],
+          "rows": [
+            [
+              "Données et contrôles",
+              "Source, période 1991–1998 ; 1 862 lignes brutes, 1 doublon, 1 isolée, 1 860 complètes ; 1 859 variations."
+            ],
+            [
+              "Paramètres et résultats",
+              "Poids, capital en UM, unités et horizon des indicateurs."
+            ],
+            [
+              "Graphiques et limites",
+              "Axes, légendes, ancienneté des données et hypothèses du panier."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Avant de partager",
+          "text": "Rouvrir le HTML depuis le dossier extrait et vérifier que les sorties correspondent aux valeurs de paramètres annoncées. Si vous avez fait une expérience, refaire le cas de référence ou annoncer clairement votre variante."
+        },
+        {
+          "type": "callout",
+          "label": "Votre contrôle",
+          "text": "Une personne qui ne voit pas RStudio peut-elle comprendre la question, retrouver le résultat et connaître une limite ? Votre script permet-il de refaire ce résultat après Restart R ?"
+        }
+      ]
+    },
+    {
+      "id": "v6.final",
+      "title": "Ce que vous pouvez maintenant montrer",
+      "kicker": "LE BILAN DU PARCOURS",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Vous avez appris à…",
+            "Vous pouvez le montrer avec…"
+          ],
+          "rows": [
+            [
+              "Lire et exécuter du R fourni",
+              "Un script, un bloc complet, sa sortie et une petite modification."
+            ],
+            [
+              "Préparer une analyse",
+              "Un contrôle d’import, les anomalies isolées et les unités."
+            ],
+            [
+              "Comparer et quantifier",
+              "Des rendements, un graphique base 100 et un panier explicite."
+            ],
+            [
+              "Argumenter avec prudence",
+              "Une VaR, un drawdown et un stress test correctement nommés."
+            ],
+            [
+              "Explorer si vous êtes allé plus loin",
+              "Une simulation expliquée, une comparaison de modèle et un rapport réutilisable."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Votre prochaine étape",
+          "text": "Choisir une seule variante : un autre poids, un autre capital ou un autre CSV conforme. Écrire ce que vous attendez, relancer le script concerné et expliquer un résultat qui change et un résultat qui reste identique."
+        },
+        {
+          "type": "text",
+          "text": "Vous n’avez pas besoin de connaître tout R pour utiliser une méthode avec discernement. Votre progression se voit lorsque vous savez dire ce que fait le script, pourquoi il le fait, où regarder et ce que le résultat permet réellement de conclure."
+        },
+        {
+          "type": "callout",
+          "label": "Vos repères",
+          "text": "Le mémo 02_reperes_R.pdf rassemble vocabulaire et reprises courantes. 03_sources.pdf conserve les références officielles, la provenance des données et les conventions du cas."
+        }
+      ]
+    },
+    {
+      "id": "v6.troubleshoot",
+      "title": "Retrouver rapidement le bon repère",
+      "kicker": "AIDE EN COURS DE ROUTE",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Symptôme",
+            "Vérifier puis reprendre"
+          ],
+          "rows": [
+            [
+              "Je ne vois pas le script",
+              "Files → scripts → fichier .R ; il apparaît dans Source."
+            ],
+            [
+              "Run ne donne rien de visible",
+              "Une affectation peut créer un objet sans l’afficher ; lire la ligne print/cat suivante et Environment."
+            ],
+            [
+              "Une sélection échoue",
+              "Tout le bloc est-il inclus ? Esc si + ; reprendre à B01 si objet absent."
+            ],
+            [
+              "Je ne retrouve pas mon graphique",
+              "Onglet Plots ; Zoom pour agrandir ; copie enregistrée dans outputs/numéro/."
+            ],
+            [
+              "Je cherche un fichier produit",
+              "Lire le chemin affiché en Console ; dans Files, remonter avec .. jusqu’au projet puis outputs."
+            ],
+            [
+              "Mon résultat diffère du guide",
+              "Vérifier les paramètres de référence, l’entrée CSV et la graine ; relancer les blocs dépendants."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Demander une aide utile",
+          "text": "Montrer le nom du script, le bloc, le message exact en Console et la dernière valeur modifiée. Ces quatre informations permettent de résoudre le bon problème."
+        },
+        {
+          "type": "callout",
+          "label": "Repartir sans tout perdre",
+          "text": "Ctrl+S → Session → Restart R → B01 du script courant → blocs suivants. Ne supprimez pas vos données ni vos fichiers pour nettoyer la mémoire."
+        },
+        {
+          "type": "callout",
+          "label": "Une vérification personnelle",
+          "text": "Je peux retrouver une sortie sans cliquer au hasard, et expliquer pourquoi elle correspond au bon script et aux bons paramètres."
+        }
+      ]
+    }
+  ],
+  "source_refs": [
+    {
+      "id": "r_about",
+      "title": "R Project · What is R?",
+      "url": "https://www.r-project.org/about.html",
+      "accessed": "2026-10-24",
+      "supports": "Nature de R, calcul statistique, graphiques, logiciel libre ; pas de revendication d’adoption."
+    },
+    {
+      "id": "r_origin",
+      "title": "R FAQ · What is R?",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-FAQ.html",
+      "accessed": "2026-10-24",
+      "supports": "Origine : Ross Ihaka, Robert Gentleman, université d’Auckland."
+    },
+    {
+      "id": "r_windows",
+      "title": "CRAN · R for Windows",
+      "url": "https://cran.r-project.org/bin/windows/base/",
+      "accessed": "2026-10-24",
+      "supports": "Téléchargement officiel de R pour Windows."
+    },
+    {
+      "id": "posit_intro",
+      "title": "Posit · RStudio User Guide",
+      "url": "https://docs.posit.co/ide/user/",
+      "accessed": "2026-10-24",
+      "supports": "RStudio, environnement de développement avec éditeur et Console."
+    },
+    {
+      "id": "posit_download",
+      "title": "Posit · Download RStudio",
+      "url": "https://docs.posit.co/ide/user/download.html",
+      "accessed": "2026-10-24",
+      "supports": "Installation R séparée ; téléchargement actuel RStudio 2026.10.0 pour Windows 11."
+    },
+    {
+      "id": "windows_zip",
+      "title": "Microsoft Support · Zip and unzip files",
+      "url": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/zip-and-unzip-files",
+      "accessed": "2026-10-24",
+      "supports": "Clic droit, Extract All / Extraire tout sous Windows."
+    },
+    {
+      "id": "posit_projects",
+      "title": "Posit · RStudio Projects",
+      "url": "https://docs.posit.co/ide/user/ide/guide/code/projects.html",
+      "accessed": "2026-10-24",
+      "supports": "Ouverture d’un .Rproj, dossier du projet, session et mémoire."
+    },
+    {
+      "id": "posit_start",
+      "title": "Posit · Get Started",
+      "url": "https://docs.posit.co/ide/user/ide/get-started/index.html",
+      "accessed": "2026-10-24",
+      "supports": "Panes Source, Console, Environment, Output ; mémoire distincte du script."
+    },
+    {
+      "id": "posit_sections",
+      "title": "Posit · Code Sections",
+      "url": "https://docs.posit.co/ide/user/ide/guide/code/code-sections.html",
+      "accessed": "2026-10-24",
+      "supports": "Titres de sections RStudio à base de commentaires."
+    },
+    {
+      "id": "posit_execution",
+      "title": "Posit · Executing code",
+      "url": "https://docs.posit.co/ide/user/ide/guide/code/execution.html",
+      "accessed": "2026-10-24",
+      "supports": "Run ligne/sélection ; Source fichier entier, distinction de l’affichage."
+    },
+    {
+      "id": "posit_shortcuts",
+      "title": "Posit · Keyboard Shortcuts",
+      "url": "https://docs.posit.co/ide/user/ide/reference/shortcuts.html",
+      "accessed": "2026-10-24",
+      "supports": "Windows Ctrl+Enter, Ctrl+S, Ctrl+Z."
+    },
+    {
+      "id": "posit_viewer",
+      "title": "Posit · Data Viewer",
+      "url": "https://docs.posit.co/ide/user/ide/guide/data/data-viewer.html",
+      "accessed": "2026-10-24",
+      "supports": "Ouverture du tableau depuis Environment et lecture tabulaire."
+    },
+    {
+      "id": "eu_stock",
+      "title": "R datasets · EuStockMarkets",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/EuStockMarkets.html",
+      "accessed": "2026-10-24",
+      "supports": "1991–1998 ; 1 860 observations ; DAX, SMI, CAC, FTSE ; temps ouvré ; source Erste Bank AG, Vienne."
+    }
+  ],
+  "binding_notes": {
+    "script_manifest": "authoring/finance_manifest.json",
+    "figures": "asset_key resolved by parent renderer, actual R output paths from finance manifest",
+    "screenshots": "Real macOS RStudio screenshots, truthfully captioned; Windows actions described and sourced",
+    "page_ids": "Stable scene IDs allow parent to fill printed page numbers after final pagination",
+    "canonical_filename": "01_aventure_noria.pdf preserves the already distributed link; title/content are new finance edition.",
+    "new_folder": "Extract the new edition into a new folder; never merge or overwrite previous learner files."
+  },
+  "verified_facts": {
+    "00": {
+      "console": [
+        300,
+        10000,
+        "UM",
+        10500
+      ],
+      "observation": "La valeur nommée capital est réutilisée ; outputs/00/premier_calcul.csv est créé."
+    },
+    "01": {
+      "gain_UM": 500,
+      "first_final_UM": 10500,
+      "return_100_to_102_percent": 2,
+      "compounded_final_UM": 9975,
+      "observation": "+5 % puis −5 % ne ramène pas à 10000 UM."
+    },
+    "02": {
+      "raw_rows": 1862,
+      "source_rows": 1860,
+      "columns": 5,
+      "observation": "Les deux fichiers ont les mêmes 1860 premières observations réelles."
+    },
+    "03": {
+      "raw_rows": 1862,
+      "unique_rows": 1861,
+      "clean_rows": 1860,
+      "quarantine_rows": 1,
+      "duplicates": 1,
+      "observation": "Le doublon 100 est retiré ; la ligne artificielle 1861 part en quarantaine ; aucun extrême réel supprimé."
+    },
+    "04": {
+      "returns_rows": 1859,
+      "first_CAC_old": 1772.8,
+      "first_CAC_new": 1750.5,
+      "first_CAC_return": -0.0125789711191335,
+      "observation": "Le rendement CAC de la première paire est environ −1,258 %, soit −0,01258 en décimal."
+    },
+    "05": {
+      "statistics": {
+        "market": "CAC",
+        "observations": 1859.0,
+        "mean_percent": 0.0497947105699137,
+        "median_percent": 0.0,
+        "sd_percent": 1.10268267797072,
+        "min_percent": -7.295500741636,
+        "max_percent": 6.28748161279371
+      },
+      "observation": "CAC : moyenne ≈0,050 % et écart-type ≈1,103 % par observation ; médiane 0 %."
+    },
+    "06": {
+      "final_normalized": {
+        "observation": 1860.0,
+        "DAX": 336.06876438987,
+        "SMI": 457.439961861629,
+        "CAC": 225.349729241877,
+        "FTSE": 223.236208872156
+      },
+      "correlations": [
+        {
+          "market": "DAX",
+          "DAX": 1.0,
+          "SMI": 0.701037434232913,
+          "CAC": 0.733363457753926,
+          "FTSE": 0.637932179603114
+        },
+        {
+          "market": "SMI",
+          "DAX": 0.701037434232913,
+          "SMI": 1.0,
+          "CAC": 0.614537987917767,
+          "FTSE": 0.582973894632466
+        },
+        {
+          "market": "CAC",
+          "DAX": 0.733363457753926,
+          "SMI": 0.614537987917767,
+          "CAC": 1.0,
+          "FTSE": 0.647326135139365
+        },
+        {
+          "market": "FTSE",
+          "DAX": 0.637932179603114,
+          "SMI": 0.582973894632466,
+          "CAC": 0.647326135139365,
+          "FTSE": 1.0
+        }
+      ],
+      "observation": "Toutes les séries partent à 100 ; association positive CAC/DAX ≈0,733."
+    },
+    "07": {
+      "CAC_weight": 0.6,
+      "DAX_weight": 0.4,
+      "capital_initial_UM": 10000,
+      "capital_final_UM": 26803.1417983382,
+      "observation": "Le panier rééquilibré finit vers 26803,14 UM sur cet historique ancien."
+    },
+    "08": {
+      "risk": {
+        "confidence": 0.95,
+        "historical_VaR_UM": 153.048193387865,
+        "maximum_drawdown": -0.217466812978689,
+        "final_capital_UM": 26803.1417983382
+      },
+      "observation": "VaR historique 95 % ≈153,05 UM par observation ; drawdown maximal ≈−21,75 %."
+    },
+    "09": {
+      "scenario_return": -0.06,
+      "final_capital_UM": 9400,
+      "CAC_contribution": -0.012,
+      "DAX_contribution": -0.048,
+      "observation": "Le choc inventé produit −6 %, soit une perte de 600 UM."
+    },
+    "10": {
+      "seed": 2026,
+      "horizon_observations": 20,
+      "paths": 5000,
+      "quantiles": [
+        {
+          "probability": 0.05,
+          "final_capital_UM": 9381.10470820918
+        },
+        {
+          "probability": 0.5,
+          "final_capital_UM": 10118.3098221356
+        },
+        {
+          "probability": 0.95,
+          "final_capital_UM": 10863.2115065177
+        }
+      ],
+      "observation": "Capital final simulé : quantiles 5/50/95 % ≈9381,10 / 10118,31 / 10863,21 UM."
+    },
+    "11": {
+      "train_rows": 1487,
+      "test_rows": 372,
+      "last_train_observation": 1488,
+      "first_test_observation": 1489,
+      "RMSE_percent": [
+        {
+          "method": "droite CAC ~ DAX",
+          "test_RMSE_percent": 0.830703396296193
+        },
+        {
+          "method": "moyenne CAC entraînement",
+          "test_RMSE_percent": 1.34122632461
+        }
+      ],
+      "observation": "RMSE test du modèle ≈0,831 point de % contre ≈1,341 pour la moyenne d’entraînement ; résultat limité à ce découpage."
+    },
+    "12": {
+      "baskets": [
+        {
+          "CAC_weight": 0.4,
+          "DAX_weight": 0.6,
+          "initial_capital_UM": 10000.0,
+          "input_rows": 1862.0,
+          "duplicate_rows": 1.0,
+          "quarantine_rows": 1.0,
+          "complete_rows": 1860.0,
+          "observations": 1859.0,
+          "confidence": 0.95,
+          "historical_VaR_UM": 149.81887007778,
+          "maximum_drawdown": -0.220168460298502,
+          "final_capital_UM": 29033.4941667173
+        },
+        {
+          "CAC_weight": 0.6,
+          "DAX_weight": 0.4,
+          "initial_capital_UM": 10000.0,
+          "input_rows": 1862.0,
+          "duplicate_rows": 1.0,
+          "quarantine_rows": 1.0,
+          "complete_rows": 1860.0,
+          "observations": 1859.0,
+          "confidence": 0.95,
+          "historical_VaR_UM": 153.048193387865,
+          "maximum_drawdown": -0.217466812978689,
+          "final_capital_UM": 26803.1417983382
+        },
+        {
+          "CAC_weight": 0.8,
+          "DAX_weight": 0.2,
+          "initial_capital_UM": 10000.0,
+          "input_rows": 1862.0,
+          "duplicate_rows": 1.0,
+          "quarantine_rows": 1.0,
+          "complete_rows": 1860.0,
+          "observations": 1859.0,
+          "confidence": 0.95,
+          "historical_VaR_UM": 160.899762887867,
+          "maximum_drawdown": -0.236489205707697,
+          "final_capital_UM": 24632.3134824392
+        }
+      ],
+      "report": "outputs/12/rapport_noria.html",
+      "observation": "Trois comparaisons et un rapport HTML local ; les images restent dans le même dossier."
+    }
+  },
+  "script_index": [
+    {
+      "id": "00",
+      "path": "scripts/00_premiers_pas.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Lire une petite expression",
+          "line_start": 16,
+          "line_end": 20
+        },
+        {
+          "id": "B03",
+          "title": "Nommer puis consulter une valeur",
+          "line_start": 21,
+          "line_end": 32
+        },
+        {
+          "id": "B04",
+          "title": "Essayer et garder une trace",
+          "line_start": 33,
+          "line_end": 40
+        }
+      ],
+      "outputs": [
+        "outputs/00/premier_calcul.csv"
+      ]
+    },
+    {
+      "id": "01",
+      "path": "scripts/01_capital_et_pourcentages.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Décrire le petit scénario inventé",
+          "line_start": 16,
+          "line_end": 24
+        },
+        {
+          "id": "B03",
+          "title": "Calculer le gain puis le capital final",
+          "line_start": 25,
+          "line_end": 36
+        },
+        {
+          "id": "B04",
+          "title": "Composer deux périodes",
+          "line_start": 37,
+          "line_end": 49
+        }
+      ],
+      "outputs": [
+        "outputs/01/capital.csv"
+      ]
+    },
+    {
+      "id": "02",
+      "path": "scripts/02_importer_les_marches.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Importer le CSV réel enrichi",
+          "line_start": 16,
+          "line_end": 23
+        },
+        {
+          "id": "B03",
+          "title": "Examiner une colonne et ses premières valeurs",
+          "line_start": 24,
+          "line_end": 30
+        },
+        {
+          "id": "B04",
+          "title": "Comparer la source et le fichier d'entraînement",
+          "line_start": 31,
+          "line_end": 44
+        }
+      ],
+      "outputs": [
+        "outputs/02/importation.csv"
+      ]
+    },
+    {
+      "id": "03",
+      "path": "scripts/03_controler_les_donnees.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Repérer les anomalies ajoutées pour apprendre",
+          "line_start": 16,
+          "line_end": 26
+        },
+        {
+          "id": "B03",
+          "title": "Séparer, sans supprimer un rendement extrême réel",
+          "line_start": 27,
+          "line_end": 38
+        },
+        {
+          "id": "B04",
+          "title": "Enregistrer les deux tables et vérifier",
+          "line_start": 39,
+          "line_end": 45
+        },
+        {
+          "id": "B05",
+          "title": "Essayer une valeur manquante en mémoire",
+          "line_start": 46,
+          "line_end": 56
+        }
+      ],
+      "outputs": [
+        "outputs/03/controle.csv",
+        "outputs/03/marches_propres.csv",
+        "outputs/03/quarantaine.csv"
+      ]
+    },
+    {
+      "id": "04",
+      "path": "scripts/04_calculer_les_rendements.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 18
+        },
+        {
+          "id": "B02",
+          "title": "Comprendre une seule variation réelle",
+          "line_start": 19,
+          "line_end": 26
+        },
+        {
+          "id": "B03",
+          "title": "Étendre le même calcul aux observations voisines",
+          "line_start": 27,
+          "line_end": 37
+        },
+        {
+          "id": "B04",
+          "title": "Observer et vérifier une série",
+          "line_start": 38,
+          "line_end": 48
+        }
+      ],
+      "outputs": [
+        "outputs/04/rendements.csv",
+        "outputs/04/rendements.png"
+      ]
+    },
+    {
+      "id": "05",
+      "path": "scripts/05_decrire_les_variations.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Décrire une colonne",
+          "line_start": 20,
+          "line_end": 28
+        },
+        {
+          "id": "B03",
+          "title": "Mettre les statistiques dans une table",
+          "line_start": 29,
+          "line_end": 37
+        },
+        {
+          "id": "B04",
+          "title": "Voir la répartition et expérimenter",
+          "line_start": 38,
+          "line_end": 48
+        }
+      ],
+      "outputs": [
+        "outputs/05/distribution.png",
+        "outputs/05/statistiques.csv"
+      ]
+    },
+    {
+      "id": "06",
+      "path": "scripts/06_comparer_les_marches.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Partir de la même base 100",
+          "line_start": 20,
+          "line_end": 28
+        },
+        {
+          "id": "B03",
+          "title": "Tracer une comparaison normalisée",
+          "line_start": 29,
+          "line_end": 39
+        },
+        {
+          "id": "B04",
+          "title": "Mesurer une association",
+          "line_start": 40,
+          "line_end": 47
+        }
+      ],
+      "outputs": [
+        "outputs/06/comparaison.png",
+        "outputs/06/correlations.csv",
+        "outputs/06/indices_base100.csv"
+      ]
+    },
+    {
+      "id": "07",
+      "path": "scripts/07_composer_un_portefeuille.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Choisir les poids et calculer le panier",
+          "line_start": 20,
+          "line_end": 31
+        },
+        {
+          "id": "B03",
+          "title": "Composer le capital au fil des observations",
+          "line_start": 32,
+          "line_end": 41
+        },
+        {
+          "id": "B04",
+          "title": "Visualiser puis modifier une hypothèse",
+          "line_start": 42,
+          "line_end": 51
+        }
+      ],
+      "outputs": [
+        "outputs/07/capital_panier.csv",
+        "outputs/07/capital_panier.png",
+        "outputs/07/rendements_panier.csv"
+      ]
+    },
+    {
+      "id": "08",
+      "path": "scripts/08_mesurer_le_risque.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 20
+        },
+        {
+          "id": "B02",
+          "title": "Transformer les variations en pertes",
+          "line_start": 21,
+          "line_end": 34
+        },
+        {
+          "id": "B03",
+          "title": "Mesurer la baisse depuis un sommet déjà atteint",
+          "line_start": 35,
+          "line_end": 46
+        },
+        {
+          "id": "B04",
+          "title": "Lire la profondeur des baisses",
+          "line_start": 47,
+          "line_end": 56
+        }
+      ],
+      "outputs": [
+        "outputs/08/drawdown.csv",
+        "outputs/08/drawdown.png",
+        "outputs/08/risque.csv"
+      ]
+    },
+    {
+      "id": "09",
+      "path": "scripts/09_tester_un_choc.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Poser le scénario inventé, distinct de l'historique",
+          "line_start": 20,
+          "line_end": 38
+        },
+        {
+          "id": "B03",
+          "title": "Décomposer la perte du panier",
+          "line_start": 39,
+          "line_end": 49
+        },
+        {
+          "id": "B04",
+          "title": "Comparer les contributions et expérimenter",
+          "line_start": 50,
+          "line_end": 60
+        }
+      ],
+      "outputs": [
+        "outputs/09/choc.csv",
+        "outputs/09/choc.png",
+        "outputs/09/contributions_choc.csv"
+      ]
+    },
+    {
+      "id": "10",
+      "path": "scripts/10_simuler_des_scenarios.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 20
+        },
+        {
+          "id": "B02",
+          "title": "Fixer les hypothèses de simulation",
+          "line_start": 21,
+          "line_end": 41
+        },
+        {
+          "id": "B03",
+          "title": "Composer chaque scénario et lire des quantiles",
+          "line_start": 42,
+          "line_end": 52
+        },
+        {
+          "id": "B04",
+          "title": "Lire la dispersion puis changer l'horizon",
+          "line_start": 53,
+          "line_end": 64
+        }
+      ],
+      "outputs": [
+        "outputs/10/quantiles_simules.csv",
+        "outputs/10/scenarios.csv",
+        "outputs/10/simulation.png"
+      ]
+    },
+    {
+      "id": "11",
+      "path": "scripts/11_tester_un_modele.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Séparer le passé en deux parties chronologiques",
+          "line_start": 20,
+          "line_end": 30
+        },
+        {
+          "id": "B03",
+          "title": "Ajuster, puis estimer sur la partie réservée",
+          "line_start": 31,
+          "line_end": 39
+        },
+        {
+          "id": "B04",
+          "title": "Comparer les erreurs sur les mêmes lignes",
+          "line_start": 40,
+          "line_end": 50
+        },
+        {
+          "id": "B05",
+          "title": "Examiner l'association et ses limites",
+          "line_start": 51,
+          "line_end": 62
+        }
+      ],
+      "outputs": [
+        "outputs/11/erreurs_test.csv",
+        "outputs/11/estimations_test.csv",
+        "outputs/11/modele.png"
+      ]
+    },
+    {
+      "id": "12",
+      "path": "scripts/12_automatiser_le_rapport.R",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 18
+        },
+        {
+          "id": "B02",
+          "title": "Définir une tâche réutilisable",
+          "line_start": 19,
+          "line_end": 34
+        },
+        {
+          "id": "B03",
+          "title": "Appeler la recette pour plusieurs poids",
+          "line_start": 35,
+          "line_end": 46
+        },
+        {
+          "id": "B04",
+          "title": "Dessiner la comparaison et fabriquer le HTML",
+          "line_start": 47,
+          "line_end": 73
+        },
+        {
+          "id": "B05",
+          "title": "Retrouver et relire le livrable",
+          "line_start": 74,
+          "line_end": 79
+        }
+      ],
+      "outputs": [
+        "outputs/12/comparaison_paniers.csv",
+        "outputs/12/comparaison_paniers.png",
+        "outputs/12/rapport_noria.html"
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "label": "Démarrage Windows",
+      "scene_id": "v6.setup_windows"
+    },
+    {
+      "label": "Les gestes RStudio",
+      "scene_id": "v6.panes"
+    },
+    {
+      "label": "00 · Premiers pas",
+      "scene_id": "v6.00.assignment"
+    },
+    {
+      "label": "01 · Capital",
+      "scene_id": "v6.01.percentage"
+    },
+    {
+      "label": "02 · Importer",
+      "scene_id": "v6.02.table"
+    },
+    {
+      "label": "03 · Contrôler",
+      "scene_id": "v6.03.clean_model"
+    },
+    {
+      "label": "04 · Rendements",
+      "scene_id": "v6.04.return"
+    },
+    {
+      "label": "05 · Décrire",
+      "scene_id": "v6.05.describe"
+    },
+    {
+      "label": "06 · Comparer",
+      "scene_id": "v6.06.normalize"
+    },
+    {
+      "label": "07 · Panier",
+      "scene_id": "v6.07.weights"
+    },
+    {
+      "label": "08 · Risque",
+      "scene_id": "v6.08.var"
+    },
+    {
+      "label": "09 · Choc",
+      "scene_id": "v6.09.stress"
+    },
+    {
+      "label": "10 · Simulation · option",
+      "scene_id": "v6.10.bootstrap"
+    },
+    {
+      "label": "11 · Modèle · option",
+      "scene_id": "v6.11.model"
+    },
+    {
+      "label": "12 · Rapport · option",
+      "scene_id": "v6.12.function"
+    },
+    {
+      "label": "Dépannage",
+      "scene_id": "v6.troubleshoot"
+    }
+  ],
+  "financial_conventions": [
+    "Historique ancien illustratif, sans cours actuels ni recommandation d’investissement.",
+    "Niveaux d’indices, pas des prix TND ni des produits tradables.",
+    "Observation = ordre ; aucune date de marché inventée.",
+    "Comparaison en base 100 et rendements en devises locales. Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Conventions des indices potentiellement différentes.",
+    "Tout panier est pédagogique, pondéré et rééquilibré à chaque observation ; capital en UM.",
+    "VaR historique par observation, quantile type 7 ; ni perte maximale ni garantie future.",
+    "Drawdown calculé avec le capital initial dans le chemin et le sommet courant.",
+    "Simulation bootstrap avec remise, hypothèse iid simplificatrice, sans garantie future.",
+    "Régression simultanée CAC~DAX : association contemporaine, ni prévision du lendemain ni causalité ; entraînement avant test.",
+    "Exemples arithmétiques et choc explicitement inventés."
+  ]
+}

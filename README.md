@@ -1,45 +1,40 @@
-# La Pause Noria — apprendre R, une mission après l’autre
+# Noria Gestion — lire les marchés avec R
 
-Vous aidez un petit café à comprendre ses ventes. Un panier devient un tableau, deux graphiques, puis un rapport que R peut refaire. Addition, multiplication, moyenne et pourcentage suffisent pour commencer.
+Un playbook guidé pour des étudiants en finance : comprendre une méthode, lancer un **script complet et commenté**, observer ses résultats, puis modifier un paramètre. Le projet compare quatre indices historiques et construit un panier pédagogique CAC–DAX.
 
-## Commencer
+## Commencer sous Windows avec RStudio
 
-1. Choisir **Code → Download ZIP**, puis **extraire le ZIP**. Aucun compte GitHub ni Git n’est nécessaire.
-2. Ouvrir **`pdf/01_aventure_noria.pdf`** dans le dossier extrait et le lire dans l’ordre. Il explique l’installation et les gestes à faire dans R.
-3. Choisir une seule route : **Windows natif**, **Windows avec WSL2**, **Ubuntu** ou **Mac**. Le guide donne les étapes propres à chacune, puis le premier script commun.
-4. Ouvrir **`course.Rproj`** avec RStudio, ou choisir le dossier extrait comme dossier de travail dans R. Suivre le niveau 0 du guide avant la première mission.
+1. **[Télécharger le cours en ZIP](https://github.com/jodouma/leaders-r-statistiques-18h/archive/refs/heads/main.zip)**, ou choisir **Code → Download ZIP**. Aucun compte GitHub ni Git n’est nécessaire.
+2. Dans l’Explorateur Windows : clic droit sur le ZIP → **Extraire tout…**. Extraire cette édition dans **un nouveau dossier** ; conserver vos anciens essais séparément.
+3. Ouvrir **[pdf/01_aventure_noria.pdf](pdf/01_aventure_noria.pdf)** : c’est le nouveau playbook finance. Son nom conserve le lien déjà distribué. Il explique l’installation facultative de R et RStudio, les fenêtres et chaque nouveau geste.
+4. Double-cliquer **`course.Rproj`** dans le dossier extrait. Dans RStudio, ouvrir **`scripts/00_premiers_pas.R`**, puis suivre les blocs nommés **B01, B02…** du guide.
 
-**[Télécharger le guide principal — 01_aventure_noria.pdf](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)**
+**[Télécharger le playbook principal](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)**. Si l’aperçu GitHub gêne la lecture ou les liens, télécharger le PDF et l’ouvrir dans votre lecteur habituel. Les pages se suivent sans navigation obligatoire.
 
-L’aperçu GitHub peut désactiver les liens du PDF. Télécharger avec **Download raw file**, puis ouvrir le fichier dans un lecteur PDF. **Les pages se suivent : aucun bouton PDF n’est nécessaire.**
+## Le parcours
 
-## Huit missions, à votre rythme
-
-| Mission | Ce que vous apprenez dans R |
+| Étapes | Ce que vous faites |
 |---|---|
-| 1 · Le panier | Créer des variables et calculer |
-| 2 · Quatre jours | Utiliser un vecteur, `sum()` et `mean()` |
-| 3 · Le carnet | Importer et lire un tableau |
-| 4 · Les erreurs de saisie | Traiter un doublon et une valeur absente |
-| 5 · Le bilan | Ajouter des colonnes et regrouper les ventes |
-| 6 · Les graphiques | Dessiner, nommer et enregistrer des barres |
-| 7 · La décision | Calculer une part et partager un résultat |
-| 8 · Le prochain fichier | Réutiliser son travail avec une fonction |
+| **00–06 · Le socle** | Lire et exécuter du R fourni ; calculer un pourcentage ; importer, contrôler et comparer les marchés |
+| **07–09 · L’analyse** | Composer un panier ; expliquer VaR et drawdown ; tester un choc choisi |
+| **10–12 · Facultatif** | Explorer une simulation, comparer un modèle et produire un rapport HTML local |
 
-Pour chaque mission : lire la situation, essayer, enregistrer, puis vérifier. Les contrôles affichent **OK** ou **À reprendre** et indiquent ce qu’il reste à corriger. Vous pouvez recommencer et sauvegarder votre prochaine étape en commentaire.
+Le code est déjà prêt dans **`scripts/`**. Le PDF explique **quoi, pourquoi, quel bloc lancer, où regarder et quoi vérifier** ; il n’est pas un code à recopier. Sous Windows, **Run / Ctrl+Enter** lance une ligne ou une sélection complète. Commencer chaque nouveau script par **B01** ; il prépare ses propres entrées, même après un redémarrage de R.
 
-## Les cinq PDF
-
-| Fichier | Utilisation |
+| Guide | Utilisation |
 |---|---|
-| [01_aventure_noria.pdf](pdf/01_aventure_noria.pdf) | Le parcours complet ; commencer ici |
-| [02_aides.pdf](pdf/02_aides.pdf) | Un petit indice à la fois |
-| [03_corriges.pdf](pdf/03_corriges.pdf) | Comprendre après une tentative |
-| [04_memo_R.pdf](pdf/04_memo_R.pdf) | Retrouver une commande |
-| [05_sources.pdf](pdf/05_sources.pdf) | Sources, données et crédits |
+| [01_aventure_noria.pdf](pdf/01_aventure_noria.pdf) | Le playbook finance complet ; commencer ici |
+| [02_reperes_R.pdf](pdf/02_reperes_R.pdf) | Gestes, vocabulaire, unités et repères dans les scripts |
+| [03_sources.pdf](pdf/03_sources.pdf) | Sources officielles, provenance des données et conventions |
 
-**R de base ≥ 4.1 suffit. Aucun paquet à installer pour les missions.** Une fois R et le dossier téléchargés, les missions fonctionnent hors ligne. Les données sont inventées ; la marge déduit le coût des produits, sans loyer, salaires ni taxes.
+**R de base ≥ 4.1 suffit ; aucun paquet supplémentaire.** Une fois les logiciels et le cours téléchargés, les analyses fonctionnent localement. Les résultats vont dans **`outputs/00/` à `outputs/12/`**. Le rapport final est **`outputs/12/rapport_noria.html`** ; garder son image voisine avec lui.
 
-Compléter les scripts dans `missions/`. Les exemples sont dans `examples/`, les réponses expliquées dans `solutions/`, et vos fichiers produits dans `outputs/`. Le guide indique quand les ouvrir.
+## Les données et le sens des résultats
+
+**EuStockMarkets** contient **1 860 observations de 1991–1998**, sur DAX, SMI, CAC et FTSE. Le fichier d’entraînement ajoute volontairement **un doublon exact** et **une ligne incomplète** : **1 862 lignes brutes → 1 860 complètes et 1 isolée**, après dédoublonnage. Les **1 860 niveaux donnent 1 859 rendements** consécutifs.
+
+L’identifiant `observation` conserve l’ordre des marchés ; il ne représente pas une date reconstituée. Ce sont des niveaux d’indices anciens, sans cotations actuelles. Le panier utilise des rendements locaux, se rééquilibre à chaque observation et exprime son capital en **UM** pédagogiques ; les séries d’indices sont utilisées telles quelles, sans traitement supplémentaire du change, des frais ou des dividendes. Les conventions des indices peuvent différer. La VaR est un seuil historique par observation de marché, le stress un scénario choisi, le bootstrap une simulation sous hypothèses et la régression une association contemporaine : leurs sorties demandent une interprétation, sans garantie sur le futur.
+
+Pour repartir : **Ctrl+S → Session → Restart R → B01 du script courant**, puis ses blocs dans l’ordre. Garder les fichiers de `data/` intacts et noter le paramètre changé, l’effet observé et votre explication.
 
 Youssef Douma · Leaders University · octobre 2026
