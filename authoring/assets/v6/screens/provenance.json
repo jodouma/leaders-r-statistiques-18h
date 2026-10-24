@@ -5,7 +5,13 @@
     "open_script": "authoring/assets/v6/screens/open_script.png",
     "run_line": "authoring/assets/v6/screens/run_line.png",
     "run_block": "authoring/assets/v6/screens/run_block.png",
-    "edit_parameter": "authoring/assets/v6/screens/edit_parameter.png"
+    "edit_parameter": "authoring/assets/v6/screens/edit_parameter.png",
+    "view_table": "authoring/assets/v6/screens/view_table.png",
+    "plots": "authoring/assets/v6/screens/plots.png",
+    "function_call": "authoring/assets/v6/screens/function_call.png",
+    "report_view": "authoring/assets/v6/screens/report_view.png",
+    "files": "authoring/assets/v6/screens/files.png",
+    "source_optional": "authoring/assets/v6/screens/source_optional.png"
   },
   "assets": {
     "pane_map": {
@@ -91,6 +97,114 @@
       ],
       "step": "00 B03",
       "action": "Changed capital10000 to20000, saved Cmd+S, selected B03 and clicked Run; Console shows20500.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "view_table": {
+      "path": "authoring/assets/v6/screens/view_table.png",
+      "original": "evidence/ui/originals/view_table.png",
+      "crop_xyxy": [
+        8,
+        188,
+        600,
+        628
+      ],
+      "step": "02 raw table",
+      "action": "Clicked raw in Environment after running02; actual Data Viewer shows five columns and1862 rows.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "plots": {
+      "path": "authoring/assets/v6/screens/plots.png",
+      "original": "evidence/ui/originals/plots.png",
+      "crop_xyxy": [
+        1048,
+        462,
+        1911,
+        980
+      ],
+      "step": "06 comparison",
+      "action": "Ran06 supplied script; actual Plots shows normalized historical index paths.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "function_call": {
+      "path": "authoring/assets/v6/screens/function_call.png",
+      "original": "evidence/ui/originals/function_call.png",
+      "crop_xyxy": [
+        8,
+        542,
+        800,
+        919
+      ],
+      "step": "12 B02/B03",
+      "action": "Expanded Source to show actual function definition and lapply invocation after running12.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "report_view": {
+      "path": "authoring/assets/v6/screens/report_view.png",
+      "original": "evidence/ui/originals/report_view.png",
+      "crop_xyxy": [
+        440,
+        195,
+        1460,
+        625
+      ],
+      "step": "12 local HTML",
+      "action": "Ran12 supplied script; browseURL opened generated local HTML; captured heading and computed table.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "files": {
+      "path": "authoring/assets/v6/screens/files.png",
+      "original": "evidence/ui/originals/files.png",
+      "crop_xyxy": [
+        1048,
+        462,
+        1911,
+        650
+      ],
+      "step": "12 outputs",
+      "action": "Navigated Files to outputs/12; actual CSV, PNG and HTML files are visible.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "source_optional": {
+      "path": "authoring/assets/v6/screens/source_optional.png",
+      "original": "evidence/ui/originals/source_optional.png",
+      "crop_xyxy": [
+        8,
+        188,
+        1040,
+        980
+      ],
+      "step": "02 entire script",
+      "action": "Clicked optional Source toolbar button; supplied complete script ran and produced import output.",
       "capture_date": "2026-10-24",
       "app": "RStudio Server2026.01.1+403",
       "R": "4.5.2",
