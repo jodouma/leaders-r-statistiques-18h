@@ -1,0 +1,110 @@
+{
+  "status": "genuine_course_UI",
+  "asset_key_to_path": {
+    "pane_map": "authoring/assets/v6/screens/pane_map.png",
+    "open_script": "authoring/assets/v6/screens/open_script.png",
+    "run_line": "authoring/assets/v6/screens/run_line.png",
+    "run_block": "authoring/assets/v6/screens/run_block.png",
+    "edit_parameter": "authoring/assets/v6/screens/edit_parameter.png"
+  },
+  "assets": {
+    "pane_map": {
+      "path": "authoring/assets/v6/screens/pane_map.png",
+      "original": "evidence/ui/originals/pane_map.png",
+      "crop_xyxy": [
+        8,
+        128,
+        1912,
+        980
+      ],
+      "step": "00 B03",
+      "action": "Opened project/script and ran selected B03; Console and Environment show10000/10500.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "open_script": {
+      "path": "authoring/assets/v6/screens/open_script.png",
+      "original": "evidence/ui/originals/open_script.png",
+      "crop_xyxy": [
+        8,
+        188,
+        1040,
+        625
+      ],
+      "step": "00",
+      "action": "Opened complete script through Files.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "run_line": {
+      "path": "authoring/assets/v6/screens/run_line.png",
+      "original": "evidence/ui/originals/run_line.png",
+      "crop_xyxy": [
+        8,
+        188,
+        1040,
+        980
+      ],
+      "step": "00 B02",
+      "action": "Cursor in print(2 *150), clicked Run; Console prints300.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "run_block": {
+      "path": "authoring/assets/v6/screens/run_block.png",
+      "original": "evidence/ui/originals/run_block.png",
+      "crop_xyxy": [
+        8,
+        188,
+        1040,
+        465
+      ],
+      "step": "00 B01",
+      "action": "Dragged selection over complete preparation block before Run.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "edit_parameter": {
+      "path": "authoring/assets/v6/screens/edit_parameter.png",
+      "original": "evidence/ui/originals/edit_parameter.png",
+      "crop_xyxy": [
+        8,
+        188,
+        700,
+        980
+      ],
+      "step": "00 B03",
+      "action": "Changed capital10000 to20000, saved Cmd+S, selected B03 and clicked Run; Console shows20500.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    }
+  },
+  "runtime": {
+    "image": "rocker/rstudio:4.5.2",
+    "digest": "sha256:3d2018093b4a0ff2acd65273082aec00a9d1b2606f0ac73b1beaa25ef37f7157",
+    "bind": "127.0.0.1:8787",
+    "host_mounts": false,
+    "source": "https://rocker-project.org/images/versioned/rstudio"
+  },
+  "caption": "Capture réelle de RStudio Server sous Linux, ouverte dans Chrome sur macOS. Les consignes du cours utilisent les raccourcis Windows."
+}
