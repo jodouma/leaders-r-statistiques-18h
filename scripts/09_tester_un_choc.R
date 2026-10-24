@@ -35,6 +35,8 @@ scenario_return <- cac_weight * cac_shock + dax_weight * dax_shock
 final_capital <- capital * (1 + scenario_return)
 print(100 * scenario_return)
 print(final_capital)
+# La perte en UM est le capital initial moins le capital après le choc.
+print(c(perte_UM = capital - final_capital))
 
 # B03 — Décomposer la perte du panier ----
 contributions <- data.frame(market = c("CAC", "DAX"),

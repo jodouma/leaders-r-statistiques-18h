@@ -1,4 +1,4 @@
-name: R base — TP et références
+name: R base — parcours finance guidé
 on:
   push:
   pull_request:
@@ -37,7 +37,5 @@ jobs:
         with:
           r-version: release
           use-public-rspm: false
-      - name: Installation et fichiers du parcours
-        run: Rscript 00_verifier_installation.R
-      - name: Huit missions, exemples et contrôles isolés
-        run: Rscript tests/run_tests.R
+      - name: Treize scripts, blocs et expériences dans des sessions isolées
+        run: Rscript --vanilla tests/run_tests.R

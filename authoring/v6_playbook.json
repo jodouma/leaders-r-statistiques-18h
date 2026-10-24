@@ -131,7 +131,7 @@
         {
           "type": "callout",
           "label": "RStudio s’ouvre déjà avec une Console R ?",
-          "text": "Passez à la page suivante. Les deux logiciels sont distincts : installer RStudio seul ne remplace pas R."
+          "text": "Passez à « Décompresser, puis ouvrir course.Rproj ». Les deux logiciels sont distincts : installer RStudio seul ne remplace pas R."
         },
         {
           "type": "table",
@@ -188,10 +188,21 @@
           ]
         },
         {
-          "type": "figure",
-          "asset_key": "mental_project",
-          "height": 135,
-          "caption": "Le dossier extrait contient course.Rproj, scripts/, R/, data/, outputs/ et pdf/. Le projet est le point de départ ; les résultats vont dans outputs/."
+          "type": "figurepair",
+          "items": [
+            {
+              "asset_key": "project_open_menu"
+            },
+            {
+              "asset_key": "project_open"
+            }
+          ],
+          "widths": [
+            0.35,
+            0.65
+          ],
+          "height": 195,
+          "caption": "File → Open Project : choisir course.Rproj dans le dossier extrait, puis Open. Capture réelle RStudio Server sous Linux ; le dialogue de fichiers Windows a un autre aspect."
         },
         {
           "type": "table",
@@ -237,8 +248,8 @@
         {
           "type": "figure",
           "asset_key": "pane_map",
-          "height": 215,
-          "caption": "Capture réelle de RStudio sur macOS ; les noms Source, Console, Environment, Files et Plots se retrouvent sous Windows. La disposition peut varier."
+          "height": 240,
+          "caption": "Capture réelle de RStudio Server sous Linux ; les noms Source, Console, Environment, Files et Plots se retrouvent sous Windows. La disposition peut varier."
         },
         {
           "type": "table",
@@ -266,6 +277,12 @@
           ]
         },
         {
+          "type": "figure",
+          "asset_key": "open_script",
+          "height": 175,
+          "caption": "Dans Files, ouvrir scripts, puis cliquer 00_premiers_pas.R : le fichier apparaît dans Source."
+        },
+        {
           "type": "callout",
           "label": "Ouvrir le premier script",
           "text": "Dans Files, cliquer scripts, puis 00_premiers_pas.R. Il apparaît dans Source. Les titres # B01, # B02… découpent le fichier en étapes nommées ; un # introduit un commentaire, destiné à vous aider."
@@ -289,8 +306,8 @@
         {
           "type": "figure",
           "asset_key": "run_block",
-          "height": 195,
-          "caption": "Capture réelle sur macOS : une sélection complète dans Source. Sous Windows, Ctrl+Enter ou le bouton Run exécute la ligne ou la sélection."
+          "height": 145,
+          "caption": "Capture réelle de RStudio Server sous Linux : une sélection complète dans Source. Sous Windows, Ctrl+Enter ou le bouton Run exécute la ligne ou la sélection."
         },
         {
           "type": "bullets",
@@ -299,6 +316,12 @@
             "Dans B02, cliquer sur la ligne print(2 * 150), sans la sélectionner, puis Ctrl+Enter. La Console affiche [1] 300 ; [1] repère la première valeur affichée.",
             "Pour les étapes suivantes, sélectionner le bloc indiqué en entier, puis utiliser le même geste. Lire la Console avant de continuer."
           ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "run_line",
+          "height": 320,
+          "caption": "Après B01 : curseur sur print(2 * 150), puis Run. La Console affiche [1] 300."
         },
         {
           "type": "callout",
@@ -324,8 +347,8 @@
         {
           "type": "figure",
           "asset_key": "edit_parameter",
-          "height": 190,
-          "caption": "Capture réelle sur macOS : la valeur se modifie dans Source. Sous Windows, Ctrl+S enregistre le script ; Run exécute ensuite les blocs concernés."
+          "height": 300,
+          "caption": "Exemple de modification réellement exécutée : capital passe de 10000 à 20000 ; après Run de B03, la Console affiche 20500. L’essai guidé de l’étape 00 proposera 12000."
         },
         {
           "type": "table",
@@ -403,9 +426,32 @@
           "text": "Enregistrer le script avec Ctrl+S. Menu Session → Restart R. Les objets de Environment disparaissent ; les scripts et les fichiers enregistrés restent. Reprendre le fichier courant à B01. Si une fermeture demande de sauvegarder l’espace de travail, choisir Don’t Save / Ne pas enregistrer : la recette suffit."
         },
         {
+          "type": "figurepair",
+          "items": [
+            {
+              "asset_key": "restart"
+            },
+            {
+              "asset_key": "restart_empty"
+            }
+          ],
+          "widths": [
+            0.33,
+            0.67
+          ],
+          "height": 170,
+          "caption": "Session → Restart R, puis Environment vide après le vrai redémarrage. La recette et les fichiers enregistrés restent disponibles."
+        },
+        {
           "type": "callout",
           "label": "Source · une option après compréhension",
           "text": "Le bouton Source, en haut de Source, exécute tout le script actif. Après une première lecture bloc par bloc, vous pouvez l’utiliser pour refaire le cas complet. Il passe aussi par les lignes de paramètres : vérifier leurs valeurs enregistrées. Il n’est pas nécessaire de saisir une commande source() en Console."
+        },
+        {
+          "type": "figure",
+          "asset_key": "source_optional",
+          "height": 240,
+          "caption": "Option seulement après lecture : le bouton Source relance le script actif entier. Ici, le script 02 affiche de nouveau 1862 lignes importées."
         },
         {
           "type": "text",
@@ -794,6 +840,12 @@
           "text": "Après l’import, dans Environment, cliquer l’icône de tableau en face de raw pour ouvrir le Data Viewer. Lire une ligne et une colonne. La Console reste le repère pour les nombres de lignes. Dans Files → outputs → 02, retrouver importation.csv."
         },
         {
+          "type": "figure",
+          "asset_key": "view_table",
+          "height": 260,
+          "caption": "Data Viewer ouvert sur raw : 1862 lignes avant contrôle, cinq colonnes. Le tri visuel n’enregistre aucune règle de nettoyage dans le script."
+        },
+        {
           "type": "callout",
           "label": "À vous · une seule modification",
           "text": "Dans B04, changer preview_rows de 6 à 10 ; refaire B04. L’aperçu montre dix lignes originales au lieu de six. Le nombre total de lignes et le CSV restent identiques. Pourquoi changer la taille d’un aperçu ne change-t-il pas le fichier importé ? Restaurer 6.",
@@ -913,7 +965,7 @@
                 "id": "B05",
                 "title": "Essayer une valeur manquante en mémoire",
                 "line_start": 46,
-                "line_end": 56
+                "line_end": 58
               }
             ]
           },
@@ -926,15 +978,9 @@
           ]
         },
         {
-          "type": "figure",
-          "asset_key": "view_table",
-          "height": 175,
-          "caption": "Capture réelle de RStudio sur macOS : le Data Viewer sert à inspecter le tableau. Le tri visuel d’un tableau n’est pas une règle de nettoyage enregistrée."
-        },
-        {
           "type": "callout",
           "label": "À vous · une seule modification",
-          "text": "B05 prépare déjà une copie demo et y rend FTSE manquante à la ligne demo_row <- 10. La Console affiche 2 lignes en quarantaine : celle ajoutée au fichier et celle modifiée en mémoire. Changer seulement demo_row de 10 à 20 ; refaire B05. Le total reste 2, mais la ligne modifiée change. Pourquoi ? Restaurer 10 ; les CSV de data/ restent intacts.",
+          "text": "B05 prépare déjà une copie demo et y rend FTSE manquante à la ligne demo_row <- 10. La Console affiche 2 lignes en quarantaine : celle ajoutée au fichier et celle modifiée en mémoire. Changer seulement demo_row de 10 à 20 ; refaire B05. Le total reste 2 ; dans la table affichée, la colonne observation passe de 10 à 20 pour la ligne modifiée. Pourquoi le total ne change-t-il pas ? Restaurer 10 ; les CSV de data/ restent intacts.",
           "experiment": {
             "script_id": "03",
             "manifest": {
@@ -976,7 +1022,7 @@
           "type": "figure",
           "asset_key": "mental_return",
           "height": 170,
-          "caption": "Exemple inventé : 100 → 105. Le changement vaut 5 ; divisé par le départ 100, il donne 0,05, soit +5 %. Le dénominateur est toujours le niveau précédent."
+          "caption": "Exemple inventé : 100 → 102. Le changement vaut 2 ; divisé par le départ 100, il donne 0,02, soit +2 %. Le dénominateur est toujours le niveau précédent."
         },
         {
           "type": "code",
@@ -1038,25 +1084,25 @@
                 "id": "B01",
                 "title": "Préparer cette séance",
                 "line_start": 6,
-                "line_end": 18
+                "line_end": 20
               },
               {
                 "id": "B02",
                 "title": "Comprendre une seule variation réelle",
-                "line_start": 19,
-                "line_end": 26
+                "line_start": 21,
+                "line_end": 28
               },
               {
                 "id": "B03",
                 "title": "Étendre le même calcul aux observations voisines",
-                "line_start": 27,
-                "line_end": 37
+                "line_start": 29,
+                "line_end": 39
               },
               {
                 "id": "B04",
                 "title": "Observer et vérifier une série",
-                "line_start": 38,
-                "line_end": 48
+                "line_start": 40,
+                "line_end": 50
               }
             ]
           },
@@ -1073,9 +1119,9 @@
         },
         {
           "type": "figure",
-          "asset_key": "plots",
-          "height": 175,
-          "caption": "Capture réelle sur macOS : Plots contient le graphique calculé. Cliquer Zoom l’agrandit ; le PNG écrit dans outputs/ se partage sans ouvrir RStudio."
+          "asset_key": "outputs/04/rendements.png",
+          "height": 220,
+          "caption": "Sortie réelle du script 04 : rendements CAC en % par observation. L’axe horizontal suit l’ordre des observations ; ce n’est pas un calendrier."
         },
         {
           "type": "callout",
@@ -1319,6 +1365,12 @@
           "text": "La corrélation résume ici la façon dont deux séries de rendements évoluent ensemble. Proche de +1, les mouvements sont souvent de même sens ; proche de −1, de sens opposé ; proche de 0, il y a peu de relation linéaire. Elle ne prouve pas une cause."
         },
         {
+          "type": "figure",
+          "asset_key": "plots",
+          "height": 210,
+          "caption": "Dans Plots : la comparaison en base 100 produite par le script 06. Le bouton Zoom agrandit l’image ; le PNG est aussi enregistré dans outputs/06/."
+        },
+        {
           "type": "callout",
           "label": "scripts/06_comparer_les_marches.R",
           "text": "B04 · Mesurer une association. Dans le même script, passer au bloc de corrélation des rendements. Lire un croisement de la matrice : nom de la ligne, nom de la colonne, puis valeur. La diagonale vaut 1, car une série se compare à elle-même. La case CAC/DAX vaut environ 0,733 : une association positive sur cet échantillon.",
@@ -1394,7 +1446,7 @@
           "type": "figure",
           "asset_key": "mental_weights",
           "height": 175,
-          "caption": "Exemple inventé : CAC +1 %, DAX −1 %. 60 % × 1 % + 40 % × (−1 %) = +0,2 %. Appliqué à 10 000 UM, cela fait +20 UM."
+          "caption": "Exemple inventé : CAC +2 %, DAX −1 %. 60 % × 2 % + 40 % × (−1 %) = +0,8 %. Appliqué à 10 000 UM, cela fait +80 UM."
         },
         {
           "type": "code",
@@ -1593,7 +1645,7 @@
         {
           "type": "callout",
           "label": "scripts/08_mesurer_le_risque.R",
-          "text": "B03 · Mesurer la baisse depuis un sommet déjà atteint ; B04 · Lire la profondeur des baisses. Dans le même script, passer au bloc drawdown. Lire le graphique de capital et celui des baisses depuis les sommets. Le drawdown maximal désigne la plus forte baisse sur ce chemin historique ; il ne résume pas une seule journée. La baisse maximale de référence est d’environ −21,75 % ; le graphique de ce script montre le drawdown en %.",
+          "text": "B03 · Mesurer la baisse depuis un sommet déjà atteint ; B04 · Lire la profondeur des baisses. Dans le même script, passer au bloc drawdown. Lire le graphique des baisses depuis les sommets ; le chemin du capital a été observé à l’étape 07. Le drawdown maximal désigne la plus forte baisse sur ce chemin historique ; il ne résume pas une seule journée. La baisse maximale de référence est d’environ −21,75 % ; le graphique de ce script montre le drawdown en %.",
           "run": {
             "script_id": "08",
             "blocks": [
@@ -1752,7 +1804,7 @@
                 "id": "B02",
                 "title": "Poser le scénario inventé, distinct de l'historique",
                 "line_start": 20,
-                "line_end": 38
+                "line_end": 40
               }
             ]
           },
@@ -1783,14 +1835,14 @@
               {
                 "id": "B03",
                 "title": "Décomposer la perte du panier",
-                "line_start": 39,
-                "line_end": 49
+                "line_start": 41,
+                "line_end": 51
               },
               {
                 "id": "B04",
                 "title": "Comparer les contributions et expérimenter",
-                "line_start": 50,
-                "line_end": 60
+                "line_start": 52,
+                "line_end": 62
               }
             ]
           },
@@ -1947,7 +1999,7 @@
         {
           "type": "callout",
           "label": "scripts/10_simuler_des_scenarios.R",
-          "text": "B01 · Préparer cette séance ; B02 · Fixer les hypothèses de simulation ; B03 · Composer chaque scénario et lire des quantiles ; B04 · Lire la dispersion puis changer l'horizon. Ouvrir 10_simuler_des_scenarios.R à B01. Repérer horizon, nombre de chemins et graine. Suivre les blocs de tirage et de synthèse. La Console donne des repères de la distribution ; Plots montre les chemins ou les capitaux finaux, enregistrés dans outputs/10/. À 20 observations et avec la graine 2026, les quantiles 5 %, 50 % et 95 % sont environ 9 381,10, 10 118,31 et 10 863,21 UM.",
+          "text": "B01 · Préparer cette séance ; B02 · Fixer les hypothèses de simulation ; B03 · Composer chaque scénario et lire des quantiles ; B04 · Lire la dispersion puis changer l'horizon. Ouvrir 10_simuler_des_scenarios.R à B01. Repérer horizon, nombre de chemins et graine. Suivre les blocs de tirage et de synthèse. La Console donne des repères de la distribution ; Plots montre l’histogramme des capitaux finaux simulés, enregistré dans outputs/10/. À 20 observations et avec la graine 2026, les quantiles 5 %, 50 % et 95 % sont environ 9 381,10, 10 118,31 et 10 863,21 UM.",
           "run": {
             "script_id": "10",
             "blocks": [
@@ -2090,7 +2142,7 @@
           "type": "figure",
           "asset_key": "mental_regression",
           "height": 185,
-          "caption": "Chaque point : DAX en abscisse, CAC en ordonnée, sur la même observation. La droite résume une tendance ; les distances verticales sont des erreurs de prédiction du CAC pour un DAX donné."
+          "caption": "Schéma de lecture, avec points illustratifs : DAX en abscisse, CAC en ordonnée, sur la même observation. La droite résume une relation ; les écarts verticaux sont les erreurs."
         },
         {
           "type": "code",
@@ -2275,7 +2327,7 @@
         {
           "type": "callout",
           "label": "scripts/12_automatiser_le_rapport.R",
-          "text": "B01 « Préparer cette séance » ; B02 « Définir une tâche réutilisable ». Ouvrir scripts/12_automatiser_le_rapport.R. Sélectionner la définition analyze_basket en entier, jusqu’à sa dernière accolade. Ce bloc prépare la recette ; B03, à la page suivante, l’appellera pour plusieurs poids.",
+          "text": "B01 « Préparer cette séance » ; B02 « Définir une tâche réutilisable ». Ouvrir scripts/12_automatiser_le_rapport.R. Sélectionner la définition analyze_basket en entier, jusqu’à sa dernière accolade. Ce bloc prépare la recette ; B03, dans la section « Comparer plusieurs poids », l’appellera pour plusieurs poids.",
           "run": {
             "script_id": "12",
             "blocks": [
@@ -2317,6 +2369,12 @@
       "blocks": [
         {
           "type": "figure",
+          "asset_key": "function_call",
+          "height": 205,
+          "caption": "Source : définition complète de analyze_basket, puis appel dans lapply. La définition enregistre la recette ; l’appel exécute les calculs."
+        },
+        {
+          "type": "figure",
           "asset_key": "outputs/12/comparaison_paniers.png",
           "height": 175,
           "caption": "Même méthode pour trois poids : VaR historique 95 %, en UM par observation. Comparer un seul indicateur ne suffit pas à choisir un investissement."
@@ -2347,7 +2405,7 @@
         {
           "type": "callout",
           "label": "À vous · une seule modification",
-          "text": "Dans B03, remplacer weights <- c(0.40, 0.60, 0.80) par weights <- c(0.20, 0.60, 1.00). Refaire B03, puis B04 et B05 à la page suivante : le rapport compare trois nouveaux choix. La ligne 60 % CAC reste identique. Pourquoi cette ligne sert-elle de point de contrôle ? Restaurer la liste initiale.",
+          "text": "Dans B03, remplacer weights <- c(0.40, 0.60, 0.80) par weights <- c(0.20, 0.60, 1.00). Refaire B03, puis B04 et B05 du même fichier : le rapport compare trois nouveaux choix. La ligne 60 % CAC reste identique. Pourquoi cette ligne sert-elle de point de contrôle ? Restaurer la liste initiale.",
           "experiment": {
             "script_id": "12",
             "manifest": {
@@ -2426,6 +2484,18 @@
             "B04 · Dessiner la comparaison et fabriquer le HTML",
             "B05 · Retrouver et relire le livrable"
           ]
+        },
+        {
+          "type": "figure",
+          "asset_key": "files",
+          "height": 105,
+          "caption": "Dans Files → outputs →12 : la table CSV, son graphique PNG et rapport_noria.html."
+        },
+        {
+          "type": "figure",
+          "asset_key": "report_view",
+          "height": 210,
+          "caption": "Le rapport HTML réellement produit : résultats pour plusieurs poids, paramètres et limites. Il reste sur votre ordinateur."
         },
         {
           "type": "table",
@@ -2662,7 +2732,7 @@
   "binding_notes": {
     "script_manifest": "authoring/finance_manifest.json",
     "figures": "asset_key resolved by parent renderer, actual R output paths from finance manifest",
-    "screenshots": "Real macOS RStudio screenshots, truthfully captioned; Windows actions described and sourced",
+    "screenshots": "Genuine RStudio Server Linux screenshots viewed on macOS, truthfully captioned; Windows actions described and sourced",
     "page_ids": "Stable scene IDs allow parent to fill printed page numbers after final pagination",
     "canonical_filename": "01_aventure_noria.pdf preserves the already distributed link; title/content are new finance edition.",
     "new_folder": "Extract the new edition into a new folder; never merge or overwrite previous learner files."

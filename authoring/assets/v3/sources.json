@@ -2,49 +2,27 @@
   "retrieved": "2026-10-23",
   "assets": [
     {
-      "file": "assets/leaders-logo-blue.png",
+      "file": "authoring/assets/v3/leaders-logo-blue.png",
       "source": "University brand assets supplied by Youssef Douma for the Leaders University course",
       "use": "Authorized university branding, copied from user's supplied reference project"
     },
     {
-      "file": "assets/leaders-logo-white.png",
+      "file": "authoring/assets/v3/leaders-logo-white.png",
       "source": "University brand assets supplied by Youssef Douma for the Leaders University course",
       "use": "Authorized university branding"
     },
     {
-      "file": "assets/Rlogo.svg",
+      "file": "authoring/assets/v3/Rlogo.svg",
       "source": "https://www.r-project.org/logo/Rlogo.svg",
       "page": "https://www.r-project.org/logo/",
       "license": "© 2016 The R Foundation; CC BY-SA 4.0 or GPL-2",
       "use": "Unmodified logo identifying course language. Use official Rlogo.png to preserve original gradients in ReportLab."
     },
     {
-      "file": "assets/Rlogo.png",
+      "file": "authoring/assets/v3/Rlogo.png",
       "source": "https://www.r-project.org/logo/Rlogo.png",
       "page": "https://www.r-project.org/logo/",
       "license": "© 2016 The R Foundation; CC BY-SA 4.0 or GPL-2"
-    },
-    {
-      "file": "assets/rstudio-logo.png",
-      "source": "https://posit.co/sites/default/files/styles/small_hq/public/image/2026-04/logo_rstudio-closeCTA_1.png?itok=NpHX9C9b",
-      "page": "https://posit.co/products/open-source/rstudio/",
-      "use": "Optional editor identification. RStudio, Posit and logos are Posit trademarks."
-    },
-    {
-      "file": "assets/pfizer-logo.svg",
-      "source": "https://r-consortium.org/images/members/Pfizer_Logo_Color_RGB.svg",
-      "page": "https://r-consortium.org/members",
-      "evidence": "https://r-consortium.org/about/governance",
-      "evidence_detail": "Governance biography identifies Pfizer's R Centre of Excellence lead.",
-      "use": "Only within clearly labelled industry examples with source. Never on course cover or as sponsor."
-    },
-    {
-      "file": "assets/swiss-re-logo.svg",
-      "source": "https://r-consortium.org/images/members/Swiss_Re.svg",
-      "page": "https://r-consortium.org/members",
-      "evidence": "https://r-consortium.org/about/governance",
-      "evidence_detail": "Biography describes actuarial R adoption and Posit analytics platform.",
-      "use": "Only within clearly labelled industry examples with source. Never on course cover or as sponsor."
     }
   ],
   "fonts": {
@@ -55,13 +33,11 @@
       "Plus Jakarta Sans"
     ],
     "files": [
-      "fonts/Inter-400.ttf",
-      "fonts/Inter-600.ttf",
-      "fonts/Inter-700.ttf",
-      "fonts/PlusJakartaSans-700.ttf",
-      "fonts/PlusJakartaSans-800.ttf"
+      "authoring/fonts/Inter-400.ttf",
+      "authoring/fonts/Inter-700.ttf",
+      "authoring/fonts/PlusJakartaSans-800.ttf"
     ],
-    "derivation": "Static instances generated with fontTools from official Google Fonts variable fonts. Inter opsz=14, weights 400/600/700; Plus Jakarta weights 700/800."
+    "derivation": "Static instances generated with fontTools from official Google Fonts variable fonts. Inter opsz=14, weights400/700; Plus Jakarta Sans weight800."
   },
   "image_generation": {
     "mode": "built-in image_gen",
@@ -72,14 +48,6 @@
     {
       "url": "https://posit.co/products/open-source/rstudio/",
       "supports": "RStudio IDE supports R and free Open Source edition is offered."
-    },
-    {
-      "url": "https://r-consortium.org/about/governance",
-      "supports": "Pfizer and Swiss Re have concrete R-related roles and work; avoid unsupported list of famous R users."
-    },
-    {
-      "url": "https://r-consortium.org/members",
-      "supports": "Member logos are sourced from official consortium; membership alone is not evidence of company-wide R usage."
     }
   ]
 }

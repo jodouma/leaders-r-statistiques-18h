@@ -221,6 +221,18 @@ main <- function() {
   bad <- tiny; bad$observation[1] <- NA
   write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
   check("Observation manquante refusée",run_child(corrupted,file.path('scripts',scripts[5]))$status != 0)
+  # Une absence interne ne doit pas devenir silencieusement un rendement de plusieurs périodes.
+  gap <- data.frame(observation = 1:4, DAX = c(100,110,121,133.1),
+                    SMI = c(100,110,121,133.1), CAC = c(100,110,121,133.1),
+                    FTSE = c(100,NA,121,133.1))
+  gap_clean <- clean_markets(gap)
+  check("Quarantaine interne conservée pour inspection",nrow(gap_clean$quarantine)==1)
+  check("Helper refuse les rendements de durées mélangées",expect_error(make_returns(gap_clean$prices)))
+  write.csv(gap,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
+  check("Calcul visible du script04 refuse aussi une absence interne",
+        run_child(corrupted,file.path('scripts',scripts[5]))$status != 0)
+  check("Rapport réutilisable refuse aussi une absence interne",
+        run_child(corrupted,file.path('scripts',scripts[13]))$status != 0)
   check("Poids hors intervalle refusé",expect_error(basket_returns(data.frame(CAC=.01,DAX=.02),1.1)))
   check("Confiance hors intervalle refusée",expect_error(risk_summary(c(.1,-.1),confidence=1)))
   wrong <- file.path(workspace,'wrong-root'); dir.create(wrong)

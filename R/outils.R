@@ -51,7 +51,17 @@ clean_markets <- function(raw) {
        duplicates = raw[repeated, , drop = FALSE])
 }
 
+validate_spacing <- function(prices) {
+  # Ne pas confondre une variation sur plusieurs observations avec une seule.
+  if (any(diff(prices$observation) != 1))
+    stop(paste("Une observation manque dans la série complète.",
+               "Vérifiez les lignes en quarantaine avant de calculer les rendements."),
+         call. = FALSE)
+  invisible(TRUE)
+}
+
 make_returns <- function(prices) {
+  validate_spacing(prices)
   levels <- as.matrix(prices[market_names])
   # Deux lignes voisines : (nouveau - ancien) / ancien.
   values <- levels[-1, , drop = FALSE] / levels[-nrow(levels), , drop = FALSE] - 1

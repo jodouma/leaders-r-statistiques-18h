@@ -15,6 +15,8 @@ output_dir <- prepare_output("04")
 raw <- read_markets()
 cleaned <- clean_markets(raw)
 prices <- cleaned$prices
+# Une ligne retirée au milieu créerait un intervalle de durée différente.
+validate_spacing(prices)
 
 # B02 — Comprendre une seule variation réelle ----
 # [ligne, colonne] sélectionne une cellule ; $CAC sélectionne la colonne entière.

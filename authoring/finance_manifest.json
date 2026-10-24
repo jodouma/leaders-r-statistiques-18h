@@ -248,7 +248,7 @@
           "id": "B05",
           "title": "Essayer une valeur manquante en mémoire",
           "line_start": 46,
-          "line_end": 56
+          "line_end": 58
         }
       ],
       "outputs": [
@@ -286,25 +286,25 @@
           "id": "B01",
           "title": "Préparer cette séance",
           "line_start": 6,
-          "line_end": 18
+          "line_end": 20
         },
         {
           "id": "B02",
           "title": "Comprendre une seule variation réelle",
-          "line_start": 19,
-          "line_end": 26
+          "line_start": 21,
+          "line_end": 28
         },
         {
           "id": "B03",
           "title": "Étendre le même calcul aux observations voisines",
-          "line_start": 27,
-          "line_end": 37
+          "line_start": 29,
+          "line_end": 39
         },
         {
           "id": "B04",
           "title": "Observer et vérifier une série",
-          "line_start": 38,
-          "line_end": 48
+          "line_start": 40,
+          "line_end": 50
         }
       ],
       "outputs": [
@@ -613,19 +613,19 @@
           "id": "B02",
           "title": "Poser le scénario inventé, distinct de l'historique",
           "line_start": 20,
-          "line_end": 38
+          "line_end": 40
         },
         {
           "id": "B03",
           "title": "Décomposer la perte du panier",
-          "line_start": 39,
-          "line_end": 49
+          "line_start": 41,
+          "line_end": 51
         },
         {
           "id": "B04",
           "title": "Comparer les contributions et expérimenter",
-          "line_start": 50,
-          "line_end": 60
+          "line_start": 52,
+          "line_end": 62
         }
       ],
       "outputs": [

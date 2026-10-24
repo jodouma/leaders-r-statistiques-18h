@@ -52,5 +52,7 @@ demo_row <- 10
 demo$FTSE[demo_row] <- NA
 demo_cleaned <- clean_markets(demo)
 print(nrow(demo_cleaned$quarantine))
+# Le total peut rester identique ; la colonne observation montre quelle ligne a changé.
+print(demo_cleaned$quarantine)
 self_check(nrow(demo_cleaned$quarantine) >= nrow(quarantine),
            "Une valeur rendue inconnue est isolée ; les fichiers data/ restent intacts.")

@@ -50,7 +50,7 @@ def draw_page_header(c,doc,p,i,n,W,H,m):
     c.circle(W+28,H+30,76,fill=0,stroke=1);c.restoreState()
     c.drawImage(str(ASSETS/'leaders-logo-blue.png'),m,H-47,width=83,height=29,preserveAspectRatio=True,anchor='sw',mask='auto')
     c.setFont(BOLD,8 if not slide else 10);c.setFillColor(NAVY)
-    c.drawRightString(W-m-40,H-34,'MASTER  /  À VOTRE RYTHME')
+    c.drawRightString(W-m-40,H-34,doc.get('header_label','MASTER  /  À VOTRE RYTHME'))
     c.setFillColor(colors.white);c.circle(W-m-15,H-31,17,fill=1,stroke=0)
     c.drawImage(str(ASSETS/'Rlogo.png'),W-m-28,H-42,width=27,height=21,preserveAspectRatio=True,anchor='c',mask='auto')
     y=H-67
@@ -59,7 +59,7 @@ def draw_page_header(c,doc,p,i,n,W,H,m):
         c.setFont(BOLD,9);c.setFillColor(DARK);c.drawCentredString(m+11,y-9,str(doc['level']))
         y=draw_par(c,p.get('kicker',''),m+32,y,W-2*m-32,8.3,color=NAVY,font=BOLD)-12
     else:y=draw_par(c,p.get('kicker',''),m,y,W-2*m,8.3 if not slide else 11,color=NAVY,font=BOLD)-12
-    return draw_par(c,p['title'],m,y,W-2*m,26 if not slide else 34,color=NAVY,font=HEAD)-24
+    return draw_par(c,p['title'],m,y,W-2*m,26 if not slide else 34,color=NAVY,font=HEAD)-20
 
 def draw_cover(c,doc,p,W,H,m):
     c.setFillColor(DARK);c.rect(0,0,W,H,fill=1,stroke=0)
@@ -83,7 +83,7 @@ def draw_cover(c,doc,p,W,H,m):
 
 def draw_footer(c,doc,i,n,W,H,m):
     c.setStrokeColor(LINE);c.setLineWidth(.5);c.line(m,40,W-m,40)
-    c.setFont(BOLD,7);c.setFillColor(NAVY);c.drawString(m,26,'LEADERS  /  R')
+    c.setFont(BOLD,7);c.setFillColor(NAVY);c.drawString(m,26,doc.get('footer_label','LEADERS  /  R'))
     c.setFont(BODY,7);c.setFillColor(MUTED);c.drawRightString(W-m,26,f'{i:02} / {n:02}  ·  Y. Douma')
     if doc.get('index_link'):
         c.setFont(BOLD,8);c.setFillColor(NAVY);c.drawCentredString(W/2,26,'Revenir au parcours')
@@ -131,7 +131,8 @@ def draw_equation(c,latex,x,y,w,size=23,max_height=90):
     renderPDF.draw(drawing,c,x+(w-width)/2,y-height)
     return height
 def markup(s):
-    s=escape(str(s))
+    # Plain-text newlines are intentional paragraph breaks; arbitrary HTML stays escaped.
+    s=escape(str(s)).replace('\n','<br/>')
     return re.sub(r'(https://[^\s]+)',lambda m:f'<link href="{m[1]}" color="#2B3180">{m[1]}</link>',s)
 
 def para(s,size=11,leading=None,color=INK,font=BODY):
@@ -201,17 +202,38 @@ def block(c,b,x,y,w,slide=False):
             c.drawImage(str(logo),xx+16,y-59,width=cw-32,height=40,preserveAspectRatio=True,anchor='c',mask='auto')
             title.drawOn(c,xx+12,y-75-th);body.drawOn(c,xx+12,y-82-th-bh)
         return y-height-18
+    if typ=='figurepair':
+        from reportlab.lib.utils import ImageReader
+        widths=b.get('widths',[.5,.5]);gap=16;available=w-gap;x_start=x
+        bottom=0
+        for item,fraction in zip(b['items'],widths):
+            iw,ih=ImageReader(str(asset(item['path']))).getSize()
+            allotted=available*fraction
+            scale=min(allotted/iw,b.get('height',195)/ih);dw,dh=iw*scale,ih*scale
+            xx=x+(allotted-dw)/2
+            c.drawImage(str(asset(item['path'])),xx,y-dh,width=dw,height=dh,mask='auto')
+            x+=allotted+gap;bottom=max(bottom,dh)
+        y-=bottom+8
+        if b.get('caption'):y=draw_par(c,b['caption'],x_start,y,w,9.5,color=MUTED)-8
+        return y-5
     if typ=='figure':
         from reportlab.graphics import renderPDF
-        drawing=svg_drawing(str(asset(b['path'])));limit=b.get('height',200)
-        scale=min(w/drawing.width,limit/drawing.height)
-        drawing.scale(scale,scale)
-        dw,dh=drawing.width*scale,drawing.height*scale
-        renderPDF.draw(drawing,c,x+(w-dw)/2,y-dh)
-        y-=dh+10
-        if b.get('caption'):y=draw_par(c,b['caption'],x,y,w,9.5,color=MUTED)-10
-        return y-8
-    if typ=='text': return draw_par(c,b['text'],x,y,w,size)-13
+        p=asset(b['path']);limit=b.get('height',200)
+        if p.suffix.lower()=='.svg':
+            drawing=svg_drawing(str(p))
+            scale=min(w/drawing.width,limit/drawing.height)
+            drawing.scale(scale,scale)
+            dw,dh=drawing.width*scale,drawing.height*scale
+            renderPDF.draw(drawing,c,x+(w-dw)/2,y-dh)
+        else:
+            from reportlab.lib.utils import ImageReader
+            iw,ih=ImageReader(str(p)).getSize()
+            scale=min(w/iw,limit/ih);dw,dh=iw*scale,ih*scale
+            c.drawImage(str(p),x+(w-dw)/2,y-dh,width=dw,height=dh,mask='auto')
+        y-=dh+7
+        if b.get('caption'):y=draw_par(c,b['caption'],x,y,w,9.5,color=MUTED)-8
+        return y-5
+    if typ=='text': return draw_par(c,b['text'],x,y,w,size)-11
     if typ=='bullets':
         for item in b['items']:
             c.setFillColor(TEAL); c.circle(x+3,y-7 if not slide else y-10,2.2,fill=1,stroke=0)
@@ -232,12 +254,14 @@ def block(c,b,x,y,w,slide=False):
     if typ=='callout':
         label=b.get('label','À RETENIR'); body=b.get('text','')
         p=para(body,size if not slide else 15);_,ph=p.wrap(w-30,2000)
-        h=ph+43
+        h=ph+37
         c.setFillColor(PALE);c.roundRect(x,y-h,w,h,7,fill=1,stroke=0)
         c.setFillColor(ORANGE);c.rect(x,y-h,4,h,fill=1,stroke=0)
-        draw_par(c,label.upper(),x+15,y-12,w-30,9 if not slide else 11,color=NAVY,font=BOLD)
-        p.drawOn(c,x+15,y-31-ph)
-        return y-h-16
+        # File names are case-sensitive: do not turn a real path into a different one.
+        display_label=label if re.search(r'(?:scripts/|[.]R\b|[.]csv\b|[.]pdf\b)',label) else label.upper()
+        draw_par(c,display_label,x+15,y-12,w-30,9 if not slide else 11,color=NAVY,font=BOLD)
+        p.drawOn(c,x+15,y-29-ph)
+        return y-h-12
     if typ=='table':
         rows=[b['headers']]+b['rows']; n=len(rows[0]); fs=13 if slide else 9.5
         widths=b.get('widths',[w/n]*n)
@@ -263,7 +287,7 @@ def block(c,b,x,y,w,slide=False):
             c.setFont(BOLD,8 if not slide else 10);c.setFillColor(colors.HexColor('#C3E7DB'));c.drawRightString(xx+bw-7,yy-12,str(i+1))
         return y-rows*(bh+20)-2
     if typ=='image':
-        p=Path(b['path']); h=b.get('height',210)
+        p=asset(b['path']); h=b.get('height',210)
         c.drawImage(str(p),x,y-h,width=w,height=h,preserveAspectRatio=True,anchor='c',mask='auto')
         return y-h-18
     raise ValueError(f'Unknown block type {typ}')

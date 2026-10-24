@@ -6,7 +6,7 @@ Un playbook guidé pour des étudiants en finance : comprendre une méthode, lan
 
 1. **[Télécharger le cours en ZIP](https://github.com/jodouma/leaders-r-statistiques-18h/archive/refs/heads/main.zip)**, ou choisir **Code → Download ZIP**. Aucun compte GitHub ni Git n’est nécessaire.
 2. Dans l’Explorateur Windows : clic droit sur le ZIP → **Extraire tout…**. Extraire cette édition dans **un nouveau dossier** ; conserver vos anciens essais séparément.
-3. Ouvrir **[pdf/01_aventure_noria.pdf](pdf/01_aventure_noria.pdf)** : c’est le nouveau playbook finance. Son nom conserve le lien déjà distribué. Il explique l’installation facultative de R et RStudio, les fenêtres et chaque nouveau geste.
+3. Ouvrir **[pdf/01_aventure_noria.pdf](pdf/01_aventure_noria.pdf)** : c’est le playbook finance à suivre. Il explique l’installation facultative de R et RStudio, les fenêtres et chaque nouveau geste.
 4. Double-cliquer **`course.Rproj`** dans le dossier extrait. Dans RStudio, ouvrir **`scripts/00_premiers_pas.R`**, puis suivre les blocs nommés **B01, B02…** du guide.
 
 **[Télécharger le playbook principal](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)**. Si l’aperçu GitHub gêne la lecture ou les liens, télécharger le PDF et l’ouvrir dans votre lecteur habituel. Les pages se suivent sans navigation obligatoire.
@@ -36,5 +36,7 @@ Le code est déjà prêt dans **`scripts/`**. Le PDF explique **quoi, pourquoi, 
 L’identifiant `observation` conserve l’ordre des marchés ; il ne représente pas une date reconstituée. Ce sont des niveaux d’indices anciens, sans cotations actuelles. Le panier utilise des rendements locaux, se rééquilibre à chaque observation et exprime son capital en **UM** pédagogiques ; les séries d’indices sont utilisées telles quelles, sans traitement supplémentaire du change, des frais ou des dividendes. Les conventions des indices peuvent différer. La VaR est un seuil historique par observation de marché, le stress un scénario choisi, le bootstrap une simulation sous hypothèses et la régression une association contemporaine : leurs sorties demandent une interprétation, sans garantie sur le futur.
 
 Pour repartir : **Ctrl+S → Session → Restart R → B01 du script courant**, puis ses blocs dans l’ordre. Garder les fichiers de `data/` intacts et noter le paramètre changé, l’effet observé et votre explication.
+
+Les sources éditables des PDF et figures sont dans `authoring/`. Pour reconstruire les supports, `authoring/rebuild.py` indique les dépendances et la commande ; les captures RStudio réelles sont conservées avec leur provenance. La commande `Rscript --vanilla tests/run_tests.R` vérifie les scripts, les expériences et les calculs dans des sessions isolées sur Windows, macOS et Ubuntu via GitHub Actions.
 
 Youssef Douma · Leaders University · octobre 2026

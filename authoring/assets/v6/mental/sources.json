@@ -1,0 +1,151 @@
+{
+  "figures": [
+    {
+      "key": "mental_assignment",
+      "path": "authoring/assets/v6/mental/mental_assignment.svg",
+      "height": 180,
+      "alt": "Une affectation conserve une valeur ; print(x) permet ensuite de la voir.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_percentage",
+      "path": "authoring/assets/v6/mental/mental_percentage.svg",
+      "height": 190,
+      "alt": "Cinq cases sur cent représentent 5 %, soit 500 sur 10 000 unités monétaires.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_table",
+      "path": "authoring/assets/v6/mental/mental_table.svg",
+      "height": 190,
+      "alt": "Trois premières observations réelles : les niveaux d’indice ont des échelles différentes.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_cleaning",
+      "path": "authoring/assets/v6/mental/mental_cleaning.svg",
+      "height": 180,
+      "alt": "Le doublon exact part ; la valeur absente reste à vérifier.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_return",
+      "path": "authoring/assets/v6/mental/mental_return.svg",
+      "height": 180,
+      "alt": "Mini-exemple : rapporter le gain de 2 au niveau initial de 100 donne 2 %.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_compounding",
+      "path": "authoring/assets/v6/mental/mental_compounding.svg",
+      "height": 185,
+      "alt": "Les pourcentages successifs s’appliquent à un capital qui change.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_spread",
+      "path": "authoring/assets/v6/mental/mental_spread.svg",
+      "height": 190,
+      "alt": "Trois rendements inventés : la même moyenne peut cacher des fluctuations différentes.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_normalize",
+      "path": "authoring/assets/v6/mental/mental_normalize.svg",
+      "height": 175,
+      "alt": "Base 100 : comparer une évolution, pas les niveaux bruts.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_weights",
+      "path": "authoring/assets/v6/mental/mental_weights.svg",
+      "height": 185,
+      "alt": "Dix parts : six CAC et quatre DAX. Les poids servent à calculer le rendement du panier.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_var",
+      "path": "authoring/assets/v6/mental/mental_var.svg",
+      "height": 185,
+      "alt": "La VaR historique situe un seuil ; certaines pertes observées le dépassent.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_drawdown",
+      "path": "authoring/assets/v6/mental/mental_drawdown.svg",
+      "height": 190,
+      "alt": "Le drawdown compare la valeur à son sommet précédent, en incluant le capital initial.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_stress",
+      "path": "authoring/assets/v6/mental/mental_stress.svg",
+      "height": 180,
+      "alt": "Un choc inventé mesure une sensibilité ; il ne prédit pas demain.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_bootstrap",
+      "path": "authoring/assets/v6/mental/mental_bootstrap.svg",
+      "height": 180,
+      "alt": "On explore des scénarios sous une hypothèse de répétition indépendante.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_regression_split",
+      "path": "authoring/assets/v6/mental/mental_regression_split.svg",
+      "height": 175,
+      "alt": "Apprendre sur le début et évaluer sur la fin ; une relation contemporaine n’est pas une prévision.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_regression",
+      "path": "authoring/assets/v6/mental/mental_regression.svg",
+      "height": 190,
+      "alt": "Schéma illustratif de lecture d’une régression ; les vrais points et coefficients sont calculés dans R.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_function",
+      "path": "authoring/assets/v6/mental/mental_function.svg",
+      "height": 180,
+      "alt": "Même recette, entrée différente : la fonction réutilise la méthode.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_report",
+      "path": "authoring/assets/v6/mental/mental_report.svg",
+      "height": 180,
+      "alt": "Les résultats et les hypothèses restent ensemble dans un document relisible.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_route",
+      "path": "authoring/assets/v6/mental/mental_route.svg",
+      "height": 170,
+      "alt": "Le code est prêt ; votre travail consiste à interpréter et expérimenter.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_panes",
+      "path": "authoring/assets/v6/mental/mental_panes.svg",
+      "height": 200,
+      "alt": "Schéma de repérage des quatre zones usuelles de RStudio ; ce n’est pas une capture d’écran.",
+      "kind": "labelled teaching mental model"
+    },
+    {
+      "key": "mental_files",
+      "path": "authoring/assets/v6/mental/mental_files.svg",
+      "height": 160,
+      "alt": "Extraire tout le ZIP et conserver les dossiers ensemble.",
+      "kind": "labelled teaching mental model"
+    }
+  ],
+  "source_data": "data/marches_source.csv",
+  "facts_checked": {
+    "source_rows": 1860,
+    "gain_example": 500,
+    "compound_example": 9975
+  },
+  "note": "Empirical charts are generated by the R scripts. These mental models are explicitly illustrative except the three-row source-table excerpt."
+}
