@@ -11,7 +11,11 @@
     "function_call": "authoring/assets/v6/screens/function_call.png",
     "report_view": "authoring/assets/v6/screens/report_view.png",
     "files": "authoring/assets/v6/screens/files.png",
-    "source_optional": "authoring/assets/v6/screens/source_optional.png"
+    "source_optional": "authoring/assets/v6/screens/source_optional.png",
+    "project_open_menu": "authoring/assets/v6/screens/project_open_menu.png",
+    "project_open": "authoring/assets/v6/screens/project_open.png",
+    "restart": "authoring/assets/v6/screens/restart.png",
+    "restart_empty": "authoring/assets/v6/screens/restart_empty.png"
   },
   "assets": {
     "pane_map": {
@@ -205,6 +209,78 @@
       ],
       "step": "02 entire script",
       "action": "Clicked optional Source toolbar button; supplied complete script ran and produced import output.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "project_open_menu": {
+      "path": "authoring/assets/v6/screens/project_open_menu.png",
+      "original": "evidence/ui/originals/project_open_menu.png",
+      "crop_xyxy": [
+        62,
+        128,
+        308,
+        310
+      ],
+      "step": "Project opening",
+      "action": "Opened the actual RStudio File menu; Open Project is visible.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "project_open": {
+      "path": "authoring/assets/v6/screens/project_open.png",
+      "original": "evidence/ui/originals/project_open.png",
+      "crop_xyxy": [
+        698,
+        335,
+        1222,
+        774
+      ],
+      "step": "Project opening",
+      "action": "File > Open Project opened its actual dialog; selected Noria/course.Rproj and clicked Open. Project then opened successfully.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "restart": {
+      "path": "authoring/assets/v6/screens/restart.png",
+      "original": "evidence/ui/originals/restart.png",
+      "crop_xyxy": [
+        277,
+        128,
+        471,
+        379
+      ],
+      "step": "Restart R",
+      "action": "Created capital <-10000 in the course session, then opened Session menu and clicked the actual Restart R command.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
+      "browser_host_OS": "macOS26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "restart_empty": {
+      "path": "authoring/assets/v6/screens/restart_empty.png",
+      "original": "evidence/ui/originals/restart_empty.png",
+      "crop_xyxy": [
+        1048,
+        188,
+        1560,
+        355
+      ],
+      "step": "After real restart",
+      "action": "After the actual Session > Restart R completed, verified capital was removed and Environment is empty. The uncropped original also shows Restarting R session in Console.",
       "capture_date": "2026-10-24",
       "app": "RStudio Server2026.01.1+403",
       "R": "4.5.2",
