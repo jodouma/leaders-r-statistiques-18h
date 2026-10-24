@@ -8,7 +8,9 @@
     "source_find_block": "authoring/assets/v7/screens/source_find_block.png",
     "source_select_complete_block": "authoring/assets/v7/screens/source_select_complete_block.png",
     "run_code_section_menu": "authoring/assets/v7/screens/run_code_section_menu.png",
-    "source_section_jump": "authoring/assets/v7/screens/source_section_jump.png"
+    "source_section_jump": "authoring/assets/v7/screens/source_section_jump.png",
+    "edit_parameter_12000": "authoring/assets/v7/screens/edit_parameter_12000.png",
+    "plot_zoom": "authoring/assets/v7/screens/plot_zoom.png"
   },
   "assets": {
     "files_more_root": {
@@ -154,6 +156,44 @@
       "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
       "browser_host_OS": "macOS 26.3",
       "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "edit_parameter_12000": {
+      "path": "authoring/assets/v7/screens/edit_parameter_12000.png",
+      "original": "work/v7/evidence/ui/originals/edit_parameter_12000.png",
+      "original_sha256": "17fc9578c3518549c28bc82c826dd0ef0eefaf9aaf6e73fec595271dafe1d611",
+      "crop_xyxy": [
+        8,
+        346,
+        650,
+        980
+      ],
+      "action": "In actual 00_premiers_pas.R B03, double-clicked numeric literal 10000, typed 12000, saved with Command+S. Ran B03 with Run Code Section (actual macOS Option+Command+T), then clicked inside B04 and ran that code section. Source shows capital <- 12000; Console prints [1] 12500 and summary table 12000/500/12500; CSV save and self-check succeeded. Restored 10000, saved and reran B03/B04; Console and summary verified 10500.",
+      "caption": "Capture réelle de RStudio Server sous Linux, dans Chrome sur macOS : capital 12000, puis résultat 12500 après exécution de B03 et B04.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "plot_zoom": {
+      "path": "authoring/assets/v7/screens/plot_zoom.png",
+      "original": "work/v7/evidence/ui/originals/plot_zoom.png",
+      "original_sha256": "fc85f49d7b0269185418d1022c20cf9b87f98a2b88695ce110c6e906c1a14399",
+      "crop_xyxy": [
+        0,
+        0,
+        1200,
+        913
+      ],
+      "action": "Opened supplied 04_calculer_les_rendements.R through Files, clicked Source to run its complete current script. Actual Plots showed Variations historiques — CAC and saved outputs/04/rendements.png. Clicked actual Zoom button (AX: View a larger version of the plot in a new window). Captured actual Plot Zoom native browser window, including its close control; clicked its native close button and verified return to project.",
+      "caption": "Capture réelle de RStudio Server sous Linux, dans Chrome sur macOS : fenêtre Plot Zoom du graphique CAC de la séance 04. Le bouton rouge en haut à gauche est la fermeture macOS de cette fenêtre.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels."
     }
   },
   "runtime": {
@@ -171,8 +211,12 @@
     "00 B02 via actual macOS Option+Command+T: Console prints [1] 300.",
     "12 B01 via actual shortcut: raw 1862 rows, prices 1860 rows.",
     "12 B02 via Source bottom section selector then shortcut: complete analyze_basket function defined, returns > prompt; Environment Functions lists function.",
-    "12 B03 via Source selector then shortcut: summary 3 rows, 12 variables; comparison CSV saved."
+    "12 B03 via Source selector then shortcut: summary 3 rows, 12 variables; comparison CSV saved.",
+    "Final exact edit: 00 B03/B04 saved capital12000, Console12500, summary12000/500/12500, CSV save and self-check succeeded.",
+    "Restored capital10000, saved, reran00 B03/B04; Console10500 and summary10000/500/10500 verified.",
+    "Ran complete04 supplied script via Source; actual CAC returns plot saved; actual Plots Zoom opened and closed."
   ],
   "navigation_note": "Go To Working Directory returns current R working directory, not necessarily project root if setwd changed it. Go to project directory icon directly returns to open project.",
-  "cleanup": "Dedicated native Chrome window closed using native close button; verified original existing browser window returned. leaders-v7-ui stopped and automatically removed; docker ps -a name filter empty. Random task credential file deleted."
+  "cleanup": "Dedicated native Chrome window closed using native close button; verified original existing browser window returned. leaders-v7-ui stopped and automatically removed; docker ps -a name filter empty. Random task credential file deleted.",
+  "final_capture_cleanup": "leaders-v7-ui-final authenticated localhost-only task container stopped and automatically removed; docker ps -a name filter empty. Plot Zoom and dedicated native Chrome window closed using native close controls; original pre-existing Chrome window returned. Ephemeral credential file deleted."
 }
