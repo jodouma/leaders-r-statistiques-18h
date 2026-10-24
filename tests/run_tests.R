@@ -1,254 +1,241 @@
-# Verification publique du contrat. Depuis la racine : Rscript tests/run_tests.R
-# R >= 4.1, distribution standard uniquement. Aucun package a installer.
-if (getRversion() < "4.1") stop("R 4.1 ou plus recent est necessaire.")
-if (!file.exists("data/orders_raw.csv") || !file.exists("checks/check_tools.R")) {
-  stop("Lancez ce fichier depuis la racine du dossier du cours.")
-}
-root <- normalizePath(getwd(), winslash = "/", mustWork = TRUE)
-# commandArgs()[1] est l'executable R actif, y compris derriere Rscript.
-# Aucune installation particuliere ou adresse absolue n'est codee dans les tests.
+# Vérification du cours prêt à exécuter : Rscript tests/run_tests.R depuis le projet.
+# Les essais travaillent dans des copies temporaires, sans anciens objets ni exports.
+if (getRversion() < "4.1") stop("R 4.1 ou plus récent est nécessaire.")
+if (!file.exists("course.Rproj") || !file.exists("R/outils.R")) stop("Ouvrez la racine du projet.")
+root <- normalizePath(getwd(), winslash = "/")
 r_executable <- commandArgs()[1]
-if (!file.exists(r_executable)) stop("Executable R actif introuvable : ", r_executable)
-r_executable <- normalizePath(r_executable, winslash = "/", mustWork = TRUE)
-stems <- c("01_panier", "02_semaine", "03_importer", "04_nettoyer",
-           "05_analyser", "06_visualiser", "07_decider", "08_automatiser")
-workspace <- tempfile("noria-tests-")
+if (!file.exists(r_executable)) stop("Exécutable R actif introuvable.")
+workspace <- tempfile("noria-finance-tests-")
 dir.create(workspace)
-results <- list()
-
-record <- function(label, ok, detail = "") {
-  results[[length(results) + 1L]] <<- list(label=label, ok=isTRUE(ok), detail=detail)
-  if (!isTRUE(ok)) cat("ECHEC :", label, "\n", detail, "\n")
-  invisible(ok)
+checks <- 0L
+check <- function(label, condition) {
+  if (!isTRUE(condition)) stop("ÉCHEC : ", label, call. = FALSE)
+  checks <<- checks + 1L
+  cat("OK —", label, "\n")
 }
-make_copy <- function(label) {
-  destination <- file.path(workspace, label)
-  dir.create(destination)
-  paths <- c("data", "missions", "solutions", "examples", "checks",
-             "00_verifier_installation.R")
-  copied <- file.copy(file.path(root, paths), destination, recursive=TRUE)
-  if (!all(copied)) stop("Impossible de creer une copie isolee pour : ", label)
-  dir.create(file.path(destination, "outputs"))
-  destination
+equal_num <- function(actual, expected, tolerance = 1e-9) {
+  isTRUE(all.equal(as.numeric(actual), as.numeric(expected), tolerance = tolerance))
 }
-run_r <- function(directory, script, args=character()) {
-  previous_directory <- getwd()
-  on.exit(setwd(previous_directory), add=TRUE)
-  setwd(directory)
-  log_path <- tempfile("r-log-", tmpdir=workspace)
-  # macOS peut nettoyer DYLD_LIBRARY_PATH a l'entree du shell utilise par system2.
-  # Conserver le reglage deja fourni par l'installation active, sans chemin impose.
+copy_project <- function(label) {
+  target <- file.path(workspace, label)
+  dir.create(target)
+  paths <- c("course.Rproj", "R", "data", "scripts")
+  if (!all(file.copy(file.path(root, paths), target, recursive = TRUE))) stop("Copie impossible.")
+  target
+}
+run_child <- function(target, script) {
+  previous <- getwd()
+  on.exit(setwd(previous), add = TRUE)
+  setwd(target)
+  log <- tempfile(tmpdir = workspace)
   child_env <- character()
-  if (Sys.info()[["sysname"]] == "Darwin" && nzchar(Sys.getenv("DYLD_LIBRARY_PATH"))) {
+  if (Sys.info()[["sysname"]] == "Darwin" && nzchar(Sys.getenv("DYLD_LIBRARY_PATH")))
     child_env <- paste0("DYLD_LIBRARY_PATH=", shQuote(Sys.getenv("DYLD_LIBRARY_PATH")))
-  }
   status <- suppressWarnings(system2(r_executable,
-    args=c("--vanilla", "--slave", paste0("--file=", shQuote(script)),
-           "--args", shQuote(args)), stdout=log_path, stderr=log_path, env=child_env))
-  text <- if (file.exists(log_path)) paste(readLines(log_path, warn=FALSE),collapse="\n") else ""
-  unlink(log_path)
-  list(status=as.integer(status), output=text)
+    c("--vanilla", "--slave", paste0("--file=", shQuote(script))),
+    stdout = log, stderr = log, env = child_env))
+  output <- paste(readLines(log, warn = FALSE), collapse = "\n")
+  if (status != 0L) cat(output, "\n")
+  list(status = status, output = output)
 }
-expect_run <- function(label, directory, script, args=character(), succeeds=TRUE) {
-  actual <- run_r(directory, script, args)
-  record(label, (actual$status == 0L) == succeeds, actual$output)
-  invisible(actual)
-}
-write_script <- function(directory, name, lines) {
-  path <- file.path(directory, name)
-  writeLines(lines, path, useBytes=TRUE)
-  name
-}
-num_equal <- function(x, y) isTRUE(all.equal(as.numeric(x), as.numeric(y), tolerance=1e-8))
-
+read_output <- function(target, path) read.csv(file.path(target, "outputs", path))
+expect_error <- function(expression) inherits(tryCatch(force(expression), error = identity), "error")
 main <- function() {
-  on.exit({setwd(root); unlink(workspace, recursive=TRUE)}, add=TRUE)
-  # Distinguer une panne de lancement R d'un starter refuse par son controle.
-  smoke <- make_copy("runtime")
-  write_script(smoke,"runtime.R","stopifnot(getRversion() >= '4.1')")
-  smoke_result <- run_r(smoke,"runtime.R")
-  if (smoke_result$status != 0L) stop("Impossible de lancer R enfant : ",smoke_result$output)
-  # Faits du carnet, independants de la forme des scripts des apprenants.
-  raw <- read.csv(file.path(root,"data/orders_raw.csv"), stringsAsFactors=FALSE)
-  reference <- read.csv(file.path(root,"data/orders_clean_reference.csv"), stringsAsFactors=FALSE)
-  mini <- read.csv(file.path(root,"data/orders_mini.csv"), stringsAsFactors=FALSE)
-  second <- read.csv(file.path(root,"data/orders_week2_raw.csv"), stringsAsFactors=FALSE)
-  complete <- unique(raw)
-  waiting <- complete[is.na(complete$quantite), ]
-  complete <- complete[!is.na(complete$quantite), ]
-  record("six colonnes contractuelles", identical(names(raw),
-    c("id","date","produit","quantite","prix_unitaire","cout_unitaire")))
-  record("14 lignes, une copie exacte O004, une quantite O013 inconnue",
-    nrow(raw)==14 && sum(duplicated(raw))==1 &&
-    identical(raw$id[duplicated(raw)],"O004") && nrow(waiting)==1 && waiting$id=="O013")
-  record("12 commandes propres, quantites connues, reference fidele",
-    nrow(complete)==12 && !anyNA(complete) &&
-    identical(complete$id,reference$id) &&
-    isTRUE(all.equal(complete,reference,check.attributes=FALSE)))
-  record("21 unites, 100 TND de recettes, 37 TND de cout, 63 TND de marge",
-    sum(complete$quantite)==21 &&
-    sum(complete$quantite*complete$prix_unitaire)==100 &&
-    sum(complete$quantite*complete$cout_unitaire)==37 &&
-    sum(complete$quantite*(complete$prix_unitaire-complete$cout_unitaire))==63)
-  day_ca <- tapply(complete$quantite*complete$prix_unitaire,complete$date,sum)
-  product_ca <- tapply(complete$quantite*complete$prix_unitaire,complete$produit,sum)
-  record("quatre jours : 19, 27, 33 et 21 TND",num_equal(day_ca,c(19,27,33,21)))
-  record("Cafe 30, Sandwich 40, The 30 TND",num_equal(product_ca,c(30,40,30)))
-  record("mini-carnet : trois premieres commandes, panier 19 TND",
-    nrow(mini)==3 && identical(mini$id,raw$id[1:3]) &&
-    sum(mini$quantite*mini$prix_unitaire)==19)
-  second_complete <- unique(second)
-  second_complete <- second_complete[!is.na(second_complete$quantite), ]
-  record("nouveau carnet : 8 lignes, 6 completes, 9 unites, 48/18/30 TND",
-    nrow(second)==8 && nrow(second_complete)==6 &&
-    sum(second_complete$quantite)==9 &&
-    sum(second_complete$quantite*second_complete$prix_unitaire)==48 &&
-    sum(second_complete$quantite*second_complete$cout_unitaire)==18 &&
-    sum(second_complete$quantite*(second_complete$prix_unitaire-second_complete$cout_unitaire))==30)
-
-  setup_copy <- make_copy("setup")
-  expect_run("installation : copie complete",setup_copy,"00_verifier_installation.R")
-  unlink(file.path(setup_copy,"missions/08_automatiser.R"))
-  expect_run("installation refuse une copie incomplete",setup_copy,"00_verifier_installation.R",succeeds=FALSE)
-  for (stem in stems) {
-    isolated <- make_copy(paste0(stem,"-solution"))
-    expect_run(paste(stem,"corrige executable seul"), isolated,
-               paste0("solutions/",stem,"_solution.R"))
-    expect_run(paste(stem,"corrige valide par son controle"), isolated,
-               paste0("checks/",stem,".R"), paste0("solutions/",stem,"_solution.R"))
-    starter_copy <- make_copy(paste0(stem,"-starter"))
-    expect_run(paste(stem,"starter vierge refuse"),starter_copy,
-               paste0("checks/",stem,".R"),succeeds=FALSE)
-    example_copy <- make_copy(paste0(stem,"-exemple"))
-    expect_run(paste(stem,"exemple executable seul"),example_copy,
-               paste0("examples/",stem,"_exemple.R"))
+  on.exit({setwd(root); unlink(workspace, recursive = TRUE)}, add = TRUE)
+  source("R/outils.R")
+  source_path <- c("data/marches_source.csv", "data/marches_brut.csv")
+  before <- tools::md5sum(source_path)
+  original <- read.csv(source_path[1])
+  raw <- read.csv(source_path[2])
+  official <- as.matrix(datasets::EuStockMarkets)
+  check("CSV source fidèle aux 1860 x 4 valeurs réelles de R", nrow(original) == 1860 &&
+        identical(original$observation, 1:1860) && equal_num(as.matrix(original[market_names]), official))
+  # Comparaison des valeurs plutôt que des attributs de noms de lignes.
+  check("La seule copie exacte reprend observation 100", sum(duplicated(raw)) == 1 &&
+        equal_num(unlist(raw[1861, ]), unlist(original[100, ])))
+  check("La ligne 1861 ajoutée est uniquement FTSE manquante", raw$observation[1862] == 1861 &&
+        is.na(raw$FTSE[1862]) && sum(is.na(raw)) == 1 &&
+        equal_num(unlist(raw[1862, c("DAX", "SMI", "CAC")]), unlist(original[1860, c("DAX", "SMI", "CAC")])))
+  # Oracle indépendant : nettoyage, variations et composition sans les helpers du cours.
+  unique_rows <- raw[!duplicated(raw), ]
+  p <- unique_rows[complete.cases(unique_rows), ]
+  p <- p[order(p$observation), ]
+  expected_returns <- (as.matrix(p[-1, market_names]) - as.matrix(p[-nrow(p), market_names])) /
+                      as.matrix(p[-nrow(p), market_names])
+  portfolio <- 0.6 * expected_returns[, "CAC"] + 0.4 * expected_returns[, "DAX"]
+  wealth <- numeric(length(portfolio) + 1L)
+  wealth[1] <- 10000
+  for (i in seq_along(portfolio)) wealth[i + 1] <- wealth[i] * (1 + portfolio[i])
+  # Quantile type 7 calculé avec un tri et une interpolation explicites.
+  ordered_losses <- sort(-portfolio)
+  h <- 1 + (length(ordered_losses) - 1) * 0.95
+  lower <- floor(h)
+  expected_var <- 10000 * (ordered_losses[lower] + (h - lower) *
+                          (ordered_losses[lower + 1] - ordered_losses[lower]))
+  peak <- wealth[1]
+  expected_drawdown <- 0
+  for (value in wealth) {
+    peak <- max(peak, value)
+    expected_drawdown <- min(expected_drawdown, value / peak - 1)
   }
-  cumulative <- make_copy("parcours-complet")
-  for (stem in stems) {
-    expect_run(paste(stem,"execution cumulative avec exports precedents"),cumulative,
-               paste0("solutions/",stem,"_solution.R"))
+  scripts <- sort(list.files("scripts", pattern = "^[0-9]{2}_.+[.]R$"))
+  check("Treize fichiers numérotés sans trous", length(scripts) == 13 &&
+        identical(substr(scripts, 1, 2), sprintf("%02d", 0:12)))
+  copies <- list()
+  for (script in scripts) {
+    target <- copy_project(substr(script, 1, 2))
+    copies[[substr(script, 1, 2)]] <- target
+    check(paste(script, "démarre sans outputs préexistants"), !dir.exists(file.path(target, "outputs")))
+    result <- run_child(target, file.path("scripts", script))
+    check(paste(script, "s'exécute seul dans R --vanilla"), result$status == 0)
+    check(paste(script, "rend une auto-vérification sans quitter la session"),
+          grepl("Observation cohérente", result$output, fixed = TRUE))
+    check(paste(script, "préserve les CSV d'entrée"),
+          identical(unname(tools::md5sum(file.path(target, source_path))), unname(before)))
+    # Un second lancement extrait et exécute les blocs fournis en ordre, sans source(script).
+    lines <- readLines(file.path(target, "scripts", script), warn = FALSE)
+    markers <- grep("^# B[0-9]{2} .*----$", lines)
+    check(paste(script, "contient B01 puis des blocs contigus"),
+          length(markers) >= 4 && identical(substr(lines[markers], 3, 5), sprintf("B%02d", seq_along(markers))))
+    # Ce wrapper explicite les frontières de blocs comme une sélection RStudio successive.
+    wrapper <- c(sprintf("lines <- readLines(%s, warn=FALSE)", dQuote(file.path("scripts", script), q = FALSE)),
+                 "markers <- grep('^# B[0-9]{2} .*----$', lines)",
+                 "ends <- c(markers[-1]-1L,length(lines))",
+                 "for(i in seq_along(markers)) eval(parse(text=lines[markers[i]:ends[i]]),envir=.GlobalEnv)",
+                 "cat('SESSION_PRESERVEE\\n')")
+    writeLines(wrapper, file.path(target, "blocks.R"))
+    block_run <- run_child(target, "blocks.R")
+    check(paste(script, "blocs sélectionnés exécutables en ordre"),
+          block_run$status == 0 && grepl("SESSION_PRESERVEE", block_run$output, fixed = TRUE))
   }
-
-  # Le CSV propre de mission 4 est un input legitime pour les missions 5 a 7.
-  # Un script correct peut le lire directement, sans recopier le secours fourni.
-  for (stem in stems[5:7]) {
-    direct <- make_copy(paste0(stem,"-lecture-directe"))
-    expect_run(paste(stem,"preparer son input legitime de mission 4"),direct,
-               "solutions/04_nettoyer_solution.R")
-    solution_lines <- readLines(file.path(direct,"solutions",paste0(stem,"_solution.R")),warn=FALSE)
-    # Conserver le calcul de l'apprenant, remplacer seulement le bloc d'entree.
-    start <- grep("^propres <- read.csv",solution_lines)[1]
-    direct_lines <- c("propres <- read.csv('outputs/04_commandes_propres.csv',stringsAsFactors=FALSE)",
-                       solution_lines[seq.int(start+1L,length(solution_lines))])
-    write_script(direct,"lecture_directe.R",direct_lines)
-    expect_run(paste(stem,"lecture directe de son CSV propre acceptee"),direct,
-               paste0("checks/",stem,".R"),"lecture_directe.R")
-    corrupt_lines <- c("x <- read.csv('outputs/04_commandes_propres.csv',stringsAsFactors=FALSE)",
-                       "x$quantite[1] <- 99", "write.csv(x,'outputs/04_commandes_propres.csv',row.names=FALSE)")
-    write_script(direct,"corrompre.R",corrupt_lines)
-    expect_run(paste(stem,"modifier input pour tester le controle"),direct,"corrompre.R")
-    expect_run(paste(stem,"input corrompu refuse sans remplacement silencieux"),direct,
-               paste0("checks/",stem,".R"),"lecture_directe.R",succeeds=FALSE)
-
-    old_answers <- make_copy(paste0(stem,"-anciens-resultats"))
-    write_script(old_answers,"console.R",c(
-      "source('solutions/04_nettoyer_solution.R')",
-      paste0("source('solutions/",stem,"_solution.R')"),
-      paste0("source('checks/",stem,".R')"), "stopifnot(!controle$ok)"))
-    expect_run(paste(stem,"ancien resultat refuse meme avec input legitime"),old_answers,"console.R")
+  check("Petit calcul : 500 UM et 10500 UM", equal_num(read_output(copies[['01']], "01/capital.csv")$gain_UM, 500) &&
+        equal_num(read_output(copies[['01']], "01/capital.csv")$first_final_UM, 10500))
+  check("Composition +5 puis -5 : 9975 UM", equal_num(read_output(copies[['01']], "01/capital.csv")$compounded_final_UM, 9975))
+  counts <- read_output(copies[['03']], "03/controle.csv")
+  check("Nettoyage 1862 → 1861 → 1860 + 1", identical(counts$rows, c(1862L, 1861L, 1860L, 1L)))
+  observed_returns <- read_output(copies[['04']], "04/rendements.csv")
+  check("1859 rendements : oracle formule différence/niveau précédent", nrow(observed_returns) == 1859 &&
+        equal_num(as.matrix(observed_returns[market_names]), expected_returns))
+  statistics <- read_output(copies[['05']], "05/statistiques.csv")
+  check("Statistiques calculées sur les vrais rendements CAC", equal_num(unlist(statistics[c('mean_percent','median_percent','sd_percent','min_percent','max_percent')]),
+        100 * c(mean(expected_returns[, 'CAC']), median(expected_returns[, 'CAC']), sd(expected_returns[, 'CAC']), min(expected_returns[, 'CAC']), max(expected_returns[, 'CAC']))))
+  normalized <- read_output(copies[['06']], "06/indices_base100.csv")
+  check("Base100 : première et dernière lignes indépendantes", equal_num(unlist(normalized[1, market_names]), rep(100, 4)) &&
+        equal_num(unlist(normalized[nrow(normalized), market_names]), 100 * official[1860, ] / official[1, ]))
+  check("Capital composé : oracle multiplication séquentielle", equal_num(read_output(copies[['07']], "07/capital_panier.csv")$capital_UM, wealth))
+  risk <- read_output(copies[['08']], "08/risque.csv")
+  check("VaR : oracle tri/interpolation type7", equal_num(risk$historical_VaR_UM, expected_var))
+  check("Drawdown : oracle sommet courant avec capital initial", equal_num(risk$maximum_drawdown, expected_drawdown))
+  check("Petit chemin -10%, +10% inclut bien sa perte initiale", equal_num(risk_summary(c(-0.1, 0.1))$maximum_drawdown, -0.1))
+  shock <- read_output(copies[['09']], "09/choc.csv")
+  check("Choc inventé : -6% puis 9400 UM", equal_num(shock$scenario_return, -0.06) && equal_num(shock$final_capital_UM, 9400))
+  set.seed(2026)
+  draws <- sample(portfolio, 20 * 5000, replace = TRUE)
+  simulated <- vapply(seq_len(5000), function(j) {
+    value <- 10000
+    for (r in draws[((j - 1) * 20 + 1):(j * 20)]) value <- value * (1 + r)
+    value
+  }, numeric(1))
+  actual_simulated <- read_output(copies[['10']], "10/scenarios.csv")$final_capital_UM
+  check("Simulation : oracle boucles, 5000 chemins et graine 2026", length(actual_simulated) == 5000 && equal_num(actual_simulated, simulated))
+  repeat_run <- run_child(copies[['10']], file.path("scripts", scripts[11]))
+  check("Simulation reproductible dans un autre processus vierge", repeat_run$status == 0 &&
+        identical(actual_simulated, read_output(copies[['10']], "10/scenarios.csv")$final_capital_UM))
+  ntrain <- floor(nrow(expected_returns) * 0.8)
+  xtrain <- expected_returns[seq_len(ntrain), 'DAX']; ytrain <- expected_returns[seq_len(ntrain), 'CAC']
+  xtest <- expected_returns[(ntrain + 1):nrow(expected_returns), 'DAX']
+  ytest <- expected_returns[(ntrain + 1):nrow(expected_returns), 'CAC']
+  slope <- sum((xtrain - mean(xtrain)) * (ytrain - mean(ytrain))) / sum((xtrain - mean(xtrain))^2)
+  intercept <- mean(ytrain) - slope * mean(xtrain)
+  oracle_rmse <- c(sqrt(mean((ytest - (intercept + slope * xtest))^2)), sqrt(mean((ytest - mean(ytrain))^2)))
+  check("Régression : oracle OLS fermé et baseline entraînement", equal_num(read_output(copies[['11']], "11/erreurs_test.csv")$test_RMSE_percent, 100 * oracle_rmse))
+  estimated <- read_output(copies[['11']], "11/estimations_test.csv")
+  check("Découpage chronologique 1487/372 sans fuite", ntrain == 1487 && nrow(estimated) == 372 && min(estimated$observation) == 1489)
+  check("Rapport final + image relative existent dans la copie vierge", file.exists(file.path(copies[['12']], 'outputs/12/rapport_noria.html')) &&
+        file.exists(file.path(copies[['12']], 'outputs/12/comparaison_paniers.png')))
+  html <- paste(readLines(file.path(copies[['12']], 'outputs/12/rapport_noria.html'), warn=FALSE), collapse=' ')
+  check("Rapport porte les limites financières et les unités", all(vapply(c('UM', 'change', 'dividendes', 'rééquilibré', '1991–1998', 'garantie'), grepl, logical(1), x=html, fixed=TRUE)))
+  # Nouvelles valeurs/longueur : la fonction ne peut répondre avec des nombres fixes.
+  alternate <- copies[['12']]
+  tiny <- data.frame(observation = 1:4, DAX = c(100,110,99,108.9), SMI = c(200,204,202,208),
+                     CAC = c(100,102,104.04,106.1208), FTSE = c(300,303,300,306))
+  write.csv(tiny, file.path(alternate, 'data/nouveau.csv'), row.names=FALSE)
+  writeLines(c("source('scripts/12_automatiser_le_rapport.R')",
+    "new <- analyze_basket('data/nouveau.csv',0.25,2000)",
+    "write.csv(new,'new.csv',row.names=FALSE)"), file.path(alternate, 'alternate.R'))
+  check("Automatisation accepte un autre CSV et d'autres paramètres", run_child(alternate,'alternate.R')$status == 0)
+  new <- read.csv(file.path(alternate, 'new.csv'))
+  tiny_return <- 0.25 * rep(0.02,3) + 0.75 * c(0.1,-0.1,0.1)
+  check("Nouveau CSV : oracle 3 variations, nouveaux poids/capital", new$observations == 3 &&
+        equal_num(new$final_capital_UM, 2000 * prod(1 + tiny_return)) &&
+        equal_num(new$historical_VaR_UM, 2000 * (sort(-tiny_return)[2] + 0.9 * diff(sort(-tiny_return)[2:3]))))
+  # Une variation de paramètre légitime ne déclenche pas un faux verdict d'échec.
+  experiments <- list(c('01','rate <- 0.05','rate <- 0.10','01/capital.csv','gain_UM','1000'),
+                      c('07','cac_weight <- 0.60','cac_weight <- 0.80','07/capital_panier.csv','capital_UM',''),
+                      c('08','confidence <- 0.95','confidence <- 0.99','08/risque.csv','confidence','0.99'),
+                      c('10','horizon <- 20','horizon <- 40','10/scenarios.csv','final_capital_UM',''),
+                      c('11','train_fraction <- 0.80','train_fraction <- 0.70','11/estimations_test.csv','actual_CAC',''))
+  for (experiment in experiments) {
+    target <- copy_project(paste0('experiment-',experiment[1]))
+    script <- scripts[as.integer(experiment[1])+1]
+    lines <- readLines(file.path(target,'scripts',script),warn=FALSE)
+    check(paste('Paramètre présent',experiment[1]), sum(grepl(experiment[2],lines,fixed=TRUE)) == 1)
+    lines <- sub(experiment[2],experiment[3],lines,fixed=TRUE)
+    writeLines(lines,file.path(target,'scripts',script))
+    result <- run_child(target,file.path('scripts',script))
+    check(paste('Variation valide',experiment[1]),result$status == 0 && grepl('Observation cohérente',result$output,fixed=TRUE))
+    if(nzchar(experiment[6])) check(paste('Valeur modifiée',experiment[1]),
+      equal_num(read_output(target,experiment[4])[[experiment[5]]],as.numeric(experiment[6])))
   }
-
-  # Equivalent mathematique : le controle ne compare pas le texte du code.
-  alternative <- make_copy("variante-valide")
-  write_script(alternative,"variante.R",c(
-    "prix_cafe=3;quantite_cafe=2;prix_the=5;quantite_the=1;prix_sandwich=8;quantite_sandwich=1",
-    "total_panier=sum(c(6,5,8));cout_panier=sum(c(2,2,3));marge_panier=sum(c(4,3,5))"))
-  expect_run("calcul equivalent accepte",alternative,"checks/01_panier.R","variante.R")
-  perturbation <- make_copy("perturbation-tolerable")
-  original <- readLines(file.path(perturbation,"solutions/01_panier_solution.R"),warn=FALSE)
-  write_script(perturbation,"variante.R",c(original,
-    "total_panier <- total_panier + 1e-10", "marge_panier <- marge_panier - 1e-10"))
-  expect_run("difference numerique negligeable acceptee",perturbation,"checks/01_panier.R","variante.R")
-
-  # M8 doit travailler sur un nouveau chemin et de nouvelles valeurs.
-  fixed <- make_copy("fonction-a-nombres-fixes")
-  original <- readLines(file.path(fixed,"solutions/08_automatiser_solution.R"),warn=FALSE)
-  write_script(fixed,"fausse_fonction.R",c(original,
-    "resumer_commandes <- function(chemin) resultat_semaine_2"))
-  expect_run("fonction a nombres fixes refusee",fixed,"checks/08_automatiser.R",
-             "fausse_fonction.R",succeeds=FALSE)
-  general <- make_copy("fonction-nouvelles-valeurs")
-  write_script(general,"nouveau_carnet.R",c(
-    "source('solutions/08_automatiser_solution.R')",
-    "nouveau <- data.frame(id=c('X1','X2','X1','X3'),date='2026-10-22',produit=c('Cafe','The','Cafe','Sandwich'),quantite=c(5,3,5,NA),prix_unitaire=c(4,6,4,9),cout_unitaire=c(2,1,2,4))",
-    "write.csv(nouveau,'data/nouveau.csv',row.names=FALSE)",
-    "r <- resumer_commandes('data/nouveau.csv')",
-    "stopifnot(nrow(r)==1,r$chiffre_affaires==38,r$cout_total==13,r$marge==25,r$quantite==8,r$n_commandes==2)"))
-  expect_run("fonction accepte un carnet avec prix et quantites modifies",general,"nouveau_carnet.R")
-
-  console <- make_copy("console")
-  write_script(console,"console.R",c(
-    "avant_dossier <- getwd()",
-    "png(tempfile(fileext='.png')); avant_appareil <- dev.cur()",
-    "source('checks/01_panier.R')",
-    "stopifnot(exists('controle'),!controle$ok)",
-    "stopifnot(identical(names(controle),c('ok','results','error')))",
-    "stopifnot(length(controle$results)==2,is.null(controle$error))",
-    "stopifnot(all(vapply(controle$results,function(x) identical(names(x),c('label','pass')),logical(1))))",
-    "stopifnot(getwd()==avant_dossier,dev.cur()==avant_appareil)",
-    "dev.off()", "cat('SESSION_PRESERVEE\\n')"))
-  expect_run("source preserve session, dossier et ancien appareil",console,"console.R")
-  expect_run("source ignore les arguments du processus appelant",console,"console.R",
-             args="ce-chemin-nexiste-pas.R")
-
-  no_inherit <- make_copy("sans-heritage-console")
-  write_script(no_inherit,"missions/01_panier.R",c(
-    "prix_cafe=3;quantite_cafe=2;prix_the=5;quantite_the=1;prix_sandwich=8;quantite_sandwich=1",
-    "total_panier <- oubli_console;cout_panier <- 7;marge_panier <- 12"))
-  write_script(no_inherit,"console.R",c(
-    "oubli_console <- 19", "source('checks/01_panier.R')",
-    "stopifnot(!controle$ok)"))
-  expect_run("les objets precedents de Console ne valident pas le script",no_inherit,"console.R")
-
-  stale <- make_copy("sans-anciens-exports")
-  write_script(stale,"console.R",c(
-    "source('solutions/06_visualiser_solution.R')",
-    "source('checks/06_visualiser.R')", "stopifnot(!controle$ok)"))
-  expect_run("les anciens graphiques ne valident pas le starter",stale,"console.R")
-
-  # Retour detaille : une reussite partielle reste a reprendre, sans masquer les acquis.
-  partial <- make_copy("retour-detaille")
-  source_lines <- readLines(file.path(partial,"solutions/01_panier_solution.R"),warn=FALSE)
-  write_script(partial,"missions/01_panier.R",c(source_lines,"marge_panier <- 0"))
-  write_script(partial,"console.R",c(
-    "source('checks/01_panier.R')",
-    "stopifnot(!controle$ok,is.null(controle$error))",
-    "stopifnot(identical(vapply(controle$results,function(x)x$pass,logical(1)),c(TRUE,FALSE)))"))
-  expect_run("retour detaille distingue acquis et correction restante",partial,"console.R")
-
-  # Une erreur de script rend la main et ferme seulement les nouveaux appareils.
-  broken <- make_copy("erreur-preserve-session")
-  write_script(broken,"missions/01_panier.R",c("png(tempfile(fileext='.png'))","stop('essai interrompu')"))
-  write_script(broken,"console.R",c(
-    "avant_dossier <- getwd()",
-    "png(tempfile(fileext='.png')); avant_appareils <- dev.list()",
-    "source('checks/01_panier.R')",
-    "stopifnot(!controle$ok,grepl('essai interrompu',controle$error),length(controle$results)==0)",
-    "stopifnot(getwd()==avant_dossier,identical(dev.list(),avant_appareils))",
-    "dev.off()"))
-  expect_run("erreur preserve dossier session et appareils precedents",broken,"console.R")
-
-  absent <- make_copy("script-introuvable")
-  write_script(absent,"console.R",c(
-    "source('checks/check_tools.R')",
-    "avant_dossier <- getwd()",
-    "r <- run_check('chemin_absent',function(s,check)stop('ne doit pas etre appele'))",
-    "stopifnot(!r$ok,length(r$results)==0,is.character(r$error),getwd()==avant_dossier)"))
-  expect_run("script absent retourne une explication sans interrompre la session",absent,"console.R")
-
-  failed <- vapply(results,function(x)!x$ok,logical(1))
-  cat(sum(!failed), "/",length(results)," verifications reussies.\n",sep="")
-  if (any(failed)) stop(sum(failed)," verification(s) en echec.",call.=FALSE)
-  invisible(TRUE)
+  invalid_parameters <- list(c('07','capital <- 10000','capital <- -100'),
+                             c('08','confidence <- 0.95','confidence <- 1'),
+                             c('10','horizon <- 20','horizon <- 2.5'),
+                             c('11','train_fraction <- 0.80','train_fraction <- 1.2'))
+  for (variant in invalid_parameters) {
+    target <- copy_project(paste0('invalid-',variant[1]))
+    script <- scripts[as.integer(variant[1])+1]
+    lines <- readLines(file.path(target,'scripts',script),warn=FALSE)
+    writeLines(sub(variant[2],variant[3],lines,fixed=TRUE),file.path(target,'scripts',script))
+    check(paste('Paramètre invalide refusé avec message',variant[1]),
+          run_child(target,file.path('scripts',script))$status != 0)
+  }
+  reconstruction <- copy_project('reconstruction')
+  file.copy(file.path(root,'authoring/exporter_donnees.R'),file.path(reconstruction,'export.R'))
+  check('Reconstruction auteur exécutable sans écrire data/',run_child(reconstruction,'export.R')$status == 0)
+  rebuilt <- tools::md5sum(file.path(reconstruction,'outputs/reconstruction_source',basename(source_path)))
+  check('Reconstruction exacte et sources préservées',identical(unname(rebuilt),unname(before)) &&
+        identical(unname(tools::md5sum(file.path(reconstruction,source_path))),unname(before)))
+  corrupted <- copy_project('corrupted')
+  bad <- tiny; bad$DAX[1] <- -1
+  write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
+  check("Prix non positif refusé",run_child(corrupted,file.path('scripts',scripts[5]))$status != 0)
+  bad <- tiny; names(bad)[2] <- 'inconnue'
+  write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
+  check("Mauvaise colonne refusée",run_child(corrupted,file.path('scripts',scripts[3]))$status != 0)
+  bad <- rbind(tiny,tiny[2,]); bad$CAC[5] <- 999
+  write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
+  check("Identifiant contradictoire refusé",run_child(corrupted,file.path('scripts',scripts[4]))$status != 0)
+  bad <- tiny; bad$DAX[1] <- Inf
+  write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
+  check("Niveau infini refusé",run_child(corrupted,file.path('scripts',scripts[5]))$status != 0)
+  bad <- tiny; bad$observation[1] <- NA
+  write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)
+  check("Observation manquante refusée",run_child(corrupted,file.path('scripts',scripts[5]))$status != 0)
+  check("Poids hors intervalle refusé",expect_error(basket_returns(data.frame(CAC=.01,DAX=.02),1.1)))
+  check("Confiance hors intervalle refusée",expect_error(risk_summary(c(.1,-.1),confidence=1)))
+  wrong <- file.path(workspace,'wrong-root'); dir.create(wrong)
+  wrong_run <- run_child(wrong,file.path(root,'scripts',scripts[1]))
+  check("Mauvaise racine : message français et récupération File > Open Project", wrong_run$status != 0 &&
+        grepl('File > Open Project',wrong_run$output,fixed=TRUE))
+  # Une session Source peut contenir d'anciens objets : le script repart de son CSV.
+  preserved <- copy_project('stale-memory')
+  writeLines(c("portfolio <- rep(999,1859); wealth <- rep(1,1860)",
+    "source('scripts/07_composer_un_portefeuille.R')", "cat('SESSION_PRESERVEE\\n')"),file.path(preserved,'stale.R'))
+  old_run <- run_child(preserved,'stale.R')
+  check("Mémoire ancienne ignorée et session Source préservée",old_run$status == 0 &&
+        grepl('SESSION_PRESERVEE',old_run$output,fixed=TRUE) &&
+        equal_num(read_output(preserved,'07/capital_panier.csv')$capital_UM,wealth))
+  check("Tests et essais ne modifient aucun CSV original",identical(tools::md5sum(source_path),before))
+  cat(checks, "vérifications réussies ; 13 scripts, 13 copies sans outputs, nouveaux processus et oracles indépendants.\n")
 }
 main()

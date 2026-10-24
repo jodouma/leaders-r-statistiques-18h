@@ -1,0 +1,915 @@
+{
+  "schema_version": 1,
+  "scenario": "Noria Gestion",
+  "language": "fr",
+  "generated_from": "data/marches_source.csv et marches_brut.csv, exécutés sous R 4.6.1/macOS",
+  "student_packages": "R base >= 4.1 ; aucun package additionnel",
+  "workflow": {
+    "open": "course.Rproj",
+    "run": "Ouvrir scripts/<fichier>.R ; B01 puis B02… avec Run ou Ctrl+Enter ; Source optionnel.",
+    "independence": "Chaque fichier prépare ses propres entrées ; aucun fichier précédent requis.",
+    "destinations": {
+      "text": "Console",
+      "objects": "Environment",
+      "interactive_plots": "Plots",
+      "files": "outputs/<étape>/"
+    },
+    "wrong_root": "Dossier incorrect : ouvrez course.Rproj (File > Open Project), puis relancez B01."
+  },
+  "dataset": {
+    "name": "datasets::EuStockMarkets",
+    "source_period": "1991–1998",
+    "source_rows": 1860,
+    "market_columns": [
+      "DAX",
+      "SMI",
+      "CAC",
+      "FTSE"
+    ],
+    "identifier": "observation, entier 1…1860 ; ordre sans dates reconstituées",
+    "calendar": "business time, weekends et jours fériés omis",
+    "raw_rows": 1862,
+    "unique_rows": 1861,
+    "complete_rows": 1860,
+    "quarantined_rows": 1,
+    "return_rows": 1859,
+    "added_anomalies": [
+      "Une copie exacte de l’observation 100 ajoutée après les 1860 lignes.",
+      "Une observation éducative 1861 : derniers niveaux DAX/SMI/CAC conservés et FTSE manquante."
+    ],
+    "data_provenance": "data/sources.json"
+  },
+  "limitations": [
+    "Historique ancien illustratif, sans cours actuels ni recommandation d’investissement.",
+    "Niveaux d’indices, pas des prix TND ni des produits tradables.",
+    "Observation = ordre ; aucune date de marché inventée.",
+    "Comparaison en base 100 et rendements en devises locales. Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Conventions des indices potentiellement différentes.",
+    "Tout panier est pédagogique, pondéré et rééquilibré à chaque observation ; capital en UM.",
+    "VaR historique par observation, quantile type 7 ; ni perte maximale ni garantie future.",
+    "Drawdown calculé avec le capital initial dans le chemin et le sommet courant.",
+    "Simulation bootstrap avec remise, hypothèse iid simplificatrice, sans garantie future.",
+    "Régression simultanée CAC~DAX : association contemporaine, ni prévision du lendemain ni causalité ; entraînement avant test.",
+    "Exemples arithmétiques et choc explicitement inventés."
+  ],
+  "scripts": [
+    {
+      "step": "00",
+      "path": "scripts/00_premiers_pas.R",
+      "title": "premiers pas dans RStudio",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Lire une petite expression",
+          "line_start": 16,
+          "line_end": 20
+        },
+        {
+          "id": "B03",
+          "title": "Nommer puis consulter une valeur",
+          "line_start": 21,
+          "line_end": 32
+        },
+        {
+          "id": "B04",
+          "title": "Essayer et garder une trace",
+          "line_start": 33,
+          "line_end": 40
+        }
+      ],
+      "outputs": [
+        "outputs/00/premier_calcul.csv"
+      ],
+      "expected": {
+        "console": [
+          300,
+          10000,
+          "UM",
+          10500
+        ],
+        "observation": "La valeur nommée capital est réutilisée ; outputs/00/premier_calcul.csv est créé."
+      },
+      "experiment": {
+        "block": "B03",
+        "parameter": "capital",
+        "default": 10000,
+        "try": 12000,
+        "rerun": [
+          "B03",
+          "B04"
+        ],
+        "expect": "Le capital final passe à 12500 UM.",
+        "expected_value": 12500
+      }
+    },
+    {
+      "step": "01",
+      "path": "scripts/01_capital_et_pourcentages.R",
+      "title": "capital et pourcentages",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Décrire le petit scénario inventé",
+          "line_start": 16,
+          "line_end": 24
+        },
+        {
+          "id": "B03",
+          "title": "Calculer le gain puis le capital final",
+          "line_start": 25,
+          "line_end": 36
+        },
+        {
+          "id": "B04",
+          "title": "Composer deux périodes",
+          "line_start": 37,
+          "line_end": 49
+        }
+      ],
+      "outputs": [
+        "outputs/01/capital.csv"
+      ],
+      "expected": {
+        "gain_UM": 500,
+        "first_final_UM": 10500,
+        "return_100_to_102_percent": 2,
+        "compounded_final_UM": 9975,
+        "observation": "+5 % puis −5 % ne ramène pas à 10000 UM."
+      },
+      "experiment": {
+        "block": "B02",
+        "parameter": "rate",
+        "default": 0.05,
+        "try": 0.1,
+        "rerun": [
+          "B02",
+          "B03",
+          "B04"
+        ],
+        "expect": "Le gain passe à 1000 UM ; capital après la première période : 11000 UM.",
+        "expected_gain_UM": 1000
+      }
+    },
+    {
+      "step": "02",
+      "path": "scripts/02_importer_les_marches.R",
+      "title": "importer les marchés",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Importer le CSV réel enrichi",
+          "line_start": 16,
+          "line_end": 23
+        },
+        {
+          "id": "B03",
+          "title": "Examiner une colonne et ses premières valeurs",
+          "line_start": 24,
+          "line_end": 30
+        },
+        {
+          "id": "B04",
+          "title": "Comparer la source et le fichier d'entraînement",
+          "line_start": 31,
+          "line_end": 44
+        }
+      ],
+      "outputs": [
+        "outputs/02/importation.csv"
+      ],
+      "expected": {
+        "raw_rows": 1862,
+        "source_rows": 1860,
+        "columns": 5,
+        "observation": "Les deux fichiers ont les mêmes 1860 premières observations réelles."
+      },
+      "experiment": {
+        "block": "B04",
+        "parameter": "preview_rows",
+        "default": 6,
+        "try": 10,
+        "rerun": [
+          "B04"
+        ],
+        "expect": "Dix lignes originales sont affichées au lieu de six ; le CSV ne change pas."
+      }
+    },
+    {
+      "step": "03",
+      "path": "scripts/03_controler_les_donnees.R",
+      "title": "contrôler les données",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 15
+        },
+        {
+          "id": "B02",
+          "title": "Repérer les anomalies ajoutées pour apprendre",
+          "line_start": 16,
+          "line_end": 26
+        },
+        {
+          "id": "B03",
+          "title": "Séparer, sans supprimer un rendement extrême réel",
+          "line_start": 27,
+          "line_end": 38
+        },
+        {
+          "id": "B04",
+          "title": "Enregistrer les deux tables et vérifier",
+          "line_start": 39,
+          "line_end": 45
+        },
+        {
+          "id": "B05",
+          "title": "Essayer une valeur manquante en mémoire",
+          "line_start": 46,
+          "line_end": 56
+        }
+      ],
+      "outputs": [
+        "outputs/03/controle.csv",
+        "outputs/03/marches_propres.csv",
+        "outputs/03/quarantaine.csv"
+      ],
+      "expected": {
+        "raw_rows": 1862,
+        "unique_rows": 1861,
+        "clean_rows": 1860,
+        "quarantine_rows": 1,
+        "duplicates": 1,
+        "observation": "Le doublon 100 est retiré ; la ligne artificielle 1861 part en quarantaine ; aucun extrême réel supprimé."
+      },
+      "experiment": {
+        "block": "B05",
+        "parameter": "demo_row",
+        "default": 10,
+        "try": 20,
+        "rerun": [
+          "B05"
+        ],
+        "expect": "La ligne artificielle incomplète et l’observation20 modifiée en mémoire partent en quarantaine ; total2. Les CSV restent intacts.",
+        "expected_quarantine_rows": 2
+      }
+    },
+    {
+      "step": "04",
+      "path": "scripts/04_calculer_les_rendements.R",
+      "title": "calculer les rendements",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 18
+        },
+        {
+          "id": "B02",
+          "title": "Comprendre une seule variation réelle",
+          "line_start": 19,
+          "line_end": 26
+        },
+        {
+          "id": "B03",
+          "title": "Étendre le même calcul aux observations voisines",
+          "line_start": 27,
+          "line_end": 37
+        },
+        {
+          "id": "B04",
+          "title": "Observer et vérifier une série",
+          "line_start": 38,
+          "line_end": 48
+        }
+      ],
+      "outputs": [
+        "outputs/04/rendements.csv",
+        "outputs/04/rendements.png"
+      ],
+      "expected": {
+        "returns_rows": 1859,
+        "first_CAC_old": 1772.8,
+        "first_CAC_new": 1750.5,
+        "first_CAC_return": -0.0125789711191335,
+        "observation": "Le rendement CAC de la première paire est environ −1,258 %, soit −0,01258 en décimal."
+      },
+      "experiment": {
+        "block": "B04",
+        "parameter": "market",
+        "default": "CAC",
+        "try": "DAX",
+        "rerun": [
+          "B04"
+        ],
+        "expect": "La courbe affiche DAX ; 1859 variations restent disponibles."
+      }
+    },
+    {
+      "step": "05",
+      "path": "scripts/05_decrire_les_variations.R",
+      "title": "décrire les variations",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Décrire une colonne",
+          "line_start": 20,
+          "line_end": 28
+        },
+        {
+          "id": "B03",
+          "title": "Mettre les statistiques dans une table",
+          "line_start": 29,
+          "line_end": 37
+        },
+        {
+          "id": "B04",
+          "title": "Voir la répartition et expérimenter",
+          "line_start": 38,
+          "line_end": 48
+        }
+      ],
+      "outputs": [
+        "outputs/05/distribution.png",
+        "outputs/05/statistiques.csv"
+      ],
+      "expected": {
+        "statistics": {
+          "market": "CAC",
+          "observations": 1859.0,
+          "mean_percent": 0.0497947105699137,
+          "median_percent": 0.0,
+          "sd_percent": 1.10268267797072,
+          "min_percent": -7.295500741636,
+          "max_percent": 6.28748161279371
+        },
+        "observation": "CAC : moyenne ≈0,050 % et écart-type ≈1,103 % par observation ; médiane 0 %."
+      },
+      "experiment": {
+        "block": "B04",
+        "parameter": "bins",
+        "default": 30,
+        "try": 15,
+        "rerun": [
+          "B04"
+        ],
+        "expect": "La forme des barres change, mais les statistiques et les données restent identiques."
+      }
+    },
+    {
+      "step": "06",
+      "path": "scripts/06_comparer_les_marches.R",
+      "title": "comparer les marchés",
+      "route": "socle",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Partir de la même base 100",
+          "line_start": 20,
+          "line_end": 28
+        },
+        {
+          "id": "B03",
+          "title": "Tracer une comparaison normalisée",
+          "line_start": 29,
+          "line_end": 39
+        },
+        {
+          "id": "B04",
+          "title": "Mesurer une association",
+          "line_start": 40,
+          "line_end": 47
+        }
+      ],
+      "outputs": [
+        "outputs/06/comparaison.png",
+        "outputs/06/correlations.csv",
+        "outputs/06/indices_base100.csv"
+      ],
+      "expected": {
+        "final_normalized": {
+          "observation": 1860.0,
+          "DAX": 336.06876438987,
+          "SMI": 457.439961861629,
+          "CAC": 225.349729241877,
+          "FTSE": 223.236208872156
+        },
+        "correlations": [
+          {
+            "market": "DAX",
+            "DAX": 1.0,
+            "SMI": 0.701037434232913,
+            "CAC": 0.733363457753926,
+            "FTSE": 0.637932179603114
+          },
+          {
+            "market": "SMI",
+            "DAX": 0.701037434232913,
+            "SMI": 1.0,
+            "CAC": 0.614537987917767,
+            "FTSE": 0.582973894632466
+          },
+          {
+            "market": "CAC",
+            "DAX": 0.733363457753926,
+            "SMI": 0.614537987917767,
+            "CAC": 1.0,
+            "FTSE": 0.647326135139365
+          },
+          {
+            "market": "FTSE",
+            "DAX": 0.637932179603114,
+            "SMI": 0.582973894632466,
+            "CAC": 0.647326135139365,
+            "FTSE": 1.0
+          }
+        ],
+        "observation": "Toutes les séries partent à 100 ; association positive CAC/DAX ≈0,733."
+      },
+      "experiment": {
+        "block": "B03",
+        "parameter": "selected",
+        "default": [
+          "CAC",
+          "DAX",
+          "SMI",
+          "FTSE"
+        ],
+        "try": [
+          "CAC",
+          "DAX"
+        ],
+        "rerun": [
+          "B03"
+        ],
+        "expect": "Deux courbes, toutes deux au départ 100."
+      }
+    },
+    {
+      "step": "07",
+      "path": "scripts/07_composer_un_portefeuille.R",
+      "title": "composer un panier pédagogique",
+      "route": "analyse",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Choisir les poids et calculer le panier",
+          "line_start": 20,
+          "line_end": 31
+        },
+        {
+          "id": "B03",
+          "title": "Composer le capital au fil des observations",
+          "line_start": 32,
+          "line_end": 41
+        },
+        {
+          "id": "B04",
+          "title": "Visualiser puis modifier une hypothèse",
+          "line_start": 42,
+          "line_end": 51
+        }
+      ],
+      "outputs": [
+        "outputs/07/capital_panier.csv",
+        "outputs/07/capital_panier.png",
+        "outputs/07/rendements_panier.csv"
+      ],
+      "expected": {
+        "CAC_weight": 0.6,
+        "DAX_weight": 0.4,
+        "capital_initial_UM": 10000,
+        "capital_final_UM": 26803.1417983382,
+        "observation": "Le panier rééquilibré finit vers 26803,14 UM sur cet historique ancien."
+      },
+      "experiment": {
+        "block": "B02",
+        "parameter": "cac_weight",
+        "default": 0.6,
+        "try": 0.8,
+        "rerun": [
+          "B02",
+          "B03",
+          "B04"
+        ],
+        "expect": "Les poids deviennent 80 % CAC et 20 % DAX ; le chemin et le capital final changent.",
+        "expected_final_UM": 24632.3134824392
+      }
+    },
+    {
+      "step": "08",
+      "path": "scripts/08_mesurer_le_risque.R",
+      "title": "mesurer le risque historique",
+      "route": "analyse",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 20
+        },
+        {
+          "id": "B02",
+          "title": "Transformer les variations en pertes",
+          "line_start": 21,
+          "line_end": 34
+        },
+        {
+          "id": "B03",
+          "title": "Mesurer la baisse depuis un sommet déjà atteint",
+          "line_start": 35,
+          "line_end": 46
+        },
+        {
+          "id": "B04",
+          "title": "Lire la profondeur des baisses",
+          "line_start": 47,
+          "line_end": 56
+        }
+      ],
+      "outputs": [
+        "outputs/08/drawdown.csv",
+        "outputs/08/drawdown.png",
+        "outputs/08/risque.csv"
+      ],
+      "expected": {
+        "risk": {
+          "confidence": 0.95,
+          "historical_VaR_UM": 153.048193387865,
+          "maximum_drawdown": -0.217466812978689,
+          "final_capital_UM": 26803.1417983382
+        },
+        "observation": "VaR historique 95 % ≈153,05 UM par observation ; drawdown maximal ≈−21,75 %."
+      },
+      "experiment": {
+        "block": "B02",
+        "parameter": "confidence",
+        "default": 0.95,
+        "try": 0.99,
+        "rerun": [
+          "B02",
+          "B03",
+          "B04"
+        ],
+        "expect": "Le seuil de VaR augmente ou reste identique ; le drawdown ne change pas."
+      }
+    },
+    {
+      "step": "09",
+      "path": "scripts/09_tester_un_choc.R",
+      "title": "tester un choc inventé",
+      "route": "analyse",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Poser le scénario inventé, distinct de l'historique",
+          "line_start": 20,
+          "line_end": 38
+        },
+        {
+          "id": "B03",
+          "title": "Décomposer la perte du panier",
+          "line_start": 39,
+          "line_end": 49
+        },
+        {
+          "id": "B04",
+          "title": "Comparer les contributions et expérimenter",
+          "line_start": 50,
+          "line_end": 60
+        }
+      ],
+      "outputs": [
+        "outputs/09/choc.csv",
+        "outputs/09/choc.png",
+        "outputs/09/contributions_choc.csv"
+      ],
+      "expected": {
+        "scenario_return": -0.06,
+        "final_capital_UM": 9400,
+        "CAC_contribution": -0.012,
+        "DAX_contribution": -0.048,
+        "observation": "Le choc inventé produit −6 %, soit une perte de 600 UM."
+      },
+      "experiment": {
+        "block": "B02",
+        "parameter": "dax_shock",
+        "default": -0.12,
+        "try": -0.2,
+        "rerun": [
+          "B02",
+          "B03",
+          "B04"
+        ],
+        "expect": "Le panier perd 9,2 % ; le capital final vaut 9080 UM.",
+        "expected_return": -0.092,
+        "expected_final_UM": 9080
+      }
+    },
+    {
+      "step": "10",
+      "path": "scripts/10_simuler_des_scenarios.R",
+      "title": "simuler des scénarios (option)",
+      "route": "option",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 20
+        },
+        {
+          "id": "B02",
+          "title": "Fixer les hypothèses de simulation",
+          "line_start": 21,
+          "line_end": 41
+        },
+        {
+          "id": "B03",
+          "title": "Composer chaque scénario et lire des quantiles",
+          "line_start": 42,
+          "line_end": 52
+        },
+        {
+          "id": "B04",
+          "title": "Lire la dispersion puis changer l'horizon",
+          "line_start": 53,
+          "line_end": 64
+        }
+      ],
+      "outputs": [
+        "outputs/10/quantiles_simules.csv",
+        "outputs/10/scenarios.csv",
+        "outputs/10/simulation.png"
+      ],
+      "expected": {
+        "seed": 2026,
+        "horizon_observations": 20,
+        "paths": 5000,
+        "quantiles": [
+          {
+            "probability": 0.05,
+            "final_capital_UM": 9381.10470820918
+          },
+          {
+            "probability": 0.5,
+            "final_capital_UM": 10118.3098221356
+          },
+          {
+            "probability": 0.95,
+            "final_capital_UM": 10863.2115065177
+          }
+        ],
+        "observation": "Capital final simulé : quantiles 5/50/95 % ≈9381,10 / 10118,31 / 10863,21 UM."
+      },
+      "experiment": {
+        "block": "B02",
+        "parameter": "horizon",
+        "default": 20,
+        "try": 40,
+        "rerun": [
+          "B02",
+          "B03",
+          "B04"
+        ],
+        "expect": "Les quantiles et la dispersion simulés changent ; 5000 scénarios restent calculés.",
+        "note": "La graine est identique, mais le nombre de tirages et leur groupement changent."
+      }
+    },
+    {
+      "step": "11",
+      "path": "scripts/11_tester_un_modele.R",
+      "title": "tester une association (option)",
+      "route": "option",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 19
+        },
+        {
+          "id": "B02",
+          "title": "Séparer le passé en deux parties chronologiques",
+          "line_start": 20,
+          "line_end": 30
+        },
+        {
+          "id": "B03",
+          "title": "Ajuster, puis estimer sur la partie réservée",
+          "line_start": 31,
+          "line_end": 39
+        },
+        {
+          "id": "B04",
+          "title": "Comparer les erreurs sur les mêmes lignes",
+          "line_start": 40,
+          "line_end": 50
+        },
+        {
+          "id": "B05",
+          "title": "Examiner l'association et ses limites",
+          "line_start": 51,
+          "line_end": 62
+        }
+      ],
+      "outputs": [
+        "outputs/11/erreurs_test.csv",
+        "outputs/11/estimations_test.csv",
+        "outputs/11/modele.png"
+      ],
+      "expected": {
+        "train_rows": 1487,
+        "test_rows": 372,
+        "last_train_observation": 1488,
+        "first_test_observation": 1489,
+        "RMSE_percent": [
+          {
+            "method": "droite CAC ~ DAX",
+            "test_RMSE_percent": 0.830703396296193
+          },
+          {
+            "method": "moyenne CAC entraînement",
+            "test_RMSE_percent": 1.34122632461
+          }
+        ],
+        "observation": "RMSE test du modèle ≈0,831 point de % contre ≈1,341 pour la moyenne d’entraînement ; résultat limité à ce découpage."
+      },
+      "experiment": {
+        "block": "B02",
+        "parameter": "train_fraction",
+        "default": 0.8,
+        "try": 0.7,
+        "rerun": [
+          "B02",
+          "B03",
+          "B04",
+          "B05"
+        ],
+        "expect": "1301 observations pour ajuster, 558 pour tester ; les RMSE changent.",
+        "expected_train_rows": 1301,
+        "expected_test_rows": 558
+      }
+    },
+    {
+      "step": "12",
+      "path": "scripts/12_automatiser_le_rapport.R",
+      "title": "automatiser un rapport local (option)",
+      "route": "option",
+      "blocks": [
+        {
+          "id": "B01",
+          "title": "Préparer cette séance",
+          "line_start": 6,
+          "line_end": 18
+        },
+        {
+          "id": "B02",
+          "title": "Définir une tâche réutilisable",
+          "line_start": 19,
+          "line_end": 34
+        },
+        {
+          "id": "B03",
+          "title": "Appeler la recette pour plusieurs poids",
+          "line_start": 35,
+          "line_end": 46
+        },
+        {
+          "id": "B04",
+          "title": "Dessiner la comparaison et fabriquer le HTML",
+          "line_start": 47,
+          "line_end": 73
+        },
+        {
+          "id": "B05",
+          "title": "Retrouver et relire le livrable",
+          "line_start": 74,
+          "line_end": 79
+        }
+      ],
+      "outputs": [
+        "outputs/12/comparaison_paniers.csv",
+        "outputs/12/comparaison_paniers.png",
+        "outputs/12/rapport_noria.html"
+      ],
+      "expected": {
+        "baskets": [
+          {
+            "CAC_weight": 0.4,
+            "DAX_weight": 0.6,
+            "initial_capital_UM": 10000.0,
+            "input_rows": 1862.0,
+            "duplicate_rows": 1.0,
+            "quarantine_rows": 1.0,
+            "complete_rows": 1860.0,
+            "observations": 1859.0,
+            "confidence": 0.95,
+            "historical_VaR_UM": 149.81887007778,
+            "maximum_drawdown": -0.220168460298502,
+            "final_capital_UM": 29033.4941667173
+          },
+          {
+            "CAC_weight": 0.6,
+            "DAX_weight": 0.4,
+            "initial_capital_UM": 10000.0,
+            "input_rows": 1862.0,
+            "duplicate_rows": 1.0,
+            "quarantine_rows": 1.0,
+            "complete_rows": 1860.0,
+            "observations": 1859.0,
+            "confidence": 0.95,
+            "historical_VaR_UM": 153.048193387865,
+            "maximum_drawdown": -0.217466812978689,
+            "final_capital_UM": 26803.1417983382
+          },
+          {
+            "CAC_weight": 0.8,
+            "DAX_weight": 0.2,
+            "initial_capital_UM": 10000.0,
+            "input_rows": 1862.0,
+            "duplicate_rows": 1.0,
+            "quarantine_rows": 1.0,
+            "complete_rows": 1860.0,
+            "observations": 1859.0,
+            "confidence": 0.95,
+            "historical_VaR_UM": 160.899762887867,
+            "maximum_drawdown": -0.236489205707697,
+            "final_capital_UM": 24632.3134824392
+          }
+        ],
+        "report": "outputs/12/rapport_noria.html",
+        "observation": "Trois comparaisons et un rapport HTML local ; les images restent dans le même dossier."
+      },
+      "experiment": {
+        "block": "B03",
+        "parameter": "weights",
+        "default": [
+          0.4,
+          0.6,
+          0.8
+        ],
+        "try": [
+          0.2,
+          0.6,
+          1.0
+        ],
+        "rerun": [
+          "B03",
+          "B04",
+          "B05"
+        ],
+        "expect": "Le rapport est remplacé par trois nouvelles comparaisons ; la ligne 60 % CAC reste identique."
+      }
+    }
+  ]
+}
