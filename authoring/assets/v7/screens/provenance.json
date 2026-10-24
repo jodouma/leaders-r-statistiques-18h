@@ -10,7 +10,8 @@
     "run_code_section_menu": "authoring/assets/v7/screens/run_code_section_menu.png",
     "source_section_jump": "authoring/assets/v7/screens/source_section_jump.png",
     "edit_parameter_12000": "authoring/assets/v7/screens/edit_parameter_12000.png",
-    "plot_zoom": "authoring/assets/v7/screens/plot_zoom.png"
+    "plot_zoom": "authoring/assets/v7/screens/plot_zoom.png",
+    "auto_csv_view": "authoring/assets/v7/screens/auto_csv_view.png"
   },
   "assets": {
     "files_more_root": {
@@ -194,6 +195,29 @@
       "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
       "browser_host_OS": "macOS 26.3",
       "editing": "Rectangle crop only. No invented or replaced pixels."
+    },
+    "auto_csv_view": {
+      "path": "authoring/assets/v7/screens/auto_csv_view.png",
+      "original": "work/v7/evidence/ui/originals/auto_csv_view.png",
+      "original_sha256": "057407fad2156e380bc94cba065dd9117e21d80821f89959804a994a9c2ddc3a",
+      "crop_xyxy": [
+        8,
+        188,
+        630,
+        285
+      ],
+      "action": "Copied the current updated public course root (not the older UI worktree). Opened course.Rproj and 00_premiers_pas.R. Ran B01, B02, B03 and B04 separately with actual Run Code Section shortcut on macOS. B04 inspect_export read the actual saved CSV and automatically opened CSV premier_calcul.csv with 10000 / 500 / 10500, with the exact Source script tab visible alongside. No manual CSV opening or import dialog. Clicked exact 00_premiers_pas.R Source tab, changed capital to12000, saved, reran B03/B04: automatic CSV refreshed to12000/500/12500. Restored10000, saved, reran B03/B04: automatic CSV refreshed back to10000/500/10500.",
+      "caption": "Capture réelle de RStudio Server sous Linux, dans Chrome sur macOS : le CSV enregistré s’ouvre automatiquement en tableau après B04. Cliquez sur l’onglet 00_premiers_pas.R pour revenir au code.",
+      "capture_date": "2026-10-24",
+      "app": "RStudio Server 2026.01.1+403",
+      "R": "4.5.2",
+      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
+      "browser_host_OS": "macOS 26.3",
+      "editing": "Rectangle crop only. No invented or replaced pixels.",
+      "verified_source_sha256": {
+        "R/outils.R": "f469a7c7176b406a4e645aa47a658761a792a6dce9cec311e023fd8afe80f1b0",
+        "scripts/00_premiers_pas.R": "436d7f9b64fd924b26ea1b480779c76aa2855179f8114729a52096ab5522b188"
+      }
     }
   },
   "runtime": {
@@ -214,9 +238,13 @@
     "12 B03 via Source selector then shortcut: summary 3 rows, 12 variables; comparison CSV saved.",
     "Final exact edit: 00 B03/B04 saved capital12000, Console12500, summary12000/500/12500, CSV save and self-check succeeded.",
     "Restored capital10000, saved, reran00 B03/B04; Console10500 and summary10000/500/10500 verified.",
-    "Ran complete04 supplied script via Source; actual CAC returns plot saved; actual Plots Zoom opened and closed."
+    "Ran complete04 supplied script via Source; actual CAC returns plot saved; actual Plots Zoom opened and closed.",
+    "Updated inspect_export automatic readback: ran00 B01/B02/B03/B04 separately; actual CSV Data Viewer opened automatically10000/500/10500.",
+    "Clicked exact00 script Source tab, saved12000 and reranB03/B04; actual saved CSV Data Viewer automatically refreshed12000/500/12500.",
+    "Restored10000, saved and reranB03/B04; actual CSV Data Viewer automatically refreshed10000/500/10500."
   ],
   "navigation_note": "Go To Working Directory returns current R working directory, not necessarily project root if setwd changed it. Go to project directory icon directly returns to open project.",
   "cleanup": "Dedicated native Chrome window closed using native close button; verified original existing browser window returned. leaders-v7-ui stopped and automatically removed; docker ps -a name filter empty. Random task credential file deleted.",
-  "final_capture_cleanup": "leaders-v7-ui-final authenticated localhost-only task container stopped and automatically removed; docker ps -a name filter empty. Plot Zoom and dedicated native Chrome window closed using native close controls; original pre-existing Chrome window returned. Ephemeral credential file deleted."
+  "final_capture_cleanup": "leaders-v7-ui-final authenticated localhost-only task container stopped and automatically removed; docker ps -a name filter empty. Plot Zoom and dedicated native Chrome window closed using native close controls; original pre-existing Chrome window returned. Ephemeral credential file deleted.",
+  "csv_capture_cleanup": "Dedicated native Chrome window closed using native close control; original pre-existing window returned. Only leaders-v7-ui-csv stopped/automatically removed; docker ps -a filter empty. Task-only random credential file deleted."
 }
