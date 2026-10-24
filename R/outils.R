@@ -87,13 +87,25 @@ risk_summary <- function(returns, capital = 10000, confidence = 0.95) {
 }
 
 save_table <- function(data, folder, name) {
-  write.csv(data, file.path(folder, name), row.names = FALSE, na = "")
+  write.csv(data, file.path(folder, name), row.names = FALSE, na = "", fileEncoding = "UTF-8")
+}
+
+inspect_export <- function(folder, name) {
+  # Relire le vrai CSV, pas un objet éventuellement ancien en mémoire.
+  path <- file.path(folder, name)
+  if (!file.exists(path)) stop("Table exportée introuvable : relancez les blocs précédents.", call. = FALSE)
+  exported <- read.csv(path, stringsAsFactors = FALSE, check.names = FALSE, fileEncoding = "UTF-8")
+  cat("Table relue depuis le CSV :", path, "\n")
+  # RStudio affiche le tableau automatiquement ; aucun choix d'import à faire.
+  if (interactive()) View(exported, title = paste("CSV", name))
+  invisible(exported)
 }
 
 save_plot <- function(folder, name, drawing) {
   # Le même dessin est sauvegardé et affiché dans Plots si RStudio est ouvert.
   code <- substitute(drawing)
-  png(file.path(folder, name), width = 1400, height = 900, res = 140)
+  # Une police plus grande reste lisible dans le PDF, même en figure compacte.
+  png(file.path(folder, name), width = 1400, height = 900, res = 140, pointsize = 20)
   tryCatch(eval(code, parent.frame()), finally = dev.off())
   if (interactive()) eval(code, parent.frame())
   cat("Graphique enregistré :", file.path(folder, name), "\n")

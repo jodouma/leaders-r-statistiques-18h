@@ -13,7 +13,7 @@
       "path": "scripts/00_premiers_pas.R",
       "minutes": 10,
       "question": "Comment retrouver une valeur et garder une trace du calcul ?",
-      "prerequisite_note": "Après les gestes de départ, relancer B01–B04 dans 00_premiers_pas.R : cette répétition vérifie que vous savez refaire seul la sélection complète.",
+      "prerequisite_note": "Après les gestes de départ, relancer B01–B04 dans 00_premiers_pas.R : cette répétition vérifie que vous savez refaire seul le bloc complet.",
       "entry_scene": "v6.00.assignment",
       "exit_scene": "v6.00.trace",
       "run_blocks": [
@@ -37,7 +37,7 @@
       "transfer_ds": "Distinguer une variable, son calcul et un fichier : la base d’une analyse reproductible.",
       "transfer_finance": "Nommer le capital en UM et vérifier qu’un gain est un montant, pas un taux.",
       "proof_prompt": "Montrer capital dans Environment et premier_calcul.csv dans Files. Pourquoi le fichier reste-t-il après Restart R ?",
-      "common_blocker": "Console ne change pas : Source doit avoir le focus ; sélectionner B03 entier dans 00_premiers_pas.R, puis Ctrl+Enter.",
+      "common_blocker": "Console ne change pas : Source doit avoir le focus ; choisir B03 dans le menu de sections dans 00_premiers_pas.R, puis Ctrl+Alt+T.",
       "recap": "Je sais nommer, recalculer et retrouver une trace.",
       "activity_tasks": [
         "Repérer trois objets en mémoire et le CSV enregistré.",
@@ -47,14 +47,15 @@
       "experience_asset_key": "experience_00",
       "next_id": "01",
       "next_path": "scripts/01_capital_et_pourcentages.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 01_capital_et_pourcentages.R ; vérifier son onglet dans Source. Sélectionner puis lancer 01_capital_et_pourcentages.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 01_capital_et_pourcentages.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 01_capital_et_pourcentages.R : B01.",
       "spot_check": "Enregistrer le script avec Ctrl+S recalcule-t-il le résultat ?",
-      "spot_check_answer": "Non : Ctrl+S garde la recette ; Run ou Ctrl+Enter l’exécute.",
+      "spot_check_answer": "Non : Ctrl+S garde la recette ; Run Code Section (Ctrl+Alt+T) l’exécute.",
       "evidence_objects": [
         "capital",
         "capital_after_gain"
       ],
-      "output_path": "outputs/00/premier_calcul.csv"
+      "output_path": "outputs/00/premier_calcul.csv",
+      "observation_area": "Console et onglet CSV premier_calcul.csv"
     },
     {
       "id": "01",
@@ -96,7 +97,7 @@
       "experience_asset_key": "experience_01",
       "next_id": "02",
       "next_path": "scripts/02_importer_les_marches.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 02_importer_les_marches.R ; vérifier son onglet dans Source. Sélectionner puis lancer 02_importer_les_marches.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 02_importer_les_marches.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 02_importer_les_marches.R : B01.",
       "spot_check": "5 % de 10000 UM : taux, gain et unité ?",
       "spot_check_answer": "Taux 0.05 ; gain 500 UM ; le taux n’est pas un montant.",
       "evidence_objects": [
@@ -104,7 +105,8 @@
         "rate",
         "gain"
       ],
-      "output_path": "outputs/01/capital.csv"
+      "output_path": "outputs/01/capital.csv",
+      "observation_area": "Console et onglet CSV capital.csv"
     },
     {
       "id": "02",
@@ -129,7 +131,7 @@
       ],
       "look_at": "Console : dimensions de raw et aperçu original. Environment : cliquer l’icône de tableau de raw ; lire observation et FTSE. Files → outputs → 02 → importation.csv.",
       "expected_base": "raw : 1862 lignes × 5 colonnes ; source : 1860 lignes. preview_rows = 6 affiche six premières lignes originales.",
-      "expected_variant": "Dix lignes originales à l’écran ; raw garde 1862 lignes et la source 1860. Le nombre affiché n’est pas le nombre importé.",
+      "expected_variant": "En Console : dix lignes originales dans l’aperçu. Le CSV importation.csv conserve ses deux totaux :1860 lignes source et1862 lignes brutes.",
       "restore_instruction": "Dans 02_importer_les_marches.R, B04 : remettre preview_rows <- 6. Ctrl+S ; relancer 02_importer_les_marches.R : B04. Vérifier le résultat de référence.",
       "transfer_ds": "Inspecter dimensions, colonnes et types avant de faire confiance à un import (data frame).",
       "transfer_finance": "Identifier ce qu’un indice mesure ; garder l’ordre des observations sans inventer de dates.",
@@ -144,7 +146,7 @@
       "experience_asset_key": "experience_02",
       "next_id": "03",
       "next_path": "scripts/03_controler_les_donnees.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 03_controler_les_donnees.R ; vérifier son onglet dans Source. Sélectionner puis lancer 03_controler_les_donnees.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 03_controler_les_donnees.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 03_controler_les_donnees.R : B01.",
       "spot_check": "Une ligne de raw est-elle une date ?",
       "spot_check_answer": "Non : observation est un rang ; une ligne contient quatre niveaux d’indices.",
       "evidence_objects": [
@@ -152,7 +154,8 @@
         "original",
         "preview_rows"
       ],
-      "output_path": "outputs/02/importation.csv"
+      "output_path": "outputs/02/importation.csv",
+      "observation_area": "Console pour l’aperçu ; CSV importation.csv pour les deux totaux"
     },
     {
       "id": "03",
@@ -178,7 +181,7 @@
       ],
       "look_at": "Console : counts, puis observation dans demo_cleaned$quarantine après B05. Files → outputs → 03 → controle.csv et quarantaine.csv.",
       "expected_base": "1862 brutes → 1861 distinctes → 1860 complètes + 1 isolée. B05 : copie en mémoire avec observation 10 et 1861 isolées, soit 2.",
-      "expected_variant": "Toujours 2 lignes isolées ; observation 20 remplace 10 dans la copie en mémoire. Les CSV de data/ restent identiques.",
+      "expected_variant": "Toujours 2 lignes isolées ; observation 20 remplace 10 dans la copie en mémoire. Les CSV de data/ restent identiques. Lire la copie demo en Console ; le CSV controle.csv conserve les contrôles de référence.",
       "restore_instruction": "Dans 03_controler_les_donnees.R, B05 : remettre demo_row <- 10. Ctrl+S ; relancer 03_controler_les_donnees.R : B05. Vérifier le résultat de référence.",
       "transfer_ds": "Rendre les règles de qualité auditables : doublon, valeur manquante et trace d’exclusion.",
       "transfer_finance": "Écarter une anomalie de fichier sans effacer une forte variation de marché valide.",
@@ -193,7 +196,7 @@
       "experience_asset_key": "experience_03",
       "next_id": "04",
       "next_path": "scripts/04_calculer_les_rendements.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 04_calculer_les_rendements.R ; vérifier son onglet dans Source. Sélectionner puis lancer 04_calculer_les_rendements.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 04_calculer_les_rendements.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 04_calculer_les_rendements.R : B01.",
       "spot_check": "Pourquoi 1862 lignes brutes mais 1861 lignes distinctes ?",
       "spot_check_answer": "Une copie exacte de l’observation 100 a été ajoutée pour apprendre.",
       "evidence_objects": [
@@ -201,7 +204,8 @@
         "quarantine",
         "demo_cleaned"
       ],
-      "output_path": "outputs/03/controle.csv"
+      "output_path": "outputs/03/controle.csv",
+      "observation_area": "Console pour la copie demo ; CSV controle.csv pour la référence"
     },
     {
       "id": "04",
@@ -241,7 +245,7 @@
       "experience_asset_key": "experience_04",
       "next_id": "05",
       "next_path": "scripts/05_decrire_les_variations.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 05_decrire_les_variations.R ; vérifier son onglet dans Source. Sélectionner puis lancer 05_decrire_les_variations.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 05_decrire_les_variations.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 05_decrire_les_variations.R : B01.",
       "spot_check": "Le rendement de 100 à 105 vaut-il 5 ou 0.05 ?",
       "spot_check_answer": "0.05 en fraction, soit 5 % ; le dénominateur est 100.",
       "evidence_objects": [
@@ -249,7 +253,8 @@
         "returns",
         "market"
       ],
-      "output_path": "outputs/04/rendements.csv"
+      "output_path": "outputs/04/rendements.csv",
+      "observation_area": "Plots pour le marché choisi ; le tableau de rendements reste identique"
     },
     {
       "id": "05",
@@ -289,7 +294,7 @@
       "experience_asset_key": "experience_05",
       "next_id": "06",
       "next_path": "scripts/06_comparer_les_marches.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 06_comparer_les_marches.R ; vérifier son onglet dans Source. Sélectionner puis lancer 06_comparer_les_marches.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 06_comparer_les_marches.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 06_comparer_les_marches.R : B01.",
       "spot_check": "Une barre d’histogramme est-elle une observation ?",
       "spot_check_answer": "Non : elle compte les observations dont le rendement est dans un intervalle.",
       "evidence_objects": [
@@ -297,7 +302,8 @@
         "summary",
         "bins"
       ],
-      "output_path": "outputs/05/statistiques.csv"
+      "output_path": "outputs/05/statistiques.csv",
+      "observation_area": "Plots pour les barres ; CSV statistiques.csv pour les indicateurs inchangés"
     },
     {
       "id": "06",
@@ -345,7 +351,7 @@
       "experience_asset_key": "experience_06",
       "next_id": "07",
       "next_path": "scripts/07_composer_un_portefeuille.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 07_composer_un_portefeuille.R ; vérifier son onglet dans Source. Sélectionner puis lancer 07_composer_un_portefeuille.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 07_composer_un_portefeuille.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 07_composer_un_portefeuille.R : B01.",
       "spot_check": "Une base 100 finale de 225 signifie-t-elle +225 % ?",
       "spot_check_answer": "Non : environ +125 % depuis le départ 100.",
       "evidence_objects": [
@@ -353,7 +359,8 @@
         "selected",
         "correlations"
       ],
-      "output_path": "outputs/06/comparaison.png"
+      "output_path": "outputs/06/comparaison.png",
+      "observation_area": "Plots pour les courbes ; le CSV de base100 reste identique"
     },
     {
       "id": "07",
@@ -395,7 +402,7 @@
       "experience_asset_key": "experience_07",
       "next_id": "08",
       "next_path": "scripts/08_mesurer_le_risque.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 08_mesurer_le_risque.R ; vérifier son onglet dans Source. Sélectionner puis lancer 08_mesurer_le_risque.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 08_mesurer_le_risque.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 08_mesurer_le_risque.R : B01.",
       "spot_check": "Pourquoi le poids DAX devient-il 20 % quand CAC vaut 80 % ?",
       "spot_check_answer": "dax_weight = 1 − cac_weight ; la somme reste 100 %.",
       "evidence_objects": [
@@ -403,7 +410,8 @@
         "dax_weight",
         "path"
       ],
-      "output_path": "outputs/07/capital_panier.csv"
+      "output_path": "outputs/07/capital_panier.csv",
+      "observation_area": "Plots et CSV capital_panier.csv"
     },
     {
       "id": "08",
@@ -445,7 +453,7 @@
       "experience_asset_key": "experience_08",
       "next_id": "09",
       "next_path": "scripts/09_tester_un_choc.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 09_tester_un_choc.R ; vérifier son onglet dans Source. Sélectionner puis lancer 09_tester_un_choc.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 09_tester_un_choc.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 09_tester_un_choc.R : B01.",
       "spot_check": "VaR 95 % : peut-on perdre davantage que ce seuil ?",
       "spot_check_answer": "Oui : c’est un quantile historique, pas la perte maximale ni une garantie.",
       "evidence_objects": [
@@ -453,7 +461,8 @@
         "drawdown",
         "summary"
       ],
-      "output_path": "outputs/08/risque.csv"
+      "output_path": "outputs/08/risque.csv",
+      "observation_area": "Console et CSV risque.csv"
     },
     {
       "id": "09",
@@ -484,7 +493,7 @@
       "restore_instruction": "Dans 09_tester_un_choc.R, B02 : remettre dax_shock <- -0.12. Ctrl+S ; relancer 09_tester_un_choc.R : B02 → B03 → B04. Vérifier le résultat de référence.",
       "transfer_ds": "Faire une analyse de sensibilité : changer une hypothèse et attribuer l’effet obtenu.",
       "transfer_finance": "Relier un choc inventé aux pertes de chaque exposition sans lui attribuer une probabilité.",
-      "proof_prompt": "Montrer le terme 0.40 × −0.20. Expliquer d’où viennent −8 points et pourquoi ce calcul ne mesure aucune probabilité.",
+      "proof_prompt": "Après restauration, dans Environment → contributions, retrouver 0.40 × (−0.12) = −0.048 : −4,8 points pour DAX. Retrouver aussi −1,2 point pour CAC et −6 % au total.",
       "common_blocker": "Le signe semble étrange : dax_shock doit rester négatif ; une perte positive en UM correspond à un rendement négatif.",
       "recap": "Je sais attribuer la perte d’un scénario choisi.",
       "activity_tasks": [
@@ -495,14 +504,15 @@
       "experience_asset_key": "experience_09",
       "next_id": "10",
       "next_path": "scripts/10_simuler_des_scenarios.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 10_simuler_des_scenarios.R ; vérifier son onglet dans Source. Sélectionner puis lancer 10_simuler_des_scenarios.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 10_simuler_des_scenarios.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 10_simuler_des_scenarios.R : B01.",
       "spot_check": "Une perte de 920 UM signifie-t-elle un rendement de +9,2 % ?",
       "spot_check_answer": "Non : sur 10000 UM, le rendement est −9,2 % ; la perte est donnée positive.",
       "evidence_objects": [
         "contributions",
         "scenario_return"
       ],
-      "output_path": "outputs/09/contributions_choc.csv"
+      "output_path": "outputs/09/contributions_choc.csv",
+      "observation_area": "Console, Plots et CSV choc.csv"
     },
     {
       "id": "10",
@@ -544,7 +554,7 @@
       "experience_asset_key": "experience_10",
       "next_id": "11",
       "next_path": "scripts/11_tester_un_modele.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 11_tester_un_modele.R ; vérifier son onglet dans Source. Sélectionner puis lancer 11_tester_un_modele.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 11_tester_un_modele.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 11_tester_un_modele.R : B01.",
       "spot_check": "Une seed fixée rend-elle une simulation prédictive ?",
       "spot_check_answer": "Non : elle rend les tirages reproductibles, sous les mêmes paramètres et données.",
       "evidence_objects": [
@@ -552,7 +562,8 @@
         "paths",
         "summary"
       ],
-      "output_path": "outputs/10/quantiles_simules.csv"
+      "output_path": "outputs/10/quantiles_simules.csv",
+      "observation_area": "Plots et CSV quantiles_simules.csv"
     },
     {
       "id": "11",
@@ -596,7 +607,7 @@
       "experience_asset_key": "experience_11",
       "next_id": "12",
       "next_path": "scripts/12_automatiser_le_rapport.R",
-      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 12_automatiser_le_rapport.R ; vérifier son onglet dans Source. Sélectionner puis lancer 12_automatiser_le_rapport.R : B01.",
+      "next_instruction": "Dans Files → petit bouton R (Go to project directory) → scripts, cliquer 12_automatiser_le_rapport.R ; vérifier son onglet dans Source. Choisir le bloc puis lancer 12_automatiser_le_rapport.R : B01.",
       "spot_check": "La RMSE du test sert-elle à ajuster la droite ?",
       "spot_check_answer": "Non : la droite est ajustée sur train ; test sert à comparer au même moment les deux méthodes.",
       "evidence_objects": [
@@ -606,7 +617,8 @@
         "baseline",
         "summary"
       ],
-      "output_path": "outputs/11/erreurs_test.csv"
+      "output_path": "outputs/11/erreurs_test.csv",
+      "observation_area": "Plots et CSV erreurs_test.csv"
     },
     {
       "id": "12",
@@ -666,7 +678,8 @@
         "summary",
         "report_path"
       ],
-      "output_path": "outputs/12/rapport_noria.html"
+      "output_path": "outputs/12/rapport_noria.html",
+      "observation_area": "Navigateur : Ctrl+R après B05, puis ligne 60 % CAC"
     }
   ],
   "final_scene": "v6.final",

@@ -1,4 +1,4 @@
-name: R base — parcours finance guidé
+name: R base — Data Science et finance
 on:
   push:
   pull_request:

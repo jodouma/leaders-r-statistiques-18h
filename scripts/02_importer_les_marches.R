@@ -1,6 +1,6 @@
 # Noria Gestion — importer les marchés
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -42,3 +42,7 @@ self_check(all(c("DAX", "SMI", "CAC", "FTSE") %in% names(raw)),
            "Les quatre indices sont présents ; observation est un ordre, pas une date.")
 cat("Source : datasets::EuStockMarkets, historique 1991–1998, 1860 observations.\n")
 cat("Entraînement : un doublon exact + une ligne FTSE manquante ajoutés.\n")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "importation.csv")

@@ -1,6 +1,6 @@
 # Noria Gestion — décrire les variations
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -46,3 +46,7 @@ save_plot(output_dir, "distribution.png", {
 })
 self_check(min(series) <= median(series) && median(series) <= max(series),
            "La médiane se trouve entre le minimum et le maximum.")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "statistiques.csv")

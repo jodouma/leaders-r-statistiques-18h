@@ -13,7 +13,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Le parcours complet est dans 01_aventure_noria.pdf : 00 → 12, puis synthèse. Ce mémo sert au besoin. Ouvrir course.Rproj du dossier extrait ; dans Files → More → Go To Working Directory → scripts, cliquer le fichier .R indiqué. Son onglet apparaît dans Source."
+          "text": "Le parcours complet est dans 01_aventure_noria.pdf : 00 → 12, puis synthèse. Ce mémo sert au besoin. Ouvrir course.Rproj du dossier extrait ; dans Files → petit bouton R (Go to project directory) → scripts, cliquer le fichier .R indiqué. Son onglet apparaît dans Source."
         },
         {
           "type": "table",
@@ -40,7 +40,7 @@
             ],
             [
               "Trouver un résultat enregistré",
-              "Files → outputs → numéro du script."
+              "Files → petit bouton R → outputs → numéro du script."
             ]
           ]
         },
@@ -52,8 +52,8 @@
           ],
           "rows": [
             [
-              "Ctrl+Enter ou Run",
-              "Ligne courante sans sélection ; toutes les lignes sélectionnées sinon."
+              "Ctrl+Alt+T",
+              "Exécuter le bloc Bxx choisi avec Run Code Section."
             ],
             [
               "Ctrl+S",
@@ -65,14 +65,14 @@
             ],
             [
               "Esc dans une Console avec +",
-              "Annuler une instruction incomplète ; resélectionner ensuite le bloc entier."
+              "Annuler une instruction incomplète ; choisir de nouveau Bxx dans le menu des sections."
             ]
           ]
         },
         {
           "type": "callout",
           "label": "La règle commune",
-          "text": "Dans le fichier indiqué : sélectionner du titre # Bxx jusqu’avant le titre suivant, puis Ctrl+Enter ; le dernier bloc va jusqu’à la fin. À chaque nouveau script : B01 d’abord. Après expérience : remettre la valeur initiale, Ctrl+S, puis relancer les mêmes blocs affectés. Attendre > en Console."
+          "text": "Dans Source, cliquer le menu de sections en bas à gauche, choisir Bxx, puis Ctrl+Alt+T : Code → Run Region → Run Code Section. Commencer chaque fichier par B01. Après une expérience : valeur de référence, Ctrl+S, mêmes blocs, puis vérifier."
         }
       ]
     },
@@ -84,7 +84,7 @@
         {
           "type": "figure",
           "asset_key": "mental_assignment",
-          "caption": "La valeur calculée à droite est affectée au nom à gauche. Un nom permet de réutiliser une valeur.",
+          "caption": "La valeur 3 est conservée sous le nom x. Un nom permet de réutiliser une valeur.",
           "height": 145
         },
         {
@@ -271,7 +271,7 @@
         {
           "type": "callout",
           "label": "Définition puis appel",
-          "text": "Dans 12_automatiser_le_rapport.R : B02 définit analyze_basket (function), B03 l’appelle pour plusieurs poids (batch), B04 fabrique le rapport, B05 l’ouvre. En B02, sélectionner toute la définition jusqu’à l’accolade fermante ; elle ne produit pas encore le rapport."
+          "text": "Dans 12_automatiser_le_rapport.R : B02 définit analyze_basket (function), B03 l’appelle pour plusieurs poids (batch), B04 fabrique le rapport, B05 l’ouvre. En B02, choisir B02 puis appuyer une fois sur Ctrl+Alt+T : toute la définition est exécutée ; elle ne produit pas encore le rapport."
         }
       ]
     },
@@ -507,6 +507,33 @@
           "type": "callout",
           "label": "Garder une trace utile",
           "text": "Sur une feuille : avant → prédiction → après → explication. Restaurer ensuite le paramètre de référence et les mêmes blocs avant le fichier suivant. La ligne 60 % CAC de la comparaison finale doit redevenir le repère : environ 26803,14 UM et VaR 153,05 UM."
+        }
+      ]
+    },
+    {
+      "id": "v7.memo.fallback",
+      "title": "Si vous voulez exécuter une ligne ou le fichier entier",
+      "kicker": "RACCOURCIS FACULTATIFS",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le parcours commun utilise les sections Bxx : Ctrl+Alt+T. Pour un besoin particulier, une ligne ou une sélection complète peut être exécutée avec Run / Ctrl+Enter. Le bouton Source exécute tout le fichier actif ; il n’est pas nécessaire pour suivre les chapitres."
+        },
+        {
+          "type": "callout",
+          "label": "Source · une option après compréhension",
+          "text": "Le bouton Source, en haut de Source, exécute tout le script actif. Après une première lecture bloc par bloc, vous pouvez l’utiliser pour refaire le cas complet. Il passe aussi par les lignes de paramètres : vérifier leurs valeurs enregistrées. Il n’est pas nécessaire de saisir une commande source() en Console."
+        },
+        {
+          "type": "figure",
+          "asset_key": "source_optional",
+          "height": 240,
+          "caption": "Option seulement après lecture : le bouton Source relance le script actif entier. Ici, le script 02 affiche de nouveau 1862 lignes importées."
+        },
+        {
+          "type": "callout",
+          "label": "Un résultat ne change pas ?",
+          "text": "Vérifier l’onglet Source, le paramètre, Ctrl+S et les blocs recalculés. Reprendre B01 après Restart R si un objet manque."
         }
       ]
     }

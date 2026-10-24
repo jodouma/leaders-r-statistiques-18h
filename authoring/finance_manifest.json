@@ -80,7 +80,7 @@
           "id": "B04",
           "title": "Essayer et garder une trace",
           "line_start": 33,
-          "line_end": 40
+          "line_end": 44
         }
       ],
       "outputs": [
@@ -136,7 +136,7 @@
           "id": "B04",
           "title": "Composer deux périodes",
           "line_start": 37,
-          "line_end": 49
+          "line_end": 53
         }
       ],
       "outputs": [
@@ -191,7 +191,7 @@
           "id": "B04",
           "title": "Comparer la source et le fichier d'entraînement",
           "line_start": 31,
-          "line_end": 44
+          "line_end": 48
         }
       ],
       "outputs": [
@@ -248,7 +248,7 @@
           "id": "B05",
           "title": "Essayer une valeur manquante en mémoire",
           "line_start": 46,
-          "line_end": 58
+          "line_end": 62
         }
       ],
       "outputs": [
@@ -304,7 +304,7 @@
           "id": "B04",
           "title": "Observer et vérifier une série",
           "line_start": 40,
-          "line_end": 50
+          "line_end": 54
         }
       ],
       "outputs": [
@@ -357,7 +357,7 @@
           "id": "B04",
           "title": "Voir la répartition et expérimenter",
           "line_start": 38,
-          "line_end": 48
+          "line_end": 52
         }
       ],
       "outputs": [
@@ -415,7 +415,7 @@
           "id": "B04",
           "title": "Mesurer une association",
           "line_start": 40,
-          "line_end": 47
+          "line_end": 51
         }
       ],
       "outputs": [
@@ -510,7 +510,7 @@
           "id": "B04",
           "title": "Visualiser puis modifier une hypothèse",
           "line_start": 42,
-          "line_end": 51
+          "line_end": 55
         }
       ],
       "outputs": [
@@ -567,7 +567,7 @@
           "id": "B04",
           "title": "Lire la profondeur des baisses",
           "line_start": 47,
-          "line_end": 56
+          "line_end": 60
         }
       ],
       "outputs": [
@@ -625,7 +625,7 @@
           "id": "B04",
           "title": "Comparer les contributions et expérimenter",
           "line_start": 52,
-          "line_end": 62
+          "line_end": 66
         }
       ],
       "outputs": [
@@ -658,8 +658,8 @@
     {
       "step": "10",
       "path": "scripts/10_simuler_des_scenarios.R",
-      "title": "simuler des scénarios (option)",
-      "route": "option",
+      "title": "simuler des scénarios (découverte guidée)",
+      "route": "decouverte",
       "blocks": [
         {
           "id": "B01",
@@ -683,7 +683,7 @@
           "id": "B04",
           "title": "Lire la dispersion puis changer l'horizon",
           "line_start": 53,
-          "line_end": 64
+          "line_end": 68
         }
       ],
       "outputs": [
@@ -728,8 +728,8 @@
     {
       "step": "11",
       "path": "scripts/11_tester_un_modele.R",
-      "title": "tester une association (option)",
-      "route": "option",
+      "title": "tester une association (découverte guidée)",
+      "route": "decouverte",
       "blocks": [
         {
           "id": "B01",
@@ -759,7 +759,7 @@
           "id": "B05",
           "title": "Examiner l'association et ses limites",
           "line_start": 51,
-          "line_end": 62
+          "line_end": 66
         }
       ],
       "outputs": [
@@ -803,8 +803,8 @@
     {
       "step": "12",
       "path": "scripts/12_automatiser_le_rapport.R",
-      "title": "automatiser un rapport local (option)",
-      "route": "option",
+      "title": "automatiser un rapport local (découverte guidée)",
+      "route": "decouverte",
       "blocks": [
         {
           "id": "B01",
@@ -834,7 +834,7 @@
           "id": "B05",
           "title": "Retrouver et relire le livrable",
           "line_start": 74,
-          "line_end": 79
+          "line_end": 83
         }
       ],
       "outputs": [

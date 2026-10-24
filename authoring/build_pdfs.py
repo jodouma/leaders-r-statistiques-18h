@@ -68,6 +68,11 @@ def draw_cover(c,doc,p,W,H,m):
     c.setFont(BOLD,9);c.setFillColor(ORANGE);c.drawString(m,H-121,'MASTER · STATISTIQUE APPLIQUÉE')
     c.setFont(HEAD,43);c.setFillColor(colors.white)
     title_lines=p.get('title_lines',['Statistiques','avec R'])
+    for line in title_lines:
+        if pdfmetrics.stringWidth(line,HEAD,43)>W-2*m-110:
+            raise ValueError('Cover title overlaps its logo area: '+line)
+    if pdfmetrics.stringWidth(p.get('strapline','À votre rythme'),HEAD,28)>W-2*m:
+        raise ValueError('Cover strapline exceeds its available width.')
     c.drawString(m,H-187,title_lines[0])
     c.drawString(m,H-241,title_lines[1])
     c.setFillColor(ORANGE);c.setFont(HEAD,28);c.drawString(m,H-295,p.get('strapline','À votre rythme'))
@@ -143,6 +148,36 @@ def draw_par(c,s,x,y,w,size=11,color=INK,font=BODY):
 
 def block(c,b,x,y,w,slide=False):
     typ=b['type']; size=16 if slide else 10.5
+    if typ=='transfer':
+        gap=15;cw=(w-gap)/2;parts=[]
+        for label,body in [('DATA SCIENCE',b['ds']),('INGÉNIERIE FINANCIÈRE',b['finance'])]:
+            p=para(body,10.2);_,ph=p.wrap(cw-24,2000);parts.append((label,p,ph))
+        h=max(p[2] for p in parts)+39
+        for j,(label,p,ph) in enumerate(parts):
+            xx=x+j*(cw+gap);c.setFillColor(PALE);c.roundRect(xx,y-h,cw,h,6,fill=1,stroke=0)
+            draw_par(c,label,xx+12,y-10,cw-24,8.4,color=NAVY,font=BOLD)
+            p.drawOn(c,xx+12,y-29-ph)
+        return y-h-13
+    if typ=='learning_check':
+        return block(c,{'type':'callout','label':b.get('label','Pause active'),
+                         'text':b['question']+'\n\nRepère pour vérifier : '+b['answer']},x,y,w,slide)
+    if typ=='next_step':
+        body=b['text'];p=para(body,10.5);_,ph=p.wrap(w-30,2000);h=ph+36
+        c.setFillColor(PALE);c.roundRect(x,y-h,w,h,6,fill=1,stroke=0)
+        draw_par(c,b.get('label','Continuer dans l’ordre'),x+15,y-9,w-30,9,color=NAVY,font=BOLD)
+        p.drawOn(c,x+15,y-29-ph)
+        if b.get('target_page'):c.linkRect('',f"p{b['target_page']}",(x,y-h,x+w,y),relative=False,thickness=0)
+        return y-h-12
+    if typ=='references':
+        rows=[['Ressource officielle','Lien']]+[[r['title'],r['short']] for r in b['items']]
+        widths=[w*.62,w*.38]
+        cells=[[para(v,9.5,color=colors.white if i==0 else INK,font=BOLD if i==0 else BODY) for v in row] for i,row in enumerate(rows)]
+        t=Table(cells,colWidths=widths)
+        t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),NAVY),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),5),('BOTTOMPADDING',(0,0),(-1,-1),5),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE])]))
+        _,h=t.wrap(w,2000);t.drawOn(c,x,y-h);offset=t._rowHeights[0]
+        for i,r in enumerate(b['items'],1):
+            rh=t._rowHeights[i];c.linkURL(r['url'],(x+widths[0],y-offset-rh,x+w,y-offset),relative=False,thickness=0);offset+=rh
+        return y-h-12
     if typ=='section':
         y-=3
         c.setFillColor(ORANGE);c.roundRect(x,y-16,3,16,1.5,fill=1,stroke=0)
@@ -269,7 +304,13 @@ def block(c,b,x,y,w,slide=False):
         cells=[[para(v,fs,fs*1.35,colors.white if i==0 else INK,BOLD if i==0 else BODY) for v in row] for i,row in enumerate(rows)]
         t=Table(cells,colWidths=widths,hAlign='LEFT')
         t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),NAVY),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('LINEBELOW',(0,0),(-1,0),.5,TEAL)]))
-        _,h=t.wrap(w,2000);t.drawOn(c,x,y-h);return y-h-18
+        _,h=t.wrap(w,2000);t.drawOn(c,x,y-h)
+        offset=t._rowHeights[0]
+        for i,target in enumerate(b.get('row_targets',[]),1):
+            rh=t._rowHeights[i]
+            if target:c.linkRect('',f'p{target}',(x,y-offset-rh,x+w,y-offset),relative=False,thickness=0)
+            offset+=rh
+        return y-h-18
     if typ=='diagram':
         nodes=b.get('nodes',[]); n=len(nodes); cols=min(4 if not slide else 5,n); rows=math.ceil(n/cols); gap=18
         bw=(w-gap*(cols-1))/cols; bh=66 if not slide else 82
@@ -304,10 +345,23 @@ def build(doc,out):
         if p.get('layout')=='cover':
             draw_cover(c,doc,p,W,H,m)
         else:
-            y=draw_page_header(c,doc,p,i,n,W,H,m)
+            y=draw_page_header(c,doc,p,i,n,W,H,m);body_top=y
             for b in p['blocks']:y=block(c,b,m,y,W-2*m,slide)
-            if y<54:errors.append((str(path),i,p['title'],round(y,1)))
-            layout.append({'page':i,'title':p['title'],'body_bottom':round(y,1)})
+            minimum=84 if doc.get('page_navigation') else 54
+            if y<minimum:errors.append((str(path),i,p['title'],'overflow',round(y,1)))
+            too_empty=y>doc.get('max_body_bottom',190) and not p.get('writing_space')
+            if doc.get('enforce_density') and too_empty:errors.append((str(path),i,p['title'],'unused lower area',round(y,1)))
+            layout.append({'page':i,'title':p['title'],'body_top':round(body_top,1),'body_bottom':round(y,1),'whitespace_flag':too_empty})
+            if doc.get('page_navigation'):
+                if i>1:
+                    draw_par(c,'← Page précédente',m,70,140,8.5,color=NAVY,font=BOLD)
+                    c.linkRect('',f'p{i-1}',(m,54,m+140,75),relative=False,thickness=0)
+                if doc.get('toc_page') and i!=doc['toc_page']:
+                    c.setFont(BOLD,8.5);c.setFillColor(NAVY);c.drawCentredString(W/2,60,'Sommaire')
+                    c.linkRect('',f"p{doc['toc_page']}",(W/2-35,54,W/2+35,75),relative=False,thickness=0)
+                if i<n:
+                    c.setFont(BOLD,8.5);c.setFillColor(NAVY);c.drawRightString(W-m,60,f'Suite → page {i+1}')
+                    c.linkRect('',f'p{i+1}',(W-m-140,54,W-m,75),relative=False,thickness=0)
             draw_footer(c,doc,i,n,W,H,m)
         c.showPage()
     c.save()
@@ -315,7 +369,7 @@ def build(doc,out):
     return {'file':str(path),'pages':n,'bytes':path.stat().st_size,'layout':layout}
 
 def main():
-    a=argparse.ArgumentParser();a.add_argument('sources',nargs='+');a.add_argument('--out',required=True);args=a.parse_args()
+    a=argparse.ArgumentParser();a.add_argument('sources',nargs='+');a.add_argument('--out',required=True);a.add_argument('--audit');args=a.parse_args()
     out=Path(args.out);out.mkdir(parents=True,exist_ok=True);receipt=[]
     failures=[]
     for source in args.sources:
@@ -323,6 +377,9 @@ def main():
             try: receipt.append(build(d,out))
             except RuntimeError as e: failures.append(str(e))
     print(json.dumps(receipt,ensure_ascii=False,indent=2))
+    if args.audit:
+        target=Path(args.audit);target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_text(json.dumps({'documents':receipt,'failures':failures},ensure_ascii=False,indent=2)+'\n')
     if failures: raise RuntimeError('\n'.join(failures))
 
 if __name__=='__main__':main()

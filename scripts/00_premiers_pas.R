@@ -1,6 +1,6 @@
 # Noria Gestion — premiers pas dans RStudio
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -38,3 +38,7 @@ print(summary)
 save_table(summary, output_dir, "premier_calcul.csv")
 self_check(capital_after_gain == capital + 500,
            "Le capital final est le capital choisi augmenté de 500 UM.")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "premier_calcul.csv")

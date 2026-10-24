@@ -42,6 +42,6 @@ Le dernier bloc ouvre automatiquement **le CSV réellement exporté**, pour comp
 
 Pour reprendre : **Ctrl+S → Session → Restart R → onglet du fichier `.R` → B01**, puis les sections dans l’ordre. Garder `data/` intact et noter **avant → prédiction → après → explication**.
 
-Les sources éditables sont dans `authoring/`. Pour reconstruire : installer les dépendances de `authoring/requirements.txt`, puis lancer **`python authoring/rebuild.py`**. Les captures réelles de RStudio gardent leur provenance. **`Rscript --vanilla tests/run_tests.R`** vérifie les scripts, expériences et calculs ; GitHub Actions exécute les contrôles sur Windows, macOS et Ubuntu.
+Les sources éditables sont dans `authoring/`. Pour reconstruire : installer les dépendances de `authoring/requirements.txt`, puis lancer **`python authoring/rebuild.py`**. Le générateur bloque les débordements et les zones basses trop vides ; son rapport est dans `outputs/pdf_layout_report.json`. Les captures réelles de RStudio gardent leur provenance. **`Rscript --vanilla tests/run_tests.R`** vérifie les scripts, expériences et calculs ; GitHub Actions exécute les contrôles sur Windows, macOS et Ubuntu.
 
 Youssef Douma · Leaders University · octobre 2026

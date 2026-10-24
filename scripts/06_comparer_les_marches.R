@@ -1,6 +1,6 @@
 # Noria Gestion — comparer les marchés
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -45,3 +45,7 @@ save_table(data.frame(market = rownames(correlations), correlations), output_dir
 self_check(all(abs(normalized[1, ] - 100) < 1e-10),
            "Chaque courbe commence à 100, quelle que soit sa devise d'origine.")
 cat("Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Conventions des indices potentiellement différentes.\n")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "indices_base100.csv")

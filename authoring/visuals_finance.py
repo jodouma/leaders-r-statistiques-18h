@@ -105,7 +105,9 @@ def main():
 
     fig,ax=canvas(190);xs=[9,48,88];ys=[35,75,31]
     ax.plot(xs,ys,color=NAVY,lw=3,marker='o',markersize=8)
-    for x,y,v in zip(xs,ys,[100,110,99]):txt(ax,x,y+10,str(v),14,NAVY,'bold')
+    for x,y,v in zip(xs,ys,[100,110,99]):
+        # Keep the final value clear of the vertical orange loss arrow.
+        txt(ax,94 if v==99 else x,y+10,str(v),14,NAVY,'bold')
     ax.plot([48,88],[75,75],color=ORANGE,lw=1.5,ls='--');arrow(ax,88,71,88,35)
     txt(ax,50,8,'Du sommet 110 au creux 99 : 11 / 110 = 10 % de baisse',11)
     save(fig,'mental_drawdown','Le drawdown compare la valeur à son sommet précédent, en incluant le capital initial.')

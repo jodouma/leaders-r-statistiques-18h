@@ -11,10 +11,10 @@
       "layout": "cover",
       "title": "Data Science et finance avec R",
       "title_lines": [
-        "Data Science et finance",
-        "avec R"
+        "Data Science",
+        "et finance avec R"
       ],
-      "strapline": "Ouvrir · observer · essayer · expliquer",
+      "strapline": "Observer · tester · expliquer",
       "subtitle": "Le parcours guidé de Noria Gestion",
       "tagline": "Données réelles · Windows et RStudio · code déjà fourni",
       "chips": [
@@ -253,6 +253,55 @@
       ]
     },
     {
+      "id": "v7.files",
+      "title": "Retrouver le projet, puis le bon script",
+      "kicker": "LE MÊME CHEMIN ENTRE DEUX ÉTAPES",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Files peut afficher outputs/00 après un calcul. Pour ouvrir le fichier suivant, revenez toujours au dossier du projet avec le petit bouton R à droite du fil de dossiers."
+        },
+        {
+          "type": "figure",
+          "asset_key": "files_project_icon",
+          "height": 95,
+          "caption": "Dans Files : cliquer le petit R à droite de Home → Noria → outputs → 00. Son nom est Go to project directory."
+        },
+        {
+          "type": "figure",
+          "asset_key": "files_project_root",
+          "height": 185,
+          "caption": "Après le clic : course.Rproj, data, outputs, R et scripts sont visibles. Le nom de votre dossier extrait peut être différent de Noria."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Geste",
+            "À faire"
+          ],
+          "rows": [
+            [
+              "1 · Revenir",
+              "Files → petit bouton R (Go to project directory)."
+            ],
+            [
+              "2 · Ouvrir",
+              "Cliquer scripts, puis le nom exact indiqué dans le chapitre."
+            ],
+            [
+              "3 · Commencer",
+              "Vérifier le nom de l’onglet Source ; menu des sections → B01."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "label": "Pour la première étape",
+          "text": "Ouvrir 00_premiers_pas.R. Tous les fichiers et dossiers restent à leur place ; les scripts créent leurs résultats dans outputs."
+        }
+      ]
+    },
+    {
       "id": "v6.panes",
       "title": "Quatre zones ; une seule étape à la fois",
       "kicker": "LE REPÉRAGE RSTUDIO",
@@ -297,7 +346,7 @@
         {
           "type": "callout",
           "label": "Ouvrir le premier script",
-          "text": "Dans Files, cliquer More → Go To Working Directory, puis scripts → 00_premiers_pas.R. Il apparaît dans Source. Les titres # B01, # B02… découpent le fichier en blocs ; # commence un commentaire pour le lecteur."
+          "text": "Files → petit bouton R (Go to project directory) → scripts → 00_premiers_pas.R. Le fichier s’ouvre dans Source. Les titres B01, B02… sont les sections ; # indique un commentaire."
         },
         {
           "type": "callout",
@@ -312,38 +361,50 @@
     },
     {
       "id": "v6.run",
-      "title": "Une ligne, puis un bloc complet",
+      "title": "Choisir Bxx et lancer tout le bloc",
       "kicker": "LE GESTE RUN · À APPRENDRE UNE FOIS",
       "blocks": [
         {
-          "type": "figure",
-          "asset_key": "run_block",
-          "height": 145,
-          "caption": "Capture réelle de RStudio Server sous Linux : une sélection complète dans Source. Sous Windows, Ctrl+Enter ou le bouton Run exécute la ligne ou la sélection."
+          "type": "text",
+          "text": "Les titres # B01, # B02… sont des sections. RStudio sait exécuter une section complète : les accolades et les parenthèses restent ensemble."
         },
         {
-          "type": "bullets",
-          "items": [
-            "Dans Source, onglet 00_premiers_pas.R : cliquer avant # B01, puis faire glisser jusqu’à la ligne précédant # B02. Cliquer Run, au-dessus de Source, ou appuyer sur Ctrl+Enter. Attendre le retour de > dans Console.",
-            "Dans B02, cliquer sur la ligne print(2 * 150), sans la sélectionner, puis Ctrl+Enter. La Console affiche [1] 300 ; [1] repère la première valeur affichée.",
-            "Ensuite, sélectionner tout B02 de 00_premiers_pas.R, du titre jusqu’avant # B03, puis Ctrl+Enter. Pour chaque bloc suivant, inclure ses commentaires et toutes ses instructions ; le dernier bloc va jusqu’à la fin du fichier."
+          "type": "figure",
+          "asset_key": "source_section_jump",
+          "height": 165,
+          "caption": "En bas à gauche de Source : ouvrir le menu de sections, puis choisir B01. Le menu peut afficher Top Level, un nom de bloc ou une fonction."
+        },
+        {
+          "type": "figure",
+          "asset_key": "run_code_section_menu",
+          "height": 180,
+          "caption": "Code → Run Region → Run Code Section. Sous Windows : Ctrl+Alt+T. La capture vient de RStudio Server sous Linux, dans un navigateur sur macOS."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Faire une fois dans 00",
+            "Ce que vous voyez"
+          ],
+          "rows": [
+            [
+              "Choisir B01 ; Ctrl+Alt+T",
+              "Le bloc prépare les outils. La Console revient à >."
+            ],
+            [
+              "Choisir B02 ; Ctrl+Alt+T",
+              "La Console affiche [1]300 ; [1] indique la première valeur affichée."
+            ],
+            [
+              "Dans le guide : B02 → B04",
+              "Lancer B02, puis B03, puis B04 : un bloc à la fois."
+            ]
           ]
         },
         {
-          "type": "figure",
-          "asset_key": "run_line",
-          "height": 320,
-          "caption": "Après B01 : curseur sur print(2 * 150), puis Run. La Console affiche [1] 300."
-        },
-        {
           "type": "callout",
-          "label": "Une instruction peut prendre plusieurs lignes",
-          "text": "Une parenthèse ou une accolade ouverte peut se fermer plusieurs lignes plus bas. Inclure cette fermeture dans la sélection. Une invite + en Console indique souvent que R attend la suite ; appuyer sur Esc, puis sélectionner de nouveau l’instruction complète."
-        },
-        {
-          "type": "callout",
-          "label": "Votre contrôle",
-          "text": "Je sais montrer la différence entre le texte du script, le texte sélectionné et le résultat en Console. Les pages suivantes indiquent simplement le fichier et les blocs : le geste reste le même."
+          "label": "Le geste utilisé dans tout le parcours",
+          "text": "Choisir le bloc dans le menu en bas de Source, puis Ctrl+Alt+T. Si le clavier intercepte le raccourci, cliquer Code → Run Region → Run Code Section. Garder ce menu comme repère : aucune sélection manuelle des accolades n’est nécessaire."
         }
       ],
       "source_refs": [
@@ -353,14 +414,19 @@
     },
     {
       "id": "v6.edit",
-      "title": "Changer une valeur et garder la recette",
+      "title": "Lire le geste de modification, puis passer à 00",
       "kicker": "LE GESTE EXPÉRIENCE",
       "blocks": [
         {
+          "type": "callout",
+          "label": "À lire maintenant",
+          "text": "Cette page montre le geste. Garder les valeurs fournies pour le moment : la première expérience complète sera guidée à l’étape 00, après le calcul de référence."
+        },
+        {
           "type": "figure",
-          "asset_key": "edit_parameter",
-          "height": 300,
-          "caption": "Exemple de modification réellement exécutée : capital passe de 10000 à 20000 ; après Run de B03, la Console affiche 20500. L’essai guidé de l’étape 00 proposera 12000."
+          "asset_key": "edit_parameter_12000",
+          "height": 270,
+          "caption": "Aperçu d’un essai réellement exécuté à l’étape 00 : Source 12000, puis Console 12 500 UM. Vous referez cet essai après avoir obtenu la référence 10000→10500."
         },
         {
           "type": "table",
@@ -370,20 +436,20 @@
           ],
           "rows": [
             [
-              "1 · Repérer le paramètre",
-              "Une valeur simple dans le bloc indiqué : capital, poids ou nombre de scénarios."
+              "Le paramètre",
+              "Une valeur simple, nommée dans le bloc indiqué."
             ],
             [
-              "2 · Prédire, puis modifier",
-              "Changer seulement la valeur proposée, sans effacer le nom, <-, les guillemets ou les parenthèses."
+              "Une modification",
+              "Seule la valeur change ; le nom, <- et les guillemets restent."
             ],
             [
-              "3 · Ctrl+S, puis blocs indiqués",
-              "Enregistrer la recette et recalculer les objets qui en dépendent. Enregistrer seul ne refait pas le calcul."
+              "Ctrl+S",
+              "La recette est enregistrée sur disque."
             ],
             [
-              "4 · Observer et expliquer",
-              "Comparer le cas de départ et la variante. Remettre la valeur initiale dans le même fichier, Ctrl+S, puis relancer exactement les mêmes blocs ; vérifier que la sortie de référence revient."
+              "Run Code Section",
+              "Le bloc recalcule ses objets ; le script exporte les résultats."
             ]
           ]
         },
@@ -424,7 +490,7 @@
             ],
             [
               "Console avec +",
-              "Esc ; reprendre la sélection entière, fermetures comprises."
+              "Esc ; revenir à l’onglet .R, choisir Bxx dans le menu de sections, puis Ctrl+Alt+T."
             ],
             [
               "Les résultats restent inchangés",
@@ -435,7 +501,7 @@
         {
           "type": "callout",
           "label": "Redémarrer R",
-          "text": "Enregistrer le script avec Ctrl+S. Menu Session → Restart R. Les objets de Environment disparaissent ; les scripts et les fichiers enregistrés restent. Reprendre le fichier courant à B01. Si une fermeture demande de sauvegarder l’espace de travail, choisir Don’t Save / Ne pas enregistrer : la recette suffit."
+          "text": "Enregistrer le script avec Ctrl+S. Menu Session → Restart R. Les objets de Environment disparaissent ; les scripts et les fichiers enregistrés restent. Dans le fichier courant : menu de sections → B01 → Ctrl+Alt+T, puis chaque bloc suivant. Si une fermeture demande de sauvegarder l’espace de travail, choisir Don’t Save / Ne pas enregistrer : la recette suffit."
         },
         {
           "type": "figurepair",
@@ -453,17 +519,6 @@
           ],
           "height": 170,
           "caption": "Session → Restart R, puis Environment vide après le vrai redémarrage. La recette et les fichiers enregistrés restent disponibles."
-        },
-        {
-          "type": "callout",
-          "label": "Source · une option après compréhension",
-          "text": "Le bouton Source, en haut de Source, exécute tout le script actif. Après une première lecture bloc par bloc, vous pouvez l’utiliser pour refaire le cas complet. Il passe aussi par les lignes de paramètres : vérifier leurs valeurs enregistrées. Il n’est pas nécessaire de saisir une commande source() en Console."
-        },
-        {
-          "type": "figure",
-          "asset_key": "source_optional",
-          "height": 240,
-          "caption": "Option seulement après lecture : le bouton Source relance le script actif entier. Ici, le script 02 affiche de nouveau 1862 lignes importées."
         },
         {
           "type": "text",
@@ -489,7 +544,7 @@
           "type": "figure",
           "asset_key": "mental_assignment",
           "height": 160,
-          "caption": "Lire de droite vers la gauche : la valeur 3 est rangée sous le nom x. Plus tard, écrire x permet de retrouver cette valeur."
+          "caption": "La valeur 3 est conservée sous le nom x. Dans le code x <- 3, x est le nom choisi et 3 est la valeur ; écrire x permet ensuite de la retrouver."
         },
         {
           "type": "code",
@@ -503,14 +558,28 @@
         {
           "type": "callout",
           "label": "scripts/00_premiers_pas.R",
-          "text": "B03 · Nommer puis consulter une valeur. Dans 00_premiers_pas.R, après B01–B02, passer à B03 « Nommer puis consulter une valeur ». La Console montre 10000, « UM », puis 10500 ; Environment contient les noms créés. Les guillemets indiquent du texte, pas un nombre.",
+          "text": "Dans 00_premiers_pas.R, lancer B01 → B02 → B03, même après un redémarrage. B02 affiche 300 ; B03 affiche 10000, « UM », puis 10500. Environment contient capital et capital_after_gain.",
           "run": {
             "script_id": "00",
             "blocks": [
+              "B01",
+              "B02",
               "B03"
             ],
             "script_path": "scripts/00_premiers_pas.R",
             "block_refs": [
+              {
+                "id": "B01",
+                "title": "Préparer cette séance",
+                "line_start": 6,
+                "line_end": 15
+              },
+              {
+                "id": "B02",
+                "title": "Lire une petite expression",
+                "line_start": 16,
+                "line_end": 20
+              },
               {
                 "id": "B03",
                 "title": "Nommer puis consulter une valeur",
@@ -519,9 +588,7 @@
               }
             ]
           },
-          "block_labels": [
-            "B03 · Nommer puis consulter une valeur"
-          ]
+          "block_labels": []
         }
       ]
     },
@@ -553,6 +620,17 @@
         },
         {
           "type": "callout",
+          "label": "Le tableau du CSV s’ouvre tout seul",
+          "text": "Après B04, un onglet CSV premier_calcul.csv affiche le fichier réellement enregistré :10000,500,10500. Pour lire le tableau, rester sur cet onglet ; pour modifier le paramètre, cliquer l’onglet 00_premiers_pas.R. Le même geste revient dans les étapes suivantes."
+        },
+        {
+          "type": "figure",
+          "asset_key": "auto_csv_view",
+          "height": 85,
+          "caption": "Le CSV est relu automatiquement. Pour modifier le code, cliquer l’onglet 00_premiers_pas.R, juste à côté de l’onglet CSV premier_calcul.csv."
+        },
+        {
+          "type": "callout",
           "label": "scripts/00_premiers_pas.R",
           "text": "Dans 00_premiers_pas.R : B04 · Essayer et garder une trace. B04 « Essayer et garder une trace » affiche un petit tableau et enregistre premier_calcul.csv. Dans Files, remonter au dossier du projet par .., puis ouvrir outputs → 00 pour le retrouver. Un fichier .csv est un tableau en texte, réutilisable.",
           "run": {
@@ -566,7 +644,7 @@
                 "id": "B04",
                 "title": "Essayer et garder une trace",
                 "line_start": 33,
-                "line_end": 40
+                "line_end": 44
               }
             ]
           },
@@ -702,7 +780,7 @@
                 "id": "B04",
                 "title": "Composer deux périodes",
                 "line_start": 37,
-                "line_end": 49
+                "line_end": 53
               }
             ]
           },
@@ -835,7 +913,7 @@
                 "id": "B04",
                 "title": "Comparer la source et le fichier d'entraînement",
                 "line_start": 31,
-                "line_end": 44
+                "line_end": 48
               }
             ]
           },
@@ -849,7 +927,7 @@
         {
           "type": "callout",
           "label": "Voir un tableau dans RStudio",
-          "text": "Après l’import, dans Environment, cliquer l’icône de tableau en face de raw pour ouvrir le Data Viewer. Lire une ligne et une colonne. La Console reste le repère pour les nombres de lignes. Dans Files → outputs → 02, retrouver importation.csv."
+          "text": "Après l’import, dans Environment, cliquer l’icône de tableau en face de raw pour ouvrir le Data Viewer. Lire une ligne et une colonne. La Console reste le repère pour les nombres de lignes. Dans Files → petit bouton R → outputs → 02, retrouver importation.csv."
         },
         {
           "type": "figure",
@@ -977,7 +1055,7 @@
                 "id": "B05",
                 "title": "Essayer une valeur manquante en mémoire",
                 "line_start": 46,
-                "line_end": 58
+                "line_end": 62
               }
             ]
           },
@@ -1114,7 +1192,7 @@
                 "id": "B04",
                 "title": "Observer et vérifier une série",
                 "line_start": 40,
-                "line_end": 50
+                "line_end": 54
               }
             ]
           },
@@ -1134,6 +1212,12 @@
           "asset_key": "outputs/04/rendements.png",
           "height": 220,
           "caption": "Sortie réelle du script 04 : rendements CAC en % par observation. L’axe horizontal suit l’ordre des observations ; ce n’est pas un calendrier."
+        },
+        {
+          "type": "figure",
+          "asset_key": "plot_zoom",
+          "height": 245,
+          "caption": "Pour agrandir : Plots → Zoom. Après lecture, fermer seulement la fenêtre Zoom (sous Windows : X en haut à droite), puis revenir à RStudio. Image réelle prise sur macOS ; le graphique vient du script 04."
         },
         {
           "type": "callout",
@@ -1253,7 +1337,7 @@
                 "id": "B04",
                 "title": "Voir la répartition et expérimenter",
                 "line_start": 38,
-                "line_end": 48
+                "line_end": 52
               }
             ]
           },
@@ -1397,7 +1481,7 @@
                 "id": "B04",
                 "title": "Mesurer une association",
                 "line_start": 40,
-                "line_end": 47
+                "line_end": 51
               }
             ]
           },
@@ -1518,7 +1602,7 @@
                 "id": "B04",
                 "title": "Visualiser puis modifier une hypothèse",
                 "line_start": 42,
-                "line_end": 51
+                "line_end": 55
               }
             ]
           },
@@ -1676,7 +1760,7 @@
                 "id": "B04",
                 "title": "Lire la profondeur des baisses",
                 "line_start": 47,
-                "line_end": 56
+                "line_end": 60
               }
             ]
           },
@@ -1854,7 +1938,7 @@
                 "id": "B04",
                 "title": "Comparer les contributions et expérimenter",
                 "line_start": 52,
-                "line_end": 62
+                "line_end": 66
               }
             ]
           },
@@ -1946,7 +2030,7 @@
         {
           "type": "callout",
           "label": "Poursuivre avec le code déjà prêt",
-          "text": "Dans Files → More → Go To Working Directory → scripts, ouvrir 10_simuler_des_scenarios.R dans Source ; commencer par B01. Les étapes 10–12 font partie du parcours : observer, modifier un paramètre, expliquer. Seule l’étude mathématique détaillée reste facultative."
+          "text": "Dans Files → petit bouton R (Go to project directory) → scripts, ouvrir 10_simuler_des_scenarios.R dans Source ; commencer par B01. Les étapes 10–12 font partie du parcours : observer, modifier un paramètre, expliquer. Seule l’étude mathématique détaillée reste facultative."
         },
         {
           "type": "callout",
@@ -2044,7 +2128,7 @@
                 "id": "B04",
                 "title": "Lire la dispersion puis changer l'horizon",
                 "line_start": 53,
-                "line_end": 64
+                "line_end": 68
               }
             ]
           },
@@ -2251,7 +2335,7 @@
                 "id": "B05",
                 "title": "Examiner l'association et ses limites",
                 "line_start": 51,
-                "line_end": 62
+                "line_end": 66
               }
             ]
           },
@@ -2339,7 +2423,7 @@
         {
           "type": "callout",
           "label": "scripts/12_automatiser_le_rapport.R",
-          "text": "B01 « Préparer cette séance » ; B02 « Définir une tâche réutilisable ». Ouvrir scripts/12_automatiser_le_rapport.R. Sélectionner la définition analyze_basket en entier, jusqu’à sa dernière accolade. Ce bloc prépare la recette ; B03, dans la section « Comparer plusieurs poids », l’appellera pour plusieurs poids.",
+          "text": "B01 « Préparer cette séance » ; B02 « Définir une tâche réutilisable ». Ouvrir scripts/12_automatiser_le_rapport.R. Choisir B02 dans le menu de sections en bas de Source, puis Ctrl+Alt+T. Ce bloc prépare la recette ; B03, dans la section « Comparer plusieurs poids », l’appellera pour plusieurs poids.",
           "run": {
             "script_id": "12",
             "blocks": [
@@ -2459,7 +2543,7 @@
                 "id": "B05",
                 "title": "Retrouver et relire le livrable",
                 "line_start": 74,
-                "line_end": 79
+                "line_end": 83
               }
             ]
           },
@@ -2472,7 +2556,7 @@
           "type": "figure",
           "asset_key": "files",
           "height": 105,
-          "caption": "Dans Files → outputs →12 : la table CSV, son graphique PNG et rapport_noria.html."
+          "caption": "Dans Files → petit bouton R → outputs →12 : la table CSV, son graphique PNG et rapport_noria.html."
         },
         {
           "type": "figure",
@@ -2544,7 +2628,7 @@
     },
     {
       "id": "v6.final",
-      "title": "Synthèse · Expliquer le rapport de Noria",
+      "title": "Votre rapport en 15 minutes",
       "kicker": "15 MINUTES · VOTRE PREUVE FINALE",
       "blocks": [
         {
@@ -2570,6 +2654,10 @@
               "10–15 min · Transmettre",
               "Montrer à un voisin la question, une preuve Data Science et une lecture financière. Il doit retrouver votre nombre dans le rapport et nommer une limite. Inverser les rôles, ou expliquer à voix haute seul."
             ]
+          ],
+          "widths": [
+            105,
+            400
           ]
         },
         {
@@ -2607,23 +2695,23 @@
           "rows": [
             [
               "Je ne vois pas le script",
-              "Files → scripts → fichier .R ; il apparaît dans Source."
+              "Files → petit bouton R → scripts → nom exact.R ; cliquer son onglet Source."
             ],
             [
               "Run ne donne rien de visible",
               "Une affectation peut créer un objet sans l’afficher ; lire la ligne print/cat suivante et Environment."
             ],
             [
-              "Une sélection échoue",
-              "Tout le bloc est-il inclus ? Esc si + ; reprendre à B01 si objet absent."
+              "La Console affiche +",
+              "Esc ; revenir à l’onglet .R, choisir le Bxx dans le menu de sections, puis Ctrl+Alt+T."
             ],
             [
               "Je ne retrouve pas mon graphique",
               "Onglet Plots ; Zoom pour agrandir ; copie enregistrée dans outputs/numéro/."
             ],
             [
-              "Je cherche un fichier produit",
-              "Lire le chemin affiché en Console ; dans Files, remonter avec .. jusqu’au projet puis outputs."
+              "Je cherche un tableau produit",
+              "Le dernier bloc ouvre le CSV automatiquement. Pour revoir le code, cliquer son onglet .R ; Files → petit bouton R → outputs pour confirmer le nom du CSV."
             ],
             [
               "Mon résultat diffère du guide",
@@ -2725,7 +2813,7 @@
       "title": "Posit · Keyboard Shortcuts",
       "url": "https://docs.posit.co/ide/user/ide/reference/shortcuts.html",
       "accessed": "2026-10-24",
-      "supports": "Windows Ctrl+Enter, Ctrl+S, Ctrl+Z."
+      "supports": "Windows Ctrl+Alt+T pour Run Code Section ; Ctrl+S, Ctrl+Z et méthode facultative Ctrl+Enter."
     },
     {
       "id": "posit_viewer",
@@ -2977,7 +3065,7 @@
           "id": "B04",
           "title": "Essayer et garder une trace",
           "line_start": 33,
-          "line_end": 40
+          "line_end": 44
         }
       ],
       "outputs": [
@@ -3010,7 +3098,7 @@
           "id": "B04",
           "title": "Composer deux périodes",
           "line_start": 37,
-          "line_end": 49
+          "line_end": 53
         }
       ],
       "outputs": [
@@ -3043,7 +3131,7 @@
           "id": "B04",
           "title": "Comparer la source et le fichier d'entraînement",
           "line_start": 31,
-          "line_end": 44
+          "line_end": 48
         }
       ],
       "outputs": [
@@ -3082,7 +3170,7 @@
           "id": "B05",
           "title": "Essayer une valeur manquante en mémoire",
           "line_start": 46,
-          "line_end": 58
+          "line_end": 62
         }
       ],
       "outputs": [
@@ -3117,7 +3205,7 @@
           "id": "B04",
           "title": "Observer et vérifier une série",
           "line_start": 40,
-          "line_end": 50
+          "line_end": 54
         }
       ],
       "outputs": [
@@ -3151,7 +3239,7 @@
           "id": "B04",
           "title": "Voir la répartition et expérimenter",
           "line_start": 38,
-          "line_end": 48
+          "line_end": 52
         }
       ],
       "outputs": [
@@ -3185,7 +3273,7 @@
           "id": "B04",
           "title": "Mesurer une association",
           "line_start": 40,
-          "line_end": 47
+          "line_end": 51
         }
       ],
       "outputs": [
@@ -3220,7 +3308,7 @@
           "id": "B04",
           "title": "Visualiser puis modifier une hypothèse",
           "line_start": 42,
-          "line_end": 51
+          "line_end": 55
         }
       ],
       "outputs": [
@@ -3255,7 +3343,7 @@
           "id": "B04",
           "title": "Lire la profondeur des baisses",
           "line_start": 47,
-          "line_end": 56
+          "line_end": 60
         }
       ],
       "outputs": [
@@ -3290,7 +3378,7 @@
           "id": "B04",
           "title": "Comparer les contributions et expérimenter",
           "line_start": 52,
-          "line_end": 62
+          "line_end": 66
         }
       ],
       "outputs": [
@@ -3325,7 +3413,7 @@
           "id": "B04",
           "title": "Lire la dispersion puis changer l'horizon",
           "line_start": 53,
-          "line_end": 64
+          "line_end": 68
         }
       ],
       "outputs": [
@@ -3366,7 +3454,7 @@
           "id": "B05",
           "title": "Examiner l'association et ses limites",
           "line_start": 51,
-          "line_end": 62
+          "line_end": 66
         }
       ],
       "outputs": [
@@ -3407,7 +3495,7 @@
           "id": "B05",
           "title": "Retrouver et relire le livrable",
           "line_start": 74,
-          "line_end": 79
+          "line_end": 83
         }
       ],
       "outputs": [

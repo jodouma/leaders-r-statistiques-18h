@@ -1,6 +1,6 @@
-# Noria Gestion — automatiser un rapport local (option)
+# Noria Gestion — automatiser un rapport local (découverte guidée)
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -74,6 +74,10 @@ writeLines(enc2utf8(html), report_path, useBytes = TRUE)
 # B05 — Retrouver et relire le livrable ----
 cat("Rapport enregistré :", report_path, "\n")
 # En RStudio, le navigateur local ouvre le fichier ; en batch, seul le chemin est affiché.
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "comparaison_paniers.csv")
 if (interactive()) browseURL(normalizePath(report_path, winslash = "/"))
 self_check(nrow(summary) == length(weights) && file.exists(report_path),
            "Une ligne par poids choisi et un rapport HTML local sont disponibles.")

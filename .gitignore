@@ -4,6 +4,7 @@ results/
 .Rhistory
 .RData
 .Ruserdata
+.Rproj.user/
 Rplots.pdf
 __pycache__/
 .mpl-cache/

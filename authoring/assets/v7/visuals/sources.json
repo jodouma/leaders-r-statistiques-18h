@@ -1,0 +1,135 @@
+{
+  "figures": [
+    {
+      "key": "experience_00",
+      "path": "authoring/assets/v7/visuals/experience_00.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "00",
+      "metric": "final_capital_UM"
+    },
+    {
+      "key": "experience_01",
+      "path": "authoring/assets/v7/visuals/experience_01.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "01",
+      "metric": "compounded_UM"
+    },
+    {
+      "key": "experience_02",
+      "path": "authoring/assets/v7/visuals/experience_02.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "02",
+      "metric": "preview_rows"
+    },
+    {
+      "key": "experience_03",
+      "path": "authoring/assets/v7/visuals/experience_03.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "03",
+      "metric": "changed_observation"
+    },
+    {
+      "key": "experience_04",
+      "path": "authoring/assets/v7/visuals/experience_04.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "04",
+      "metric": "market"
+    },
+    {
+      "key": "experience_05",
+      "path": "authoring/assets/v7/visuals/experience_05.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "05",
+      "metric": "requested_classes"
+    },
+    {
+      "key": "experience_06",
+      "path": "authoring/assets/v7/visuals/experience_06.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "06",
+      "metric": "curves"
+    },
+    {
+      "key": "experience_07",
+      "path": "authoring/assets/v7/visuals/experience_07.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "07",
+      "metric": "final_capital_UM"
+    },
+    {
+      "key": "experience_08",
+      "path": "authoring/assets/v7/visuals/experience_08.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "08",
+      "metric": "VaR_UM"
+    },
+    {
+      "key": "experience_09",
+      "path": "authoring/assets/v7/visuals/experience_09.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "09",
+      "metric": "final_capital_UM"
+    },
+    {
+      "key": "experience_10",
+      "path": "authoring/assets/v7/visuals/experience_10.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "10",
+      "metric": "q50_UM"
+    },
+    {
+      "key": "experience_11",
+      "path": "authoring/assets/v7/visuals/experience_11.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "11",
+      "metric": "model_RMSE_points"
+    },
+    {
+      "key": "experience_12",
+      "path": "authoring/assets/v7/visuals/experience_12.svg",
+      "height": 145,
+      "kind": "observed R before/after",
+      "facts_record": "12",
+      "metric": "same60_final_UM"
+    },
+    {
+      "key": "guidance_loop",
+      "path": "authoring/assets/v7/visuals/guidance_loop.svg",
+      "height": 155,
+      "kind": "teaching route"
+    },
+    {
+      "key": "guidance_profiles",
+      "path": "authoring/assets/v7/visuals/guidance_profiles.svg",
+      "height": 170,
+      "kind": "teaching route"
+    },
+    {
+      "key": "guidance_save",
+      "path": "authoring/assets/v7/visuals/guidance_save.svg",
+      "height": 145,
+      "kind": "teaching model"
+    },
+    {
+      "key": "guidance_restart",
+      "path": "authoring/assets/v7/visuals/guidance_restart.svg",
+      "height": 145,
+      "kind": "teaching model"
+    }
+  ],
+  "facts_source": "authoring/assets/v7/experiences/facts.json",
+  "route_source": "authoring/journey.json",
+  "note": "Before/after values are measured from the actual R objects; these are diagrams, not app screenshots."
+}

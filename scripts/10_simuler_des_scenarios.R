@@ -1,6 +1,6 @@
-# Noria Gestion — simuler des scénarios (option)
+# Noria Gestion — simuler des scénarios (découverte guidée)
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -62,3 +62,7 @@ self_check(length(final_capitals) == paths && all(is.finite(final_capitals)),
            "Un capital final fini est calculé pour chaque scénario.")
 cat("Rééchantillonnage de l'historique ancien ; aucun scénario n'est une garantie future.\n")
 cat("Panier local rééquilibré. Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Conventions des indices potentiellement différentes.\n")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "quantiles_simules.csv")

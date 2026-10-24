@@ -1,6 +1,6 @@
-# Noria Gestion — tester une association (option)
+# Noria Gestion — tester une association (découverte guidée)
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -60,3 +60,7 @@ save_plot(output_dir, "modele.png", {
 self_check(max(train$observation) < min(test$observation),
            "L'entraînement précède le test ; aucune ligne future n'a servi à ajuster.")
 cat("Association contemporaine, sans causalité ni prévision du lendemain.\n")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "erreurs_test.csv")

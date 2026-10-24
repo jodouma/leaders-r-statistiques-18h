@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-24T18:32:31.055034</dc:date>
+    <dc:date>2026-10-24T20:06:53.928953</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,15 +40,15 @@ Q 1.515 0.57 1.515 6.27
 L 1.515 183.73 
 Q 1.515 189.43 16.665 189.43 
 z
-" clip-path="url(#pb7521d334c)" style="fill: #f3f5fc"/>
+" clip-path="url(#p0bc85bec9b)" style="fill: #f3f5fc"/>
    </g>
    <g id="line2d_1">
     <path d="M 45.45 123.5 
 L 242.4 47.5 
 L 444.4 131.1 
-" clip-path="url(#pb7521d334c)" style="fill: none; stroke: #2b3180; stroke-width: 3; stroke-linecap: square"/>
+" clip-path="url(#p0bc85bec9b)" style="fill: none; stroke: #2b3180; stroke-width: 3; stroke-linecap: square"/>
     <defs>
-     <path id="mafcffbfc8f" d="M 0 4 
+     <path id="mdd80fc1627" d="M 0 4 
 C 1.060812 4 2.078319 3.578535 2.828427 2.828427 
 C 3.578535 2.078319 4 1.060812 4 0 
 C 4 -1.060812 3.578535 -2.078319 2.828427 -2.828427 
@@ -60,16 +60,16 @@ C -2.078319 3.578535 -1.060812 4 0 4
 z
 " style="stroke: #2b3180"/>
     </defs>
-    <g clip-path="url(#pb7521d334c)">
-     <use xlink:href="#mafcffbfc8f" x="45.45" y="123.5" style="fill: #2b3180; stroke: #2b3180"/>
-     <use xlink:href="#mafcffbfc8f" x="242.4" y="47.5" style="fill: #2b3180; stroke: #2b3180"/>
-     <use xlink:href="#mafcffbfc8f" x="444.4" y="131.1" style="fill: #2b3180; stroke: #2b3180"/>
+    <g clip-path="url(#p0bc85bec9b)">
+     <use xlink:href="#mdd80fc1627" x="45.45" y="123.5" style="fill: #2b3180; stroke: #2b3180"/>
+     <use xlink:href="#mdd80fc1627" x="242.4" y="47.5" style="fill: #2b3180; stroke: #2b3180"/>
+     <use xlink:href="#mdd80fc1627" x="444.4" y="131.1" style="fill: #2b3180; stroke: #2b3180"/>
     </g>
    </g>
    <g id="line2d_2">
     <path d="M 242.4 47.5 
 L 444.4 47.5 
-" clip-path="url(#pb7521d334c)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #ff9a3c; stroke-width: 1.5"/>
+" clip-path="url(#p0bc85bec9b)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #ff9a3c; stroke-width: 1.5"/>
    </g>
    <g id="text_1">
     <!-- 100 -->
@@ -126,7 +126,7 @@ z
    </g>
    <g id="text_3">
     <!-- 99 -->
-    <g style="fill: #2b3180" transform="translate(434.659063 115.736719) scale(0.14 -0.14)">
+    <g style="fill: #2b3180" transform="translate(464.959062 115.736719) scale(0.14 -0.14)">
      <defs>
       <path id="DejaVuSans-Bold-1c" d="M 641 103 
 L 641 966 
@@ -701,7 +701,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pb7521d334c">
+  <clipPath id="p0bc85bec9b">
    <rect x="0" y="0" width="505" height="190"/>
   </clipPath>
  </defs>

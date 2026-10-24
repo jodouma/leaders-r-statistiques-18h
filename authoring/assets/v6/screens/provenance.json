@@ -3,9 +3,6 @@
   "asset_key_to_path": {
     "pane_map": "authoring/assets/v6/screens/pane_map.png",
     "open_script": "authoring/assets/v6/screens/open_script.png",
-    "run_line": "authoring/assets/v6/screens/run_line.png",
-    "run_block": "authoring/assets/v6/screens/run_block.png",
-    "edit_parameter": "authoring/assets/v6/screens/edit_parameter.png",
     "view_table": "authoring/assets/v6/screens/view_table.png",
     "plots": "authoring/assets/v6/screens/plots.png",
     "function_call": "authoring/assets/v6/screens/function_call.png",
@@ -47,60 +44,6 @@
       ],
       "step": "00",
       "action": "Opened complete script through Files.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
-      "browser_host_OS": "macOS26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
-    "run_line": {
-      "path": "authoring/assets/v6/screens/run_line.png",
-      "original": "evidence/ui/originals/run_line.png",
-      "crop_xyxy": [
-        8,
-        188,
-        1040,
-        980
-      ],
-      "step": "00 B02",
-      "action": "Cursor in print(2 *150), clicked Run; Console prints300.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
-      "browser_host_OS": "macOS26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
-    "run_block": {
-      "path": "authoring/assets/v6/screens/run_block.png",
-      "original": "evidence/ui/originals/run_block.png",
-      "crop_xyxy": [
-        8,
-        188,
-        1040,
-        465
-      ],
-      "step": "00 B01",
-      "action": "Dragged selection over complete preparation block before Run.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu24.04.4LTS ARM64",
-      "browser_host_OS": "macOS26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
-    "edit_parameter": {
-      "path": "authoring/assets/v6/screens/edit_parameter.png",
-      "original": "evidence/ui/originals/edit_parameter.png",
-      "crop_xyxy": [
-        8,
-        188,
-        700,
-        980
-      ],
-      "step": "00 B03",
-      "action": "Changed capital10000 to20000, saved Cmd+S, selected B03 and clicked Run; Console shows20500.",
       "capture_date": "2026-10-24",
       "app": "RStudio Server2026.01.1+403",
       "R": "4.5.2",

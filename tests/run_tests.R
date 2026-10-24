@@ -205,6 +205,13 @@ main <- function() {
   rebuilt <- tools::md5sum(file.path(reconstruction,'outputs/reconstruction_source',basename(source_path)))
   check('Reconstruction exacte et sources préservées',identical(unname(rebuilt),unname(before)) &&
         identical(unname(tools::md5sum(file.path(reconstruction,source_path))),unname(before)))
+  # Le tableau affiché doit venir du CSV enregistré, même si un objet a changé.
+  summary <- data.frame(final_capital_UM = -999)
+  readback <- inspect_export(file.path(copies[['00']], 'outputs', '00'), 'premier_calcul.csv')
+  check('Lecture automatique du vrai CSV, sans utiliser un ancien objet',
+        equal_num(readback$final_capital_UM,10500) && equal_num(readback$gain_UM,500))
+  check('CSV absent : reprise explicite au lieu de montrer un ancien tableau',
+        expect_error(inspect_export(workspace,'fichier_absent.csv')))
   corrupted <- copy_project('corrupted')
   bad <- tiny; bad$DAX[1] <- -1
   write.csv(bad,file.path(corrupted,'data/marches_brut.csv'),row.names=FALSE)

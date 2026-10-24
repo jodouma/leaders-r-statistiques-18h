@@ -26,10 +26,13 @@ def main():
 
     # Facts come from those actual exports, diagrams from the same source data,
     # and the composer derives the printed contents from the final pagination.
-    for name in ('build_finance_manifest.py', 'visuals_finance.py', 'compose_finance.py'):
+    subprocess.run([sys.executable, str(ROOT / 'authoring/build_finance_manifest.py')], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(ROOT / 'authoring/build_experiences.py'), '--r', args.r], cwd=ROOT, check=True)
+    for name in ('visuals_finance.py', 'visuals_guidance.py', 'compose_finance.py'):
         subprocess.run([sys.executable, str(ROOT / 'authoring' / name)], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / 'authoring/build_pdfs.py'),
-                    str(ROOT / 'authoring/content_finance.json'), '--out', args.out],
+                    str(ROOT / 'authoring/content_finance.json'), '--out', args.out,
+                    '--audit', str(ROOT / 'outputs/pdf_layout_report.json')],
                    cwd=ROOT, check=True)
 
 

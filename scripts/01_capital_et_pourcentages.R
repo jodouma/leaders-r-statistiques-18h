@@ -1,6 +1,6 @@
 # Noria Gestion — capital et pourcentages
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -47,3 +47,7 @@ save_table(summary, output_dir, "capital.csv")
 # Expérience : rate <- 0.10 en B02 ; relancez B02 à B04.
 self_check(abs(gain / capital - rate) < 1e-12,
            "Le gain divisé par le capital retrouve le taux choisi.")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "capital.csv")

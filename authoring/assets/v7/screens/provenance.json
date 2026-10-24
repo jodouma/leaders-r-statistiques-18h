@@ -1,12 +1,8 @@
 {
   "status": "genuine_course_UI",
   "asset_key_to_path": {
-    "files_more_root": "authoring/assets/v7/screens/files_more_root.png",
     "files_project_icon": "authoring/assets/v7/screens/files_project_icon.png",
     "files_project_root": "authoring/assets/v7/screens/files_project_root.png",
-    "files_next_script": "authoring/assets/v7/screens/files_next_script.png",
-    "source_find_block": "authoring/assets/v7/screens/source_find_block.png",
-    "source_select_complete_block": "authoring/assets/v7/screens/source_select_complete_block.png",
     "run_code_section_menu": "authoring/assets/v7/screens/run_code_section_menu.png",
     "source_section_jump": "authoring/assets/v7/screens/source_section_jump.png",
     "edit_parameter_12000": "authoring/assets/v7/screens/edit_parameter_12000.png",
@@ -14,24 +10,6 @@
     "auto_csv_view": "authoring/assets/v7/screens/auto_csv_view.png"
   },
   "assets": {
-    "files_more_root": {
-      "path": "authoring/assets/v7/screens/files_more_root.png",
-      "original": "work/v7/evidence/ui/originals/files_more_root.png",
-      "original_sha256": "721b6ad1cc9f991913e9d9705841b77c783a86b48c6a69ea8b603339321eb5df",
-      "crop_xyxy": [
-        1048,
-        462,
-        1710,
-        825
-      ],
-      "action": "From Files outputs/00, opened More; actual Go To Working Directory label visible. Clicked command and verified Files returned to Noria, the current R working directory.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server 2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
-      "browser_host_OS": "macOS 26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
     "files_project_icon": {
       "path": "authoring/assets/v7/screens/files_project_icon.png",
       "original": "work/v7/evidence/ui/originals/files_project_icon.png",
@@ -61,60 +39,6 @@
         690
       ],
       "action": "Clicked actual Go to project directory icon from outputs/00. Files returned to Noria and shows course.Rproj, data, outputs, R and scripts.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server 2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
-      "browser_host_OS": "macOS 26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
-    "files_next_script": {
-      "path": "authoring/assets/v7/screens/files_next_script.png",
-      "original": "work/v7/evidence/ui/originals/files_next_script.png",
-      "original_sha256": "12cabc4726b61411bb6d4e61d4512bb5e10226fe4d47bb67a18b8233e34ff071",
-      "crop_xyxy": [
-        1048,
-        462,
-        1665,
-        643
-      ],
-      "action": "From recovered Noria root, clicked scripts. Clicked exact file 01_capital_et_pourcentages.R and verified it opened in Source in the subsequent action.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server 2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
-      "browser_host_OS": "macOS 26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
-    "source_find_block": {
-      "path": "authoring/assets/v7/screens/source_find_block.png",
-      "original": "work/v7/evidence/ui/originals/source_find_block.png",
-      "original_sha256": "130a54b90e70ff4ef5643477b8233fad5fc69377c70a495edc5c827c30fe0ffc",
-      "crop_xyxy": [
-        8,
-        188,
-        700,
-        627
-      ],
-      "action": "Clicked Source Find/Replace, entered # B02, clicked Next; B02 heading selected and Source status shows B02.",
-      "capture_date": "2026-10-24",
-      "app": "RStudio Server 2026.01.1+403",
-      "R": "4.5.2",
-      "runtime_OS": "Ubuntu 24.04.4 LTS ARM64",
-      "browser_host_OS": "macOS 26.3",
-      "editing": "Rectangle crop only. No invented or replaced pixels."
-    },
-    "source_select_complete_block": {
-      "path": "authoring/assets/v7/screens/source_select_complete_block.png",
-      "original": "work/v7/evidence/ui/originals/source_select_complete_block.png",
-      "original_sha256": "d0376f5b5f7a46f39c175d2bcbca5f63247edfedca9f447bdb8c4dc428892000",
-      "crop_xyxy": [
-        8,
-        478,
-        650,
-        659
-      ],
-      "action": "Dragged from start of 01 B02 heading through end of final print line, stopping before B03. Actual selection shading covers B02; B03 remains outside.",
       "capture_date": "2026-10-24",
       "app": "RStudio Server 2026.01.1+403",
       "R": "4.5.2",

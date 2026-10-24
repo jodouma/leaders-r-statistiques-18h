@@ -1,6 +1,6 @@
 # Noria Gestion — composer un panier pédagogique
 # Ouvrez course.Rproj. Dans ce fichier, exécutez B01 puis les blocs suivants.
-# Run / Ctrl+Enter exécute la ligne ou la sélection ; les résultats sont en Console.
+# Dans un bloc Bxx : Ctrl+Alt+T (Code > Run Region > Run Code Section).
 # Les données historiques sont des niveaux d'indices, sans dates inventées.
 
 # B01 — Préparer cette séance ----
@@ -49,3 +49,7 @@ save_plot(output_dir, "capital_panier.png", {
 self_check(abs(cac_weight + dax_weight - 1) < 1e-12 && wealth[1] == capital,
            "Les poids totalisent 100 % et le chemin inclut le capital initial.")
 cat("Séries d’indices utilisées telles quelles ; aucun traitement supplémentaire du change, des frais ou des dividendes. Conventions des indices potentiellement différentes. Historique ancien, sans conseil d'investissement.\n")
+
+# Le CSV se lit automatiquement dans un onglet de tableau en RStudio.
+# Pour modifier le code, revenir à l’onglet de ce script dans Source.
+inspect_export(output_dir, "capital_panier.csv")
