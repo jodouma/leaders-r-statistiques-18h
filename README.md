@@ -1,42 +1,47 @@
-# Noria Gestion — lire les marchés avec R
+# Noria Gestion — Data Science et ingénierie financière avec R
 
-Un playbook guidé pour des étudiants en finance : comprendre une méthode, lancer un **script complet et commenté**, observer ses résultats, puis modifier un paramètre. Le projet compare quatre indices historiques et construit un panier pédagogique CAC–DAX.
+Un même cas pour apprendre à **contrôler des données, comparer des résultats et expliquer leurs limites**. Les 13 scripts complets et commentés analysent quatre indices historiques, composent un panier CAC–DAX et produisent un rapport local. Le code est fourni : vous observez, testez une variante et vérifiez son effet.
 
-## Commencer sous Windows avec RStudio
+## Commencer en quatre étapes
 
-1. **[Télécharger le cours en ZIP](https://github.com/jodouma/leaders-r-statistiques-18h/archive/refs/heads/main.zip)**, ou choisir **Code → Download ZIP**. Aucun compte GitHub ni Git n’est nécessaire.
-2. Dans l’Explorateur Windows : clic droit sur le ZIP → **Extraire tout…**. Extraire cette édition dans **un nouveau dossier** ; conserver vos anciens essais séparément.
-3. Ouvrir **[pdf/01_aventure_noria.pdf](pdf/01_aventure_noria.pdf)** : c’est le playbook finance à suivre. Il explique l’installation facultative de R et RStudio, les fenêtres et chaque nouveau geste.
-4. Double-cliquer **`course.Rproj`** dans le dossier extrait. Dans RStudio, ouvrir **`scripts/00_premiers_pas.R`**, puis suivre les blocs nommés **B01, B02…** du guide.
+1. **[Télécharger le cours en ZIP](https://github.com/jodouma/leaders-r-statistiques-18h/archive/refs/heads/main.zip)**, ou **Code → Download ZIP**. Aucun compte GitHub ni Git nécessaire.
+2. Dans l’Explorateur Windows : clic droit sur le ZIP → **Extraire tout…**, dans **un nouveau dossier**. Garder vos anciens essais séparément.
+3. Ouvrir **[pdf/01_aventure_noria.pdf](pdf/01_aventure_noria.pdf)** : suivre ce guide dans l’ordre. Il explique aussi l’installation de R et RStudio si nécessaire. **[Télécharger directement le guide](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)** si l’aperçu GitHub gêne la lecture.
+4. Double-cliquer **`course.Rproj`**. Dans **Files**, cliquer **l’icône R du projet → scripts → `00_premiers_pas.R`**. Dans **Source**, choisir **B01** avec le sélecteur de sections en bas, puis **Code → Run Region → Run Code Section** ; sous Windows, **Ctrl+Alt+T** exécute cette section entière. Continuer avec les Bxx indiqués dans le guide.
 
-**[Télécharger le playbook principal](https://github.com/jodouma/leaders-r-statistiques-18h/raw/refs/heads/main/pdf/01_aventure_noria.pdf)**. Si l’aperçu GitHub gêne la lecture ou les liens, télécharger le PDF et l’ouvrir dans votre lecteur habituel. Les pages se suivent sans navigation obligatoire.
+## Une seule route : 00 → 12, puis synthèse
 
-## Le parcours
+**4 h 30 planifiées**, hors installation, téléchargement et pauses : ce budget comprend lecture, manipulation, comparaison et explication. Ce n’est pas un temps mesuré auprès d’étudiants ; vous pouvez prendre davantage de temps.
 
-| Étapes | Ce que vous faites |
+| Séquence | Ce que vous faites et pourquoi |
 |---|---|
-| **00–06 · Le socle** | Lire et exécuter du R fourni ; calculer un pourcentage ; importer, contrôler et comparer les marchés |
-| **07–09 · L’analyse** | Composer un panier ; expliquer VaR et drawdown ; tester un choc choisi |
-| **10–12 · Facultatif** | Explorer une simulation, comparer un modèle et produire un rapport HTML local |
+| **Départ · 15 min** | Ouvrir le projet et repérer les zones de travail |
+| **00–03 · 60 min** | Nommer, calculer, importer et contrôler : savoir ce que contient l’entrée |
+| **04–06 · 55 min** | Calculer des rendements, décrire et comparer : rendre les séries interprétables |
+| **07–09 · 60 min** | Composer un panier, lire VaR et drawdown, tester un choc : relier hypothèses et effets |
+| **10–12 · 65 min** | Explorer une simulation et un modèle avec le code fourni, puis automatiser le rapport |
+| **Synthèse · 15 min** | Montrer une preuve Data Science et une lecture financière dans le rapport |
 
-Le code est déjà prêt dans **`scripts/`**. Le PDF explique **quoi, pourquoi, quel bloc lancer, où regarder et quoi vérifier** ; il n’est pas un code à recopier. Sous Windows, **Run / Ctrl+Enter** lance une ligne ou une sélection complète. Commencer chaque nouveau script par **B01** ; il prépare ses propres entrées, même après un redémarrage de R.
+À chaque étape : **cas de référence → prédiction → variante → restauration → explication → fichier suivant**. Commencer chaque nouveau script par **B01** ; il reconstruit ses propres entrées. Aucun paquet supplémentaire ni code à écrire de zéro ; les dérivations mathématiques avancées restent facultatives.
+
+Le dernier bloc ouvre automatiquement **le CSV réellement exporté**, pour comparer le tableau aux résultats annoncés. Après cette lecture, **recliquer l’onglet nommé `.R` dans Source avant de modifier un paramètre**. Pour retrouver le script suivant : **Files → icône R du projet → scripts → nom exact indiqué**. Au script 12, le CSV de comparaison s’ouvre, puis le HTML dans votre **navigateur par défaut** ; après une nouvelle exécution, actualiser le navigateur avec **Ctrl+R**, puis revenir à RStudio.
 
 | Guide | Utilisation |
 |---|---|
-| [01_aventure_noria.pdf](pdf/01_aventure_noria.pdf) | Le playbook finance complet ; commencer ici |
-| [02_reperes_R.pdf](pdf/02_reperes_R.pdf) | Gestes, vocabulaire, unités et repères dans les scripts |
-| [03_sources.pdf](pdf/03_sources.pdf) | Sources officielles, provenance des données et conventions |
+| [01_aventure_noria.pdf](pdf/01_aventure_noria.pdf) | Le parcours guidé complet : commencer ici |
+| [02_reperes_R.pdf](pdf/02_reperes_R.pdf) | Gestes, vocabulaire français/anglais, unités et dépannage |
+| [03_sources.pdf](pdf/03_sources.pdf) | Références, provenance des données et conventions |
 
-**R de base ≥ 4.1 suffit ; aucun paquet supplémentaire.** Une fois les logiciels et le cours téléchargés, les analyses fonctionnent localement. Les résultats vont dans **`outputs/00/` à `outputs/12/`**. Le rapport final est **`outputs/12/rapport_noria.html`** ; garder son image voisine avec lui.
+**R de base ≥ 4.1 suffit ; aucun paquet additionnel.** Après téléchargement des logiciels et du cours, les analyses fonctionnent localement. Les résultats vont dans **`outputs/00/` à `outputs/12/`**. Le livrable final est **`outputs/12/rapport_noria.html`** ; garder **`comparaison_paniers.png`** à côté du HTML.
 
-## Les données et le sens des résultats
+## Les données et les résultats
 
-**EuStockMarkets** contient **1 860 observations de 1991–1998**, sur DAX, SMI, CAC et FTSE. Le fichier d’entraînement ajoute volontairement **un doublon exact** et **une ligne incomplète** : **1 862 lignes brutes → 1 860 complètes et 1 isolée**, après dédoublonnage. Les **1 860 niveaux donnent 1 859 rendements** consécutifs.
+**EuStockMarkets** : **1 860 observations de 1991–1998**, sur DAX, SMI, CAC et FTSE. Le fichier d’entraînement ajoute un doublon exact et une ligne incomplète : **1 862 brutes → 1 861 distinctes → 1 860 complètes + 1 isolée**. Les **1 860 niveaux donnent 1 859 rendements**.
 
-L’identifiant `observation` conserve l’ordre des marchés ; il ne représente pas une date reconstituée. Ce sont des niveaux d’indices anciens, sans cotations actuelles. Le panier utilise des rendements locaux, se rééquilibre à chaque observation et exprime son capital en **UM** pédagogiques ; les séries d’indices sont utilisées telles quelles, sans traitement supplémentaire du change, des frais ou des dividendes. Les conventions des indices peuvent différer. La VaR est un seuil historique par observation de marché, le stress un scénario choisi, le bootstrap une simulation sous hypothèses et la régression une association contemporaine : leurs sorties demandent une interprétation, sans garantie sur le futur.
+`observation` conserve l’ordre ; ce n’est pas une date reconstituée. Le panier utilise les rendements locaux et se rééquilibre à chaque observation ; son capital est en **UM pédagogiques**. Les séries d’indices sont utilisées telles quelles, sans traitement supplémentaire du change, des frais ou des dividendes ; leurs conventions peuvent différer. La VaR est un seuil historique par observation, le stress un scénario choisi, le bootstrap une simulation sous hypothèses et la régression une association contemporaine. Ces données anciennes et ces méthodes ne garantissent aucun résultat futur.
 
-Pour repartir : **Ctrl+S → Session → Restart R → B01 du script courant**, puis ses blocs dans l’ordre. Garder les fichiers de `data/` intacts et noter le paramètre changé, l’effet observé et votre explication.
+Pour reprendre : **Ctrl+S → Session → Restart R → onglet du fichier `.R` → B01**, puis les sections dans l’ordre. Garder `data/` intact et noter **avant → prédiction → après → explication**.
 
-Les sources éditables des PDF et figures sont dans `authoring/`. Pour reconstruire les supports, `authoring/rebuild.py` indique les dépendances et la commande ; les captures RStudio réelles sont conservées avec leur provenance. La commande `Rscript --vanilla tests/run_tests.R` vérifie les scripts, les expériences et les calculs dans des sessions isolées sur Windows, macOS et Ubuntu via GitHub Actions.
+Les sources éditables sont dans `authoring/`. Pour reconstruire : installer les dépendances de `authoring/requirements.txt`, puis lancer **`python authoring/rebuild.py`**. Les captures réelles de RStudio gardent leur provenance. **`Rscript --vanilla tests/run_tests.R`** vérifie les scripts, expériences et calculs ; GitHub Actions exécute les contrôles sur Windows, macOS et Ubuntu.
 
 Youssef Douma · Leaders University · octobre 2026
