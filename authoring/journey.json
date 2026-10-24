@@ -1,0 +1,675 @@
+{
+  "schema": "leaders-guided-journey-v7",
+  "main_filename": "01_aventure_noria.pdf",
+  "planned_total_minutes": 270,
+  "time_assumption": "Budget pédagogique planifié : 4 h 30 de lecture, manipulation, comparaison, explication et dépannage. Hors installation, téléchargement et pauses. Aucun chronométrage d’étudiants ; les débutants peuvent prendre plus de temps.",
+  "start_minutes": 15,
+  "final_minutes": 15,
+  "route_rule": "Une séquence 00 → 12, sans branchement ; 10–12 sont des découvertes guidées au code fourni. Les dérivations avancées sont facultatives.",
+  "start_instruction": "Logiciels installés et dossier extrait : ouvrir course.Rproj, puis suivre les pages de gestes avant 00. Garder ce PDF, RStudio et une feuille de trace visibles.",
+  "steps": [
+    {
+      "id": "00",
+      "path": "scripts/00_premiers_pas.R",
+      "minutes": 10,
+      "question": "Comment retrouver une valeur et garder une trace du calcul ?",
+      "prerequisite_note": "Après les gestes de départ, relancer B01–B04 dans 00_premiers_pas.R : cette répétition vérifie que vous savez refaire seul la sélection complète.",
+      "entry_scene": "v6.00.assignment",
+      "exit_scene": "v6.00.trace",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B03",
+      "parameter": "capital",
+      "default": 10000,
+      "try": 12000,
+      "rerun_blocks": [
+        "B03",
+        "B04"
+      ],
+      "look_at": "Console : 300, 10000 puis 10500. Environment : capital. Files → projet → outputs → 00 → premier_calcul.csv.",
+      "expected_base": "capital = 10000 UM ; gain fixe de 500 UM ; capital_after_gain = 10500 UM ; un CSV est créé.",
+      "expected_variant": "capital = 12000 UM ; même gain de 500 UM ; capital_after_gain = 12500 UM. Le CSV est remplacé.",
+      "restore_instruction": "Dans 00_premiers_pas.R, B03 : remettre capital <- 10000. Ctrl+S ; relancer 00_premiers_pas.R : B03 → B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Distinguer une variable, son calcul et un fichier : la base d’une analyse reproductible.",
+      "transfer_finance": "Nommer le capital en UM et vérifier qu’un gain est un montant, pas un taux.",
+      "proof_prompt": "Montrer capital dans Environment et premier_calcul.csv dans Files. Pourquoi le fichier reste-t-il après Restart R ?",
+      "common_blocker": "Console ne change pas : Source doit avoir le focus ; sélectionner B03 entier dans 00_premiers_pas.R, puis Ctrl+Enter.",
+      "recap": "Je sais nommer, recalculer et retrouver une trace.",
+      "activity_tasks": [
+        "Repérer trois objets en mémoire et le CSV enregistré.",
+        "Prédire 12000 + 500, tester, puis retrouver le résultat dans la trace."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_00",
+      "next_id": "01",
+      "next_path": "scripts/01_capital_et_pourcentages.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 01_capital_et_pourcentages.R ; vérifier son onglet dans Source. Sélectionner puis lancer 01_capital_et_pourcentages.R : B01.",
+      "spot_check": "Enregistrer le script avec Ctrl+S recalcule-t-il le résultat ?",
+      "spot_check_answer": "Non : Ctrl+S garde la recette ; Run ou Ctrl+Enter l’exécute.",
+      "evidence_objects": [
+        "capital",
+        "capital_after_gain"
+      ],
+      "output_path": "outputs/00/premier_calcul.csv"
+    },
+    {
+      "id": "01",
+      "path": "scripts/01_capital_et_pourcentages.R",
+      "minutes": 15,
+      "question": "Pourquoi +5 % puis −5 % ne ramène-t-il pas au départ ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.01.percentage",
+      "exit_scene": "v6.01.compound",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B02",
+      "parameter": "rate",
+      "default": 0.05,
+      "try": 0.1,
+      "rerun_blocks": [
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "look_at": "Console après B03 : gain et capital final ; après B04 : capital composé. Files → outputs → 01 → capital.csv.",
+      "expected_base": "Gain simple : 500 UM ; capital après +5 % : 10500 UM. Puis −5 % : 9975 UM, soit −0,25 % depuis 10000.",
+      "expected_variant": "Gain simple 1000 UM ; capital 11000 UM ; après la seconde variation −5 %, 10450 UM. La seconde base a changé.",
+      "restore_instruction": "Dans 01_capital_et_pourcentages.R, B02 : remettre rate <- 0.05. Ctrl+S ; relancer 01_capital_et_pourcentages.R : B02 → B03 → B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Contrôler une transformation numérique, son unité et son dénominateur avant de généraliser.",
+      "transfer_finance": "Relier rendement simple et capitalisation ; identifier la base de chaque pourcentage.",
+      "proof_prompt": "Montrer les deux capitaux de B04. Expliquer en une phrase pourquoi les deux variations de 5 % n’ont pas la même base.",
+      "common_blocker": "Résultat cent fois trop grand : vérifier rate <- 0.05, avec un point et sans symbole %.",
+      "recap": "Je sais relier fraction, gain et capital composé.",
+      "activity_tasks": [
+        "Dessiner les deux capitaux et les bases des pourcentages.",
+        "Comparer +5 % puis −5 % avec +10 % puis −5 %."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_01",
+      "next_id": "02",
+      "next_path": "scripts/02_importer_les_marches.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 02_importer_les_marches.R ; vérifier son onglet dans Source. Sélectionner puis lancer 02_importer_les_marches.R : B01.",
+      "spot_check": "5 % de 10000 UM : taux, gain et unité ?",
+      "spot_check_answer": "Taux 0.05 ; gain 500 UM ; le taux n’est pas un montant.",
+      "evidence_objects": [
+        "capital",
+        "rate",
+        "gain"
+      ],
+      "output_path": "outputs/01/capital.csv"
+    },
+    {
+      "id": "02",
+      "path": "scripts/02_importer_les_marches.R",
+      "minutes": 15,
+      "question": "Que contient réellement le fichier avant toute analyse ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.02.table",
+      "exit_scene": "v6.02.import",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B04",
+      "parameter": "preview_rows",
+      "default": 6,
+      "try": 10,
+      "rerun_blocks": [
+        "B04"
+      ],
+      "look_at": "Console : dimensions de raw et aperçu original. Environment : cliquer l’icône de tableau de raw ; lire observation et FTSE. Files → outputs → 02 → importation.csv.",
+      "expected_base": "raw : 1862 lignes × 5 colonnes ; source : 1860 lignes. preview_rows = 6 affiche six premières lignes originales.",
+      "expected_variant": "Dix lignes originales à l’écran ; raw garde 1862 lignes et la source 1860. Le nombre affiché n’est pas le nombre importé.",
+      "restore_instruction": "Dans 02_importer_les_marches.R, B04 : remettre preview_rows <- 6. Ctrl+S ; relancer 02_importer_les_marches.R : B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Inspecter dimensions, colonnes et types avant de faire confiance à un import (data frame).",
+      "transfer_finance": "Identifier ce qu’un indice mesure ; garder l’ordre des observations sans inventer de dates.",
+      "proof_prompt": "Montrer une ligne de raw et annoncer ce que compte nrow(raw). Pourquoi l’aperçu ne mesure-t-il pas la taille du fichier ?",
+      "common_blocker": "Fichier introuvable : File → Open Project… → course.Rproj ; reprendre 02_importer_les_marches.R, B01 puis B02–B04.",
+      "recap": "Je sais décrire l’entrée avant de l’analyser.",
+      "activity_tasks": [
+        "Lire une ligne, une colonne et le nombre total de lignes.",
+        "Comparer aperçu de 6 puis 10 lignes ; noter ce qui reste identique."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_02",
+      "next_id": "03",
+      "next_path": "scripts/03_controler_les_donnees.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 03_controler_les_donnees.R ; vérifier son onglet dans Source. Sélectionner puis lancer 03_controler_les_donnees.R : B01.",
+      "spot_check": "Une ligne de raw est-elle une date ?",
+      "spot_check_answer": "Non : observation est un rang ; une ligne contient quatre niveaux d’indices.",
+      "evidence_objects": [
+        "raw",
+        "original",
+        "preview_rows"
+      ],
+      "output_path": "outputs/02/importation.csv"
+    },
+    {
+      "id": "03",
+      "path": "scripts/03_controler_les_donnees.R",
+      "minutes": 20,
+      "question": "Quelles lignes écarter, et comment justifier ce choix ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.03.clean_model",
+      "exit_scene": "v6.03.clean_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "experiment_block": "B05",
+      "parameter": "demo_row",
+      "default": 10,
+      "try": 20,
+      "rerun_blocks": [
+        "B05"
+      ],
+      "look_at": "Console : counts, puis observation dans demo_cleaned$quarantine après B05. Files → outputs → 03 → controle.csv et quarantaine.csv.",
+      "expected_base": "1862 brutes → 1861 distinctes → 1860 complètes + 1 isolée. B05 : copie en mémoire avec observation 10 et 1861 isolées, soit 2.",
+      "expected_variant": "Toujours 2 lignes isolées ; observation 20 remplace 10 dans la copie en mémoire. Les CSV de data/ restent identiques.",
+      "restore_instruction": "Dans 03_controler_les_donnees.R, B05 : remettre demo_row <- 10. Ctrl+S ; relancer 03_controler_les_donnees.R : B05. Vérifier le résultat de référence.",
+      "transfer_ds": "Rendre les règles de qualité auditables : doublon, valeur manquante et trace d’exclusion.",
+      "transfer_finance": "Écarter une anomalie de fichier sans effacer une forte variation de marché valide.",
+      "proof_prompt": "Retrouver 1860 + 1 = 1861 dans controle.csv. Expliquer pourquoi NA ne doit pas devenir 0.",
+      "common_blocker": "Vous voyez 1 au lieu de 2 : le total 1 concerne les données de référence en B03 ; le total 2 concerne la copie demo en B05.",
+      "recap": "Je sais justifier et retrouver les exclusions.",
+      "activity_tasks": [
+        "Faire la comptabilité des lignes de controle.csv.",
+        "Comparer la quarantaine de référence et les copies de B05 ; justifier les exclusions."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_03",
+      "next_id": "04",
+      "next_path": "scripts/04_calculer_les_rendements.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 04_calculer_les_rendements.R ; vérifier son onglet dans Source. Sélectionner puis lancer 04_calculer_les_rendements.R : B01.",
+      "spot_check": "Pourquoi 1862 lignes brutes mais 1861 lignes distinctes ?",
+      "spot_check_answer": "Une copie exacte de l’observation 100 a été ajoutée pour apprendre.",
+      "evidence_objects": [
+        "counts",
+        "quarantine",
+        "demo_cleaned"
+      ],
+      "output_path": "outputs/03/controle.csv"
+    },
+    {
+      "id": "04",
+      "path": "scripts/04_calculer_les_rendements.R",
+      "minutes": 20,
+      "question": "Comment comparer des changements de niveaux différents ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.04.return",
+      "exit_scene": "v6.04.return_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B04",
+      "parameter": "market",
+      "default": "CAC",
+      "try": "DAX",
+      "rerun_blocks": [
+        "B04"
+      ],
+      "look_at": "Console : première paire CAC et nombre de rendements. Plots : titre du marché et axe horizontal. Files → outputs → 04 → rendements.csv.",
+      "expected_base": "CAC : 1772,8 → 1750,5 ; rendement ≈ −1,258 %. 1860 niveaux donnent 1859 rendements.",
+      "expected_variant": "Titre et courbe DAX ; toujours 1859 variations. La première paire CAC affichée en B02 n’a pas été recalculée.",
+      "restore_instruction": "Dans 04_calculer_les_rendements.R, B04 : remettre market <- \"CAC\". Ctrl+S ; relancer 04_calculer_les_rendements.R : B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Construire une variable dérivée (feature) tout en vérifiant l’alignement des lignes.",
+      "transfer_finance": "Calculer un rendement simple comparable entre deux niveaux, par observation de marché.",
+      "proof_prompt": "Montrer les deux niveaux et leur rendement. Pourquoi diviser par l’ancien niveau et obtenir une ligne de moins ?",
+      "common_blocker": "La courbe reste CAC : vérifier market dans B04 du fichier 04_calculer_les_rendements.R puis relancer B04, pas seulement Ctrl+S.",
+      "recap": "Je sais vérifier une transformation et son alignement.",
+      "activity_tasks": [
+        "Refaire sur papier le calcul de la première paire CAC.",
+        "Comparer les courbes CAC et DAX : unité, longueur et titre ; expliquer 1859."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_04",
+      "next_id": "05",
+      "next_path": "scripts/05_decrire_les_variations.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 05_decrire_les_variations.R ; vérifier son onglet dans Source. Sélectionner puis lancer 05_decrire_les_variations.R : B01.",
+      "spot_check": "Le rendement de 100 à 105 vaut-il 5 ou 0.05 ?",
+      "spot_check_answer": "0.05 en fraction, soit 5 % ; le dénominateur est 100.",
+      "evidence_objects": [
+        "prices",
+        "returns",
+        "market"
+      ],
+      "output_path": "outputs/04/rendements.csv"
+    },
+    {
+      "id": "05",
+      "path": "scripts/05_decrire_les_variations.R",
+      "minutes": 20,
+      "question": "Un centre suffit-il à décrire les variations ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.05.describe",
+      "exit_scene": "v6.05.describe_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B04",
+      "parameter": "bins",
+      "default": 30,
+      "try": 15,
+      "rerun_blocks": [
+        "B04"
+      ],
+      "look_at": "Console : tableau summary, colonnes mean_percent et sd_percent. Plots : axe horizontal en %, axe vertical en nombre d’observations.",
+      "expected_base": "CAC : moyenne ≈ 0,050 %, médiane 0 %, écart-type ≈ 1,103 point de pourcentage ; 1859 rendements.",
+      "expected_variant": "Le découpage des barres change ; les valeurs mean_percent et sd_percent restent les mêmes. bins propose des classes à hist.",
+      "restore_instruction": "Dans 05_decrire_les_variations.R, B04 : remettre bins <- 30. Ctrl+S ; relancer 05_decrire_les_variations.R : B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Associer centre, dispersion et distribution pour une exploration des données (EDA).",
+      "transfer_finance": "Lire une variation moyenne avec sa volatilité historique et ses extrêmes.",
+      "proof_prompt": "Montrer deux indicateurs et une barre. Expliquer ce que compte cette barre et pourquoi changer bins ne change pas la moyenne.",
+      "common_blocker": "Le tableau ne change pas après bins : c’est attendu ; seul B04 redessine l’histogramme, sans changer series.",
+      "recap": "Je sais décrire une distribution avec plusieurs repères.",
+      "activity_tasks": [
+        "Lire moyenne, médiane, dispersion et extrêmes avec leurs unités.",
+        "Comparer les deux histogrammes et décrire ce que la présentation masque ou montre."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_05",
+      "next_id": "06",
+      "next_path": "scripts/06_comparer_les_marches.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 06_comparer_les_marches.R ; vérifier son onglet dans Source. Sélectionner puis lancer 06_comparer_les_marches.R : B01.",
+      "spot_check": "Une barre d’histogramme est-elle une observation ?",
+      "spot_check_answer": "Non : elle compte les observations dont le rendement est dans un intervalle.",
+      "evidence_objects": [
+        "series",
+        "summary",
+        "bins"
+      ],
+      "output_path": "outputs/05/statistiques.csv"
+    },
+    {
+      "id": "06",
+      "path": "scripts/06_comparer_les_marches.R",
+      "minutes": 15,
+      "question": "Comment comparer les trajectoires et leurs mouvements communs ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.06.normalize",
+      "exit_scene": "v6.06.correlation",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B03",
+      "parameter": "selected",
+      "default": [
+        "CAC",
+        "DAX",
+        "SMI",
+        "FTSE"
+      ],
+      "try": [
+        "CAC",
+        "DAX"
+      ],
+      "rerun_blocks": [
+        "B03"
+      ],
+      "look_at": "Plots : départ des courbes à 100 et légende. Console après B04 : croisement ligne CAC / colonne DAX dans correlations.",
+      "expected_base": "Quatre courbes au départ 100. À la fin : CAC ≈ 225,35 ; DAX ≈ 336,07. Corrélation CAC/DAX ≈ 0,733.",
+      "expected_variant": "Deux courbes CAC et DAX, toujours au départ 100. La matrice affichée par B04 conserve ses quatre marchés.",
+      "restore_instruction": "Dans 06_comparer_les_marches.R, B03 : remettre selected <- c(\"CAC\", \"DAX\", \"SMI\", \"FTSE\"). Ctrl+S ; relancer 06_comparer_les_marches.R : B03. Vérifier le résultat de référence.",
+      "transfer_ds": "Normaliser pour comparer ; distinguer une trajectoire d’une corrélation entre variations.",
+      "transfer_finance": "Comparer des performances relatives et une co-variation sans conclure à une causalité.",
+      "proof_prompt": "Montrer le départ à 100 et la case CAC/DAX. Que décrit chaque vue, et laquelle ne prouve aucune cause ?",
+      "common_blocker": "La matrice reste à quatre marchés : c’est attendu ; selected règle B03, tandis que B04 utilise market_names.",
+      "recap": "Je sais distinguer évolution relative et association.",
+      "activity_tasks": [
+        "Comparer départ et arrivée des courbes ; lire une case de corrélation.",
+        "Isoler CAC/DAX à l’écran et expliquer pourquoi leur base 100 est utile."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_06",
+      "next_id": "07",
+      "next_path": "scripts/07_composer_un_portefeuille.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 07_composer_un_portefeuille.R ; vérifier son onglet dans Source. Sélectionner puis lancer 07_composer_un_portefeuille.R : B01.",
+      "spot_check": "Une base 100 finale de 225 signifie-t-elle +225 % ?",
+      "spot_check_answer": "Non : environ +125 % depuis le départ 100.",
+      "evidence_objects": [
+        "normalized",
+        "selected",
+        "correlations"
+      ],
+      "output_path": "outputs/06/comparaison.png"
+    },
+    {
+      "id": "07",
+      "path": "scripts/07_composer_un_portefeuille.R",
+      "minutes": 20,
+      "question": "Comment les poids changent-ils la trajectoire du panier ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.07.weights",
+      "exit_scene": "v6.07.weights_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B02",
+      "parameter": "cac_weight",
+      "default": 0.6,
+      "try": 0.8,
+      "rerun_blocks": [
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "look_at": "Console : poids après B02 et dernière ligne de path après B03. Plots : capital en UM ; noter départ et arrivée.",
+      "expected_base": "60 % CAC + 40 % DAX ; départ 10000 UM ; arrivée ≈ 26803,14 UM, avec rééquilibrage à chaque observation.",
+      "expected_variant": "80 % CAC + 20 % DAX ; arrivée ≈ 24632,31 UM. Le changement de poids modifie les rendements puis le capital composé.",
+      "restore_instruction": "Dans 07_composer_un_portefeuille.R, B02 : remettre cac_weight <- 0.60. Ctrl+S ; relancer 07_composer_un_portefeuille.R : B02 → B03 → B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Suivre la propagation d’un paramètre dans une chaîne de calcul, jusqu’à la sortie.",
+      "transfer_finance": "Relier poids, exposition et rééquilibrage à la trajectoire d’un capital pédagogique.",
+      "proof_prompt": "Montrer les deux poids et le capital final. Pourquoi un meilleur résultat passé ne suffit-il pas à choisir le futur panier ?",
+      "common_blocker": "Le capital ne change pas : relancer B02, B03 puis B04 dans 07_composer_un_portefeuille.R ; B04 seul ne recalcule pas path.",
+      "recap": "Je sais relier un paramètre aux sorties qu’il modifie.",
+      "activity_tasks": [
+        "Vérifier les poids, le départ et le capital final dans path.",
+        "Comparer les deux pondérations : résultat, trajectoire et hypothèses inchangées."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_07",
+      "next_id": "08",
+      "next_path": "scripts/08_mesurer_le_risque.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 08_mesurer_le_risque.R ; vérifier son onglet dans Source. Sélectionner puis lancer 08_mesurer_le_risque.R : B01.",
+      "spot_check": "Pourquoi le poids DAX devient-il 20 % quand CAC vaut 80 % ?",
+      "spot_check_answer": "dax_weight = 1 − cac_weight ; la somme reste 100 %.",
+      "evidence_objects": [
+        "cac_weight",
+        "dax_weight",
+        "path"
+      ],
+      "output_path": "outputs/07/capital_panier.csv"
+    },
+    {
+      "id": "08",
+      "path": "scripts/08_mesurer_le_risque.R",
+      "minutes": 25,
+      "question": "Un seuil de perte et une baisse depuis un sommet répondent-ils à la même question ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.08.var",
+      "exit_scene": "v6.08.risk_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B02",
+      "parameter": "confidence",
+      "default": 0.95,
+      "try": 0.99,
+      "rerun_blocks": [
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "look_at": "Console : VaR_UM après B02, puis maximum_drawdown après B03. Plots : courbe sous 0, en % du sommet courant.",
+      "expected_base": "VaR historique 95 % ≈ 153,05 UM pour 10000 UM par observation. Drawdown maximal ≈ −21,75 % sur le chemin.",
+      "expected_variant": "Le seuil de VaR à 99 % est au moins aussi élevé. Le drawdown et le capital final restent identiques : le chemin ne change pas.",
+      "restore_instruction": "Dans 08_mesurer_le_risque.R, B02 : remettre confidence <- 0.95. Ctrl+S ; relancer 08_mesurer_le_risque.R : B02 → B03 → B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Séparer une statistique de distribution d’un indicateur dépendant de l’ordre des données.",
+      "transfer_finance": "Distinguer VaR par observation et drawdown ; ne jamais lire la VaR comme une perte maximale.",
+      "proof_prompt": "Montrer la VaR et un creux de drawdown. Donner leur unité/horizon ; dire lequel change quand confidence passe à 0.99.",
+      "common_blocker": "Le graphique ne change pas : c’est attendu ; confidence change le quantile des pertes, pas le chemin du capital.",
+      "recap": "Je sais nommer le risque, son unité et sa limite.",
+      "activity_tasks": [
+        "Lire la VaR et identifier un sommet puis un creux sur le drawdown.",
+        "Comparer 95 % et 99 % ; expliquer les résultats qui changent et ceux qui restent fixes."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_08",
+      "next_id": "09",
+      "next_path": "scripts/09_tester_un_choc.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 09_tester_un_choc.R ; vérifier son onglet dans Source. Sélectionner puis lancer 09_tester_un_choc.R : B01.",
+      "spot_check": "VaR 95 % : peut-on perdre davantage que ce seuil ?",
+      "spot_check_answer": "Oui : c’est un quantile historique, pas la perte maximale ni une garantie.",
+      "evidence_objects": [
+        "var_amount",
+        "drawdown",
+        "summary"
+      ],
+      "output_path": "outputs/08/risque.csv"
+    },
+    {
+      "id": "09",
+      "path": "scripts/09_tester_un_choc.R",
+      "minutes": 15,
+      "question": "Quelle exposition explique la perte sous un choc choisi ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.09.stress",
+      "exit_scene": "v6.09.stress_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B02",
+      "parameter": "dax_shock",
+      "default": -0.12,
+      "try": -0.2,
+      "rerun_blocks": [
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "look_at": "Console : rendement, capital final et contributions. Plots : deux barres de contribution ; comparer leurs signes et amplitudes.",
+      "expected_base": "CAC −2 %, DAX −12 %, poids 60/40 : panier −6 %, perte 600 UM, capital 9400 UM. Contributions : −1,2 et −4,8 points.",
+      "expected_variant": "DAX −20 % : contribution DAX −8 points ; panier −9,2 %, perte 920 UM, capital 9080 UM.",
+      "restore_instruction": "Dans 09_tester_un_choc.R, B02 : remettre dax_shock <- -0.12. Ctrl+S ; relancer 09_tester_un_choc.R : B02 → B03 → B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Faire une analyse de sensibilité : changer une hypothèse et attribuer l’effet obtenu.",
+      "transfer_finance": "Relier un choc inventé aux pertes de chaque exposition sans lui attribuer une probabilité.",
+      "proof_prompt": "Montrer le terme 0.40 × −0.20. Expliquer d’où viennent −8 points et pourquoi ce calcul ne mesure aucune probabilité.",
+      "common_blocker": "Le signe semble étrange : dax_shock doit rester négatif ; une perte positive en UM correspond à un rendement négatif.",
+      "recap": "Je sais attribuer la perte d’un scénario choisi.",
+      "activity_tasks": [
+        "Décomposer la perte de référence en deux contributions.",
+        "Tester le choc DAX, rapprocher contributions et total ; qualifier le scénario."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_09",
+      "next_id": "10",
+      "next_path": "scripts/10_simuler_des_scenarios.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 10_simuler_des_scenarios.R ; vérifier son onglet dans Source. Sélectionner puis lancer 10_simuler_des_scenarios.R : B01.",
+      "spot_check": "Une perte de 920 UM signifie-t-elle un rendement de +9,2 % ?",
+      "spot_check_answer": "Non : sur 10000 UM, le rendement est −9,2 % ; la perte est donnée positive.",
+      "evidence_objects": [
+        "contributions",
+        "scenario_return"
+      ],
+      "output_path": "outputs/09/contributions_choc.csv"
+    },
+    {
+      "id": "10",
+      "path": "scripts/10_simuler_des_scenarios.R",
+      "minutes": 20,
+      "question": "Que change un horizon plus long dans nos scénarios simulés ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.10.bootstrap",
+      "exit_scene": "v6.10.bootstrap_limits",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "experiment_block": "B02",
+      "parameter": "horizon",
+      "default": 20,
+      "try": 40,
+      "rerun_blocks": [
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "look_at": "Console : probabilités 0.05, 0.50 et 0.95 et capitaux correspondants. Plots : distribution et ligne du capital initial ; lire l’unité UM.",
+      "expected_base": "20 observations, 5000 scénarios, seed = 2026 : quantiles 5/50/95 % ≈ 9381,10 / 10118,31 / 10863,21 UM.",
+      "expected_variant": "40 observations par scénario, toujours 5000 scénarios. Quantiles et dispersion changent ; doubler l’horizon ne double pas mécaniquement le gain.",
+      "restore_instruction": "Dans 10_simuler_des_scenarios.R, B02 : remettre horizon <- 20. Ctrl+S ; relancer 10_simuler_des_scenarios.R : B02 → B03 → B04. Vérifier le résultat de référence.",
+      "transfer_ds": "Lire une distribution simulée, fixer une seed et questionner les hypothèses du bootstrap.",
+      "transfer_finance": "Examiner des capitaux à un horizon choisi sans prendre les simulations pour une promesse.",
+      "proof_prompt": "Montrer le quantile médian et la limite basse à 5 %. Que rend reproductible la graine, et quelle hypothèse reste fragile ?",
+      "common_blocker": "Les quantiles diffèrent : vérifier seed <- 2026, paths <- 5000, horizon puis relancer B02–B04, dans cet ordre.",
+      "recap": "Je sais expliquer une simulation et son hypothèse.",
+      "activity_tasks": [
+        "Lire les trois quantiles et leur horizon ; repérer 10000 UM dans Plots.",
+        "Comparer 20 et 40 observations et discuter seed, indépendance et ancienneté."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_10",
+      "next_id": "11",
+      "next_path": "scripts/11_tester_un_modele.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 11_tester_un_modele.R ; vérifier son onglet dans Source. Sélectionner puis lancer 11_tester_un_modele.R : B01.",
+      "spot_check": "Une seed fixée rend-elle une simulation prédictive ?",
+      "spot_check_answer": "Non : elle rend les tirages reproductibles, sous les mêmes paramètres et données.",
+      "evidence_objects": [
+        "horizon",
+        "paths",
+        "summary"
+      ],
+      "output_path": "outputs/10/quantiles_simules.csv"
+    },
+    {
+      "id": "11",
+      "path": "scripts/11_tester_un_modele.R",
+      "minutes": 25,
+      "question": "Le modèle fait-il mieux qu’une référence simple sur le même test ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.11.model",
+      "exit_scene": "v6.11.model_run",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "experiment_block": "B02",
+      "parameter": "train_fraction",
+      "default": 0.8,
+      "try": 0.7,
+      "rerun_blocks": [
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "look_at": "Console : effectifs apprentissage/test après B02, puis deux RMSE après B04. Plots après B05 : couples contemporains CAC/DAX et droite.",
+      "expected_base": "1487 observations d’apprentissage, 372 de test. RMSE modèle ≈ 0,831 point de pourcentage ; référence ≈ 1,341.",
+      "expected_variant": "1301 observations d’apprentissage et 558 de test. Les RMSE changent ; les lignes du test changent aussi, donc les scores ne sont pas directement équivalents.",
+      "restore_instruction": "Dans 11_tester_un_modele.R, B02 : remettre train_fraction <- 0.80. Ctrl+S ; relancer 11_tester_un_modele.R : B02 → B03 → B04 → B05. Vérifier le résultat de référence.",
+      "transfer_ds": "Séparer train/test dans le temps et comparer un modèle à une baseline sur les mêmes lignes.",
+      "transfer_finance": "Lire une relation CAC–DAX contemporaine ; repérer l’information nécessaire avant de parler de prévision.",
+      "proof_prompt": "Montrer les deux scores du même test. Quelle information faut-il déjà connaître pour estimer le CAC avec ce modèle ?",
+      "common_blocker": "Le score semble comparable entre deux découpages : relire les effectifs ; changer train_fraction change aussi la population testée.",
+      "recap": "Je sais lire un test honnête face à une référence.",
+      "activity_tasks": [
+        "Repérer train/test et la baseline ; lire les deux erreurs sur le même test.",
+        "Comparer les deux découpages ; expliquer pourquoi le modèle ne prévoit pas demain."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_11",
+      "next_id": "12",
+      "next_path": "scripts/12_automatiser_le_rapport.R",
+      "next_instruction": "Dans Files → More → Go To Working Directory → scripts, cliquer 12_automatiser_le_rapport.R ; vérifier son onglet dans Source. Sélectionner puis lancer 12_automatiser_le_rapport.R : B01.",
+      "spot_check": "La RMSE du test sert-elle à ajuster la droite ?",
+      "spot_check_answer": "Non : la droite est ajustée sur train ; test sert à comparer au même moment les deux méthodes.",
+      "evidence_objects": [
+        "train",
+        "test",
+        "model",
+        "baseline",
+        "summary"
+      ],
+      "output_path": "outputs/11/erreurs_test.csv"
+    },
+    {
+      "id": "12",
+      "path": "scripts/12_automatiser_le_rapport.R",
+      "minutes": 20,
+      "question": "Comment refaire la même analyse pour plusieurs paramètres ?",
+      "prerequisite_note": "Projet course.Rproj ouvert ; code fourni, aucune saisie à partir de zéro. Les notions précédentes aident à comprendre ; B01 reconstruit les entrées du fichier.",
+      "entry_scene": "v6.12.function",
+      "exit_scene": "v6.12.report",
+      "run_blocks": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "experiment_block": "B03",
+      "parameter": "weights",
+      "default": [
+        0.4,
+        0.6,
+        0.8
+      ],
+      "try": [
+        0.2,
+        0.6,
+        1.0
+      ],
+      "rerun_blocks": [
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "look_at": "Console après B03 : une ligne par poids. Après B05 : navigateur, outputs/12/rapport_noria.html ; tableau et barres de VaR.",
+      "expected_base": "40/60/80 % CAC : capitaux finaux ≈ 29033,49 / 26803,14 / 24632,31 UM ; VaR ≈ 149,82 / 153,05 / 160,90 UM.",
+      "expected_variant": "20/60/100 % CAC : trois comparaisons remplacent les précédentes. La ligne 60 % CAC garde les mêmes résultats ; le HTML est recréé.",
+      "restore_instruction": "Dans 12_automatiser_le_rapport.R, B03 : remettre weights <- c(0.40, 0.60, 0.80). Ctrl+S ; relancer 12_automatiser_le_rapport.R : B03 → B04 → B05. Vérifier le résultat de référence.",
+      "transfer_ds": "Encapsuler une méthode dans une function, puis lancer un traitement par lots reproductible.",
+      "transfer_finance": "Comparer plusieurs pondérations avec les mêmes unités, contrôles et conventions de risque.",
+      "proof_prompt": "Montrer la ligne 60 % avant/après. Expliquer pourquoi son invariance contrôle la méthode et pourquoi B02 seul ne produit pas le rapport.",
+      "common_blocker": "B02 peut être silencieux : vérifier analyze_basket dans Environment. Rapport absent : lancer B03 → B04 → B05 dans 12_automatiser_le_rapport.R ; dans le navigateur, Ctrl+R puis retour RStudio. Garder le PNG près du HTML.",
+      "recap": "Je sais refaire une méthode pour plusieurs entrées.",
+      "activity_tasks": [
+        "Suivre définition → appels → tableau → HTML.",
+        "Comparer les lots de poids ; contrôler l’invariance de la ligne 60 %, puis restaurer le rapport."
+      ],
+      "trace_instruction": "Sur votre feuille : résultat de départ → prédiction → résultat de la variante → explication. Après restauration, cocher le retour au cas de référence.",
+      "experience_asset_key": "experience_12",
+      "next_id": "final",
+      "next_path": "outputs/12/rapport_noria.html",
+      "next_instruction": "Garder le rapport de référence ouvert ; passer à la synthèse finale de 15 minutes.",
+      "spot_check": "Définir analyze_basket suffit-il à produire le HTML ?",
+      "spot_check_answer": "Non : B02 définit ; B03 appelle ; B04 fabrique ; B05 retrouve le rapport.",
+      "evidence_objects": [
+        "analyze_basket",
+        "weights",
+        "summary",
+        "report_path"
+      ],
+      "output_path": "outputs/12/rapport_noria.html"
+    }
+  ],
+  "final_scene": "v6.final",
+  "final_artifact": "outputs/12/rapport_noria.html",
+  "experience_assets": "experience_00 à experience_12 : comparaisons calculées depuis les expériences fournies, à composer près de leur étape."
+}

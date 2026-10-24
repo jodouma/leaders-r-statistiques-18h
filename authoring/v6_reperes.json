@@ -13,7 +13,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Ce mémo accompagne 01_aventure_noria.pdf. Il rappelle les gestes déjà montrés ; le playbook contient les explications et les expériences. Ouvrir course.Rproj dans le dossier extrait, puis le fichier .R indiqué dans scripts/."
+          "text": "Le parcours complet est dans 01_aventure_noria.pdf : 00 → 12, puis synthèse. Ce mémo sert au besoin. Ouvrir course.Rproj du dossier extrait ; dans Files → More → Go To Working Directory → scripts, cliquer le fichier .R indiqué. Son onglet apparaît dans Source."
         },
         {
           "type": "table",
@@ -72,7 +72,7 @@
         {
           "type": "callout",
           "label": "La règle commune",
-          "text": "Nouveau script : B01, puis les blocs du guide dans l’ordre. Après modification d’un paramètre : relancer son bloc et les blocs qui utilisent le résultat. Source, facultatif après lecture, exécute tout le fichier actif."
+          "text": "Dans le fichier indiqué : sélectionner du titre # Bxx jusqu’avant le titre suivant, puis Ctrl+Enter ; le dernier bloc va jusqu’à la fin. À chaque nouveau script : B01 d’abord. Après expérience : remettre la valeur initiale, Ctrl+S, puis relancer les mêmes blocs affectés. Attendre > en Console."
         }
       ]
     },
@@ -122,6 +122,10 @@
             [
               "( ) · { }",
               "Parenthèses pour un appel ou un calcul ; accolades pour regrouper des instructions."
+            ],
+            [
+              "Paramètre · argument",
+              "Un paramètre de l’expérience est une valeur à modifier ; un argument transmet une entrée à une fonction."
             ]
           ]
         },
@@ -241,6 +245,16 @@
               "Comment montrer ou garder ?",
               "print / save_table",
               "Console ou CSV dans outputs/."
+            ],
+            [
+              "Tirer avec remise ?",
+              "sample(..., replace = TRUE)",
+              "Des valeurs historiques peuvent être choisies plusieurs fois."
+            ],
+            [
+              "Ajuster / estimer / comparer ?",
+              "lm / predict",
+              "Une relation ajustée, des estimations, puis une erreur sur le test."
             ]
           ]
         },
@@ -257,7 +271,7 @@
         {
           "type": "callout",
           "label": "Définition puis appel",
-          "text": "Dans 12, function définit une méthode nommée analyze_basket. B02 prépare la recette ; B03 l’appelle pour plusieurs paramètres. Sélectionner toute la définition, jusqu’à son accolade fermante."
+          "text": "Dans 12_automatiser_le_rapport.R : B02 définit analyze_basket (function), B03 l’appelle pour plusieurs poids (batch), B04 fabrique le rapport, B05 l’ouvre. En B02, sélectionner toute la définition jusqu’à l’accolade fermante ; elle ne produit pas encore le rapport."
         }
       ]
     },
@@ -367,6 +381,11 @@
               "Modèle CAC ~ DAX",
               "Relation de la même observation ; comparaison au test.",
               "Ni causalité ni prévision du lendemain."
+            ],
+            [
+              "Train / test / baseline",
+              "Ajuster sur le passé ; comparer modèle et référence sur les mêmes lignes réservées.",
+              "Un autre découpage change aussi les lignes du test."
             ]
           ]
         },
@@ -461,15 +480,15 @@
               "B02 choc ; B03 contributions ; B04 graphique → outputs/09/."
             ],
             [
-              "10_simuler_des_scenarios.R · option",
+              "10_simuler_des_scenarios.R",
               "B02 hypothèses ; B03 quantiles ; B04 distribution → outputs/10/."
             ],
             [
-              "11_tester_un_modele.R · option",
+              "11_tester_un_modele.R",
               "B02 séparation ; B03 modèle ; B04 erreurs ; B05 nuage → outputs/11/."
             ],
             [
-              "12_automatiser_le_rapport.R · option",
+              "12_automatiser_le_rapport.R",
               "B02 fonction ; B03 lots ; B04 HTML ; B05 ouvrir → outputs/12/rapport_noria.html."
             ]
           ]
@@ -487,7 +506,7 @@
         {
           "type": "callout",
           "label": "Garder une trace utile",
-          "text": "Avant → après → résultat → interprétation. Après une expérience, restaurer les paramètres de référence ou annoncer votre variante dans la présentation."
+          "text": "Sur une feuille : avant → prédiction → après → explication. Restaurer ensuite le paramètre de référence et les mêmes blocs avant le fichier suivant. La ligne 60 % CAC de la comparaison finale doit redevenir le repère : environ 26803,14 UM et VaR 153,05 UM."
         }
       ]
     }
